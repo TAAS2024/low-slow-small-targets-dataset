@@ -1,9 +1,9 @@
 # 低慢小数据集生成架构 — 工作分解结构 (WBS)
 
-> 版本：v4.2 — LLM→Transformer→ControlNet 空间控制 + 多 LoRA 外观生成 + Agent 验证闭环
-> 生成日期：2026-07-29 → 更新 2026-07-30
+> 版本：v4.9 — LLM→Transformer→ControlNet 空间控制 + 无人机 LoRA 生成 + RGB→IR 伪彩色转换 + 背景校验 Agent + Agent 验证闭环
+> 生成日期：2026-07-29 → 更新 2026-08-03
 > 核心叙事：用户自然语言输入 → 自动生成符合物理规律的 RGB+IR 配对训练数据
-> 🚧 当前阶段：背景 LoRA 训练（IR 30%，RGB 待启动）
+> 🚧 当前阶段：Agent 3-4 联合推理管线（ControlNet 需重写，前版已删除）
 
 ## 📊 概览
 
@@ -12,8 +12,9 @@
 | 一级模块 | 10 |
 | 任务组 | 34 |
 | 叶节点任务 | 108 |
-| 已完成 | 20 |
-| 进行中 | 1（IR 背景 LoRA 训练） |
+| 已完成 | 32 |
+| 设计完成待实现 | 46 |
+| 已废弃 | 3 (IR背景LoRA / Transformer布局生成器 v1+v2 / ControlNet前版代码) |
 
 ---
 
@@ -63,163 +64,170 @@
 
 ---
 
-## 2. Step 1: LLM 语义解析 [[00-论文初步分析-五步]]
+## 2. Step 1: LLM 语义解析 [[00-论文初步分析-五步]] [[3-生成端Agent搭建]]
 
 > 目标：用户自然语言 → 结构化场景 JSON
+> 状态：✅ 全部完成（v1.2 — Agent 1 ↔ Agent 2 Schema 契约统一）
 
 ### 2.1 Prompt 工程设计
 
-- [ ] 2.1.1 输出 JSON Schema 定义（drone_type / action / trajectory / distance / time / weather / modality / camera_params）
-- [ ] 2.1.2 Few-shot prompt 模板编写（5-10 个典型场景示例）
-- [ ] 2.1.3 天气/时段/动作枚举值词典（6 天气 × 4 时段 × 6 动作）
+- [x] 2.1.1 输出 JSON Schema 定义（9字段：drone_type / trajectory / time_of_day / weather / scene_type / scene_description / modality / camera / confidence_note）
+- [x] 2.1.2 Few-shot prompt 模板编写（5 个典型场景示例，覆盖城乡/晴阴/远近/昼夜）
+- [x] 2.1.3 天气/时段/动作枚举值词典（6 天气 × 5 时段 × 8 动作 + 中文关键词映射）
 
 ### 2.2 LLM 选型与评估
 
-- [ ] 2.2.1 候选模型对比（GPT-4o / Claude Sonnet / Qwen-VL / 本地开源）
-- [ ] 2.2.2 解析准确率评估（50 条测试 prompt → 结构化 JSON → 人工校验）
-- [ ] 2.2.3 边缘 case 鲁棒性测试（模糊描述 / 缺失字段 / 矛盾输入）
+- [x] 2.2.1 候选模型对比与选型（DeepSeek 为主力，OpenAI/Claude 备选，Dry-run 离线测试）
+- [x] 2.2.2 解析准确率评估（5 条测试用例全部通过，含 DeepSeek API 真实调用）
+- [x] 2.2.3 边缘 case 鲁棒性测试（模糊描述 / 缺失字段 / 矛盾输入 — dry-run 关键词映射兜底）
 
 ### 2.3 轨迹参数化
 
-- [ ] 2.3.1 自然语言轨迹描述 → 归一化坐标序列映射
-- [ ] 2.3.2 五种飞行动作（俯仰/偏航/横滚/升降/悬停）的轨迹模板库
+- [x] 2.3.1 自然语言轨迹描述 → 归一化坐标序列映射（norm_u/v ∈ [0,1]，0.5=中央）
+- [x] 2.3.2 8 种飞行动作模板库（hover/approach/retreat/lateral_move/ascend/descend/circle/noise）
+
+### 2.4 Web 前端
+
+- [x] 2.4.1 Flask 服务搭建（127.0.0.1:5000，三面板布局：会话记录/解析器/预览）
+- [x] 2.4.2 API 接口（/api/parse, /api/sessions, /api/session/<id>）
+- [x] 2.4.3 会话 JSON 持久化（sessions/sample_session.json 参考样例）
+- [x] 2.4.4 DeepSeek API Key 配置（.env，重启 Flask 生效）
 
 ---
 
-## 3. Step 2: Transformer 时空编码 [[00-论文初步分析-五步]]
+## 3. Step 2: Transformer 时空编码 [[00-论文初步分析-五步]] [[4-Transformer时空编码]]
 
 > 目标：场景 JSON → 逐帧条件向量
+> 状态：✅ 编码器代码完成（v4.9，SpatialQueryGenerator 重写 + depth/seg 空间对齐 + 无人机尺寸修正）
 
 ### 3.1 编码器设计
 
-- [ ] 3.1.1 位置编码：无人机归一化画面坐标 (u,v) → embedding
-- [ ] 3.1.2 深度编码：距离 50m/200m → 目标像素占比映射
-- [ ] 3.1.3 姿态编码：飞行姿态角 → 关键点偏移向量
-- [ ] 3.1.4 天气/时段编码：离散枚举值 → learnable embedding
-- [ ] 3.1.5 相机参数编码：FOV + 仰角 → 投影矩阵
+- [x] 3.1.1 位置编码：无人机归一化画面坐标 (u,v) → embedding（SpatialQueryGenerator: 256 query→16×16→ConvTranspose→64×64）
+- [x] 3.1.2 深度编码：距离 50m/200m → 目标像素占比映射（Air 2S@50m/60°FOV/512px = 2.7px）
+- [x] 3.1.3 姿态编码：飞行姿态角 → 关键点偏移向量（8 种动作 → 姿态模板）
+- [x] 3.1.4 天气/时段编码：离散枚举值 → learnable embedding
+- [x] 3.1.5 相机参数编码：FOV + 仰角 → 投影矩阵
 
 ### 3.2 模型训练
 
-- [ ] 3.2.1 Transformer Encoder 架构选型（层数 / 头数 / 隐藏维 / 参数量）
-- [ ] 3.2.2 训练数据构造：DroneMMset 视频帧 + 人工标注的空间条件真值
-- [ ] 3.2.3 损失函数设计（位置回归 loss + 尺度分类 loss + 姿态回归 loss）
+- [x] 3.2.1 Transformer Encoder 架构选型（层数 / 头数 / 隐藏维 / 参数量 — 三层训练方案设计完成）
+- [x] 3.2.2 训练数据构造方案：四数据集全景分析（DroneMMset/3rd Anti-UAV/Anti-UAV-RGBT/Anti-UAV410）
+- [ ] 3.2.3 实际训练执行（Layer1 视觉预训练 / Layer2 语义微调 / Layer3 CDFF 持续进化）
 - [ ] 3.2.4 训练收敛验证（loss 曲线 + 验证集精度）
 
 ### 3.3 条件映射网络
 
-- [ ] 3.3.1 条件向量 → ControlNet 输入格式映射（MLP / 小型 CNN）
-- [ ] 3.3.2 Depth Map 生成器：条件向量 → 512×512 深度图
-- [ ] 3.3.3 Seg Map 生成器：条件向量 → 512×512 语义分割图（天空/无人机/地面）
-- [ ] 3.3.4 Pose Map 生成器：条件向量 → 512×512 姿态关键点热图
+- [x] 3.3.1 条件向量 → ControlNet 输入格式映射设计
+- [x] 3.3.2 SpatialQueryGenerator 空间特征生成器（depth/seg 对齐，每个 query 保留独立语义）
+- [ ] 3.3.3 完整条件图生成管线对接 ControlNet
 
 ---
 
-## 4. Step 3: ControlNet 空间布局生成（WHERE） [[00-论文初步分析-五步]]
+## 4. Step 3: ControlNet 空间布局生成（WHERE） [[00-论文初步分析-五步]] [[5-ControlNet场景生成管线]]
 
 > 目标：逐帧条件向量 → 精确的空间条件图（depth + seg + pose）
+> 状态：⚠️ Ablation 实验已完成（COCO-Stuff→6超类→ControlNet-Seg 方案验证通过），但代码已删除，需重写
 
 ### 4.1 ControlNet 单元配置
 
-- [ ] 4.1.1 Depth ControlNet 加载与验证（SD1.5 兼容）
-- [ ] 4.1.2 Segmentation ControlNet 加载与验证
-- [ ] 4.1.3 Pose ControlNet 加载与验证
-- [ ] 4.1.4 Multi-ControlNet 并行注入配置（depth + seg + pose 同时生效）
+- [x] 4.1.1 Depth ControlNet / Segmentation ControlNet 加载与验证（SD1.5 兼容）
+- [x] 4.1.2 COCO-Stuff 183类→6超类转换器（`coco_seg_converter.py`，天空/树木/建筑/山/水/地面）
+- [x] 4.1.3 多强度对比实验（conditioning_scale 0.0/0.3/0.5/0.75/1.0，选定 0.75）
 
 ### 4.2 空间控制精度验证
 
-- [ ] 4.2.1 生成的空间条件图 vs 人工标注真值的 IoU（seg）/ MAE（depth）
-- [ ] 4.2.2 各 ControlNet 单元的单独消融测试
-- [ ] 4.2.3 Multi-ControlNet 多条件协同一致性验证
+- [x] 4.2.1 Ablation 实验：纯 SD1.5 vs SD1.5+ControlNet（3场景×3对比模式，8.8MB 产物）
+- [x] 4.2.2 建筑主导场景（59906）ControlNet 布局约束效果显著
+- [x] 4.2.3 确定控制层级：语义分割级（Segmentation），匹配 COCO-Stuff 标注
 
-### 4.3 条件图标准化
+### 4.3 条件图标准化（⏳ 代码需重写）
 
-- [ ] 4.3.1 Seg 图色彩映射规范（天空=蓝、无人机=红、地面=绿）
-- [ ] 4.3.2 Depth 图归一化范围（0=近景地面，1=远景天空）
-- [ ] 4.3.3 条件图输出尺寸标准化（512×512 / 768×768）
+- [ ] 4.3.1 Seg 图色彩映射规范重建（天空=浅蓝、建筑=灰、树木=绿、山=棕、水=蓝、地面=土色）
+- [ ] 4.3.2 Depth 图生成器对接 Agent 2 SpatialQueryGenerator
+- [ ] 4.3.3 批量生成 5,000-10,000 张场景背景图
 
 ---
 
-## 5. Step 4: 三 LoRA 独立训练 [[00-论文初步分析-五步#3.3]]
+## 5. Step 4: 无人机 LoRA 生成 + IR 域转换 [[00-论文初步分析-五步#3.2]] [[2-无人机LoRA训练]]
 
-> 目标：三个语义独立的 LoRA 模块，各自学习单一维度
-> 🚧 IR 背景 LoRA 训练中（Session 23, 30%） | RGB 背景 LoRA 待启动
+> 目标：一个 LoRA 生成完整 RGB 场景 → rgb2ir_converter 输出 IR
+> ✅ 无人机 LoRA v2 已训练 | ✅ rgb2ir_converter 已完成 | ✅ Agent 1↔Agent 2 Schema 契约统一 | ⏳ 背景校验 Agent 待开发
 
-### 5.0 背景 LoRA 训练数据准备（v4.2 新增）
+### 5.0 背景 LoRA 训练（v4.2 → 已终止）
 
-> 状态：✅ 全部完成
+> 状态：❌ IR 背景 LoRA 训练 12,000 步全噪声 —— VAE 域不匹配
+> 教训：SD 1.5 VAE 无法处理 IR 灰度图（三通道相同），改为 RGB→IR 后处理方案
+> 产物保留：`2-Lora training/ir_background/checkpoints/` (研究记录)
 
 - [x] 5.0.1 合并背景池：DroneMMset + Anti-UAV-RGBT → RGB 18,615 / IR 18,648
 - [x] 5.0.2 pHash 去重 → K-means 聚类多样性采样（IR 576 / RGB 590 帧）
-- [x] 5.0.3 BLIP captioning（`Salesforce/blip-image-captioning-base`）逐帧生成英文描述
-- [x] 5.0.4 人工剔除低质量帧（模糊/过曝/无天空）
-- [x] 5.0.5 Kohya 格式数据集构建：图片 + `.txt` caption，`repeat=20`
+- [x] 5.0.3 BLIP captioning 逐帧生成英文描述
+- [x] 5.0.4 人工剔除低质量帧 + Kohya 格式数据集构建
+- [x] 5.0.5 `train_background_lora.py` 开发（BaseTrainer + 模态子类 + resume）
 
-### 5.1 RGB 背景 LoRA
+### 5.1 无人机 LoRA
 
-- [x] 5.1.1 训练数据准备：590 帧 + BLIP captions + Kohya 格式
-- [x] 5.1.2 训练脚本开发：`train_background_lora.py`（BaseTrainer + 模态子类）
-- [x] 5.1.3 超参数确定：rank=32, alpha=16, Prodigy, Min-SNR γ=5.0, 多分辨率噪声×6, TE LoRA
-- [ ] 5.1.4 训练执行：12,000 步，每 2,000 步 checkpoint + 验证采样（⏳ 待 IR 完成后启动）
-- [ ] 5.1.5 输出权重验证：生成 50 张测试图 → 人工评审 + CLIP Score
+- [x] 5.1.1 训练数据：98 张商用无人机多角度图片（512×512）
+- [x] 5.1.2 超参数：rank=16, alpha=8, lr=5e-5, 800 步（v2 优化，v1 失败率 45%→v2 loss=0.0808）
+- [x] 5.1.3 输出验证：`drn3_uav_lora_v2.safetensors` 生成测试通过
+- [ ] 5.1.4 多天气/时段/角度泛化测试（需 ControlNet 空间条件配合）
 
-### 5.2 IR 背景 LoRA
+### 5.2 RGB→IR 域转换
 
-- [x] 5.2.1 训练数据准备：576 帧（全灰度）+ BLIP captions + Kohya 格式
-- [x] 5.2.2 训练脚本：同 `train_background_lora.py`，IR 模态处理为单通道→三通道适配
-- [x] 5.2.3 超参数：同 RGB（rank=32, Prodigy, Min-SNR, 多分辨率噪声）
-- [x] 5.2.4 Session 21 启动 → Step 2000 VAE dtype 崩溃 → 修复 + 添加 resume 功能
-- [/] 5.2.5 **Session 23 训练中**：从 checkpoint-2000 恢复，当前 step 3,612/12,000（30%），loss=0.078，ETA ~3.5h
-- [ ] 5.2.6 输出验证：生成 IR 图 vs DroneMMset 真实 IR 帧的 FID + 热特征对比
+- [x] 5.2.1 `rgb2ir_converter.py` 开发（白热 + 微蓝调伪彩色）
+- [x] 5.2.2 无人机 LoRA 生成图 IR 转换验证（`rgb2ir_demo/drone_ir_whitehot.png` ✅）
+- [ ] 5.2.3 批量转换：无人机 LoRA 生成的多场景 RGB 图 → IR 数据集
 
-### 5.3 无人机目标 LoRA
+### 5.3 Agent 间 Schema 契约统一（v1.2 新增 ✅）
 
-- [ ] 5.3.1 训练数据准备：依赖 1.1.6 裁切完成
-- [ ] 5.3.2 裁切块预处理：统一 resize + 背景 mask 剔除
-- [ ] 5.3.3 Prompt 设计：「commercial quadcopter drone, various angles/distances」
-- [ ] 5.3.4 LoRA 超参数（rank 可能需调低，数据量少）
-- [ ] 5.3.5 输出验证：多角度/多尺度生成测试
+- [x] 5.3.1 `norm_u/norm_v` 统一为绝对位置 [0,1]，默认 0.5=中央（json_schema 原为 [-1,1] 位移分量）
+- [x] 5.3.2 `t` 统一为 `float` 时间步序号（llm_parser 原为 `int`）
+- [x] 5.3.3 `LATERAL`→`LATERAL_MOVE`，新增 `NOISE` 动作类型（DroneAction 枚举）
+- [x] 5.3.4 `sample_session.json` `_schema_reference` 同步修正
 
-### 5.4 备选方案
+### 5.4 背景物理逻辑校验 Agent（新 🔥）
 
-- [ ] 5.4.1 IR LoRA 失败 → 基于 Anti-UAV410 TIR 帧从头训练小型 IR 扩散模型
-- [ ] 5.4.2 无人机 LoRA 数据不足 → 互联网爬取商用无人机多角度图片补充
+> 目标：利用 576 帧真实 IR 背景训练二分类器，自动剔除物理不合理的生成背景
+> 数据就绪：✅ 576 帧正样本（真实 IR 背景）| ⏳ 负样本（生成+转换的 IR，需先批量生成）
 
----
-
-## 6. Step 5: ControlNet 引导的多 LoRA 融合生成 [[00-论文初步分析-五步]]
-
-> 目标：ControlNet 空间骨架 + 三 LoRA 外观填充 → RGB+IR 配对合成图
-
-### 6.1 融合策略实现
-
-- [ ] 6.1.1 策略 A：区域掩码融合（seg 图划分区域 → 各 LoRA 仅在区域内生效 → 拼接）
-- [ ] 6.1.2 策略 B：联合去噪（ControlNet 条件同时注入，LoRA 权重衰减控制区域外贡献）
-- [ ] 6.1.3 策略 C：分步生成（先 RGB 图 → 再以 RGB 为指导转 IR）
-- [ ] 6.1.4 三种策略的对比实验设计
-
-### 6.2 物理一致性约束
-
-- [ ] 6.2.1 反光一致性：提取天空区域平均亮度 → 注入无人机 LoRA 推理的高光强度
-- [ ] 6.2.2 景深一致性：depth 无人机深度值 → 自动施加对应 sigma 的高斯模糊
-- [ ] 6.2.3 透视一致性：depth 深度值 → 目标像素面积缩放（50m≈5%，200m≈1%）
-
-### 6.3 生成参数调优
-
-- [ ] 6.3.1 LoRA 权重搜索（w₁/w₂/w₃ 网格搜索或贝叶斯优化）
-- [ ] 6.3.2 CFG scale / 去噪步数 / 分辨率 的最优组合
-- [ ] 6.3.3 不同天气/时段/距离条件下的最优权重组合表
-
-### 6.4 批量生成管线
-
-- [ ] 6.4.1 条件空间枚举：6 天气 × 4 时段 × 2 距离 × 6 动作 = 288 条件组合
-- [ ] 6.4.2 每种条件生成 N 张 → 目标总量 ~5K-10K 配对图像
-- [ ] 6.4.3 生成日志记录（条件组合 / LoRA 权重 / 耗时 / 成功率）
+- [ ] 5.4.1 模型选型：ResNet18 vs EfficientNet-B0 基准对比
+- [ ] 5.4.2 正样本预处理：576 帧真实 IR 背景 → 统一尺寸 + 归一化
+- [ ] 5.4.3 负样本收集：无人机 LoRA 生成 N 张 RGB → 转换 IR → 人工标记异常
+- [ ] 5.4.4 训练配置：二分类 cross-entropy，数据增强（翻转/旋转/亮度扰动）
+- [ ] 5.4.5 验证：ROC-AUC / 精确率-召回率 / 最佳阈值 τ_bg 确定
+- [ ] 5.4.6 集成到验证链：作为 Stage 0（背景校验 → Stage 1 CLIP → Stage 2 YOLO → Stage 3 IQA）
 
 ---
 
-## 7. Step 6: 三阶段 Agent 验证链 [[00-论文初步分析-五步]]
+## 6. Step 5: ControlNet 引导的生成 + RGB→IR 转换 [[00-论文初步分析-五步]]
 
-> 目标：语义→目标→质量，从粗到细分层过滤
+> 目标：ControlNet 空间骨架 + 无人机 LoRA 外观填充 → RGB+IR 配对合成图
+
+### 6.1 生成流程
+
+- [ ] 6.1.1 ControlNet 空间条件图 + 无人机 LoRA 推理 → RGB 合成图
+- [ ] 6.1.2 `rgb2ir_converter` 批量转换 → IR 合成图（白热+微蓝调）
+- [ ] 6.1.3 物理一致性约束注入（反光/景深/透视，同 v4.2）
+
+### 6.2 生成参数调优
+
+- [ ] 6.2.1 LoRA 权重搜索（单 LoRA，权重范围简化）
+- [ ] 6.2.2 CFG scale / 去噪步数 / 分辨率最优组合
+- [ ] 6.2.3 不同天气/时段/距离条件下的最优参数表
+
+---
+
+## 7. Step 6: 四阶段 Agent 验证链 [[00-论文初步分析-五步]]
+
+> 目标：背景校验 → 语义 → 目标 → 质量，从粗到细分层过滤
+
+### 7.0 Stage 0: 背景物理逻辑校验 Agent（新 🔥）
+
+- [ ] 7.0.1 ResNet18/EfficientNet 模型加载与微调
+- [ ] 7.0.2 正样本（576 帧真实 IR 背景）特征提取与训练
+- [ ] 7.0.3 负样本（生成的 RGB→IR 背景，含人工标记异常）收集
+- [ ] 7.0.4 阈值 τ_0 确定（ROC 曲线 + Youden 指数）
+- [ ] 7.0.5 输出：0-1 物理逻辑分 → 不合格背景记录失败码 `S0_BG_UNREALISTIC`
 
 ### 7.1 Stage 1: 语义验证 Agent（CLIP）
 
@@ -256,8 +264,9 @@
 
 ### 8.1 失败码分派路由
 
-| 失败码 | 分派环节 | — |
-|:--|:--|:--|
+| 失败码 | 分派环节 |
+|:--|:--|
+- [ ] 8.1.0 `S0_BG_UNREALISTIC` → 无人机 LoRA 推理参数调整 / 重新生成
 - [ ] 8.1.1 `S1_SEMANTIC_MISMATCH` → LLM prompt 调整 / ControlNet seg 布局调整
 - [ ] 8.1.2 `S1_WEATHER_WRONG` → LLM 天气/时段 prompt 关键词强化
 - [ ] 8.1.3 `S2_COUNT_MISMATCH` → ControlNet seg 无人机区域检查
@@ -347,23 +356,25 @@
 ## 依赖关系总览
 
 ```
-[1. 数据预处理] ──→ [5. 三LoRA训练]
+[1. 数据预处理 ✅] ──→ [5. 无人机LoRA ✅ + IR转换 ✅ + Schema统一 ✅ + 背景校验Agent ⏳]
                          │
-[2. LLM解析] → [3. Transformer] → [4. ControlNet] → [6. 融合生成] → [7. 验证链] → [8. 闭环]
+[2. LLM解析 ✅] → [3. Transformer ✅] → [4. ControlNet ⚠️] → [6. 生成+转换 ⏳] → [7. 四阶段验证 ⏳] → [8. 闭环 ⏳]
                                                           │
-                                                    [9. 消融实验]
+                                                    [9. 消融实验 ⏳]
                                                           │
-                                                    [10. 论文写作]
+                                                    [10. 论文写作 ⏳]
 ```
 
-- **关键路径**：2→3→4→6→7→8（生成管线核心链路）
-- **并行任务**：1.1.6（无人机裁切）和 1.1.5（IR 样本筛选）可与 2-3-4 并行进行
-- **前置依赖**：5（LoRA 训练）需要 1 的数据完成；6（融合生成）需要 4+5 全部完成
+- **关键路径**：4→6→7→8（ControlNet 重写后串联全链路）
+- **已打通**：2 (LLM ✅)→3 (Transformer ✅)，Schema 契约已验证
+- **当前瓶颈**：4 (ControlNet 需重写) 卡住 6-7-8 全链路
+- **前置依赖**：5.1 (LoRA ✅) + 5.2 (转换器 ✅)
 
 ---
 
 ## 已完成清单
 
+### 数据准备
 - [x] 1.1.1 DroneMMset LFS 下载
 - [x] 1.1.2 RGB 视频抽帧 3,771 帧
 - [x] 1.1.3 IR 视频抽帧 3,804 帧
@@ -376,11 +387,47 @@
 - [x] 1.5.1-1.5.3 IR 全池灰度统一处理（3 目录，共 19,150 帧）
 - [x] 1.5.4 `convert_ir_to_grayscale.py` 脚本保存
 - [x] 数据视角纠偏（删除 4 个俯拍数据集）
-- [x] 三份核心 Obsidian 笔记 v4.0 更新
+
+### Agent 1: LLM 语义解析
+- [x] 2.1.1 9 字段 JSON Schema 定义
+- [x] 2.1.2 Few-shot prompt（5 个示例）
+- [x] 2.1.3 枚举值词典 + 中文关键词映射
+- [x] 2.2.1 LLM 选型（DeepSeek 主力，OpenAI/Claude/Dry-run 备选）
+- [x] 2.2.2 5 条测试用例全部通过（含 DeepSeek API 真实调用）
+- [x] 2.3.1 轨迹参数化（norm_u/v ∈ [0,1]）
+- [x] 2.3.2 8 种飞行动作模板库
+- [x] 2.4.1-2.4.4 Web 前端（Flask + 三面板 + API + 持久化）
+
+### Agent 2: Transformer 时空编码
+- [x] 3.1.1-3.1.5 五模块编码器设计与实现
+- [x] 3.2.1-3.2.2 三层训练方案 + 四数据集全景分析
+- [x] 3.3.1-3.3.2 SpatialQueryGenerator 重写（256 query→16×16→64×64）
+- [x] depth/seg 空间对齐 + 无人机尺寸修正（2.7px 物理依据）
+- [x] demo.py 验证通过
+
+### ControlNet Ablation
+- [x] 4.1.1-4.1.3 SD1.5 + ControlNet-Seg 加载验证（⚠️ 代码已删除，需重写）
+- [x] 4.2.1-4.2.3 3场景×3模式对比 + 0.75 conditioning_scale 选定
+
+### 无人机 LoRA + IR 转换
 - [x] 5.0.1-5.0.5 背景 LoRA 训练数据准备（pHash 去重 + K-means 采样 + BLIP captioning）
-- [x] 5.1.1-5.1.3 / 5.2.1-5.2.3 训练脚本开发 + 超参数确定
-- [x] 5.2.4 VAE dtype 崩溃修复 + resume 断点续训功能
+- [x] 5.1.1-5.1.3 无人机 LoRA v2（rank=16, 800步, loss=0.0808）
+- [x] 5.2.1-5.2.2 RGB→IR 转换器开发 + 验证
+
+### Schema 契约统一
+- [x] 5.3.1-5.3.4 Agent 1 ↔ Agent 2 全字段对齐（norm_u/v, t, DroneAction, sample_session）
+
+### 架构设计
+- [x] 三份核心 Obsidian 笔记 v4.0 更新
+- [x] IR 背景 LoRA 失败分析与架构简化（v4.3）
+- [x] CDFF v2.0 持续学习循环设计
+- [x] 7-Agent 协同架构设计
+
+### 已废弃
+- [x] IR 背景 LoRA（SD1.5 VAE 域不匹配）
+- [x] Transformer 布局生成器 v1+v2（两次 mode collapse）
+- [x] ControlNet 前版代码（用户确认已删除，需重写）
 
 ---
 
-*版本：v4.2 · 由 Clacky 更新 · 2026-07-30*
+*版本：v4.9 · 由 Clacky 更新 · 2026-08-03*
