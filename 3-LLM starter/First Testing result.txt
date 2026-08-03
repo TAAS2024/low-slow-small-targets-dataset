@@ -1,0 +1,182 @@
+Command 'rbenv' not found, but can be installed with:
+apt install rbenv
+root@DESKTOP-VJSNSBV:~# curl -s -o /dev/null -w "HTTP: %{http_code}\n" http://127.0.0.1:5000/
+HTTP: 200
+root@DESKTOP-VJSNSBV:~# echo "=== 2. Dry-run 解析 ==="
+curl -s -X POST http://127.0.0.1:5000/api/parse \
+  -H "Content-Type: application/json" \
+  -d '{"text":"晴天上午城市四旋翼悬停正面拍摄","backend":"dry"}' | python3 -m json.tool
+=== 2. Dry-run 解析 ===
+{
+    "ok": true,
+    "session_id": 2,
+    "spec": {
+        "camera": {
+            "elevation_deg": 30.0,
+            "fov_deg": 60.0,
+            "position": "front"
+        },
+        "confidence_note": "[dry-run] \u672a\u8c03\u7528 LLM",
+        "drone_type": "quadrotor",
+        "modality": "RGB",
+        "raw_input": "\u6674\u5929\u4e0a\u5348\u57ce\u5e02\u56db\u65cb\u7ffc\u60ac\u505c\u6b63\u9762\u62cd\u6444",
+        "scene_description": "",
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "trajectory": [
+            {
+                "action": "hover",
+                "distance": 100.0,
+                "norm_u": 0.5,
+                "norm_v": 0.5,
+                "t": 0
+            }
+        ],
+        "weather": "clear"
+    }
+}
+root@DESKTOP-VJSNSBV:~# curl -s http://127.0.0.1:5000/api/sessions | python3 -m json.tool
+{
+    "sessions": [
+        {
+            "backend": "dry",
+            "id": 0,
+            "input": "\u6674\u5929\u4e0a\u5348\uff0c\u56db\u65cb\u7ffc\u5728\u57ce\u5e02\u4e0a\u7a7a\u60ac\u505c\uff0c\u6b63\u9762\u62cd\u6444",
+            "ir_image": null,
+            "rgb_image": null,
+            "spec": {
+                "camera": {
+                    "elevation_deg": 30.0,
+                    "fov_deg": 60.0,
+                    "position": "front"
+                },
+                "confidence_note": "[dry-run] \u672a\u8c03\u7528 LLM",
+                "drone_type": "quadrotor",
+                "modality": "RGB",
+                "raw_input": "\u6674\u5929\u4e0a\u5348\uff0c\u56db\u65cb\u7ffc\u5728\u57ce\u5e02\u4e0a\u7a7a\u60ac\u505c\uff0c\u6b63\u9762\u62cd\u6444",
+                "scene_description": "",
+                "scene_type": "urban",
+                "time_of_day": "afternoon",
+                "trajectory": [
+                    {
+                        "action": "hover",
+                        "distance": 100.0,
+                        "norm_u": 0.5,
+                        "norm_v": 0.5,
+                        "t": 0
+                    }
+                ],
+                "weather": "clear"
+            },
+            "timestamp": "2026-07-30T16:22:24.488301"
+        },
+        {
+            "backend": "dry",
+            "id": 1,
+            "input": "\u9634\u5929\u4e0b\u5348\uff0c\u56db\u65cb\u7ffc\u4ece\u8fdc\u5904\u98de\u8fd1\uff0c\u4ef0\u62cd",
+            "ir_image": null,
+            "rgb_image": null,
+            "spec": {
+                "camera": {
+                    "elevation_deg": 30.0,
+                    "fov_deg": 60.0,
+                    "position": "front"
+                },
+                "confidence_note": "[dry-run] \u672a\u8c03\u7528 LLM",
+                "drone_type": "quadrotor",
+                "modality": "RGB",
+                "raw_input": "\u9634\u5929\u4e0b\u5348\uff0c\u56db\u65cb\u7ffc\u4ece\u8fdc\u5904\u98de\u8fd1\uff0c\u4ef0\u62cd",
+                "scene_description": "",
+                "scene_type": "urban",
+                "time_of_day": "afternoon",
+                "trajectory": [
+                    {
+                        "action": "hover",
+                        "distance": 100.0,
+                        "norm_u": 0.5,
+                        "norm_v": 0.5,
+                        "t": 0
+                    }
+                ],
+                "weather": "clear"
+            },
+            "timestamp": "2026-07-30T16:22:28.951089"
+        },
+        {
+            "backend": "dry",
+            "id": 2,
+            "input": "\u6674\u5929\u4e0a\u5348\u57ce\u5e02\u56db\u65cb\u7ffc\u60ac\u505c\u6b63\u9762\u62cd\u6444",
+            "ir_image": null,
+            "rgb_image": null,
+            "spec": {
+                "camera": {
+                    "elevation_deg": 30.0,
+                    "fov_deg": 60.0,
+                    "position": "front"
+                },
+                "confidence_note": "[dry-run] \u672a\u8c03\u7528 LLM",
+                "drone_type": "quadrotor",
+                "modality": "RGB",
+                "raw_input": "\u6674\u5929\u4e0a\u5348\u57ce\u5e02\u56db\u65cb\u7ffc\u60ac\u505c\u6b63\u9762\u62cd\u6444",
+                "scene_description": "",
+                "scene_type": "urban",
+                "time_of_day": "afternoon",
+                "trajectory": [
+                    {
+                        "action": "hover",
+                        "distance": 100.0,
+                        "norm_u": 0.5,
+                        "norm_v": 0.5,
+                        "t": 0
+                    }
+                ],
+                "weather": "clear"
+            },
+            "timestamp": "2026-07-30T16:37:22.451010"
+        }
+    ]
+}
+root@DESKTOP-VJSNSBV:~# curl -s http://127.0.0.1:5000/api/session/0 | python3 -m json.tool
+{
+    "session": {
+        "backend": "dry",
+        "id": 0,
+        "input": "\u6674\u5929\u4e0a\u5348\uff0c\u56db\u65cb\u7ffc\u5728\u57ce\u5e02\u4e0a\u7a7a\u60ac\u505c\uff0c\u6b63\u9762\u62cd\u6444",
+        "ir_image": null,
+        "rgb_image": null,
+        "spec": {
+            "camera": {
+                "elevation_deg": 30.0,
+                "fov_deg": 60.0,
+                "position": "front"
+            },
+            "confidence_note": "[dry-run] \u672a\u8c03\u7528 LLM",
+            "drone_type": "quadrotor",
+            "modality": "RGB",
+            "raw_input": "\u6674\u5929\u4e0a\u5348\uff0c\u56db\u65cb\u7ffc\u5728\u57ce\u5e02\u4e0a\u7a7a\u60ac\u505c\uff0c\u6b63\u9762\u62cd\u6444",
+            "scene_description": "",
+            "scene_type": "urban",
+            "time_of_day": "afternoon",
+            "trajectory": [
+                {
+                    "action": "hover",
+                    "distance": 100.0,
+                    "norm_u": 0.5,
+                    "norm_v": 0.5,
+                    "t": 0
+                }
+            ],
+            "weather": "clear"
+        },
+        "timestamp": "2026-07-30T16:22:24.488301"
+    }
+}
+root@DESKTOP-VJSNSBV:~# echo "=== 5. DeepSeek 真实解析 ==="
+curl -s -X POST http://127.0.0.1:5000/api/parse \
+  -H "Content-Type: application/json" \
+  -d '{"text":"阴天下午四旋翼从远处飞近仰拍","backend":"deepseek"}' | python3 -m json.tool
+=== 5. DeepSeek 真实解析 ===
+{
+    "error": "Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****here is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}",
+    "ok": false
+}

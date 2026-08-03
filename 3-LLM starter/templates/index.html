@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>低慢小数据集 — LLM Parser</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #f8fafc;
+    --border: #e2e8f0;
+    --primary: #3b82f6;
+    --primary-light: #eff6ff;
+    --green: #10b981;
+    --green-light: #ecfdf5;
+    --text: #1e293b;
+    --text2: #64748b;
+    --text3: #94a3b8;
+    --input-bg: #ffffff;
+    --hover: #f1f5f9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: #f1f5f9;
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+  }
+  .app {
+    display: grid;
+    grid-template-columns: 320px 1fr 420px;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+    gap: 0;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* ======== 左：会话记录 ======== */
+  .session-panel {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    grid-row: 1 / 3;
+  }
+  .session-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+  }
+  .session-header .dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .session-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 12px;
+  }
+  .session-item {
+    padding: 12px 14px;
+    margin-bottom: 6px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    font-size: 13px;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+  }
+  .session-item:hover { border-color: var(--primary); background: var(--primary-light); }
+  .session-item.active { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 2px rgba(59,130,246,0.2); }
+  .session-item .time { color: var(--text3); font-size: 11px; }
+  .session-item .preview {
+    margin-top: 4px;
+    color: var(--text2);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .session-item .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .badge-ok { background: var(--green-light); color: var(--green); font-weight: 600; }
+  .badge-err { background: #fef2f2; color: #ef4444; font-weight: 600; }
+
+  /* ======== 中：解析器 ======== */
+  .main-area {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+  }
+  .main-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text);
+  }
+  .main-header .brand {
+    color: var(--primary);
+    font-size: 18px;
+  }
+  .main-header select {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .main-header select:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+  .json-preview {
+    flex: 1;
+    padding: 20px 24px;
+    overflow-y: auto;
+    font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    color: var(--text2);
+    line-height: 1.7;
+    background: #fafbfc;
+  }
+  .json-preview .key { color: #2563eb; font-weight: 500; }
+  .json-preview .val { color: #059669; }
+  .json-preview .str { color: #7c3aed; }
+  .input-hint {
+    padding: 8px 24px;
+    font-size: 12px;
+    color: var(--text3);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .input-hint .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 12px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .input-hint .tag:hover { background: #dbeafe; border-color: var(--primary); }
+  .input-hint .tag.green { background: var(--green-light); color: var(--green); }
+  .input-hint .tag.green:hover { background: #d1fae5; border-color: var(--green); }
+  .input-bar {
+    padding: 14px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .input-bar input {
+    flex: 1;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .input-bar input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+  .input-bar input::placeholder { color: var(--text3); }
+  .input-bar button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .input-bar button:hover { background: #2563eb; box-shadow: var(--shadow-md); }
+  .input-bar button:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+
+  /* ======== 右：图片面板 ======== */
+  .image-panel {
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    grid-row: 1 / 3;
+    overflow-y: auto;
+  }
+  .image-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    background: var(--bg);
+  }
+  .image-slot {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .image-slot .label {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .image-slot .label .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-rgb { background: #3b82f6; }
+  .dot-ir { background: #10b981; }
+  .image-slot .frame {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--bg);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1.5px dashed var(--border);
+    transition: border-color 0.2s;
+  }
+  .image-slot .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .image-slot .frame .placeholder {
+    color: var(--text3);
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.8;
+    padding: 20px;
+  }
+  .image-empty {
+    padding: 32px 20px;
+    text-align: center;
+    color: var(--text3);
+    font-size: 13px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.8;
+  }
+
+  /* 加载 */
+  .loading {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ef4444;
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    box-shadow: var(--shadow-md);
+  }
+  .toast.show { opacity: 1; }
+
+  /* 滚动条 */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- ========== 左：会话记录 ========== -->
+  <div class="session-panel">
+    <div class="session-header">
+      <span><span class="dot"></span>会话记录</span>
+      <span id="session-count" style="font-size:12px;color:var(--text3);font-weight:400;">0 条</span>
+    </div>
+    <div class="session-list" id="session-list">
+      <div style="padding:24px;text-align:center;color:var(--text3);font-size:13px;">
+        暂无记录<br>输入场景描述开始
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 中：输入 + JSON 预览 ========== -->
+  <div class="main-area">
+    <div class="main-header">
+      <span class="brand">◇</span>
+      <span>场景解析器</span>
+      <select id="backend-select">
+        <option value="deepseek" selected>DeepSeek (推荐)</option>
+        <option value="openai">OpenAI (GPT-4o)</option>
+        <option value="claude">Claude</option>
+        <option value="dry">Dry-Run (离线测试)</option>
+      </select>
+    </div>
+    <div class="json-preview" id="json-preview">
+      <span style="color:var(--text3);">等待输入…</span>
+    </div>
+    <div class="input-hint">
+      示例：
+      <span class="tag" onclick="fillExample('阴天下午，城市高楼背景，四旋翼从50米外正面飞来接近到200米，从下方仰拍，RGB')">🏙️ 城市仰拍</span>
+      <span class="tag green" onclick="fillExample('雾天黄昏，一架无人机在森林上空盘旋，从下方仰拍，距离约100米，IR模态')">🌲 森林IR</span>
+      <span class="tag" onclick="fillExample('大晴天上午，沙漠地带，四旋翼从100米远处横向移动，侧面拍摄')">🏜️ 沙漠侧拍</span>
+      <span class="tag green" onclick="fillExample('雨天的黎明，海岸边，无人机在高空盘旋，从顶部俯拍，距离150米，IR模态')">🌊 海岸俯拍</span>
+    </div>
+    <div class="input-bar">
+      <input type="text" id="user-input" placeholder="描述无人机场景，例如：晴天上午城市公园，四旋翼悬停50米高度，正面拍摄，RGB模态…" autofocus>
+      <button id="send-btn" onclick="sendParse()">解析 →</button>
+    </div>
+  </div>
+
+  <!-- ========== 右：图片展示 ========== -->
+  <div class="image-panel">
+    <div class="image-header">🖼️ 生成图预览</div>
+    <div class="image-slot">
+      <div class="label"><span class="dot dot-rgb"></span>RGB 合成图</div>
+      <div class="frame" id="rgb-frame">
+        <span class="placeholder">等待生成…<br>解析场景后<br>运行生成管线</span>
+      </div>
+    </div>
+    <div class="image-slot">
+      <div class="label"><span class="dot dot-ir"></span>IR 热红外</div>
+      <div class="frame" id="ir-frame">
+        <span class="placeholder">等待生成…<br>解析场景后<br>运行生成管线</span>
+      </div>
+    </div>
+    <div id="image-empty-hint" class="image-empty">
+      选择左侧会话记录<br>查看对应的生成结果
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// 全局状态
+// ============================================================
+let activeSid = null;
+
+// ============================================================
+// 工具函数
+// ============================================================
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+function formatTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleTimeString('zh-CN', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+}
+
+function highlightJSON(jsonStr) {
+  return jsonStr
+    .replace(/("(?:[^"\\]|\\.)*")\s*:/g, '<span class="key">$1</span>:')
+    .replace(/: ("[^"]*")/g, ': <span class="str">$1</span>')
+    .replace(/: ([\d.]+)/g, ': <span class="val">$1</span>')
+    .replace(/: (true|false|null)/g, ': <span class="val">$1</span>');
+}
+
+// ============================================================
+// 会话列表
+// ============================================================
+
+async function loadSessions() {
+  try {
+    const res = await fetch('/api/sessions');
+    const data = await res.json();
+    renderSessionList(data.sessions);
+    document.getElementById('session-count').textContent = data.sessions.length + ' 条';
+  } catch(e) { /* ignore */ }
+}
+
+function renderSessionList(sessions) {
+  const container = document.getElementById('session-list');
+  if (!sessions.length) {
+    container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--text3);font-size:13px;">暂无记录</div>';
+    return;
+  }
+  container.innerHTML = sessions.slice().reverse().map(s => `
+    <div class="session-item${activeSid === s.id ? ' active' : ''}" onclick="selectSession(${s.id})">
+      <div class="time">#${s.id} · ${formatTime(s.timestamp)} · ${s.backend}</div>
+      <div class="preview">${escapeHtml(s.input.substring(0, 50))}</div>
+      <span class="badge badge-ok">✓ 已解析</span>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function selectSession(sid) {
+  activeSid = sid;
+  loadSessions().then(() => {
+    loadSessionDetail(sid);
+  });
+}
+
+async function loadSessionDetail(sid) {
+  try {
+    const res = await fetch(`/api/session/${sid}`);
+    const data = await res.json();
+    if (data.session) {
+      const jsonStr = JSON.stringify(data.session.spec, null, 2);
+      document.getElementById('json-preview').innerHTML = highlightJSON(jsonStr);
+      updateImages(data.session);
+    }
+  } catch(e) { /* ignore */ }
+}
+
+function updateImages(session) {
+  const rgbFrame = document.getElementById('rgb-frame');
+  const irFrame = document.getElementById('ir-frame');
+  const hint = document.getElementById('image-empty-hint');
+
+  if (session.rgb_image) {
+    rgbFrame.innerHTML = `<img src="${session.rgb_image}" alt="RGB">`;
+  } else {
+    rgbFrame.innerHTML = '<span class="placeholder">未生成</span>';
+  }
+  if (session.ir_image) {
+    irFrame.innerHTML = `<img src="${session.ir_image}" alt="IR">`;
+  } else {
+    irFrame.innerHTML = '<span class="placeholder">未生成</span>';
+  }
+  if (session.rgb_image || session.ir_image) {
+    hint.style.display = 'none';
+  } else {
+    hint.style.display = '';
+  }
+}
+
+// ============================================================
+// 发送解析请求
+// ============================================================
+
+function fillExample(text) {
+  document.getElementById('user-input').value = text;
+  document.getElementById('user-input').focus();
+}
+
+async function sendParse() {
+  const inputEl = document.getElementById('user-input');
+  const btn = document.getElementById('send-btn');
+  const text = inputEl.value.trim();
+
+  if (!text) return;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading"></span>解析中…';
+
+  const backend = document.getElementById('backend-select').value;
+
+  try {
+    const res = await fetch('/api/parse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, backend }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      const jsonStr = JSON.stringify(data.spec, null, 2);
+      document.getElementById('json-preview').innerHTML = highlightJSON(jsonStr);
+      activeSid = data.session_id;
+      await loadSessions();
+      updateImages({ rgb_image: null, ir_image: null });
+      inputEl.value = '';
+    } else {
+      toast('解析失败: ' + data.error);
+    }
+  } catch(e) {
+    toast('网络错误: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '解析 →';
+  }
+}
+
+// ============================================================
+// 键盘快捷键
+// ============================================================
+document.getElementById('user-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    sendParse();
+  }
+});
+
+// ============================================================
+// 初始化
+// ============================================================
+loadSessions();
+setInterval(loadSessions, 10000);
+</script>
+</body>
+</html>
