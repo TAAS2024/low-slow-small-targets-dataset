@@ -1,0 +1,24 @@
+# ============================================================================
+# LoRA 微调 v2 WSL — sd-scripts 原生格式
+# resolution 只在 [[datasets]] 中；[general] 仅放最小参数
+# ============================================================================
+
+[general]
+flip_aug = false
+color_aug = false
+random_crop = false
+shuffle_caption = false
+keep_tokens = 1
+token_warmup_min = 1
+token_warmup_step = 0
+caption_extension = ".txt"
+class_tokens = "drn3_uav"
+num_repeats = 10
+
+[[datasets]]
+resolution = 512
+batch_size = 1
+
+[[datasets.subsets]]
+image_dir = "/mnt/d/learning/ObsidianVault/Paper-低慢小数据集生成架构/0-database/kohya_dataset/10_drn3_uav"
+is_reg = false

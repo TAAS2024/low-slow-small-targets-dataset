@@ -1,0 +1,79 @@
+# ============================================================================
+# LoRA 训练配置 — 商用无人机 (drn3_uav)
+# 用于 Kohya SS GUI (sd-scripts)
+# ============================================================================
+
+# ── 基础模型 ──────────────────────────────────────
+pretrained_model_name_or_path = "runwayml/stable-diffusion-v1-5"
+# 或本地路径: "D:/models/sd-v1-5-pruned.safetensors"
+v2 = false
+v_parameterization = false
+
+# ── 训练数据 ──────────────────────────────────────
+[[datasets]]
+  resolution = 512
+  batch_size = 1
+
+  [[datasets.subsets]]
+    image_dir = "D:/learning/ObsidianVault/Paper-低慢小数据集生成架构/0-database/kohya_dataset/10_drn3_uav"
+    class_tokens = "drn3_uav"
+    num_repeats = 10
+    is_reg = false
+    caption_extension = ".txt"
+    keep_tokens = 1
+    flip_aug = true
+    color_aug = false
+    face_crop_aug_range = null
+    random_crop = false
+    shuffle_caption = false
+    token_warmup_min = 1
+    token_warmup_step = 0
+
+# ── LoRA 参数 ─────────────────────────────────────
+network_module = "networks.lora"
+network_dim = 8         # LoRA rank — 98张图用8够用，防过拟合
+network_alpha = 4        # 通常 dim/2
+network_args = []
+network_weights = ""
+network_train_unet_only = false
+network_train_text_encoder_only = false
+
+# ── 训练超参 ──────────────────────────────────────
+optimizer_type = "AdamW8bit"
+learning_rate = 1e-4
+lr_scheduler = "cosine_with_restarts"
+lr_warmup_steps = 0
+lr_scheduler_num_cycles = 3
+
+max_train_steps = 3000
+save_every_n_steps = 500
+save_precision = "fp16"
+
+# ── 混合精度与显存 ────────────────────────────────
+mixed_precision = "fp16"
+cache_latents = true
+cache_latents_to_disk = true
+gradient_checkpointing = true
+gradient_accumulation_steps = 1
+max_grad_norm = 1.0
+
+# ── 采样验证 ──────────────────────────────────────
+sample_every_n_steps = 500
+sample_sampler = "euler_a"
+sample_prompts = "sample_prompts.txt"
+
+# ── 元数据 ────────────────────────────────────────
+output_name = "drn3_uav_lora"
+output_dir = "D:/learning/ObsidianVault/Paper-低慢小数据集生成架构/0-database/lora_output"
+logging_dir = "D:/learning/ObsidianVault/Paper-低慢小数据集生成架构/0-database/lora_logs"
+log_with = "tensorboard"
+
+# ── 其他 ──────────────────────────────────────────
+seed = 42
+clip_skip = 1
+max_token_length = 75
+max_data_loader_n_workers = 1
+noise_offset = 0.0
+multires_noise_iterations = 0
+multires_noise_discount = 0.3
+min_snr_gamma = 5.0
