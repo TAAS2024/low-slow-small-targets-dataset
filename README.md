@@ -264,12 +264,6 @@ root/
 │   ├── IR_raw_frames_antiuav/         # 14,844 Anti-UAV-RGBT frames (grayscale)
 │   ├── convert_ir_to_grayscale.py     # IR color unification
 │   └── drone_patches/                 # Drone bbox crops
-│
-├── 0-model/                           # Downloaded models (~30 GB)
-├── 0-database/                        # Raw datasets
-    ├── dronemmset/                    # 320 RGB+IR video pairs
-    ├── Anti-UAV-RGBT/                 # 318 RGB+IR sequences
-    └── Anti-UAV410/                   # 410 TIR sequences
 
 ```
 
@@ -459,8 +453,6 @@ Structured failure codes route to the responsible component. Three self-training
 
 Each trainable component has an independent FailureBuffer. When a buffer reaches threshold (30-50 samples), an asynchronous learning loop triggers incremental fine-tuning. Generation and learning are decoupled — GPU cannot simultaneously infer and train.
 
-See `7-持续学习循环设计.md` for the full CDFF v2.0 specification.
-
 ---
 
 ## VRAM Requirements
@@ -472,35 +464,6 @@ See `7-持续学习循环设计.md` for the full CDFF v2.0 specification.
 | LoRA training (rank=16, batch=1, FP16) | ~3.9 GB |
 | Dual pipeline (ablation mode) | ~5.1 GB |
 | SDXL | >12 GB |
-
-Developed on RTX 4060 Laptop (8GB VRAM). All experiments run within this constraint.
-
----
-
-## Citation
-
-```bibtex
-@inproceedings{zhang2023controlnet,
-  title     = {Adding Conditional Control to Text-to-Image Diffusion Models},
-  author    = {Zhang, Lvmin and Rao, Anyi and Agrawala, Maneesh},
-  booktitle = {ICCV},
-  year      = {2023}
-}
-
-@inproceedings{rombach2022high,
-  title     = {High-Resolution Image Synthesis with Latent Diffusion Models},
-  author    = {Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Bj{\"o}rn},
-  booktitle = {CVPR},
-  year      = {2022}
-}
-
-@inproceedings{hu2021lora,
-  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
-  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
-  booktitle = {ICLR},
-  year      = {2022}
-}
-```
 
 ---
 
