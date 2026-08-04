@@ -1,19 +1,19 @@
 # 低慢小数据集生成架构 — 工作分解结构 (WBS)
 
-> 版本：v4.9 — LLM→Transformer→ControlNet 空间控制 + 无人机 LoRA 生成 + RGB→IR 伪彩色转换 + 背景校验 Agent + Agent 验证闭环
-> 生成日期：2026-07-29 → 更新 2026-08-03
-> 核心叙事：用户自然语言输入 → 自动生成符合物理规律的 RGB+IR 配对训练数据
-> 🚧 当前阶段：Agent 3-4 联合推理管线（ControlNet 需重写，前版已删除）
+> 版本：v5.1 — LLM→Transformer→ControlNet + 无人机 LoRA + RGB→IR + Validator 双层级验证（S_pre_1-5 输入端预校验 + S6-S9 输出端审查） + 持续学习闭环
+> 生成日期：2026-07-29 → 更新 2026-08-04
+> 核心叙事：用户自然语言输入 → 自动生成符合物理规律的 RGB+IR 配对训练数据 → Validator 双层验证 → 训练池
+> 🚧 当前阶段：Validator S6-S9 V0-V5 代码全部完成（42+测试通过）；S_pre_1-5 设计完成待编码；ControlNet 需重写
 
 ## 📊 概览
 
 | 指标 | 数量 |
 |:--|:--|
-| 一级模块 | 10 |
-| 任务组 | 34 |
-| 叶节点任务 | 108 |
-| 已完成 | 32 |
-| 设计完成待实现 | 46 |
+| 一级模块 | 11 |
+| 任务组 | 38 |
+| 叶节点任务 | 143 |
+| 已完成 | 53 |
+| 设计完成待实现 | 60 |
 | 已废弃 | 3 (IR背景LoRA / Transformer布局生成器 v1+v2 / ControlNet前版代码) |
 
 ---
@@ -217,79 +217,117 @@
 
 ---
 
-## 7. Step 6: 四阶段 Agent 验证链 [[00-论文初步分析-五步]]
+## 7. Step 6: Validator 双层级验证系统 [[6-Validator设计与搭建]] [[7-持续学习循环设计]]
 
-> 目标：背景校验 → 语义 → 目标 → 质量，从粗到细分层过滤
+> 目标：输入端预校验（S_pre_1-5）+ 输出端审查（S6-S9），双层级短路求值。好图入训练池 / 坏图入 FailureBuffer
+> 状态：✅ S6-S9 V0-V5 代码全部完成（14 模块，42+ 测试通过），demo 5/5 全链路通过；⏳ S_pre_1-5 设计完成待编码
+> 设计原则：Generator 和 Validator 严格隔离。Validator 不可从 Generator 数据中自动学习。
 
-### 7.0 Stage 0: 背景物理逻辑校验 Agent（新 🔥）
+### 7.0 输入端预校验 S_pre_1-5（⏳ 设计完成，代码待实施）
 
-- [ ] 7.0.1 ResNet18/EfficientNet 模型加载与微调
-- [ ] 7.0.2 正样本（576 帧真实 IR 背景）特征提取与训练
-- [ ] 7.0.3 负样本（生成的 RGB→IR 背景，含人工标记异常）收集
-- [ ] 7.0.4 阈值 τ_0 确定（ROC 曲线 + Youden 指数）
-- [ ] 7.0.5 输出：0-1 物理逻辑分 → 不合格背景记录失败码 `S0_BG_UNREALISTIC`
+> **设计动机**：原 CDFF 框架只审图像输出。上游 Agent 错误（LLM 逻辑矛盾、Transformer bbox 越界、ControlNet seg 错位）会贯穿整个 GPU 管线才被发现。S_pre_1-5 在扩散推理前拦截这些错误，零 GPU 浪费。
 
-### 7.1 Stage 1: 语义验证 Agent（CLIP）
+全部 22 项纯规则/信号处理检查，零训练依赖。失败码精确路由至对应 Agent。
 
-- [ ] 7.1.1 CLIP 模型加载（ViT-L/14 或更大）
-- [ ] 7.1.2 视角对齐评分：「地面仰拍低空目标」→ 合成图 CLIP Score
-- [ ] 7.1.3 天气/时段匹配评分：预期天气描述 → 合成图 CLIP Score
-- [ ] 7.1.4 通过阈值 τ₁ 确定（ROC 曲线 + 人工标注校准）
+- [ ] 7.0.1 **S_pre_1**：Agent 1 JSON 校验（6项）— Schema 完整性 + 枚举合法性 + 逻辑自洽 + 描述关键词交叉检查 + 轨迹值域 + 相机参数区间
+- [ ] 7.0.2 **S_pre_2**：Agent 2 Transformer 校验（6项）— bbox 边界 + 帧间尺寸渐变 + 位置连续 + seg 非空 + depth 有效 + 帧数对齐
+- [ ] 7.0.3 **S_pre_3**：Agent 3 ControlNet 校验（4项）— seg 位置对齐 + 边界质量(Laplacian) + depth 一致性 + 条件图尺寸匹配
+- [ ] 7.0.4 **S_pre_4**：Agent 4 LoRA 校验（3项）— 概念泄漏(SSIM) + 纹理重复 + 全局色偏
+- [ ] 7.0.5 **S_pre_5**：Agent 5 IR 校验（3项）— 通道完整性 + 灰度确认 + 直方图合理性
 
-### 7.2 Stage 2: 目标验证 Agent（YOLO）
+### 7.1 S6：双模态图像质量（BRISQUE + IR 三检）
 
-- [ ] 7.2.1 Anti-UAV410 数据集上 fine-tune YOLO（IR 版）
-- [ ] 7.2.2 DroneMMset RGB 帧上 fine-tune YOLO（RGB 版）
-- [ ] 7.2.3 规则引擎：预期目标数=1 / 位置在 seg 无人机区域 / 尺度匹配距离参数
-- [ ] 7.2.4 双模态检测结果交叉校验
+> V0 完成 ✅ | 代码：`6-Validator/S6 RGB 图像质量检查/code/`（~220 行）
 
-### 7.3 Stage 3: 图像质量验证 Agent（IQA）
+- [x] 7.1.1 RGB 质量：BRISQUE（无参考 IQA，DroneMMset 19K帧校准 μ=28.3 σ=8.1 阈值=45.0）→ `rgb_quality.py`
+- [x] 7.1.2 IR 低保真防御三检（像素范围 + 对比度零值 + FFT 中频伪影）→ `ir_sanity.py`
+- [x] 7.1.3 EfficientNet-B0 二元分类器：576 真实 IR 背景 vs 生成 IR 背景 → `rgb_quality.py`
+- [x] 7.1.4 综合判定：RGB 不合格 → 失败；RGB 合格但 IR 异常 → 告警放行 → `quality_validator.py`
 
-- [ ] 7.3.1 BRISQUE / NIQE 无参考质量评分集成
-- [ ] 7.3.2 LoRA 融合 artifact 检测（条纹/重影/颜色漂移的频谱特征检测）
-- [ ] 7.3.3 ControlNet 拼接边界 artifact 检测（seg 区域边界的梯度异常检测）
-- [ ] 7.3.4 通过阈值 τ₃ 确定
+### 7.2 S7：双模态场景一致性（5 模块）
 
-### 7.4 验证链集成
+> V3 完成 ✅ | 代码：`6-Validator/S7 无人机与场景一致性检查/code/`（~230 行，15/15 测试通过）
 
-- [ ] 7.4.1 三阶段串行调度器（任一不通过→废弃+记录失败码）
-- [ ] 7.4.2 失败码枚举与记录格式标准化
-- [ ] 7.4.3 各阶段通过率统计 + 失败样本留存（debug 用）
+- [x] 7.2.1 RGB 尺寸一致性：JSON 距离 → 期望 bbox 面积范围（±30% 容差）→ `size_consistency.py`
+- [x] 7.2.2 RGB 光照一致性：无人机 crop vs 背景 patch 直方图 KL 散度 → `lighting_consistency.py`
+- [x] 7.2.3 IR bbox 直接对比：`|w_rgb - w_ir| < ε` → `ir_bbox_check.py`
+- [x] 7.2.4 跨模态对齐：IoU(rgb_bbox, ir_bbox) > 0.95 → `cross_modal_alignment.py`
+- [x] 7.2.5 S7 总调度 → `consistency_validator.py`
+
+### 7.3 S8：轨迹连续性（纯物理规则——硬锚点，永不可训）
+
+> V2 完成 ✅ | 代码：`6-Validator/S8 轨迹物理合理性检查/code/`（~230 行，16/16 测试通过）
+
+- [x] 7.3.1 位置连续性：`|Δx| > 30% 帧对角线` → `S8_POSITION_JUMP`
+- [x] 7.3.2 速度约束：瞬时速度 > 400 px/s → `S8_SPEED_ANOMALY`
+- [x] 7.3.3 加速度约束：`|Δa| > 30 px/s²` → `S8_ACCEL_ANOMALY`
+- [x] 7.3.4 方向平滑性（LDA）：LDA score < 0.3 → `S8_DIRECTION_ANOMALY`
+
+### 7.4 S9：双模态检测有效性（YOLO IoU）
+
+> V1 完成 ✅ | 代码：`6-Validator/S9 YOLO结果检查/code/`（~240 行，11/11 测试通过）
+
+- [x] 7.4.1 RGB 线（主力）：YOLO(RGB) → IoU(预测, GT) > 0.3 → detected/undetected
+- [x] 7.4.2 IR 线（对照记录）：YOLO(IR) → 只记录不判失败
+- [x] 7.4.3 综合判定：RGB undetected → 失败（不论 IR）；RGB OK 但 IR undetected → 放行+记录
+- [ ] 7.4.4 域内 YOLO 微调（当前用 YOLOv8n COCO 占位）
+
+### 7.5 V4：可训练 Validator（EfficientNet-B0 骨架）
+
+> 骨架完成 ⏳ | 代码：`6-Validator/V4-trainable/code/`
+
+- [x] 7.5.1 EfficientNet-B0 二分类头（合格/不合格）骨架搭建
+- [ ] 7.5.2 训练数据收集（正样本=真实帧 / 负样本=Generator 烂帧，需 200+ 人工标注）
+- [ ] 7.5.3 训练 + 验证 + 对比 BRISQUE 基线
+
+### 7.6 V5：集成管线 + FailureBuffer
+
+> 完成 ✅ | 代码：`6-Validator/V5-pipeline/code/`（~400 行）
+
+- [x] 7.6.1 `validator_pipeline.py`：S6→S7→S8→S9 短路求值串联
+- [x] 7.6.2 `failure_buffer.py`：JSONL 日志 + 自动归档 + 分析接口
+- [x] 7.6.3 L1 过滤循环骨架（Generator 输出 → Validator → 好图入池 / 坏图入 Buffer）
+- [x] 7.6.4 对抗隔离确认（S8 不可训、Validator 不自动学习、独立测试集机制就位）
+- [ ] 7.6.5 对接 Generator API（需生成端接口定义）
+- [x] 7.6.6 可视化 Demo 产出（5 张标注图：pass + S6/S7/S8/S9 失败，用 Anti-UAV 真实帧）
 
 ---
 
-## 8. Step 7: 精细化闭环反馈 [[00-论文初步分析-五步]]
+## 8. Step 7: 精细化闭环反馈 [[7-持续学习循环设计]]
 
-> 目标：失败码分派到对应环节 → 自动调整参数 → 重新生成
+> 目标：FailureBuffer 失败码分派到对应 Generator 组件 → 自动调整参数 → 重新生成
+> 设计参考：笔记7 §十三 反馈闭环路由机制
 
 ### 8.1 失败码分派路由
 
-| 失败码 | 分派环节 |
-|:--|:--|
-- [ ] 8.1.0 `S0_BG_UNREALISTIC` → 无人机 LoRA 推理参数调整 / 重新生成
-- [ ] 8.1.1 `S1_SEMANTIC_MISMATCH` → LLM prompt 调整 / ControlNet seg 布局调整
-- [ ] 8.1.2 `S1_WEATHER_WRONG` → LLM 天气/时段 prompt 关键词强化
-- [ ] 8.1.3 `S2_COUNT_MISMATCH` → ControlNet seg 无人机区域检查
-- [ ] 8.1.4 `S2_POSITION_OFFSET` → Transformer 位置编码映射精度调整
-- [ ] 8.1.5 `S2_SCALE_WRONG` → Transformer depth→像素占比映射调整
-- [ ] 8.1.6 `S2_MISSED_TARGET` → ControlNet seg + LoRA 生成质量联合检查
-- [ ] 8.1.7 `S3_BLUR` → 景深模糊强度降低 / 增加去噪步数
-- [ ] 8.1.8 `S3_ARTIFACT` → LoRA 权重 / 去噪步数调整
-- [ ] 8.1.9 `S3_BOUNDARY_ARTIFACT` → seg 边界羽化 / 区域掩码融合策略切换
-- [ ] 8.1.10 `S3_LORA_INTERFERENCE` → 降低冲突 LoRA 的权重
+| 失败码 | 来源阶段 | 分派环节 |
+|:--|:--|:--|
+- [ ] 8.1.1 `S6_BLUR` | S6 RGB BRISQUE 超标 | Generator 去噪步数/CFG scale 调整
+- [ ] 8.1.2 `S6_IR_DEAD` | S6 IR 像素溢出/全灰 | `rgb2ir_converter` 转换代码修复
+- [ ] 8.1.3 `S6_IR_MOIRE` | S6 IR FFT 中频伪影 | RGB 高频纹理 → IR 域 artifact 抑制
+- [ ] 8.1.4 `S7_SIZE_MISMATCH` | S7 RGB 尺寸不符 | Agent 2 SpatialQueryGenerator 深度→像素映射校准
+- [ ] 8.1.5 `S7_LIGHTING_MISMATCH` | S7 RGB 光照不一致 | Agent 3 ControlNet 光照条件调整 / LoRA 融合权重
+- [ ] 8.1.6 `S7_IR_BBOX_OFFSET` | S7 IR bbox 偏移 | `rgb2ir_converter` 几何一致性修复
+- [ ] 8.1.7 `S7_CROSS_MODAL_MISMATCH` | S7 跨模态 IoU < 0.95 | 同上
+- [ ] 8.1.8 `S8_POSITION_JUMP` | S8 位置跳跃 | Agent 1 LLM 轨迹描述修正 / Agent 2 时序编码检查
+- [ ] 8.1.9 `S8_SPEED_ANOMALY` | S8 速度异常 | Agent 2 速度约束参数校准
+- [ ] 8.1.10 `S8_ACCEL_ANOMALY` | S8 加速度异常 | Agent 2 加速度约束参数校准
+- [ ] 8.1.11 `S8_DIRECTION_ANOMALY` | S8 方向不连续 | Agent 1 轨迹平滑度 prompt 调整
+- [ ] 8.1.12 `S9_UNDETECTABLE` | S9 YOLO 未检出 | Generator 无人机尺寸/对比度/纹理调整
 
 ### 8.2 闭环调度逻辑
 
-- [ ] 8.2.1 失败码频率统计（每 N 批汇总一次）
-- [ ] 8.2.2 Top-K 失败模式自动触发对应环节参数调整
+- [ ] 8.2.1 FailureBuffer 失败码频率统计（每 N 批汇总一次）
+- [ ] 8.2.2 Top-K 失败模式自动触发对应 Generator 组件参数调整
 - [ ] 8.2.3 收敛条件：连续 M 批通过率 > 85% 或达到最大迭代次数（≤5 轮）
 - [ ] 8.2.4 收敛曲线记录（通过率 / FID / 各失败码频率随迭代变化）
+- [ ] 8.2.5 对抗隔离审计：定期检查 Validator 是否从 Generator 数据中学习（红线）
 
 ### 8.3 信用分配（Credit Assignment）验证
 
-- [ ] 8.3.1 验证「语义失败→LLM/ControlNet 调整后通过率提升」的因果链
-- [ ] 8.3.2 验证「目标失败→Transformer 调整后位置精度提升」的因果链
-- [ ] 8.3.3 验证「质量失败→LoRA 权重调整后 artifact 率下降」的因果链
+- [ ] 8.3.1 验证「S7 尺寸失败→Agent 2 depth 映射调整后通过率提升」的因果链
+- [ ] 8.3.2 验证「S8 轨迹失败→Agent 1/2 修正后连续帧通过率提升」的因果链
+- [ ] 8.3.3 验证「S9 检测失败→Generator 调整后检出率提升」的因果链
 
 ---
 
@@ -301,7 +339,7 @@
 
 - [ ] 9.1.1 E1：w/o ControlNet vs w/ Depth only vs w/ Seg only vs w/ Depth+Seg+Pose
 - [ ] 9.1.2 E2：SD1.5 基座 vs 单 RGB LoRA vs 三 LoRA 融合
-- [ ] 9.1.3 E3：无验证 vs Stage 1 only vs Stage 1+2 vs 全三阶段
+- [ ] 9.1.3 E3：无验证 vs S_pre only vs S6-S9 only vs 全双层级
 - [ ] 9.1.4 E4：w/o 闭环 vs w/ 笼统闭环 vs w/ 精细化分派闭环
 - [ ] 9.1.5 E5：区域掩码融合 vs 联合去噪 vs 分步生成（融合策略对比）
 - [ ] 9.1.6 E6：逐天气条件消融（晴/阴/雨/雾/沙尘/逆光）
@@ -358,17 +396,18 @@
 ```
 [1. 数据预处理 ✅] ──→ [5. 无人机LoRA ✅ + IR转换 ✅ + Schema统一 ✅ + 背景校验Agent ⏳]
                          │
-[2. LLM解析 ✅] → [3. Transformer ✅] → [4. ControlNet ⚠️] → [6. 生成+转换 ⏳] → [7. 四阶段验证 ⏳] → [8. 闭环 ⏳]
-                                                          │
-                                                    [9. 消融实验 ⏳]
-                                                          │
-                                                    [10. 论文写作 ⏳]
+[2. LLM解析 ✅] → [3. Transformer ✅] → [4. ControlNet ⚠️] → [6. 生成+转换 ⏳] → [7. Validator 双层级验证 (S_pre ⏳ + S6-S9 ✅)] → [8. 闭环 ⏳]
+                                                                              │
+                                                                        [9. 消融实验 ⏳]
+                                                                              │
+                                                                        [10. 论文写作 ⏳]
 ```
 
 - **关键路径**：4→6→7→8（ControlNet 重写后串联全链路）
-- **已打通**：2 (LLM ✅)→3 (Transformer ✅)，Schema 契约已验证
-- **当前瓶颈**：4 (ControlNet 需重写) 卡住 6-7-8 全链路
+- **已打通**：2 (LLM ✅)→3 (Transformer ✅)，Schema 契约已验证；7 (S6-S9 ✅) 代码全完成
+- **当前瓶颈**：4 (ControlNet 需重写) 卡住 6-8 全链路；7 (S_pre_1-5 ⏳) 待编码
 - **前置依赖**：5.1 (LoRA ✅) + 5.2 (转换器 ✅)
+- **独立完成**：7 (Validator S6-S9) 不依赖 ControlNet，已单独验证
 
 ---
 
@@ -422,6 +461,17 @@
 - [x] IR 背景 LoRA 失败分析与架构简化（v4.3）
 - [x] CDFF v2.0 持续学习循环设计
 - [x] 7-Agent 协同架构设计
+- [x] Validator 审查端独立设计（笔记6 拆分自笔记7）✅
+
+### Validator 审查端 — S6-S9 V0-V5 全部完成 ✅
+- [x] 7.1 S6 双模态图像质量（BRISQUE + EfficientNet + IR sanity）→ `quality_validator.py` + `ir_sanity.py` + `rgb_quality.py`
+- [x] 7.2 S7 双模态场景一致性（5 模块：尺寸/光照/IR bbox/跨模态对齐/总调度）→ 15/15 测试通过
+- [x] 7.3 S8 轨迹连续性（4 物理规则：位置/速度/加速度/LDA 方向）→ 16/16 测试通过
+- [x] 7.4 S9 双模态检测有效性（YOLO IoU，RGB 主力 + IR 对照）→ 11/11 测试通过
+- [x] 7.5 V4 EfficientNet-B0 可训练骨架（缺训练数据）
+- [x] 7.6 V5 集成管线（`validator_pipeline.py` + `failure_buffer.py` + L1 过滤循环 + 对抗隔离）
+- [x] 可视化 Demo（5 张标注图，pass + S6/S7/S8/S9 失败场景）
+- [ ] S_pre_1-5 输入端预校验（22 项规则检查，设计完成待编码）
 
 ### 已废弃
 - [x] IR 背景 LoRA（SD1.5 VAE 域不匹配）
@@ -430,4 +480,4 @@
 
 ---
 
-*版本：v4.9 · 由 Clacky 更新 · 2026-08-03*
+*版本：v5.1 · 由 Clacky 更新 · 2026-08-04*
