@@ -84,12 +84,21 @@ The user describes a scene in natural language (e.g., "阴天傍晚，四旋翼�
 │                                 │                                         │
 │                                 ▼                                         │
 │  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 6: 4-Stage Verification Chain                              │     │
-│  │  S0: Background Realism (ResNet binary classifier)               │     │
-│  │  S1: CLIP Semantic (viewpoint/weather alignment)                  │     │
-│  │  S2: YOLO Detection (target detectability)                       │     │
-│  │  S3: IQA Quality (blur/artifact/LoRA fusion quality)             │     │
+│  │  ═══ Input Pre-Validation (S_pre_1-5): 22 Rule-Based Checks ═══   │     │
+│  │  S_pre_1: Agent 1 JSON (schema + logic + enum) — 6 checks       │     │
+│  │  S_pre_2: Agent 2 Transformer output (bbox + seg + alignment)    │     │
+│  │  S_pre_3: Agent 3 ControlNet seg/depth (alignment + boundary)    │     │
+│  │  S_pre_4: Agent 4 LoRA artifacts (concept bleed + texture rep)   │     │
+│  │  S_pre_5: Agent 5 IR conversion (channel + histogram + alignment)│     │
+│  ├─────────────────────────────────────────────────────────────────┤     │
+│  │  ═══ Output Verification (S6-S9): 4-Stage Image Validation ═══   │     │
+│  │  S6: RGB Image Quality (BRISQUE + EfficientNet + IR sanity)     │     │
+│  │  S7: UAV-Scene Consistency (size + lighting + alignment ×2)     │     │
+│  │  S8: Trajectory Physics (position/speed/accel/direction — hard)  │     │
+│  │  S9: YOLO Detection Validity (IoU matching, RGB + IR)           │     │
 │  └──────────────────────────────┬──────────────────────────────────┘     │
+│                                 │                                         │
+│                    Failure Codes (e.g., S6_BLUR, S8_POSITION_JUMP)        │
 │                                 │                                         │
 │                                 ▼                                         │
 │  ┌─────────────────────────────────────────────────────────────────┐     │
@@ -138,7 +147,7 @@ COCO-Stuff provides semantic segmentation annotations — each pixel labeled as 
 
 ### Why Structured Failure Codes?
 
-Binary pass/fail is insufficient for closed-loop improvement. Codes like `S2_POSITION_OFFSET` or `S3_LORA_INTERFERENCE` enable precise routing to the responsible component. See `7-持续学习循环设计.md` for the full routing table.
+Binary pass/fail is insufficient for closed-loop improvement. Codes like `S8_POSITION_JUMP` or `S6_BLUR` enable precise routing to the responsible component. See `7-持续学习循环设计.md` for the full routing table.
 
 ---
 
@@ -179,8 +188,8 @@ Download from Hugging Face, place under `0-model/`:
 |:--|:--|:--|
 | `stable-diffusion-v1-5` | 21 GB | Base diffusion model (VAE + UNet + Text Encoder) |
 | `sd-controlnet-seg` | 2.7 GB | ControlNet segmentation conditioning |
-| `clip-vit-large-patch14` | 6.4 GB | CLIP ViT-L/14 (Stage 1 verification) |
-| `yolov8x.pt` | 131 MB | YOLOv8x (Stage 2 detection verification) |
+| `clip-vit-large-patch14` | 6.4 GB | CLIP ViT-L/14 (S7 cross-modal alignment) |
+| `yolov8x.pt` | 131 MB | YOLOv8x (S9 detection validity check) |
 | `blip-image-captioning-base` | 990 MB | BLIP captioning for training data |
 
 ```
@@ -221,6 +230,32 @@ root/
 │   ├── rgb2ir_converter.py            # Agent 5: RGB→IR conversion
 │   ├── train_drn3_lora.py             # LoRA training script
 │   └── dataset/                       # Kohya-format training sets
+│
+├── 5-Controlnet/                     # Agent 3-5: ControlNet + LoRA + IR
+│   ├── controlnet_pipeline.py        # ControlNet-Seg spatial skeleton
+│   ├── lora_render.py                # Drone LoRA rendering
+│   └── configs/                      # ControlNet + LoRA configs
+│
+├── 6-Validator/                      # Agent 6: Verification Chain
+│   ├── S6 RGB 图像质量检查/           # BRISQUE + EfficientNet + IR sanity
+│   │   ├── code/quality_validator.py # S6 entry: no-ref IQA + classifier
+│   │   ├── code/rgb_quality.py       # EfficientNet binary classifier
+│   │   ├── code/ir_sanity.py         # IR signal-level 3-checks
+│   │   └── code/calibrate.py         # BRISQUE threshold calibration
+│   ├── S7 无人机与场景一致性检查/     # Size + lighting + cross-modal
+│   │   ├── code/consistency_validator.py  # S7 entry: 4 consistency checks
+│   │   ├── code/size_consistency.py       # Target size vs expected
+│   │   ├── code/lighting_consistency.py   # Weather/time consistency
+│   │   ├── code/ir_bbox_check.py          # IR bbox vs RGB alignment
+│   │   └── code/cross_modal_alignment.py  # RGB-IR feature match
+│   ├── S8 轨迹物理合理性检查/         # Pure physics — hard anchor
+│   │   └── code/trajectory_validator.py   # R1-R4: pos/speed/accel/LDA
+│   ├── S9 YOLO结果检查/               # Detection validity
+│   │   └── code/detection_validator.py    # IoU matching (RGB + IR)
+│   └── demo/                         # Visualization
+│       ├── visual_demo.py            # S6-S9 full-chain demo (5 cases)
+│       ├── s8_trajectory_demo.py     # S8 3-frame trajectory jump demo
+│       └── demo_*.png                # Demo output images
 │
 ├── 1-background-pool/                 # Preprocessed Data
 │   ├── RGB_raw_frames/                # 3,771 DroneMMset frames
@@ -313,27 +348,104 @@ Key training lessons:
 
 Post-processing approach: `rgb2ir_converter.py` maps RGB → white-hot pseudo-color thermal IR with subtle blue tint. Chosen over direct IR generation because SD 1.5 VAE cannot encode IR grayscale images (three identical channels fall outside the VAE training manifold).
 
-### Agent 6: 4-Stage Verification Chain
+### Agent 6: Two-Tier Verification System
 
-Filters generated outputs from coarse to fine:
+The verification system operates in two tiers:
+
+#### Tier 1: Input Pre-Validation (S_pre_1-5)
+
+**Design motivation**: The original CDFF framework only validated generated images. Errors in upstream Agent outputs (LLM JSON contradictions, Transformer bbox out-of-bounds, ControlNet seg map misalignment) would propagate unchecked through the entire GPU pipeline, wasting compute. S_pre_1-5 catches these errors at the source — before any diffusion inference.
+
+All 22 checks are pure rule-based / signal processing, zero training dependency. Each failure code routes precisely to the responsible Agent.
+
+| Stage | Target | Checks | Failure Code Prefix |
+|:--|:--|:--|:--|
+| **S_pre_1** | Agent 1 JSON | Schema completeness, enum validity, logic consistency (e.g., `night+backlight`), description-keyword match, trajectory value range, camera parameter range (6 checks) | `A1_*` |
+| **S_pre_2** | Agent 2 Transformer | bbox boundary check, frame-to-frame size gradient, position continuity, seg map non-empty, depth validity, frame count alignment (6 checks) | `A2_*` |
+| **S_pre_3** | Agent 3 ControlNet | seg UAV position alignment (vs A2 bbox), seg boundary quality (Laplacian edge), depth UAV region consistency, map size match (4 checks) | `A3_*` |
+| **S_pre_4** | Agent 4 LoRA | Concept bleed detection (SSIM), texture repeat pattern (pixel-diff across frames), global color cast (3 checks) | `A4_*` |
+| **S_pre_5** | Agent 5 IR | Channel integrity, histogram plausibility, cross-modal alignment (3 checks) | `A5_*` |
+
+> **Status**: 22 checks fully designed. Code implementation pending.
+
+#### Tier 2: Output Verification (S6-S9)
+
+After the image is generated, four stages validate the output from coarse to fine. Each stage uses **structured failure codes** for precise routing to the responsible component.
 
 ```
-S0: Background Realism → ResNet/EfficientNet binary classifier
-    Trained on 576 real IR backgrounds vs generated IR backgrounds
-    Failure: S0_BG_UNREALISTIC → regenerate background
-
-S1: CLIP Semantic → CLIP ViT-L/14 viewpoint/weather alignment
-    Generated image vs Agent 1 scene_description
-    Failure: S1_SEMANTIC_MISMATCH → adjust LLM prompt
-
-S2: YOLO Detection → YOLOv8 fine-tuned on Anti-UAV410
-    Target detectability + position/scale accuracy
-    Failure: S2_UNDETECTABLE / S2_POSITION_OFFSET → adjust LoRA/Transformer
-
-S3: IQA Quality → BRISQUE + NIQE + artifact detection
-    Blur, LoRA fusion artifacts, ControlNet boundary artifacts
-    Failure: S3_BLUR / S3_ARTIFACT → adjust generation parameters
+S6 → S7 → S8 → S9  (short-circuit: any FAIL aborts the chain)
 ```
+
+##### S6: RGB Image Quality Check
+
+Evaluates per-frame visual quality with three independent signals:
+
+| Check | Method | Failure Code |
+|:--|:--|:--|
+| **BRISQUE** | No-reference spatial-domain IQA (MSCN coefficients → AGGD → SVR). Calibrated on DroneMMset backgrounds (μ=28.3, σ=8.1, threshold=45.0). Score > 45 → likely blur/artifact frame | `S6_BLUR` |
+| **EfficientNet-B0** | Binary classifier trained on 576 real IR vs generated IR backgrounds. Detects unrealistic textures, LoRA fusion artifacts, unnatural patterns | `S6_BG_UNREALISTIC` |
+| **IR Sanity** | Signal-level 3-checks: pixel range integrity, contrast non-zero, FFT mid-frequency presence (avoids flat/dead IR frames) | `S6_IR_DEAD` |
+
+> **Key insight**: BRISQUE and EfficientNet serve complementary roles. BRISQUE catches generic image degradation (blur, noise, compression artifacts) without any training — it's a hard rule. EfficientNet catches domain-specific artifacts (generated textures that look "wrong" to a classifier trained on real backgrounds).
+
+**Calibration**: BRISQUE thresholds were calibrated on the merged DroneMMset + Anti-UAV-RGBT background pool (19K frames). The 95th percentile (score=45) was chosen after manual QC of 200 borderline frames to balance false-positive vs false-negative rates.
+
+##### S7: UAV-Scene Consistency Check
+
+Verifies semantic alignment between the generated UAV and the scene context:
+
+| Check | Method | Failure Code |
+|:--|:--|:--|
+| **Size Consistency** | Detected bbox size vs expected size (from Agent 1 distance + FOV). Tolerance: ±30% | `S7_SIZE_MISMATCH` |
+| **Lighting Consistency** | RGB histogram analysis (mean brightness, contrast, color temperature) vs Agent 1 weather/time_of_day specification | `S7_LIGHTING_MISMATCH` |
+| **IR Bbox Alignment** | IR frame bbox position vs RGB frame bbox. Deviation > diagonal 10% → misalignment | `S7_IR_BBOX_OFFSET` |
+| **Cross-Modal Alignment** | RGB→IR feature-level consistency check. RGB drone crop vs IR drone crop structural similarity | `S7_CROSS_MODAL_MISMATCH` |
+
+##### S8: Trajectory Physics Validation
+
+**Pure physics rules — hard anchor, never trainable.** Validates multi-frame trajectory sequences against physical constraints. For single-frame samples, S8 is skipped.
+
+| Rule | Check | Threshold | Failure Code |
+|:--|:--|:--|:--|
+| **R1 Position** | Frame-to-frame position displacement | Δ > 30% of frame diagonal | `S8_POSITION_JUMP` |
+| **R2 Speed** | Instantaneous speed anomaly | max_v = 400 px/s | `S8_SPEED_ANOMALY` |
+| **R3 Acceleration** | Speed change between consecutive transitions | Δa > 30 px/s² | `S8_ACCEL_ANOMALY` |
+| **R4 Direction (LDA)** | Trajectory smoothness via Linear Discriminant Analysis on direction vectors | LDA score < 0.3 | `S8_DIRECTION_ANOMALY` |
+
+> **Design rationale**: S8 is intentionally a hard anchor — it encodes physical laws that cannot be "learned away." This prevents the generator from optimizing for validator scores by producing physically impossible trajectories (e.g., teleporting drones). The S8 score is invariant to generator improvement; it's a fixed quality floor.
+
+##### S9: YOLO Detection Validity
+
+Verifies that the generated frame is actually useful for downstream detection training:
+
+| Check | Method | Failure Code |
+|:--|:--|:--|
+| **RGB Detection** | YOLOv8x inference on RGB frame → IoU with GT bbox. IoU < 0.3 → undetectable | `S9_UNDETECTABLE` |
+| **IR Detection** | YOLOv8x-thermal inference on IR frame → IoU with GT bbox. Same threshold | `S9_IR_UNDETECTABLE` |
+| **Position Accuracy** | Detected center vs GT center deviation > bbox diagonal 50% | `S9_POSITION_OFFSET` |
+
+#### Short-Circuit Evaluation
+
+The S6-S9 pipeline uses **strict short-circuit evaluation**: any stage returning `passed=False` aborts the chain immediately. This has two benefits:
+
+1. **GPU efficiency**: Don't run expensive checks (YOLO, CLIP) on images already rejected by cheap checks (BRISQUE)
+2. **Precise failure attribution**: The first failing stage is the root cause — downstream stages may fail as a consequence of the same underlying defect
+
+#### Demo Visualization
+
+A `visual_demo.py` script generates 5-case full-chain visualizations showing all S6-S9 stages:
+
+| Demo | Trigger | Result |
+|:--|:--|:--|
+| `demo_pass.png` | Clean frame | S6→S7→S8→S9 all PASS |
+| `demo_s6_fail.png` | Blurry frame | S6 BRISQUE=52.3 > 45 → BLOCK |
+| `demo_s7_fail.png` | Lighting mismatch | S6 pass, S7 fail → BLOCK at S7 |
+| `demo_s8_sequence.png` | 3-frame position jump | Δ(F2→F3)=0.376 > 0.30 → S8_POSITION_JUMP |
+| `demo_s9_fail.png` | Detection miss | S6-S8 pass, S9 IoU=0.12 < 0.30 → BLOCK |
+
+Each demo image shows the full chain status. Skipped stages are greyed out with "(not reached)". S8 is greyed "(skipped)" for single-frame samples.
+
+> **Code status (2026-08-04)**: S6-S9 V0-V5 code complete. 42+ unit tests pass. All 5 demo cases verified. S_pre_1-5: design complete, code implementation pending.
 
 ### Agent 7: Closed-Loop Feedback (CDFF)
 
@@ -349,6 +461,46 @@ Each trainable component has an independent FailureBuffer. When a buffer reaches
 
 See `7-持续学习循环设计.md` for the full CDFF v2.0 specification.
 
+---
+
+## VRAM Requirements
+
+| Configuration | Peak VRAM |
+|:--|:--|
+| SD 1.5 text-to-image | ~2.2 GB |
+| SD 1.5 + ControlNet-Seg | ~2.9 GB |
+| LoRA training (rank=16, batch=1, FP16) | ~3.9 GB |
+| Dual pipeline (ablation mode) | ~5.1 GB |
+| SDXL | >12 GB |
+
+Developed on RTX 4060 Laptop (8GB VRAM). All experiments run within this constraint.
+
+---
+
+## Citation
+
+```bibtex
+@inproceedings{zhang2023controlnet,
+  title     = {Adding Conditional Control to Text-to-Image Diffusion Models},
+  author    = {Zhang, Lvmin and Rao, Anyi and Agrawala, Maneesh},
+  booktitle = {ICCV},
+  year      = {2023}
+}
+
+@inproceedings{rombach2022high,
+  title     = {High-Resolution Image Synthesis with Latent Diffusion Models},
+  author    = {Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Bj{\"o}rn},
+  booktitle = {CVPR},
+  year      = {2022}
+}
+
+@inproceedings{hu2021lora,
+  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  booktitle = {ICLR},
+  year      = {2022}
+}
+```
 
 ---
 
