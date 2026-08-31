@@ -1,472 +1,246 @@
-# Low-Slow-Small Object Synthetic Data Generation Pipeline
+# 0-workspace — Clean Code Archive of the LSS Generation Architecture
 
-> **Dual-Modal (RGB + TIR) Synthetic Data Generation for Low-Altitude, Slow-Speed, Small-Target Detection**
+> This directory is the **clean code archive** of the **CDFF (Closed-loop Data Flywheel Framework)** low-slow-small (LSS) target synthetic-data generation architecture.
 >
-> UAV · Kite · Balloon · Airship — LLM→Transformer→ControlNet + LoRA + IR Conversion + Agent Verification
+> It retains only the **final active version** of the architecture code (generation side + validation side + loop mechanism + frontend/backend),
+> and **excludes**: datasets, model weights, historical versions (`_v1`–`_v6`, etc.), intermediate artifacts, and demo/test scripts.
+>
+> Original project root: `D:\learning\ObsidianVault\Paper-低慢小数据集生成架构`. Nothing in the original project has been deleted.
+
+[中文版](README_CN.md)
 
 ---
 
-## Overview
+## 1. Architecture Overview
 
-A dual-modal synthetic data generation pipeline for **low-slow-small (LSS) objects** — drones, kites, balloons, and airships. The core architecture:
-
-> **LLM → Transformer → ControlNet (spatial skeleton) + Drone LoRA (appearance) → RGB→IR Conversion → 4-Stage Agent Verification → Closed-Loop Feedback**
-
-The user describes a scene in natural language (e.g., "阴天傍晚，四旋翼从远处飞近，仰拍"), and the system automatically generates paired RGB + thermal infrared (TIR) training images with precise spatial control.
-
-### Key Innovation
-
-- **Agent 1 (LLM)** parses natural language → structured 9-field JSON
-- **Agent 2 (Transformer)** encodes JSON → per-frame ControlNet conditioning vectors
-- **Agent 3 (ControlNet)** generates spatial skeleton (depth/seg maps) — determines **WHERE**
-- **Agent 4 (Drone LoRA)** fills appearance on the skeleton — determines **WHAT**
-- **Agent 5 (IR Converter)** converts RGB → pseudo-color thermal IR
-- **Agent 6 (4-Stage Verification)** filters outputs: background realism → semantic → detection → quality
-- **Agent 7 (Closed-Loop)** routes failure codes → adjusts parameters → regenerates
-
-### Why This Matters
-
-- LSS objects are rare, small, and hard to annotate in real-world imagery
-- Thermal infrared data is especially scarce and expensive to collect
-- **No public dataset exists** for non-UAV LSS categories (kite/balloon/airship)
-- Most public UAV datasets are drone-mounted (looking down), not ground-based (looking up at sky)
-
----
-
-## Architecture
+CDFF is a **dual-agent adversarial + closed-loop feedback** architecture:
 
 ```
-┌──────────────────────────────────────────────────────────────────────────┐
-│                    📥  Natural Language Input                              │
-│  "阴天下午，四旋翼从远处飞近，在工业厂房区域仰拍观察"                         │
-├──────────────────────────────────────────────────────────────────────────┤
-│                                                                           │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 1: LLM Semantic Parsing                                    │     │
-│  │  NL → 9-Field JSON (drone_type, trajectory[], weather, ...)      │     │
-│  │  DeepSeek / OpenAI / Claude / Dry-Run                            │     │
-│  └──────────────────────────────┬──────────────────────────────────┘     │
-│                                 │                                         │
-│                                 ▼                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 2: Transformer Spatiotemporal Encoding                     │     │
-│  │  5 Encoders: Position → Depth → Pose → Weather-Time → Camera     │     │
-│  │  SpatialQueryGenerator: 256 query → 16×16 → ConvTranspose →     │     │
-│  │  64×64 per-frame conditioning vectors                          │     │
-│  └──────────────────────────────┬──────────────────────────────────┘     │
-│                                 │                                         │
-│                                 ▼                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 3: ControlNet Spatial Control (WHERE)                      │     │
-│  │  Conditioning Vectors → Depth/Seg Maps → Spatial Skeleton        │     │
-│  │  SD1.5 + ControlNet-Seg, conditioning_scale=0.75                 │     │
-│  └──────────────────────────────┬──────────────────────────────────┘     │
-│                                 │                                         │
-│                                 ▼                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 4: Drone LoRA Rendering (WHAT)                            │     │
-│  │  ControlNet Spatial Skeleton + Drone LoRA → Complete RGB Scene   │     │
-│  │  LoRA rank=16, alpha=8, trained on 98 commercial drone images    │     │
-│  └──────────────────────────────┬──────────────────────────────────┘     │
-│                                 │                                         │
-│                                 ▼                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 5: IR Domain Conversion                                    │     │
-│  │  RGB → White-Hot Pseudo-Color Thermal IR                         │     │
-│  │  Post-processing approach (avoids VAE domain mismatch on IR)     │     │
-│  └──────────────────────────────┬──────────────────────────────────┘     │
-│                                 │                                         │
-│                    ┌────────────┴────────────┐                            │
-│                    ▼                         ▼                            │
-│              RGB Output                 IR Output                         │
-│                    │                         │                            │
-│                    └────────────┬────────────┘                            │
-│                                 │                                         │
-│                                 ▼                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  ═══ Input Pre-Validation (S_pre_1-5): 22 Rule-Based Checks ═══   │     │
-│  │  S_pre_1: Agent 1 JSON (schema + logic + enum) — 6 checks       │     │
-│  │  S_pre_2: Agent 2 Transformer output (bbox + seg + alignment)    │     │
-│  │  S_pre_3: Agent 3 ControlNet seg/depth (alignment + boundary)    │     │
-│  │  S_pre_4: Agent 4 LoRA artifacts (concept bleed + texture rep)   │     │
-│  │  S_pre_5: Agent 5 IR conversion (channel + histogram + alignment)│     │
-│  ├─────────────────────────────────────────────────────────────────┤     │
-│  │  ═══ Output Verification (S6-S9): 4-Stage Image Validation ═══   │     │
-│  │  S6: RGB Image Quality (BRISQUE + EfficientNet + IR sanity)     │     │
-│  │  S7: UAV-Scene Consistency (size + lighting + alignment ×2)     │     │
-│  │  S8: Trajectory Physics (position/speed/accel/direction — hard)  │     │
-│  │  S9: YOLO Detection Validity (IoU matching, RGB + IR)           │     │
-│  └──────────────────────────────┬──────────────────────────────────┘     │
-│                                 │                                         │
-│                    Failure Codes (e.g., S6_BLUR, S8_POSITION_JUMP)        │
-│                                 │                                         │
-│                                 ▼                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐     │
-│  │  Agent 7: Closed-Loop Feedback (CDFF)                             │     │
-│  │  Failure Code → Component Router → CN/LoRA/IR Buffers            │     │
-│  │  → Incremental Fine-tuning → Weight Replacement                  │     │
-│  │  Three paradigms: A (pass→train) / B (fail→fix→contrast) /       │     │
-│  │  C (rank→align)                                                  │     │
-│  └─────────────────────────────────────────────────────────────────┘     │
-│                                                                           │
-│  6 Weather × 5 Time-of-Day = 30 environmental conditions                 │
-│  4 Target Classes: UAV / Kite / Balloon / Airship                        │
-│  2 Modalities: RGB + Thermal Infrared (TIR)                              │
-└──────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                        GENERATOR (generation side)               │
+│  M1 Semantic parsing → M2 Background matching → M3 Scene extraction → M4 LoRA generation  │
+│  → M5 ControlNet repainting → M6 RGB→IR conversion              │
+└──────────────────────────────┬──────────────────────────────────┘
+                               │  pixel-aligned RGB–IR pair + bbox
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                        VALIDATOR (validation side)               │
+│  V1–V5  input / in-generation interception (22 rule checks)     │
+│  V6–V9  output review (BRISQUE → consistency → trajectory physics → YOLO)  │
+└──────────────────────────────┬──────────────────────────────────┘
+                               │  structured failure codes (S6_BLUR / S8_POSITION_JUMP …)
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    CLOSED-LOOP (loop mechanism)                  │
+│  failure code → Component Router → FailureBuffer → incremental fine-tuning → weight replacement  │
+│  three paradigms: A(Pass→Train) / B(Fail→Fix→Contrast) / C(Rank→Align)  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Key Design Decisions
-
-### Why 7 Agents?
-
-A generation pipeline of this complexity is naturally agentic. Each module has an independent interface — testable, replaceable, and independently observable.
-
-| Monolithic Script | Agent Architecture |
-|:--|:--|
-| One change breaks everything | Each Agent has independent interface |
-| Failure → restart from scratch | Failure codes → retry only the failed step |
-| Black box | Structured logs at every step |
-| Sequential only | Independent Agents can run in parallel |
-| No human intervention | Human-in-the-loop calibration at failure |
-
-### Why Single LoRA + IR Conversion (not Multi-LoRA)?
-
-Initial design used 3 LoRAs (RGB background + IR background + drone target) fused in latent space. IR background LoRA failed because SD 1.5 VAE was trained on natural RGB images — IR grayscale (three identical channels) falls outside the VAE training manifold, producing pure noise.
-
-**Solution**: Single drone LoRA generates RGB → `rgb2ir_converter.py` post-processes to white-hot pseudo-color IR.
-
-### Why SD 1.5 (not SDXL)?
-
-SDXL requires >12GB VRAM. SD 1.5 runs comfortably on 8GB RTX 4060 Laptop, with ControlNet adding only ~0.7GB overhead.
-
-### Why ControlNet-Seg (not Depth, not Canny)?
-
-COCO-Stuff provides semantic segmentation annotations — each pixel labeled as sky/building/tree/etc. ControlNet-Seg pre-trained on ADE20k directly maps "blue region → sky" without retraining. This is the most natural fit.
-
-### Why Structured Failure Codes?
-
-Binary pass/fail is insufficient for closed-loop improvement. Codes like `S8_POSITION_JUMP` or `S6_BLUR` enable precise routing to the responsible component. See `7-持续学习循环设计.md` for the full routing table.
-
----
-
-## Dataset Foundation
-
-Three public, ground-based upward-looking datasets form the data foundation:
-
-| Dataset | Size | Modality | Use |
-|:--|:--|:--|:--|
-| **DroneMMset** | 320 video pairs (14.6 GB) | RGB + IR fully paired | Primary: drone LoRA training + background pool |
-| **Anti-UAV-RGBT** | 318 sequences (6.3 GB) | RGB + IR paired | Background pool expansion + validation |
-| **Anti-UAV410** | 410 sequences (12 GB, 438K bboxes) | Pure TIR | Downstream YOLO mAP validation |
-
-> **Critical lesson**: Most public UAV datasets are drone-mounted (looking down at ground). We exclusively use ground-based upward-looking datasets where the drone is the **observed target**, not the **collection platform**.
-
-### Background Pool Construction Pipeline
+## 2. Directory Structure
 
 ```
-Merged Pool (RGB 18,615 / IR 18,648 frames)
-    │
-    ▼
-pHash Deduplication → K-means Clustering (n=20) → Uniform Sampling
-    │
-    ▼
-Manual QC (remove blur/overexposure) → BLIP Captioning
-    │
-    ▼
-Final Training Set: IR 576 / RGB 590 frames (Kohya format)
+0-workspace/
+├── README.md                          # this document (English)
+├── README_CN.md                       # Chinese version
+├── app/                               # frontend + backend (Flask service + generation orchestration)
+│   ├── web_app.py                     #   Flask entry point (the only frontend)
+│   ├── llm_parser.py                  #   M1 semantic parsing
+│   ├── background_searcher.py         #   M2 background matching
+│   ├── condition_generator_v7.py      #   M3 scene extraction + per-frame orchestration
+│   ├── .env.example                   #   environment-variable template (sanitised)
+│   └── templates/index.html           #   frontend page
+├── generator/                         # generation-side core engine
+│   ├── lora_inpainter_v7.py           #   M4 LoRA generation + M5 ControlNet repainting
+│   └── rgb2ir_converter.py            #   M6 RGB→white-hot IR
+├── validator/                         # validation side (V1–V9)
+│   ├── v1_json_validator.py           #   V1
+│   ├── v2_transformer_validator.py    #   V2 (target module deprecated, see §5)
+│   ├── v3_controlnet_validator.py     #   V3
+│   ├── v4_lora_validator.py           #   V4
+│   ├── v5_ir_validator.py             #   V5
+│   ├── v6_quality/                    #   V6 (4 files, flat import within the directory)
+│   │   ├── quality_validator.py       #     V6 entry point
+│   │   ├── rgb_quality.py             #     EfficientNet binary classification
+│   │   ├── ir_sanity.py               #     IR signal-level ×3 checks
+│   │   └── calibrate.py               #     BRISQUE threshold calibration
+│   ├── v7_consistency/                #   V7 (5 files)
+│   │   ├── consistency_validator.py   #     V7 entry point
+│   │   ├── size_consistency.py        #     size consistency
+│   │   ├── lighting_consistency.py    #     lighting consistency
+│   │   ├── ir_bbox_check.py           #     IR bbox alignment
+│   │   └── cross_modal_alignment.py   #     cross-modal alignment
+│   ├── v8_trajectory_validator.py     #   V8 trajectory physics
+│   └── v9_detection_validator.py      #   V9 YOLO detection
+└── loop/                              # loop mechanism (closed-loop feedback)
+    ├── validator_pipeline.py          #   S6→S9 short-circuit chaining + failure write to Buffer
+    ├── failure_buffer.py              #   FailureBuffer (failure buffer pool)
+    ├── trainable_classifier.py        #   paradigm A: Pass→Train trainable classifier
+    └── 7-持续学习循环设计.md           #   closed-loop mechanism design spec (CDFF v2.0)
 ```
 
 ---
 
-## Models
+## 3. Paper Modules ↔ Code Mapping
 
-Download from Hugging Face, place under `0-model/`:
+### Generation Side (Generator, M1–M6)
 
-| Model | Size | Purpose |
-|:--|:--|:--|
-| `stable-diffusion-v1-5` | 21 GB | Base diffusion model (VAE + UNet + Text Encoder) |
-| `sd-controlnet-seg` | 2.7 GB | ControlNet segmentation conditioning |
-| `clip-vit-large-patch14` | 6.4 GB | CLIP ViT-L/14 (S7 cross-modal alignment) |
-| `yolov8x.pt` | 131 MB | YOLOv8x (S9 detection validity check) |
-| `blip-image-captioning-base` | 990 MB | BLIP captioning for training data |
+| Paper module | File | Core function / class | Lines |
+|---|---|---|---|
+| M1 Semantic parsing | `app/llm_parser.py` | `parse()` / `parse_to_dual_json()` / `SceneSpec` | 695 |
+| M2 Background matching | `app/background_searcher.py` | `search_background()` | 149 |
+| M3 Scene extraction | `app/condition_generator_v7.py` | `extract_depth_matched()` / `heuristic_segment()` / `trajectory_to_frames()` | 536 |
+| M4 LoRA generation | `generator/lora_inpainter_v7.py` | `LoraInpainterV7` (LoRA txt2img part) | 807 |
+| M5 ControlNet repainting | `generator/lora_inpainter_v7.py` | `LoraInpainterV7.inpaint()` (depth+seg dual conditioning) | 807 |
+| M6 RGB→IR | `generator/rgb2ir_converter.py` | `rgb_to_whitehot()` | 136 |
 
-```
-0-model/
-├── stable-diffusion-v1-5/
-│   ├── vae/  unet/  text_encoder/  tokenizer/  scheduler/
-├── sd-controlnet-seg/
-├── clip-vit-large-patch14/
-├── blip-image-captioning-base/
-└── yolov8x.pt
-```
+### Validation Side (Validator, V1–V9)
 
----
+| Paper stage | File | Core class | # checks | Failure-code prefix |
+|---|---|---|---|---|
+| V1 | `validator/v1_json_validator.py` | `S1JSONValidator` | 6 | `A1_*` |
+| V2 | `validator/v2_transformer_validator.py` | `S2TransformerValidator` | 6 | `A2_*` |
+| V3 | `validator/v3_controlnet_validator.py` | `S3ControlNetValidator` | 4 | `A3_*` |
+| V4 | `validator/v4_lora_validator.py` | `S4LoRAValidator` | 3 | `A4_*` |
+| V5 | `validator/v5_ir_validator.py` | `S5IRValidator` | 3 | `A5_*` |
+| V6 | `validator/v6_quality/quality_validator.py` | `QualityValidator` | 3 | `S6_*` |
+| V7 | `validator/v7_consistency/consistency_validator.py` | `ConsistencyValidator` | 4 | `S7_*` |
+| V8 | `validator/v8_trajectory_validator.py` | `TrajectoryValidator` | 4 | `S8_*` |
+| V9 | `validator/v9_detection_validator.py` | `DetectionValidator` | 3 | `S9_*` |
 
-## Code Structure
+### Loop Mechanism (Closed-Loop)
 
-```
-root/
-│
-├── 3-LLM starter/                     # Agent 1: LLM Semantic Parsing
-│   ├── llm_parser.py                  # NL→JSON core, 4 backends
-│   ├── web_app.py                     # Flask web UI (3-panel layout)
-│   ├── .env                           # API keys
-│   ├── templates/index.html           # Frontend
-│   └── sessions/sample_session.json   # Schema reference
-│
-├── 4-Transformer/                     # Agent 2: Spatiotemporal Encoding
-│   ├── transformer_b.py               # SpatialQueryGenerator + 5 Encoders + Fusion
-│   ├── json_schema.py                 # Agent 1 Schema mirror (DroneAction, SceneSpec)
-│   ├── config.py                      # Model config
-│   ├── gt_generator.py                # Auto GT (Depth Anything v2 + SAM 2)
-│   ├── training_pipeline.py           # 3-layer training scheduler
-│   └── demo.py                        # End-to-end verification
-│
-├── 2-Lora training/                   # LoRA Training
-│   ├── drone_target_v2/
-│   │   └── drn3_uav_lora_v2.safetensors  # Drone LoRA weights
-│   ├── rgb2ir_converter.py            # Agent 5: RGB→IR conversion
-│   ├── train_drn3_lora.py             # LoRA training script
-│   └── dataset/                       # Kohya-format training sets
-│
-├── 5-Controlnet/                     # Agent 3-5: ControlNet + LoRA + IR
-│   ├── controlnet_pipeline.py        # ControlNet-Seg spatial skeleton
-│   ├── lora_render.py                # Drone LoRA rendering
-│   └── configs/                      # ControlNet + LoRA configs
-│
-├── 6-Validator/                      # Agent 6: Verification Chain
-│   ├── S6 RGB 图像质量检查/           # BRISQUE + EfficientNet + IR sanity
-│   │   ├── code/quality_validator.py # S6 entry: no-ref IQA + classifier
-│   │   ├── code/rgb_quality.py       # EfficientNet binary classifier
-│   │   ├── code/ir_sanity.py         # IR signal-level 3-checks
-│   │   └── code/calibrate.py         # BRISQUE threshold calibration
-│   ├── S7 无人机与场景一致性检查/     # Size + lighting + cross-modal
-│   │   ├── code/consistency_validator.py  # S7 entry: 4 consistency checks
-│   │   ├── code/size_consistency.py       # Target size vs expected
-│   │   ├── code/lighting_consistency.py   # Weather/time consistency
-│   │   ├── code/ir_bbox_check.py          # IR bbox vs RGB alignment
-│   │   └── code/cross_modal_alignment.py  # RGB-IR feature match
-│   ├── S8 轨迹物理合理性检查/         # Pure physics — hard anchor
-│   │   └── code/trajectory_validator.py   # R1-R4: pos/speed/accel/LDA
-│   ├── S9 YOLO结果检查/               # Detection validity
-│   │   └── code/detection_validator.py    # IoU matching (RGB + IR)
-│   └── demo/                         # Visualization
-│       ├── visual_demo.py            # S6-S9 full-chain demo (5 cases)
-│       ├── s8_trajectory_demo.py     # S8 3-frame trajectory jump demo
-│       └── demo_*.png                # Demo output images
-│
-├── 1-background-pool/                 # Preprocessed Data
-│   ├── RGB_raw_frames/                # 3,771 DroneMMset frames
-│   ├── IR_raw_frames/                 # 3,804 DroneMMset frames (grayscale)
-│   ├── RGB_raw_frames_antiuav/        # 14,844 Anti-UAV-RGBT frames
-│   ├── IR_raw_frames_antiuav/         # 14,844 Anti-UAV-RGBT frames (grayscale)
-│   ├── convert_ir_to_grayscale.py     # IR color unification
-│   └── drone_patches/                 # Drone bbox crops
-
-```
+| File | Purpose | Corresponding README paradigm |
+|---|---|---|
+| `loop/failure_buffer.py` | `FailureBuffer`: failed-sample buffer + threshold triggering | shared base for the three paradigms |
+| `loop/validator_pipeline.py` | `ValidatorPipeline`: S6→S9 short-circuit evaluation, failures written to Buffer | failure-code routing |
+| `loop/trainable_classifier.py` | trainable EfficientNet classifier (`train`/`infer`) | paradigm A (Pass→Train) |
+| `loop/7-持续学习循环设计.md` | full closed-loop mechanism spec (§6 / §9.1 / §13 / §16) | CDFF v2.0 design document |
 
 ---
 
-## Agent Details
+## 4. Key Dependency Chain (internal call relationships)
 
-### Agent 1: LLM Semantic Parser
+```
+web_app.py (Flask entry point)
+  ├─ import llm_parser.py            → parse_to_dual_json()
+  ├─ import background_searcher.py   → search_background()
+  └─ import condition_generator_v7.py (imported inside the function)
+        ├─ import generator/lora_inpainter_v7.py  → LoraInpainterV7.inpaint()
+        │     └─ reads 0-model/stable-diffusion-v1-5 + sd-controlnet-*
+        │        reads 2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors
+        └─ import generator/rgb2ir_converter.py   → rgb_to_whitehot()
 
-Converts natural language to structured 9-field JSON:
+validator_pipeline.py (S6→S9 chaining)
+  ├─ import v6_quality/quality_validator.py
+  ├─ import v7_consistency/consistency_validator.py
+  ├─ import v8_trajectory_validator.py
+  ├─ import v9_detection_validator.py
+  └─ import failure_buffer.py        → FailureBuffer
+```
 
-| Field | Type | Example |
-|:--|:--|:--|
-| `drone_type` | enum | `quadrotor` |
-| `trajectory[]` | array | `[{t:0, action:"approach", distance:100, norm_u:0.5, norm_v:0.8}]` |
-| `time_of_day` | enum | `dawn / morning / afternoon / dusk / night` |
-| `weather` | enum | `clear / overcast / rainy / foggy / dusty / backlight` |
-| `scene_type` | enum | `urban / rural / mountain / coastal / desert / forest / industrial / airfield` |
-| `scene_description` | string | ControlNet-prompt-style English description |
-| `modality` | enum | `RGB / IR` |
-| `camera` | object | `{position, elevation_deg, fov_deg}` |
-| `confidence_note` | string | Dry-run flag or LLM metadata |
+> ⚠️ **Hard-coded paths note**: the archived code retains the original project's relative-path assumptions
+> (`PROJECT_ROOT = Path(__file__).resolve().parent.parent`, `MODEL_DIR = .../0-model`,
+> `POOL_ROOT = .../1-background-pool/curated_backgrounds`, `BEST_MODELS = .../2-Lora training/best_models`).
+> Since this archive excludes datasets and models, **this code must be run inside the original project directory**; this directory is
+> positioned as an **architecture index and code copy** for understanding, reference, and migration, rather than an independently executable environment.
 
-Supports 4 backends: DeepSeek (default), OpenAI, Claude, Dry-Run (keyword matching). Includes Flask web UI at `127.0.0.1:5000` with session management and JSON persistence.
+---
+
+## 5. Deduplication Notes (what this archive excludes)
+
+| Excluded content | Original location | Reason |
+|---|---|---|
+| `lora_inpainter.py` ~ `_v6.py` (6 files) | `5-Controlnet/` | historical versions; the final is `_v7` |
+| `demo_v5/v6/v6_batch_A.py` | `5-Controlnet/` | old demos |
+| `condition_generator.py` (no suffix) | `3-LLM starter/` | old version (Gaussian blob), superseded by v7 |
+| the entire `4-Transformer/` module | project root | Agent 2 spatio-temporal encoder removed from the CDFF six-module architecture |
+| all demo/test scripts except `V4-trainable/` | `6-Validator/` | demo and test scripts |
+| three `archive/` directories | several locations | historical archives |
+| model weights / datasets / background pool / intermediate artifacts | `0-model/ 0-database/ 1-background-pool/ …` | non-code |
+
+**Retained exception**: `loop/trainable_classifier.py` is named after V4, but it is the trainable component
+(`train`/`infer` interface) of closed-loop paradigm A and belongs to the loop-mechanism design, so it is retained.
+
+---
+
+## 6. Running (inside the original project)
 
 ```bash
+# frontend + backend (Flask)
 cd "3-LLM starter"
-python3 llm_parser.py "阴天下午，四旋翼在城市上空悬停，正面拍摄"
-python3 llm_parser.py --dry "晴天上午城市高楼四旋翼飞近仰拍"
-python3 web_app.py  # → http://127.0.0.1:5000
+cp .env.example .env        # fill in the API key
+python web_app.py           # → http://127.0.0.1:5000
+
+# validation-side chained pipeline (S6→S9)
+cd "6-Validator/V5-pipeline/code"
+python validator_pipeline.py
+
+# loop-mechanism design document
+# see loop/7-持续学习循环设计.md
 ```
-
-### Agent 2: Transformer Spatiotemporal Encoder
-
-Bridges semantic JSON to pixel-level ControlNet conditioning. Five encoder modules:
-
-| Encoder | Input | Output |
-|:--|:--|:--|
-| **Position** | trajectory[].norm_u, norm_v | SpatialQueryGenerator: 256 query → 16×16 → ConvTranspose → 64×64 feature map |
-| **Depth** | trajectory[].distance | Scale factor (Air 2S@50m/60°FOV/512px = 2.7px physical basis) |
-| **Pose** | trajectory[].action (8 types) | Keypoint offset vectors |
-| **Weather-Time** | weather (6) + time_of_day (5) | Learnable environment embedding |
-| **Camera** | fov + elevation + position | Projection matrix |
-
-**SpatialQueryGenerator** is the core innovation: 256 learnable queries are reshaped to 16×16 grid and upsampled via ConvTranspose to 64×64, preserving per-query spatial semantics. This replaces the naive mean-pooling approach that destroyed all position information.
-
-Ground truth is auto-generated via Depth Anything v2 (depth maps) + SAM 2 (segmentation masks), enabling zero-manual-annotation training.
-
-Training follows a 3-layer progressive strategy: Layer1 visual pretraining (3rd Anti-UAV, 58K images) → Layer2 semantic fine-tuning (DroneMMset, 7.7K pairs) → Layer3 CDFF continual evolution.
-
-### Agent 3: ControlNet Spatial Control
-
-Generates spatial skeleton maps (depth + segmentation) from Transformer conditioning vectors. SD1.5 + ControlNet-Seg, conditioning_scale=0.75 (optimal balance between layout fidelity and visual naturalness).
-
-COCO-Stuff 183 classes are aggregated into 6 superclasses for ControlNet-Seg conditioning:
-
-| Superclass | COCO-Stuff Categories | RGB Color |
-|:--|:--|:--|
-| sky | sky, clouds, fog | (128, 192, 255) |
-| tree | tree, plant, grass, bush, flower, moss | (0, 128, 0) |
-| building | building, house, skyscraper, wall, window | (128, 128, 128) |
-| mountain | mountain, hill, rock | (139, 90, 43) |
-| water | water, sea, river | (30, 144, 255) |
-| ground | road, sidewalk, sand, dirt | (200, 180, 140) |
-
-### Agent 4: Drone LoRA Rendering
-
-A single LoRA (rank=16, alpha=8) trained on 98 commercial drone images at 512×512. The LoRA fills drone appearance onto the ControlNet spatial skeleton — ControlNet controls WHERE, LoRA controls WHAT.
-
-Key training lessons:
-- **Flip augmentation must be disabled** for asymmetric objects like quadcopters (rotor positions reversed on flip)
-- **800 steps sufficient** for small datasets (<100 images); 6000 steps caused severe overfitting
-- **Rank=16** accommodates quadcopter's 4-rotor structure better than rank=8
-
-### Agent 5: IR Domain Conversion
-
-Post-processing approach: `rgb2ir_converter.py` maps RGB → white-hot pseudo-color thermal IR with subtle blue tint. Chosen over direct IR generation because SD 1.5 VAE cannot encode IR grayscale images (three identical channels fall outside the VAE training manifold).
-
-### Agent 6: Two-Tier Verification System
-
-The verification system operates in two tiers:
-
-#### Tier 1: Input Pre-Validation (S_pre_1-5)
-
-**Design motivation**: The original CDFF framework only validated generated images. Errors in upstream Agent outputs (LLM JSON contradictions, Transformer bbox out-of-bounds, ControlNet seg map misalignment) would propagate unchecked through the entire GPU pipeline, wasting compute. S_pre_1-5 catches these errors at the source — before any diffusion inference.
-
-All 22 checks are pure rule-based / signal processing, zero training dependency. Each failure code routes precisely to the responsible Agent.
-
-| Stage | Target | Checks | Failure Code Prefix |
-|:--|:--|:--|:--|
-| **S_pre_1** | Agent 1 JSON | Schema completeness, enum validity, logic consistency (e.g., `night+backlight`), description-keyword match, trajectory value range, camera parameter range (6 checks) | `A1_*` |
-| **S_pre_2** | Agent 2 Transformer | bbox boundary check, frame-to-frame size gradient, position continuity, seg map non-empty, depth validity, frame count alignment (6 checks) | `A2_*` |
-| **S_pre_3** | Agent 3 ControlNet | seg UAV position alignment (vs A2 bbox), seg boundary quality (Laplacian edge), depth UAV region consistency, map size match (4 checks) | `A3_*` |
-| **S_pre_4** | Agent 4 LoRA | Concept bleed detection (SSIM), texture repeat pattern (pixel-diff across frames), global color cast (3 checks) | `A4_*` |
-| **S_pre_5** | Agent 5 IR | Channel integrity, histogram plausibility, cross-modal alignment (3 checks) | `A5_*` |
-
-> **Status**: 22 checks fully designed. Code implementation pending.
-
-#### Tier 2: Output Verification (S6-S9)
-
-After the image is generated, four stages validate the output from coarse to fine. Each stage uses **structured failure codes** for precise routing to the responsible component.
-
-```
-S6 → S7 → S8 → S9  (short-circuit: any FAIL aborts the chain)
-```
-
-##### S6: RGB Image Quality Check
-
-Evaluates per-frame visual quality with three independent signals:
-
-| Check | Method | Failure Code |
-|:--|:--|:--|
-| **BRISQUE** | No-reference spatial-domain IQA (MSCN coefficients → AGGD → SVR). Calibrated on DroneMMset backgrounds (μ=28.3, σ=8.1, threshold=45.0). Score > 45 → likely blur/artifact frame | `S6_BLUR` |
-| **EfficientNet-B0** | Binary classifier trained on 576 real IR vs generated IR backgrounds. Detects unrealistic textures, LoRA fusion artifacts, unnatural patterns | `S6_BG_UNREALISTIC` |
-| **IR Sanity** | Signal-level 3-checks: pixel range integrity, contrast non-zero, FFT mid-frequency presence (avoids flat/dead IR frames) | `S6_IR_DEAD` |
-
-> **Key insight**: BRISQUE and EfficientNet serve complementary roles. BRISQUE catches generic image degradation (blur, noise, compression artifacts) without any training — it's a hard rule. EfficientNet catches domain-specific artifacts (generated textures that look "wrong" to a classifier trained on real backgrounds).
-
-**Calibration**: BRISQUE thresholds were calibrated on the merged DroneMMset + Anti-UAV-RGBT background pool (19K frames). The 95th percentile (score=45) was chosen after manual QC of 200 borderline frames to balance false-positive vs false-negative rates.
-
-##### S7: UAV-Scene Consistency Check
-
-Verifies semantic alignment between the generated UAV and the scene context:
-
-| Check | Method | Failure Code |
-|:--|:--|:--|
-| **Size Consistency** | Detected bbox size vs expected size (from Agent 1 distance + FOV). Tolerance: ±30% | `S7_SIZE_MISMATCH` |
-| **Lighting Consistency** | RGB histogram analysis (mean brightness, contrast, color temperature) vs Agent 1 weather/time_of_day specification | `S7_LIGHTING_MISMATCH` |
-| **IR Bbox Alignment** | IR frame bbox position vs RGB frame bbox. Deviation > diagonal 10% → misalignment | `S7_IR_BBOX_OFFSET` |
-| **Cross-Modal Alignment** | RGB→IR feature-level consistency check. RGB drone crop vs IR drone crop structural similarity | `S7_CROSS_MODAL_MISMATCH` |
-
-##### S8: Trajectory Physics Validation
-
-**Pure physics rules — hard anchor, never trainable.** Validates multi-frame trajectory sequences against physical constraints. For single-frame samples, S8 is skipped.
-
-| Rule | Check | Threshold | Failure Code |
-|:--|:--|:--|:--|
-| **R1 Position** | Frame-to-frame position displacement | Δ > 30% of frame diagonal | `S8_POSITION_JUMP` |
-| **R2 Speed** | Instantaneous speed anomaly | max_v = 400 px/s | `S8_SPEED_ANOMALY` |
-| **R3 Acceleration** | Speed change between consecutive transitions | Δa > 30 px/s² | `S8_ACCEL_ANOMALY` |
-| **R4 Direction (LDA)** | Trajectory smoothness via Linear Discriminant Analysis on direction vectors | LDA score < 0.3 | `S8_DIRECTION_ANOMALY` |
-
-> **Design rationale**: S8 is intentionally a hard anchor — it encodes physical laws that cannot be "learned away." This prevents the generator from optimizing for validator scores by producing physically impossible trajectories (e.g., teleporting drones). The S8 score is invariant to generator improvement; it's a fixed quality floor.
-
-##### S9: YOLO Detection Validity
-
-Verifies that the generated frame is actually useful for downstream detection training:
-
-| Check | Method | Failure Code |
-|:--|:--|:--|
-| **RGB Detection** | YOLOv8x inference on RGB frame → IoU with GT bbox. IoU < 0.3 → undetectable | `S9_UNDETECTABLE` |
-| **IR Detection** | YOLOv8x-thermal inference on IR frame → IoU with GT bbox. Same threshold | `S9_IR_UNDETECTABLE` |
-| **Position Accuracy** | Detected center vs GT center deviation > bbox diagonal 50% | `S9_POSITION_OFFSET` |
-
-#### Short-Circuit Evaluation
-
-The S6-S9 pipeline uses **strict short-circuit evaluation**: any stage returning `passed=False` aborts the chain immediately. This has two benefits:
-
-1. **GPU efficiency**: Don't run expensive checks (YOLO, CLIP) on images already rejected by cheap checks (BRISQUE)
-2. **Precise failure attribution**: The first failing stage is the root cause — downstream stages may fail as a consequence of the same underlying defect
-
-#### Demo Visualization
-
-A `visual_demo.py` script generates 5-case full-chain visualizations showing all S6-S9 stages:
-
-| Demo | Trigger | Result |
-|:--|:--|:--|
-| `demo_pass.png` | Clean frame | S6→S7→S8→S9 all PASS |
-| `demo_s6_fail.png` | Blurry frame | S6 BRISQUE=52.3 > 45 → BLOCK |
-| `demo_s7_fail.png` | Lighting mismatch | S6 pass, S7 fail → BLOCK at S7 |
-| `demo_s8_sequence.png` | 3-frame position jump | Δ(F2→F3)=0.376 > 0.30 → S8_POSITION_JUMP |
-| `demo_s9_fail.png` | Detection miss | S6-S8 pass, S9 IoU=0.12 < 0.30 → BLOCK |
-
-Each demo image shows the full chain status. Skipped stages are greyed out with "(not reached)". S8 is greyed "(skipped)" for single-frame samples.
-
-> **Code status (2026-08-04)**: S6-S9 V0-V5 code complete. 42+ unit tests pass. All 5 demo cases verified. S_pre_1-5: design complete, code implementation pending.
-
-### Agent 7: Closed-Loop Feedback (CDFF)
-
-Structured failure codes route to the responsible component. Three self-training paradigms:
-
-| Paradigm | Mechanism | Used For |
-|:--|:--|:--|
-| **A: Pass→Train** | Verified samples → training set → standard fine-tune | LoRA, YOLO |
-| **B: Fail→Fix→Contrast** | Failed sample + fixed sample → contrastive pair → CN-LoRA | ControlNet |
-| **C: Rank→Align** | Batch scoring → top-50% → incremental fine-tune | IR CNN |
-
-Each trainable component has an independent FailureBuffer. When a buffer reaches threshold (30-50 samples), an asynchronous learning loop triggers incremental fine-tuning. Generation and learning are decoupled — GPU cannot simultaneously infer and train.
 
 ---
 
-## VRAM Requirements
+## 7. Original Path ↔ Archived Path Mapping
 
-| Configuration | Peak VRAM |
-|:--|:--|
-| SD 1.5 text-to-image | ~2.2 GB |
-| SD 1.5 + ControlNet-Seg | ~2.9 GB |
-| LoRA training (rank=16, batch=1, FP16) | ~3.9 GB |
-| Dual pipeline (ablation mode) | ~5.1 GB |
-| SDXL | >12 GB |
+| Archived path | Original project path |
+|---|---|
+| `app/web_app.py` | `3-LLM starter/web_app.py` |
+| `app/llm_parser.py` | `3-LLM starter/llm_parser.py` |
+| `app/background_searcher.py` | `3-LLM starter/background_searcher.py` |
+| `app/condition_generator_v7.py` | `3-LLM starter/condition_generator_v7.py` |
+| `app/templates/index.html` | `3-LLM starter/templates/index.html` |
+| `generator/lora_inpainter_v7.py` | `5-Controlnet/lora_inpainter_v7.py` |
+| `generator/rgb2ir_converter.py` | `2-Lora training/rgb2ir_converter.py` |
+| `validator/v1_json_validator.py` | `6-Validator/S1 Agent 1 JSON校验/code/s1_json_validator.py` |
+| `validator/v2_transformer_validator.py` | `6-Validator/S2 Agent 2 Transformer校验/code/s2_transformer_validator.py` |
+| `validator/v3_controlnet_validator.py` | `6-Validator/S3 Agent 3 ControlNet校验/code/s3_controlnet_validator.py` |
+| `validator/v4_lora_validator.py` | `6-Validator/S4 Agent 4 LoRA校验/code/s4_lora_validator.py` |
+| `validator/v5_ir_validator.py` | `6-Validator/S5 Agent 5 IR校验/code/s5_ir_validator.py` |
+| `validator/v6_quality/*` | `6-Validator/S6 RGB 图像质量检查/code/*` |
+| `validator/v7_consistency/*` | `6-Validator/S7 无人机与场景一致性检查/code/*` |
+| `validator/v8_trajectory_validator.py` | `6-Validator/S8 轨迹物理合理性检查/code/trajectory_validator.py` |
+| `validator/v9_detection_validator.py` | `6-Validator/S9 YOLO结果检查/code/detection_validator.py` |
+| `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
+| `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
+| `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
+| `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
 
 ---
 
-## License
+## 8. Runnability Verification & Fix Log
 
-MIT License. Individual datasets and models retain their original licenses.
+After archiving, all 27 `.py` files were tested for runnability, and 4 breakages caused by
+"directory reorganisation + file renaming" (`sys.path` / import breakage) were fixed. The following fixes exist
+only in the archived copy and **do not modify the original project**.
+
+### Fix list
+
+| # | File | Original issue | Fix |
+|---|---|---|---|
+| 1 | `app/web_app.py` | top-level `from condition_generator import ...` (old, deprecated) crashed on startup; duplicate `/api/generate-conditions` old endpoint | removed the old import and the entire old endpoint (its function is taken over by `/api/generate-lora`) |
+| 2 | `app/condition_generator_v7.py` | `sys.path` pointed at `2-Lora training/`, `5-Controlnet/` (original project paths) | repointed to the archive's `generator/` (rgb2ir + lora_inpainter) |
+| 3 | `generator/lora_inpainter_v7.py` | runtime `from condition_generator_v7 import seg_to_rgb` could not find `app/` | inject `sys.path → app/` before the import |
+| 4 | `loop/validator_pipeline.py` | `sys.path` pointed at `S6/S7/S8/S9/code` (original project paths) + old names `trajectory_validator` / `detection_validator` | repointed to `validator/v6_quality`, `validator/v7_consistency`, `validator/`, and switched to the new `v8_*` / `v9_*` names |
+
+The docstring usage examples in `v1`–`v5` were also updated from the old module names (e.g. `s1_json_validator`) to the new names.
+
+### Verification results (all passed, 2026-08-31)
+
+| Test | Result |
+|---|---|
+| Syntax check (`py_compile`, 27 files) | ✓ all passed |
+| Module import (18 modules, incl. cross-directory dependencies) | ✓ all passed |
+| Key symbol existence (27 classes / functions) | ✓ all present |
+| Pure-function smoke: `seg_to_rgb` | ✓ output shape / colour correct |
+| Pure-function smoke: `rgb_to_whitehot` | ✓ white-hot IR conversion OK |
+| Pure-function smoke: `trajectory_to_frames` | ✓ trajectory parsing OK |
+| Flask route list (after endpoint removal) | ✓ no stale references, 11 clean routes |
+
+> Note: the verification above covers "code structure is complete, modules load, and core pure functions run".
+> **End-to-end generation (LoRA + ControlNet inference) still requires the original project's model weights
+> (`0-model/`, `best_models/`) and the nine-category background pool (`1-background-pool/`), which this archive does not
+> include** — so full inference cannot run independently inside the archive directory.

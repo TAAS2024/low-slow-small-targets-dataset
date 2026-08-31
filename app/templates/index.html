@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>低慢小数据集 — LLM Parser v7.0</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #f8fafc;
+    --border: #e2e8f0;
+    --primary: #3b82f6;
+    --primary-light: #eff6ff;
+    --green: #10b981;
+    --green-light: #ecfdf5;
+    --orange: #f59e0b;
+    --orange-light: #fffbeb;
+    --purple: #8b5cf6;
+    --purple-light: #f5f3ff;
+    --text: #1e293b;
+    --text2: #64748b;
+    --text3: #94a3b8;
+    --input-bg: #ffffff;
+    --hover: #f1f5f9;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: #f1f5f9;
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ======== 顶层布局 ======== */
+  .app {
+    display: grid;
+    grid-template-columns: 280px 1fr 380px;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+    gap: 0;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+
+  /* ======== 左：会话记录 ======== */
+  .session-panel {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    grid-row: 1 / 3;
+    transition: all 0.3s ease;
+  }
+  .session-panel.hidden {
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .session-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    white-space: nowrap;
+  }
+  .session-header .dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .session-header .btn-toggle-sidebar {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    width: 24px; height: 24px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .session-header .btn-toggle-sidebar:hover { background: var(--hover); color: var(--text); }
+  .session-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 10px;
+  }
+  .session-item {
+    padding: 10px 12px;
+    margin-bottom: 4px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-size: 12px;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+  }
+  .session-item:hover { border-color: var(--primary); background: var(--primary-light); }
+  .session-item.active { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 2px rgba(59,130,246,0.2); }
+  .session-item .time { color: var(--text3); font-size: 10px; }
+  .session-item .preview {
+    margin-top: 3px;
+    color: var(--text2);
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .session-item .badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-top: 3px;
+  }
+  .badge-ok { background: var(--green-light); color: var(--green); font-weight: 600; }
+  .badge-err { background: #fef2f2; color: #ef4444; font-weight: 600; }
+
+  /* ======== 中：2×3 图片网格 ======== */
+  .main-area {
+    display: flex;
+    flex-direction: column;
+    background: #0f172a;
+    grid-row: 1 / 3;
+  }
+  .main-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid #1e293b;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    background: #1e293b;
+  }
+  .main-header .brand { color: var(--primary); font-size: 16px; }
+  .main-header .btn-back {
+    display: none;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .main-header .btn-back.visible { display: inline-block; }
+
+  /* 2×5 网格 */
+  .image-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px;
+    padding: 4px;
+    overflow: hidden;
+  }
+  .image-slot {
+    position: relative;
+    background: #1e293b;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+  }
+  .image-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .image-slot .placeholder-text {
+    color: #64748b;
+    font-size: 11px;
+    text-align: center;
+    padding: 8px;
+    pointer-events: none;
+  }
+  .image-slot .slot-label {
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    font-size: 10px;
+    color: #94a3b8;
+    background: rgba(0,0,0,0.6);
+    padding: 2px 8px;
+    border-radius: 3px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* 轨迹切换箭头（左上角） */
+  .image-slot .nav-arrows {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    display: flex;
+    gap: 3px;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .image-slot:hover .nav-arrows,
+  .image-slot.has-multi .nav-arrows { opacity: 1; }
+  .nav-arrows button {
+    width: 22px; height: 22px;
+    border-radius: 3px;
+    border: 1px solid #475569;
+    background: rgba(15,23,42,0.85);
+    color: #cbd5e1;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .nav-arrows button:hover { background: var(--primary); color: white; border-color: var(--primary); }
+  .nav-arrows button:disabled { opacity: 0.3; cursor: default; }
+  .nav-arrows .frame-idx {
+    font-size: 10px;
+    color: #94a3b8;
+    background: rgba(15,23,42,0.85);
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    min-width: 28px;
+    justify-content: center;
+  }
+
+  /* 放大图标（右上角） */
+  .image-slot .expand-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 24px; height: 24px;
+    border-radius: 3px;
+    border: 1px solid #475569;
+    background: rgba(15,23,42,0.85);
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.2s;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .image-slot:hover .expand-btn { opacity: 1; }
+  .image-slot .expand-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+  /* 重置按钮（expand 按钮左侧） */
+  .image-slot .reset-btn {
+    position: absolute;
+    top: 6px;
+    right: 34px;
+    width: 24px; height: 24px;
+    border-radius: 3px;
+    border: 1px solid #475569;
+    background: rgba(15,23,42,0.85);
+    color: var(--orange);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.2s;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .image-slot:hover .reset-btn { opacity: 1; }
+  .image-slot .reset-btn:hover {
+    background: var(--orange); color: white; border-color: var(--orange);
+    animation: spin-reset 0.4s ease;
+  }
+  @keyframes spin-reset { to { transform: rotate(180deg); } }
+
+  /* 放大三角 SVG */
+  .expand-btn svg { width: 12px; height: 12px; }
+
+  /* ======== 无人机标记点 ======== */
+  .drone-marker {
+    position: absolute;
+    width: 18px; height: 18px;
+    background: #ef4444;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    z-index: 15;
+    box-shadow: 0 0 8px rgba(239,68,68,0.6), 0 0 2px rgba(0,0,0,0.4);
+    display: none;
+    transition: width 0.15s, height 0.15s;
+  }
+  .drone-marker.visible { display: block; }
+  .drone-marker.dragging {
+    cursor: grabbing;
+    box-shadow: 0 0 14px rgba(239,68,68,0.9), 0 0 4px rgba(0,0,0,0.5);
+  }
+  /* 十字准星光标伪元素 */
+  .drone-marker::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.7);
+    pointer-events: none;
+  }
+  .drone-marker::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.7);
+    pointer-events: none;
+  }
+
+  /* 比例尺滑块（slot 顶部居中） */
+  .drone-scale-bar {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: rgba(15,23,42,0.9);
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .drone-scale-bar.visible { display: flex; }
+  .drone-scale-bar .scale-label {
+    font-size: 9px;
+    color: #94a3b8;
+    min-width: 28px;
+    text-align: center;
+  }
+  .drone-scale-bar .scale-icon {
+    font-size: 10px;
+    line-height: 1;
+  }
+  .drone-scale-bar .scale-icon.small { font-size: 7px; }
+  .btn-focus {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #f87171;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 6px;
+    margin-left: 4px;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  .btn-focus:hover {
+    background: rgba(239, 68, 68, 0.4);
+    border-color: #ef4444;
+    color: #fca5a5;
+  }
+  .btn-focus:active {
+    transform: scale(0.95);
+  }
+  .btn-focus.loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .drone-scale-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 4px;
+    background: #334155;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .drone-scale-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    background: #ef4444;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  }
+
+  /* ======== 放大视图 ======== */
+  .expand-overlay {
+    display: none;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #0f172a;
+    flex-direction: column;
+    z-index: 50;
+  }
+  .expand-overlay.active {
+    display: flex;
+  }
+  .expand-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    position: relative;
+  }
+  .expand-main img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+  .expand-main .main-nav-left,
+  .expand-main .main-nav-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(30,41,59,0.9);
+    border: 1px solid #475569;
+    color: #e2e8f0;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all 0.15s;
+  }
+  .expand-main .main-nav-left:hover,
+  .expand-main .main-nav-right:hover { background: var(--primary); border-color: var(--primary); }
+  .expand-main .main-nav-left { left: 12px; }
+  .expand-main .main-nav-right { right: 12px; }
+  .expand-main .main-frame-label {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: #94a3b8;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 10px;
+  }
+
+  .expand-strip {
+    height: 90px;
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    border-top: 1px solid #1e293b;
+    overflow-x: auto;
+    align-items: center;
+  }
+  .expand-strip .strip-thumb {
+    height: 72px;
+    min-width: 72px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    background: #1e293b;
+    flex-shrink: 0;
+    transition: border-color 0.15s;
+    position: relative;
+  }
+  .expand-strip .strip-thumb:hover { border-color: #475569; }
+  .expand-strip .strip-thumb.active { border-color: var(--primary); }
+  .expand-strip .strip-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .expand-strip .strip-thumb .thumb-label {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    font-size: 8px;
+    color: #94a3b8;
+    background: rgba(0,0,0,0.5);
+    padding: 1px 4px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .expand-strip .btn-close-expand {
+    height: 72px;
+    min-width: 60px;
+    border-radius: 4px;
+    border: 1px solid #7f1d1d;
+    background: #dc2626;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    margin-left: auto;
+  }
+  .expand-strip .btn-close-expand:hover {
+    background: #b91c1c;
+    border-color: #991b1b;
+  }
+
+  /* ======== 右：JSON + 输入 ======== */
+  .right-panel {
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    grid-row: 1 / 3;
+    overflow: hidden;
+  }
+  .right-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .right-header select {
+    margin-left: auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .json-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border);
+    min-height: 0;
+  }
+  .json-section:last-child { border-bottom: none; }
+  .section-title {
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text2);
+    background: #fafbfc;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  .section-title .icon-bg { color: var(--orange); }
+  .section-title .icon-full { color: var(--purple); }
+  .json-preview {
+    flex: 1;
+    padding: 10px 16px;
+    overflow-y: auto;
+    font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 11px;
+    white-space: pre-wrap;
+    color: var(--text2);
+    line-height: 1.5;
+    background: #fafdfe;
+  }
+  .json-preview .key { color: #2563eb; font-weight: 500; }
+  .json-preview .val { color: #059669; }
+  .json-preview .str { color: #7c3aed; }
+  .json-preview .muted { color: var(--text3); }
+
+  .input-hint {
+    padding: 5px 14px;
+    font-size: 10px;
+    color: var(--text3);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .input-hint .tag {
+    display: inline-block;
+    padding: 2px 7px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .input-hint .tag:hover { background: #dbeafe; border-color: var(--primary); }
+  .input-hint .tag.green { background: var(--green-light); color: var(--green); }
+  .input-hint .tag.green:hover { background: #d1fae5; border-color: var(--green); }
+  .input-hint .tag.purple { background: var(--purple-light); color: var(--purple); }
+  .input-hint .tag.purple:hover { background: #ede9fe; border-color: var(--purple); }
+
+  .input-bar {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .input-bar input {
+    flex: 1;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    font-size: 12px;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .input-bar input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+  .input-bar input::placeholder { color: var(--text3); }
+  .input-bar button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .input-bar button:hover { background: #2563eb; box-shadow: var(--shadow-md); }
+  .input-bar button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .loading {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ef4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 12px;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    box-shadow: var(--shadow-md);
+  }
+  .toast.show { opacity: 1; }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+  @media (max-width: 1200px) {
+    .app { grid-template-columns: 220px 1fr; }
+    .right-panel { display: none; }
+  }
+
+  /* 全局关闭按钮 */
+  .global-close {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #ef4444;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.35;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    line-height: 1;
+  }
+  .global-close:hover { opacity: 1; background: #dc2626; transform: scale(1.1); }
+</style>
+</head>
+<body>
+
+<button class="global-close" onclick="shutdownServer()" title="关闭服务">✕</button>
+
+<div class="app" id="app">
+  <!-- ========== 左：会话记录 ========== -->
+  <div class="session-panel" id="session-panel">
+    <div class="session-header">
+      <span><span class="dot"></span>会话记录</span>
+      <button class="btn-toggle-sidebar" onclick="toggleSidebar()" title="折叠/展开侧边栏">◀</button>
+      <span id="session-count" style="font-size:11px;color:var(--text3);font-weight:400;">0 条</span>
+    </div>
+    <div class="session-list" id="session-list">
+      <div style="padding:24px;text-align:center;color:var(--text3);font-size:12px;">
+        暂无记录<br>输入场景描述开始
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 中：2×3 图片网格 ========== -->
+  <div class="main-area" id="main-area" style="position:relative;">
+    <div class="main-header" id="main-header">
+      <span class="brand">◇</span>
+      <span>生成预览 v7.0</span>
+      <button class="btn-back" id="btn-back" onclick="closeExpand()">← 返回网格</button>
+    </div>
+
+    <!-- 2×3 网格 -->
+    <div class="image-grid" id="image-grid">
+      <!-- slot: bg -->
+      <div class="image-slot" data-slot="bg">
+        <!-- 无人机标记点 -->
+        <div class="drone-marker" id="drone-marker-bg" style="left:50%; top:30%; width:18px; height:18px;"></div>
+        <!-- 比例尺滑块 -->
+        <div class="drone-scale-bar" id="drone-scale-bar-bg">
+          <span class="scale-icon small">🔴</span>
+          <input type="range" class="drone-scale-slider" id="drone-scale-slider-bg" min="0.03" max="0.5" step="0.01" value="0.15" oninput="onDroneScaleChange('bg', this.value)">
+          <span class="scale-icon">🔴</span>
+          <span class="scale-label" id="drone-scale-label-bg">0.15</span>
+          <button class="btn-focus" id="btn-focus-bg" onclick="focusDrone()" title="更新无人机位置到下游">🎯</button>
+        </div>
+        <div class="nav-arrows">
+          <span class="frame-idx">1/1</span>
+        </div>
+        <button class="expand-btn" onclick="openExpand('bg')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('bg')" title="重置背景及下游">↻</button>
+        <span class="placeholder-text">背景图</span>
+        <span class="slot-label">背景图</span>
+      </div>
+      <!-- slot: bg_depth -->
+      <div class="image-slot" data-slot="bg_depth">
+        <div class="nav-arrows">
+          <span class="frame-idx">1/1</span>
+        </div>
+        <button class="expand-btn" onclick="openExpand('bg_depth')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('bg_depth')" title="重置深度及下游">↻</button>
+        <span class="placeholder-text">背景深度图</span>
+        <span class="slot-label">背景深度图</span>
+      </div>
+      <!-- slot: bg_seg -->
+      <div class="image-slot" data-slot="bg_seg">
+        <div class="nav-arrows">
+          <span class="frame-idx">1/1</span>
+        </div>
+        <button class="expand-btn" onclick="openExpand('bg_seg')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('bg_seg')" title="重置分割及下游">↻</button>
+        <span class="placeholder-text">背景Seg</span>
+        <span class="slot-label">背景Seg</span>
+      </div>
+      <!-- slot: drone_raw -->
+      <div class="image-slot" data-slot="drone_raw">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'drone_raw', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="drone_raw-idx">1/1</span>
+          <button onclick="navSlot(event, 'drone_raw', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('drone_raw')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('drone_raw')" title="重新LoRA生成">↻</button>
+        <span class="placeholder-text">LoRA生成(备选)</span>
+        <span class="slot-label">LoRA生成(备选)</span>
+      </div>
+      <!-- slot: drone_clean -->
+      <div class="image-slot" data-slot="drone_clean">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'drone_clean', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="drone_clean-idx">1/1</span>
+          <button onclick="navSlot(event, 'drone_clean', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('drone_clean')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('drone_clean')" title="重新抠图">↻</button>
+        <span class="placeholder-text">LoRA抠图(备选)</span>
+        <span class="slot-label">LoRA抠图(备选)</span>
+      </div>
+      <!-- slot: drone_depth -->
+      <div class="image-slot" data-slot="drone_depth">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'drone_depth', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="drone_depth-idx">1/1</span>
+          <button onclick="navSlot(event, 'drone_depth', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('drone_depth')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('drone_depth')" title="重置深度标记">↻</button>
+        <span class="placeholder-text">无人机深度图</span>
+        <span class="slot-label">无人机深度图</span>
+      </div>
+      <!-- slot: drone_seg -->
+      <div class="image-slot" data-slot="drone_seg">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'drone_seg', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="drone_seg-idx">1/1</span>
+          <button onclick="navSlot(event, 'drone_seg', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('drone_seg')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('drone_seg')" title="重置Seg标记">↻</button>
+        <span class="placeholder-text">无人机Seg图</span>
+        <span class="slot-label">无人机Seg图</span>
+      </div>
+      <!-- slot: final_rgb -->
+      <div class="image-slot" data-slot="final_rgb">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'final_rgb', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="final_rgb-idx">1/1</span>
+          <button onclick="navSlot(event, 'final_rgb', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('final_rgb')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('final_rgb')" title="重新合成">↻</button>
+        <span class="placeholder-text">最终RGB(合成+重绘)</span>
+        <span class="slot-label">最终RGB(合成+重绘)</span>
+      </div>
+      <!-- slot: bbox -->
+      <div class="image-slot" data-slot="bbox">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'bbox', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="bbox-idx">1/1</span>
+          <button onclick="navSlot(event, 'bbox', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('bbox')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('bbox')" title="重新提取bbox">↻</button>
+        <span class="placeholder-text">BBox标注</span>
+        <span class="slot-label">BBox标注</span>
+      </div>
+      <!-- slot: ir -->
+      <div class="image-slot" data-slot="ir">
+        <div class="nav-arrows">
+          <button onclick="navSlot(event, 'ir', -1)" title="上一帧">◂</button>
+          <span class="frame-idx" id="ir-idx">1/1</span>
+          <button onclick="navSlot(event, 'ir', 1)" title="下一帧">▸</button>
+        </div>
+        <button class="expand-btn" onclick="openExpand('ir')" title="放大">
+          <svg viewBox="0 0 12 12"><polygon points="0,0 5,0 0,5" fill="currentColor"/><polygon points="12,12 7,12 12,7" fill="currentColor"/></svg>
+        </button>
+        <button class="reset-btn" onclick="resetSlot('ir')" title="重新转换IR">↻</button>
+        <span class="placeholder-text">白热红外图</span>
+        <span class="slot-label">白热红外图</span>
+      </div>
+    </div>
+
+    <!-- 放大视图覆盖层 -->
+    <div class="expand-overlay" id="expand-overlay">
+      <div class="expand-main" id="expand-main">
+        <button class="main-nav-left" onclick="navExpand(-1)">◂</button>
+        <img id="expand-main-img" src="" alt="">
+        <button class="main-nav-right" onclick="navExpand(1)">▸</button>
+        <span class="main-frame-label" id="expand-frame-label"></span>
+        <!-- 无人机标记点 -->
+        <div class="drone-marker" id="drone-marker-expand" style="left:50%; top:30%; width:18px; height:18px;"></div>
+        <!-- 比例尺滑块 -->
+        <div class="drone-scale-bar" id="drone-scale-bar-expand">
+          <span class="scale-icon small">🔴</span>
+          <input type="range" class="drone-scale-slider" id="drone-scale-slider-expand" min="0.03" max="0.5" step="0.01" value="0.15" oninput="onDroneScaleChange('expand', this.value)">
+          <span class="scale-icon">🔴</span>
+          <span class="scale-label" id="drone-scale-label-expand">0.15</span>
+          <button class="btn-focus" id="btn-focus-expand" onclick="focusDrone()" title="更新无人机位置到下游">🎯</button>
+        </div>
+      </div>
+      <div class="expand-strip" id="expand-strip"></div>
+    </div>
+  </div>
+
+  <!-- ========== 右：JSON 面板 + 输入 ========== -->
+  <div class="right-panel">
+    <div class="right-header">
+      📋 场景解析器
+      <select id="backend-select">
+        <option value="deepseek" selected>DeepSeek</option>
+        <option value="openai">OpenAI (GPT-4o)</option>
+        <option value="claude">Claude</option>
+        <option value="dry">Dry-Run (离线)</option>
+      </select>
+    </div>
+
+    <div class="json-section">
+      <div class="section-title"><span class="icon-bg">📦</span> background_spec → Agent 2</div>
+      <div class="json-preview" id="bg-json-preview"><span class="muted">等待输入…</span></div>
+    </div>
+    <div class="json-section">
+      <div class="section-title"><span class="icon-full">📦</span> full_scene_spec → Agent 3-6</div>
+      <div class="json-preview" id="full-json-preview"><span class="muted">等待输入…</span></div>
+    </div>
+
+    <div class="input-hint">
+      示例：
+      <span class="tag" onclick="fillExample('阴天下午，城市高楼背景，从下方仰拍')">🏙️ 城市仰拍</span>
+      <span class="tag green" onclick="fillExample('雾天黎明，森林上空盘旋，距离约100米，侧面拍摄')">🌲 森林迷雾</span>
+      <span class="tag" onclick="fillExample('大晴天上午，沙漠地带，四旋翼从100米远处飞近到50米')">🏜️ 沙漠飞近</span>
+      <span class="tag purple" onclick="fillExample('雪天黄昏，住宅区，横向移动从左侧飞到右侧，俯拍')">🏠 雪景住宅</span>
+    </div>
+    <div class="input-bar">
+      <input type="text" id="user-input" placeholder="描述无人机场景…" autofocus>
+      <button id="send-btn" onclick="sendParse()">一键生成 →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// 全局状态
+// ============================================================
+let activeSid = 'demo-empty';
+let serverSid = null;          // 服务器端会话 ID（非 demo）
+let currentImages = {};        // { bg: [...], bg_depth: [...], ... }
+let slotFrames = {};          // { bg: 0, bg_depth: 0, ... }  — 当前展示的帧索引
+let expandSlot = null;        // 当前放大的 slot 名
+let expandFrame = 0;          // 放大视图中的帧索引
+
+const SLOT_NAMES = ['bg', 'bg_depth', 'bg_seg', 'drone_raw', 'drone_clean', 'drone_depth', 'drone_seg', 'final_rgb', 'bbox', 'ir'];
+const SLOT_NAMES_ALL = ['bg', 'bg_depth', 'bg_seg', 'drone_raw', 'drone_clean', 'drone_depth', 'drone_seg', 'final_rgb', 'bbox', 'ir'];
+const SLOT_LABELS = {
+  bg: '背景图', bg_depth: '背景深度图', bg_seg: '背景Seg',
+  drone_depth: '无人机深度图', drone_seg: '无人机Seg图', final_rgb: '最终RGB(合成+重绘)',
+  bbox: 'BBox标注', ir: '白热红外图',
+  drone_clean: 'LoRA抠图(备选)', drone_raw: 'LoRA生成(备选)'
+};
+const MULTI_SLOTS = new Set(['drone_depth', 'drone_seg', 'final_rgb', 'bbox', 'ir', 'drone_clean', 'drone_raw']);
+
+// Demo 数据
+const DEMOS = {
+  'demo1': {
+    input: '阴天下午，城市高楼背景，从下方仰拍',
+    background_spec: {"scene_type":"urban","time_of_day":"afternoon","weather":"overcast","camera_position":"bottom"},
+    full_scene_spec: {"trajectory":[{"t":0,"action":"hover","distance":75,"norm_u":0.5,"norm_v":0.3}],"background":{"scene_type":"urban","time_of_day":"afternoon","weather":"overcast","scene_description":""},"camera":{"position":"bottom"},"meta":{"raw_input":"阴天下午，城市高楼背景，从下方仰拍","confidence_note":"","default_fills":["trajectory.action=hover","trajectory.distance=75.0m"]}}
+  },
+  'demo2': {
+    input: '雾天黎明，森林上空盘旋，距离约100米，侧面拍摄',
+    background_spec: {"scene_type":"forest","time_of_day":"dawn","weather":"foggy","camera_position":"side"},
+    full_scene_spec: {"trajectory":[{"t":0,"action":"hover","distance":100,"norm_u":0.5,"norm_v":0.3}],"background":{"scene_type":"forest","time_of_day":"dawn","weather":"foggy","scene_description":""},"camera":{"position":"side"},"meta":{"raw_input":"雾天黎明，森林上空盘旋，距离约100米，侧面拍摄","confidence_note":""}}
+  },
+  'demo3': {
+    input: '大晴天上午，沙漠地带，四旋翼从100米远处飞近到50米',
+    background_spec: {"scene_type":"desert","time_of_day":"morning","weather":"clear","camera_position":"bottom"},
+    full_scene_spec: {"trajectory":[{"t":0,"action":"approach","distance":100,"norm_u":0.5,"norm_v":0.5},{"t":1,"action":"approach","distance":50,"norm_u":0.5,"norm_v":0.5}],"background":{"scene_type":"desert","time_of_day":"morning","weather":"clear","scene_description":""},"camera":{"position":"bottom"},"meta":{"raw_input":"大晴天上午，沙漠地带…","confidence_note":""}}
+  },
+  'demo4': {
+    input: '雪天黄昏，住宅区，横向移动从左侧飞到右侧，俯拍',
+    background_spec: {"scene_type":"residential","time_of_day":"dusk","weather":"snowy","camera_position":"top"},
+    full_scene_spec: {"trajectory":[{"t":0,"action":"lateral_move","distance":100,"norm_u":0.2,"norm_v":0.5},{"t":1,"action":"lateral_move","distance":100,"norm_u":0.8,"norm_v":0.5}],"background":{"scene_type":"residential","time_of_day":"dusk","weather":"snowy","scene_description":""},"camera":{"position":"top"},"meta":{"raw_input":"雪天黄昏，住宅区…","confidence_note":""}}
+  },
+  'demo-empty': {
+    input: '(空输入 — 全默认)',
+    background_spec: {"scene_type":"puresky","time_of_day":"afternoon","weather":"clear","camera_position":"bottom"},
+    full_scene_spec: {"trajectory":[{"t":0,"action":"hover","distance":75,"norm_u":0.5,"norm_v":0.3}],"background":{"scene_type":"puresky","time_of_day":"afternoon","weather":"clear","scene_description":""},"camera":{"position":"bottom"},"meta":{"raw_input":"(空输入)","confidence_note":"[dry-run] 未调用 LLM","default_fills":["time_of_day=afternoon","weather=clear","scene_type=puresky"]}}
+  }
+};
+
+// ============================================================
+// 工具函数
+// ============================================================
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+function formatTime(iso) {
+  return new Date(iso).toLocaleTimeString('zh-CN', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+}
+
+// ============================================================
+// 侧边栏折叠
+// ============================================================
+let sidebarVisible = true;
+function toggleSidebar() {
+  sidebarVisible = !sidebarVisible;
+  const panel = document.getElementById('session-panel');
+  const btn = document.querySelector('.btn-toggle-sidebar');
+  if (sidebarVisible) {
+    panel.classList.remove('hidden');
+    btn.textContent = '◀';
+    document.getElementById('app').style.gridTemplateColumns = '280px 1fr 380px';
+  } else {
+    panel.classList.add('hidden');
+    btn.textContent = '▶';
+    document.getElementById('app').style.gridTemplateColumns = '0px 1fr 380px';
+  }
+}
+
+// ============================================================
+// 无人机标记点 — 拖拽 + 缩放
+// ============================================================
+let dronePos = { x: 50, y: 30 };   // 图像百分比 (0-100), 默认中间偏上
+let droneScale = 0.15;              // 0.03-0.5, 比例尺
+let droneDragTarget = null;         // 'bg' | 'expand' | null
+let droneDragContainer = null;      // DOM element
+
+/** 计算 object-fit:contain 下图像的实际显示区域 */
+function getImageDisplayRect(container) {
+  const img = container.querySelector('img');
+  if (!img || !img.naturalWidth) return null;
+  const cw = container.clientWidth;
+  const ch = container.clientHeight;
+  const scale = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+  const dw = img.naturalWidth * scale;
+  const dh = img.naturalHeight * scale;
+  return { left: (cw - dw) / 2, top: (ch - dh) / 2, width: dw, height: dh };
+}
+
+/** 容器坐标 → 图像百分比 */
+function containerPosToImagePct(container, cx, cy) {
+  const ir = getImageDisplayRect(container);
+  if (!ir) return null;
+  return {
+    x: Math.max(0, Math.min(100, ((cx - ir.left) / ir.width) * 100)),
+    y: Math.max(0, Math.min(100, ((cy - ir.top) / ir.height) * 100))
+  };
+}
+
+/** 图像百分比 → marker CSS left/top (相对于容器, px) */
+function imagePctToMarkerStyle(container, px, py) {
+  const ir = getImageDisplayRect(container);
+  if (!ir) return { left: px + '%', top: py + '%' };
+  return {
+    left: (ir.left + ir.width * px / 100) + 'px',
+    top: (ir.top + ir.height * py / 100) + 'px'
+  };
+}
+
+/** 刷新所有 marker 位置和 scale bar */
+function refreshDroneMarkers() {
+  ['bg', 'expand'].forEach(target => {
+    const marker = document.getElementById('drone-marker-' + target);
+    const bar = document.getElementById('drone-scale-bar-' + target);
+    const slider = document.getElementById('drone-scale-slider-' + target);
+    const label = document.getElementById('drone-scale-label-' + target);
+
+    if (!marker || !bar) return;
+
+    const container = (target === 'bg')
+      ? document.querySelector('.image-slot[data-slot="bg"]')
+      : document.getElementById('expand-main');
+
+    if (!container) return;
+
+    // 只有 bg 有图片时才显示
+    const hasImg = !!(currentImages.bg && currentImages.bg.length > 0);
+    marker.classList.toggle('visible', hasImg);
+    bar.classList.toggle('visible', hasImg);
+
+    if (!hasImg) return;
+
+    // 位置
+    const style = imagePctToMarkerStyle(container, dronePos.x, dronePos.y);
+    marker.style.left = style.left;
+    marker.style.top = style.top;
+
+    // 视觉大小随比例尺变化（8px-32px）
+    const visSize = 8 + droneScale * 48; // scale 0.03→9px, 0.5→32px
+    marker.style.width = visSize + 'px';
+    marker.style.height = visSize + 'px';
+
+    // slider 值
+    if (slider) slider.value = droneScale;
+    if (label) label.textContent = droneScale.toFixed(2);
+  });
+}
+
+function onDroneScaleChange(target, val) {
+  droneScale = parseFloat(val);
+  refreshDroneMarkers();
+}
+
+// --- Focus 按钮：更新无人机位置到下游 ---
+async function focusDrone() {
+  if (serverSid === null) {
+    toast('⚠️ 请先生成场景（无服务器会话）');
+    return;
+  }
+
+  const btns = document.querySelectorAll('.btn-focus');
+  btns.forEach(b => { b.classList.add('loading'); b.textContent = '⏳'; });
+
+  try {
+    const res = await fetch(`/api/focus_drone/${serverSid}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dronePos, droneScale }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      renderImageGrid(data.images);
+      toast(`🎯 无人机位置已更新 → (${data.nu.toFixed(2)}, ${data.nv.toFixed(2)}) size=${data.target_px}px`);
+    } else {
+      toast('Focus 失败: ' + (data.error || '未知错误'));
+    }
+  } catch(e) {
+    toast('网络错误: ' + e.message);
+  } finally {
+    btns.forEach(b => { b.classList.remove('loading'); b.textContent = '🎯'; });
+  }
+}
+
+// --- 拖拽事件 ---
+document.addEventListener('mousedown', function(e) {
+  const marker = e.target.closest('.drone-marker');
+  if (!marker) return;
+  e.preventDefault();
+
+  droneDragTarget = marker.id.includes('expand') ? 'expand' : 'bg';
+  droneDragContainer = (droneDragTarget === 'bg')
+    ? document.querySelector('.image-slot[data-slot="bg"]')
+    : document.getElementById('expand-main');
+
+  marker.classList.add('dragging');
+});
+
+document.addEventListener('mousemove', function(e) {
+  if (!droneDragTarget || !droneDragContainer) return;
+
+  const containerRect = droneDragContainer.getBoundingClientRect();
+  const cx = e.clientX - containerRect.left;
+  const cy = e.clientY - containerRect.top;
+
+  const pct = containerPosToImagePct(droneDragContainer, cx, cy);
+  if (pct) {
+    dronePos.x = pct.x;
+    dronePos.y = pct.y;
+  }
+
+  // 直接更新 marker 位置（不触发完整 refresh 以免闪烁 slider）
+  const marker = document.getElementById('drone-marker-' + droneDragTarget);
+  if (marker) {
+    const style = imagePctToMarkerStyle(droneDragContainer, dronePos.x, dronePos.y);
+    marker.style.left = style.left;
+    marker.style.top = style.top;
+  }
+});
+
+document.addEventListener('mouseup', function(e) {
+  if (!droneDragTarget) return;
+  const marker = document.getElementById('drone-marker-' + droneDragTarget);
+  if (marker) marker.classList.remove('dragging');
+  droneDragTarget = null;
+  droneDragContainer = null;
+  // 拖拽结束后全量刷新（同步 bg ↔ expand）
+  refreshDroneMarkers();
+});
+
+function highlightJSON(jsonStr) {
+  return jsonStr
+    .replace(/("(?:[^"\\]|\\.)*")\s*:/g, '<span class="key">$1</span>:')
+    .replace(/: ("[^"]*")/g, ': <span class="str">$1</span>')
+    .replace(/: ([\d.]+)/g, ': <span class="val">$1</span>')
+    .replace(/: (true|false|null)/g, ': <span class="val">$1</span>');
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ============================================================
+// 图片网格渲染
+// ============================================================
+
+function initSlotFrames() {
+  slotFrames = {};
+  SLOT_NAMES_ALL.forEach(s => { slotFrames[s] = 0; });
+}
+
+function renderImageGrid(images) {
+  currentImages = images || {};
+  initSlotFrames();
+
+  SLOT_NAMES.forEach(slot => {
+    const container = document.querySelector(`.image-slot[data-slot="${slot}"]`);
+    if (!container) return;
+    renderSlot(container, slot);
+  });
+
+  // bg 图渲染后刷新 marker
+  if (currentImages.bg && currentImages.bg.length > 0) {
+    setTimeout(() => refreshDroneMarkers(), 100);
+  }
+}
+
+function renderSlot(container, slot) {
+  const urls = currentImages[slot] || [];
+  const idx = slotFrames[slot] || 0;
+  const url = urls[idx];
+
+  // 清除旧的 img
+  const oldImg = container.querySelector('img');
+  if (oldImg) oldImg.remove();
+  const placeholder = container.querySelector('.placeholder-text');
+
+  if (url) {
+    if (placeholder) placeholder.style.display = 'none';
+    const img = document.createElement('img');
+    img.src = url + '?t=' + Date.now();
+    img.alt = SLOT_LABELS[slot];
+    container.insertBefore(img, container.firstChild);
+    // bg 图加载完成后刷新 marker
+    if (slot === 'bg') {
+      img.onload = () => refreshDroneMarkers();
+    }
+  } else {
+    if (placeholder) placeholder.style.display = '';
+  }
+
+  // 更新帧指示器
+  const frameIdx = container.querySelector('.frame-idx');
+  if (frameIdx) {
+    frameIdx.textContent = urls.length > 0 ? `${idx + 1}/${urls.length}` : '1/1';
+  }
+
+  // 多帧 slot 显示导航箭头
+  if (MULTI_SLOTS.has(slot) && urls.length > 1) {
+    container.classList.add('has-multi');
+  }
+}
+
+function navSlot(event, slot, delta) {
+  event.stopPropagation();
+  const urls = currentImages[slot] || [];
+  if (urls.length < 2) return;
+  const idx = (slotFrames[slot] || 0) + delta;
+  if (idx < 0 || idx >= urls.length) return;
+  slotFrames[slot] = idx;
+
+  const container = document.querySelector(`.image-slot[data-slot="${slot}"]`);
+  if (container) renderSlot(container, slot);
+}
+
+// ============================================================
+// 放大视图
+// ============================================================
+
+function openExpand(slot) {
+  expandSlot = slot;
+  expandFrame = slotFrames[slot] || 0;
+
+  // 隐藏左侧面板
+  document.getElementById('session-panel').classList.add('hidden');
+  document.getElementById('btn-back').classList.add('visible');
+
+  // 隐藏网格，显示放大覆盖层
+  document.getElementById('image-grid').style.display = 'none';
+  document.getElementById('expand-overlay').classList.add('active');
+
+  // 渲染放大视图
+  renderExpandView();
+
+  // 调整 grid 列
+  document.getElementById('app').style.gridTemplateColumns = '280px 1fr 380px';
+  setTimeout(() => { document.getElementById('app').style.gridTemplateColumns = '0px 1fr 380px'; }, 50);
+
+  // bg 放大时刷新 marker
+  if (slot === 'bg') {
+    setTimeout(() => refreshDroneMarkers(), 200);
+  }
+}
+
+function closeExpand() {
+  expandSlot = null;
+
+  // 恢复左侧面板（尊重 sidebarVisible）
+  if (sidebarVisible) {
+    document.getElementById('session-panel').classList.remove('hidden');
+  }
+  document.getElementById('btn-back').classList.remove('visible');
+
+  // 隐藏放大覆盖层
+  document.getElementById('expand-overlay').classList.remove('active');
+  document.getElementById('image-grid').style.display = '';
+
+  // 恢复列
+  document.getElementById('app').style.gridTemplateColumns = sidebarVisible
+    ? '280px 1fr 380px'
+    : '0px 1fr 380px';
+}
+
+function renderExpandView() {
+  if (!expandSlot) return;
+
+  const urls = currentImages[expandSlot] || [];
+  const mainImg = document.getElementById('expand-main-img');
+  const frameLabel = document.getElementById('expand-frame-label');
+
+  if (urls[expandFrame]) {
+    mainImg.src = urls[expandFrame];
+    mainImg.style.display = '';
+  } else {
+    mainImg.src = '';
+    mainImg.style.display = 'none';
+  }
+
+  frameLabel.textContent = urls.length > 0
+    ? `${SLOT_LABELS[expandSlot]} · ${expandFrame + 1}/${urls.length}`
+    : `${SLOT_LABELS[expandSlot]} · 无图片`;
+
+  // 底部缩略图条：当前 slot 放大，其余 5 个作为缩略图
+  renderExpandStrip();
+}
+
+function renderExpandStrip() {
+  const strip = document.getElementById('expand-strip');
+  let html = '';
+
+  SLOT_NAMES_ALL.forEach(slot => {
+    const urls = currentImages[slot] || [];
+    const idx = slotFrames[slot] || 0;
+    const url = urls[idx];
+    const isActive = slot === expandSlot;
+
+    html += `<div class="strip-thumb${isActive ? ' active' : ''}" onclick="switchExpandSlot('${slot}')">`;
+    if (url) {
+      html += `<img src="${url}" alt="${SLOT_LABELS[slot]}">`;
+    } else {
+      html += `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:9px;">${SLOT_LABELS[slot]}</div>`;
+    }
+    html += `<span class="thumb-label">${SLOT_LABELS[slot]}</span>`;
+    html += `</div>`;
+  });
+
+  html += `<button class="btn-close-expand" onclick="closeExpand()" title="返回网格">✕ 返回</button>`;
+
+  strip.innerHTML = html;
+}
+
+function switchExpandSlot(slot) {
+  expandSlot = slot;
+  expandFrame = slotFrames[slot] || 0;
+  renderExpandView();
+  if (slot === 'bg') {
+    setTimeout(() => refreshDroneMarkers(), 200);
+  }
+}
+
+function navExpand(delta) {
+  if (!expandSlot) return;
+  const urls = currentImages[expandSlot] || [];
+  if (urls.length < 2) return;
+  const idx = expandFrame + delta;
+  if (idx < 0 || idx >= urls.length) return;
+  expandFrame = idx;
+  slotFrames[expandSlot] = idx;
+
+  // 同步更新网格中的对应 slot
+  const container = document.querySelector(`.image-slot[data-slot="${expandSlot}"]`);
+  if (container) renderSlot(container, expandSlot);
+
+  renderExpandView();
+}
+
+// ============================================================
+// Demo 加载
+// ============================================================
+
+function selectDemo(demoId) {
+  activeSid = demoId;
+  serverSid = null;  // demo 没有服务器会话
+  loadDemo(demoId);
+  loadSessions();
+  // 隐藏条件图按钮（demo 不支持）
+  document.getElementById('btn-gen-cond').style.display = 'none';
+}
+
+function loadDemo(demoId) {
+  const demo = DEMOS[demoId];
+  if (!demo) return;
+
+  document.getElementById('bg-json-preview').innerHTML =
+    highlightJSON(JSON.stringify(demo.background_spec, null, 2));
+  document.getElementById('full-json-preview').innerHTML =
+    highlightJSON(JSON.stringify(demo.full_scene_spec, null, 2));
+
+  // 清空图片网格
+  renderImageGrid({});
+}
+
+// ============================================================
+// 会话列表
+// ============================================================
+
+async function loadSessions() {
+  try {
+    const res = await fetch('/api/sessions');
+    const data = await res.json();
+    renderSessionList(data.sessions);
+    document.getElementById('session-count').textContent = data.sessions.length + ' 条';
+  } catch(e) { /* ignore */ }
+}
+
+function renderSessionList(sessions) {
+  const container = document.getElementById('session-list');
+  let html = '';
+
+  const demoMeta = [
+    { id: 'demo1', label: '🏙️ 城市阴天仰拍', sceneType: 'urban' },
+    { id: 'demo2', label: '🌲 森林雾天侧面', sceneType: 'forest' },
+    { id: 'demo3', label: '🏜️ 沙漠飞近仰拍', sceneType: 'desert' },
+    { id: 'demo4', label: '🏠 住宅雪景俯拍', sceneType: 'residential' },
+    { id: 'demo-empty', label: '🈳 空输入（全默认）', sceneType: 'puresky' },
+  ];
+
+  demoMeta.forEach((d, i) => {
+    const isActive = activeSid === d.id;
+    html += `
+    <div class="session-item demo-item${isActive ? ' active' : ''}" onclick="selectDemo('${d.id}')">
+      <div class="time">[Demo] #${i + 1}</div>
+      <div class="preview">${d.label}</div>
+      <span class="badge badge-ok">✓ ${d.sceneType}</span>
+    </div>`;
+  });
+
+  if (sessions.length) {
+    html += '<div style="padding:6px 12px;font-size:10px;color:var(--text3);border-top:1px solid var(--border);margin:6px 0;">历史记录</div>';
+  } else {
+    html += '<div style="padding:16px;text-align:center;color:var(--text3);font-size:11px;">↑ Demo 参考<br>输入场景描述开始</div>';
+  }
+
+  html += sessions.slice().reverse().map(s => {
+    const sceneType = s.background_spec ? s.background_spec.scene_type : '?';
+    return `
+    <div class="session-item${activeSid === 's_' + s.id ? ' active' : ''}" onclick="selectSession(${s.id})">
+      <div class="time">#${s.id} · ${formatTime(s.timestamp)} · ${s.backend}</div>
+      <div class="preview">${escapeHtml(s.input.substring(0, 40))}</div>
+      <span class="badge badge-ok">✓ ${sceneType}</span>
+    </div>`;
+  }).join('');
+
+  container.innerHTML = html;
+}
+
+function selectSession(sid) {
+  activeSid = 's_' + sid;
+  serverSid = sid;
+  loadSessions().then(() => loadSessionDetail(sid));
+}
+
+async function loadSessionDetail(sid) {
+  try {
+    const res = await fetch(`/api/session/${sid}`);
+    const data = await res.json();
+    if (data.session) {
+      const s = data.session;
+      document.getElementById('bg-json-preview').innerHTML =
+        highlightJSON(JSON.stringify(s.background_spec, null, 2));
+      document.getElementById('full-json-preview').innerHTML =
+        highlightJSON(JSON.stringify(s.full_scene_spec, null, 2));
+      renderImageGrid(s.images || {});
+
+      // 🔥 显示/隐藏「生成条件图」按钮
+      const genBtn = document.getElementById('btn-gen-cond');
+      const hasBg = s.images && s.images.bg && s.images.bg.length > 0;
+      const hasConditions = s.images && s.images.bg_depth && s.images.bg_depth.length > 0;
+      genBtn.style.display = (hasBg && !hasConditions) ? 'inline-block' : 'none';
+    }
+  } catch(e) { /* ignore */ }
+}
+
+// ============================================================
+// 发送解析请求 + 自动搜索背景图
+// ============================================================
+
+function fillExample(text) {
+  document.getElementById('user-input').value = text;
+  document.getElementById('user-input').focus();
+}
+
+async function sendParse() {
+  const inputEl = document.getElementById('user-input');
+  const btn = document.getElementById('send-btn');
+  const text = inputEl.value.trim();
+  if (!text) return;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading"></span>一键生成中…（约 50 秒）';
+
+  const backend = document.getElementById('backend-select').value;
+
+  try {
+    const res = await fetch('/api/parse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, backend }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      document.getElementById('bg-json-preview').innerHTML =
+        highlightJSON(JSON.stringify(data.background_spec, null, 2));
+      document.getElementById('full-json-preview').innerHTML =
+        highlightJSON(JSON.stringify(data.full_scene_spec, null, 2));
+
+      activeSid = 's_' + data.session_id;
+      serverSid = data.session_id;
+      await loadSessions();
+
+      // 🔥 渲染全部 8 张图（后端已走完完整管线）
+      renderImageGrid(data.images || {});
+
+      inputEl.value = '';
+      toast(`✅ 生成完成！`);
+    } else {
+      toast('生成失败: ' + data.error);
+    }
+  } catch(e) {
+    toast('网络错误: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '一键生成 →';
+  }
+}
+
+// ============================================================
+// 单 slot 重置（级联下游）
+// ============================================================
+
+async function resetSlot(slot) {
+  if (serverSid === null) {
+    toast('⚠️ 请先生成场景后再重置');
+    return;
+  }
+
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading"></span>重新生成中…（约 30 秒）';
+
+  try {
+    const res = await fetch(`/api/regenerate/${serverSid}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slot }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      renderImageGrid(data.images);
+      const regenerated = data.regenerated || [];
+      toast(`✅ ${SLOT_LABELS[slot]} 已重置 → 联动: ${regenerated.map(s => SLOT_LABELS[s] || s).join('、')}`);
+    } else {
+      toast('重置失败: ' + data.error);
+    }
+  } catch(e) {
+    toast('网络错误: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '一键生成 →';
+  }
+}
+
+// ============================================================
+// ============================================================
+// 键盘
+// ============================================================
+document.getElementById('user-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); sendParse(); }
+});
+
+// ESC 关闭放大视图
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && expandSlot) { closeExpand(); }
+});
+
+// 全局关闭
+async function shutdownServer() {
+  if (!confirm('确定关闭前端服务？关闭后需要手动重新启动。')) return;
+  try {
+    await fetch('/api/shutdown', { method: 'POST' });
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#64748b;font-family:sans-serif;font-size:16px;">服务已关闭，请关闭此页面。</div>';
+  } catch(e) {
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#64748b;font-family:sans-serif;font-size:16px;">服务已关闭，请关闭此页面。</div>';
+  }
+}
+
+// ============================================================
+// 初始化
+// ============================================================
+initSlotFrames();
+loadSessions();
+loadDemo('demo-empty');
+setInterval(loadSessions, 10000);
+</script>
+</body>
+</html>
