@@ -4,8 +4,6 @@
 >
 > It retains only the **final active version** of the architecture code (generation side + validation side + loop mechanism + frontend/backend),
 > and **excludes**: datasets, model weights, historical versions (`_v1`–`_v6`, etc.), intermediate artifacts, and demo/test scripts.
->
-> Original project root: `D:\learning\ObsidianVault\Paper-低慢小数据集生成架构`. Nothing in the original project has been deleted.
 
 [中文版](README_CN.md)
 
@@ -78,7 +76,6 @@ CDFF is a **dual-agent adversarial + closed-loop feedback** architecture:
     ├── validator_pipeline.py          #   S6→S9 short-circuit chaining + failure write to Buffer
     ├── failure_buffer.py              #   FailureBuffer (failure buffer pool)
     ├── trainable_classifier.py        #   paradigm A: Pass→Train trainable classifier
-    └── 7-持续学习循环设计.md           #   closed-loop mechanism design spec (CDFF v2.0)
 ```
 
 ---
@@ -117,7 +114,6 @@ CDFF is a **dual-agent adversarial + closed-loop feedback** architecture:
 | `loop/failure_buffer.py` | `FailureBuffer`: failed-sample buffer + threshold triggering | shared base for the three paradigms |
 | `loop/validator_pipeline.py` | `ValidatorPipeline`: S6→S9 short-circuit evaluation, failures written to Buffer | failure-code routing |
 | `loop/trainable_classifier.py` | trainable EfficientNet classifier (`train`/`infer`) | paradigm A (Pass→Train) |
-| `loop/7-持续学习循环设计.md` | full closed-loop mechanism spec (§6 / §9.1 / §13 / §16) | CDFF v2.0 design document |
 
 ---
 
@@ -205,38 +201,9 @@ python validator_pipeline.py
 | `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
-| `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
 
 ---
 
-## 8. Runnability Verification & Fix Log
-
-After archiving, all 27 `.py` files were tested for runnability, and 4 breakages caused by
-"directory reorganisation + file renaming" (`sys.path` / import breakage) were fixed. The following fixes exist
-only in the archived copy and **do not modify the original project**.
-
-### Fix list
-
-| # | File | Original issue | Fix |
-|---|---|---|---|
-| 1 | `app/web_app.py` | top-level `from condition_generator import ...` (old, deprecated) crashed on startup; duplicate `/api/generate-conditions` old endpoint | removed the old import and the entire old endpoint (its function is taken over by `/api/generate-lora`) |
-| 2 | `app/condition_generator_v7.py` | `sys.path` pointed at `2-Lora training/`, `5-Controlnet/` (original project paths) | repointed to the archive's `generator/` (rgb2ir + lora_inpainter) |
-| 3 | `generator/lora_inpainter_v7.py` | runtime `from condition_generator_v7 import seg_to_rgb` could not find `app/` | inject `sys.path → app/` before the import |
-| 4 | `loop/validator_pipeline.py` | `sys.path` pointed at `S6/S7/S8/S9/code` (original project paths) + old names `trajectory_validator` / `detection_validator` | repointed to `validator/v6_quality`, `validator/v7_consistency`, `validator/`, and switched to the new `v8_*` / `v9_*` names |
-
-The docstring usage examples in `v1`–`v5` were also updated from the old module names (e.g. `s1_json_validator`) to the new names.
-
-### Verification results (all passed, 2026-08-31)
-
-| Test | Result |
-|---|---|
-| Syntax check (`py_compile`, 27 files) | ✓ all passed |
-| Module import (18 modules, incl. cross-directory dependencies) | ✓ all passed |
-| Key symbol existence (27 classes / functions) | ✓ all present |
-| Pure-function smoke: `seg_to_rgb` | ✓ output shape / colour correct |
-| Pure-function smoke: `rgb_to_whitehot` | ✓ white-hot IR conversion OK |
-| Pure-function smoke: `trajectory_to_frames` | ✓ trajectory parsing OK |
-| Flask route list (after endpoint removal) | ✓ no stale references, 11 clean routes |
 
 > Note: the verification above covers "code structure is complete, modules load, and core pure functions run".
 > **End-to-end generation (LoRA + ControlNet inference) still requires the original project's model weights
