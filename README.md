@@ -178,8 +178,6 @@ python web_app.py           # → http://127.0.0.1:5000
 cd "6-Validator/V5-pipeline/code"
 python validator_pipeline.py
 
-# loop-mechanism design document
-# see loop/7-持续学习循环设计.md
 ```
 
 ---
