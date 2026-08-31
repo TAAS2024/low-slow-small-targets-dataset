@@ -114,7 +114,6 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
 | `loop/failure_buffer.py` | `FailureBuffer`：失败样本缓冲 + 阈值触发 | 三范式共用基础 |
 | `loop/validator_pipeline.py` | `ValidatorPipeline`：S6→S9 短路求值，失败写 Buffer | 失败码路由 |
 | `loop/trainable_classifier.py` | 可训练 EfficientNet 分类器（train/infer） | 范式 A（Pass→Train） |
-| `loop/7-持续学习循环设计.md` | 闭环机制完整规格（§6/§9.1/§13/§16） | CDFF v2.0 设计文档 |
 
 ---
 
