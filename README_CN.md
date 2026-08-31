@@ -6,8 +6,6 @@
 >
 > 只保留**最终活跃版本**的架构代码（生成端 + 验证端 + 循环机制 + 前端后端），
 > **不含**：数据集、模型权重、历史版本（`_v1~_v6` 等）、中间产物、demo/test 脚本。
->
-> 原始项目根目录：`D:\learning\ObsidianVault\Paper-低慢小数据集生成架构`，本目录未删除原项目任何内容。
 
 ---
 
@@ -78,7 +76,6 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
     ├── validator_pipeline.py          #   S6→S9 短路串联 + 失败写入 Buffer
     ├── failure_buffer.py              #   FailureBuffer（失败缓冲池）
     ├── trainable_classifier.py        #   范式 A：Pass→Train 可训练分类器
-    └── 7-持续学习循环设计.md           #   闭环机制设计规格（CDFF v2.0）
 ```
 
 ---
@@ -178,8 +175,6 @@ python web_app.py           # → http://127.0.0.1:5000
 cd "6-Validator/V5-pipeline/code"
 python validator_pipeline.py
 
-# 循环机制设计文档
-# 见 loop/7-持续学习循环设计.md
 ```
 
 ---
@@ -207,38 +202,5 @@ python validator_pipeline.py
 | `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
-| `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
 
----
 
-## 八、可运行性验证与修复记录
-
-归档后对全部 27 个 `.py` 文件做了可运行性测试，修复了 4 处因「目录重排 + 文件改名」导致的
-`sys.path` / import 断裂（以下修复仅存在于归档副本，**未改动原项目**）。
-
-### 修复清单
-
-| # | 文件 | 原问题 | 修复方式 |
-|---|---|---|---|
-| 1 | `app/web_app.py` | 顶层 `from condition_generator import ...`（旧版，已废弃）导致启动即崩；`/api/generate-conditions` 旧端点重复 | 删除旧版 import 与整个旧端点（功能由 `/api/generate-lora` 承接） |
-| 2 | `app/condition_generator_v7.py` | `sys.path` 指向 `2-Lora training/`、`5-Controlnet/`（原项目路径） | 改为指向归档的 `generator/`（rgb2ir + lora_inpainter） |
-| 3 | `generator/lora_inpainter_v7.py` | 运行时 `from condition_generator_v7 import seg_to_rgb` 找不到 app/ | import 前注入 `sys.path → app/` |
-| 4 | `loop/validator_pipeline.py` | `sys.path` 指向 `S6/S7/S8/S9/code`（原项目路径）+ `trajectory_validator`/`detection_validator` 旧名 | 改为指向 `validator/v6_quality`、`validator/v7_consistency`、`validator/`，并改用 `v8_*`/`v9_*` 新名 |
-
-另将 `v1~v5` docstring 内的用法示例旧模块名（`s1_json_validator` 等）同步为新名。
-
-### 验证结果（2026-08-31 全部通过）
-
-| 测试项 | 结果 |
-|---|---|
-| 语法检查（`py_compile`，27 文件） | ✓ 全部通过 |
-| 模块 import（18 个模块，含跨目录依赖） | ✓ 全部通过 |
-| 关键符号存在性（27 个类/函数） | ✓ 全部存在 |
-| 纯函数冒烟：`seg_to_rgb` | ✓ 输出 shape/颜色正确 |
-| 纯函数冒烟：`rgb_to_whitehot` | ✓ 白热 IR 转换正常 |
-| 纯函数冒烟：`trajectory_to_frames` | ✓ 轨迹解析正常 |
-| Flask 路由清单（删端点后） | ✓ 无残留旧引用，11 个路由干净 |
-
-> 说明：以上验证覆盖「代码结构完整、模块可加载、核心纯函数可运行」。
-> **端到端生成（LoRA + ControlNet 推理）仍需原项目的模型权重（`0-model/`、`best_models/`）与
-> 九类背景池（`1-background-pool/`），本归档不含这些二进制资产**，故无法在归档目录内独立跑完整推理。
