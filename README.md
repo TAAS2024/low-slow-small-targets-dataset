@@ -216,6 +216,11 @@ design, so it is retained.
 
 ## 6. Running
 
+> **An auditable archive, not a turnkey pipeline.** Every number in the paper is reproducible from a bare
+> clone (41/41, no weights, no GPU, no network). Generating a new sample is a different promise: it needs
+> the assets below, and even fully provisioned a fresh sample still fails S7 on the size check (§9).
+> Keep "recompute the tables" and "regenerate the dataset" apart in your own writing.
+
 All asset paths are resolved by `lss_paths.py`, the single source of truth:
 
 1. `LSS_PROJECT_ROOT` environment variable, if set;
@@ -257,17 +262,52 @@ export LSS_PROJECT_ROOT=/path/to/project   # must contain 0-model/, 1-background
 python lss_paths.py                        # verify before running anything
 ```
 
-> Full inference needs more than this repository carries:
->
-> - **project tree weights** (resolved by `lss_paths.py`): `0-model/stable-diffusion-v1-5`, the two
->   ControlNet checkpoints, `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`;
-> - **background pool**: 37,852 images in nine categories under `1-background-pool/curated_backgrounds/`;
-> - **two HuggingFace checkpoints fetched on first run** — `lllyasviel/Annotators`
->   (`dpt_hybrid-midas-501f0c75.pt`, ~470 MB, Midas depth) and `openai/clip-vit-base-patch32` (~605 MB,
->   background-context classifier). Both are called with `local_files_only=True` first, so they must be
->   in the HF cache before a run; without them generation dies at the depth-extraction step and at the
->   ControlNet repaint step respectively. `0-model/clip-vit-large-patch14` in the project tree is a
->   *different* checkpoint and does not satisfy the second one.
+Full inference needs more than this repository carries — ~12 GB, none of it tracked here:
+
+| Asset | Location (`lss_paths.py` resolves it) | How to get it | Size |
+|---|---|---|---|
+| SD 1.5 base | `0-model/stable-diffusion-v1-5` | `hf download stable-diffusion-v1-5/stable-diffusion-v1-5 --local-dir <path>` | 6.1 G |
+| ControlNet depth | `0-model/sd-controlnet-depth` | `hf download lllyasviel/sd-controlnet-depth --local-dir <path>` | 2.7 G |
+| ControlNet seg | `0-model/sd-controlnet-seg` | `hf download lllyasviel/sd-controlnet-seg --local-dir <path>` | 2.7 G |
+| LoRA | `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors` | train your own | 67 M |
+| background pool | `1-background-pool/curated_backgrounds/`, nine classes | collect your own | 11 G |
+| yolov8x (V9 only) | `0-model/yolov8x.pt` | `python -c "from ultralytics import YOLO; YOLO('yolov8x.pt')"` | 131 M |
+
+The first three must be **diffusers directory snapshots**, not single `.safetensors` files — the code calls
+`from_pretrained(str(path))` on each. Behind the GFW, `export HF_ENDPOINT=https://hf-mirror.com` makes all
+of the above work unchanged; on a legacy CLI swap `hf download` for `huggingface-cli download`.
+
+**Two checkpoints that must be in the HF cache, or the run dies silently** — they are loaded by repo id
+with `local_files_only=True`, so pointing a local directory at them does nothing:
+
+```bash
+hf download lllyasviel/Annotators --include "dpt_hybrid-midas-501f0c75.pt"   # ~470 MB
+hf download openai/clip-vit-base-patch32                                     # ~605 MB
+```
+
+Without the first, generation dies at depth extraction (before ControlNet); without the second, at the
+repaint step. The error is `OSError: ... is not a local folder and is not a valid model identifier`, which
+reads like a code bug and is not. `0-model/clip-vit-large-patch14` in the project tree (6.4 G) is a
+*different* checkpoint, does not satisfy the second, and can be deleted.
+
+**The LoRA is an extension point, not an asset.** The paper's claim is that *any* LoRA trained on this
+dataset can be dropped in, which is why none ships here. The contract:
+
+- kohya / `sd-scripts` safetensors, keys `lora_unet_*.lora_down.weight` / `.lora_up.weight` / `.alpha`;
+- `generator/lora_inpainter_v7.py::_merge_lora` merges the **UNet only** and reads `lora_unet_`-prefixed
+  keys; anything aimed at the text encoder (`lora_te_*`) is **skipped silently** — such a LoRA loads fine
+  and changes almost nothing;
+- base must be **SD 1.5**; SDXL / SD3 LoRAs do not match the keys;
+- the path is hard-coded to one filename. To use your own: overwrite that file, or set
+  `LSS_PROJECT_ROOT=<another tree>`, or edit the single line `lss_paths.LORA_PATH`;
+- debug order: run with `use_lora=False` until the base model chain works, then suspect the LoRA.
+  Training scripts and the training set are not in this repository.
+
+**Minimum viable background pool**: the `__main__` demo hard-codes
+`curated_backgrounds/pure_sky/bg_00070a0c1b49.jpg`. To prove generation works, drop any 16:9 photograph at
+that path, or call `generate_with_lora(bg_path=<your image>, ...)` directly. Keep a `_metadata.jsonl` per
+class (`filename` / `url` / `source` / `photographer` / `category` / `time_of_day` / `weather`) —
+`background_searcher.py` ranks on it.
 
 ---
 

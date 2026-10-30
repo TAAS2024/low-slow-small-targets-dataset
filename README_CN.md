@@ -208,6 +208,8 @@ validator_pipeline.py（S6→S9 串联）
 
 ## 六、运行方式
 
+> **这是可审计的归档，不是开箱即用的产线。** 论文里的每个数字都能从裸 clone 复算（41/41，不需要任何权重、GPU、网络）；但生成新样本需要下面的资产，而 S7 的尺寸口径缺口意味着即使配齐，新样本也仍会被判 FAIL（见 §九）。**「复算表格」和「重造数据集」是两个不同的承诺**，行文里请勿混用。
+
 全部资产路径由 `lss_paths.py` 统一解析，顺序为：
 
 1. 环境变量 `LSS_PROJECT_ROOT`（若设置）；
@@ -248,16 +250,46 @@ export LSS_PROJECT_ROOT=/path/to/project   # 需含 0-model/、1-background-pool
 python lss_paths.py                        # 先验证再运行
 ```
 
-> 完整推理所需资产**不止本仓库**：
->
-> - **项目树内权重**（由 `lss_paths.py` 解析）：`0-model/stable-diffusion-v1-5`、两个 ControlNet 检查点、
->   `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`；
-> - **背景池**：`1-background-pool/curated_backgrounds/` 下九类共 37,852 张；
-> - **首次运行需联网抓取的两个 HF 检查点**——`lllyasviel/Annotators`
->   （`dpt_hybrid-midas-501f0c75.pt`，约 470 MB，Midas 深度）与 `openai/clip-vit-base-patch32`
->   （约 605 MB，背景上下文分类器）。代码先以 `local_files_only=True` 调用，故运行前必须已在 HF 缓存里；
->   缺前者生成会死在深度提取那一步，缺后者会死在 ControlNet 重绘那一步。项目树里的
->   `0-model/clip-vit-large-patch14` 是**另一个**检查点，替代不了后者。
+完整推理所需资产**不止本仓库**（合计约 12 GB，全部刻意不入库）：
+
+| 资产 | 位置（`lss_paths.py` 解析） | 获取方式 | 体积 |
+|---|---|---|---|
+| SD 1.5 底模 | `0-model/stable-diffusion-v1-5` | `hf download stable-diffusion-v1-5/stable-diffusion-v1-5 --local-dir <该路径>` | 6.1 G |
+| ControlNet depth | `0-model/sd-controlnet-depth` | `hf download lllyasviel/sd-controlnet-depth --local-dir <该路径>` | 2.7 G |
+| ControlNet seg | `0-model/sd-controlnet-seg` | `hf download lllyasviel/sd-controlnet-seg --local-dir <该路径>` | 2.7 G |
+| LoRA | `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors` | 自行训练 | 67 M |
+| 背景池 | `1-background-pool/curated_backgrounds/` 九类 | 自行收集 | 11 G |
+| yolov8x（仅 V9） | `0-model/yolov8x.pt` | `python -c "from ultralytics import YOLO; YOLO('yolov8x.pt')"` | 131 M |
+
+前三项必须是 **diffusers 目录快照**，不能是单个 `.safetensors`（代码对它们调 `from_pretrained(str(path))`）。
+国内加 `export HF_ENDPOINT=https://hf-mirror.com`，上面命令通用。老版 CLI 把 `hf download` 换成
+`huggingface-cli download`，参数一致。
+
+**两个必先进 HF 缓存、否则静默失败的检查点** —— 代码按 repo id + `local_files_only=True` 加载，指本地目录没用：
+
+```bash
+hf download lllyasviel/Annotators --include "dpt_hybrid-midas-501f0c75.pt"   # ~470 MB
+hf download openai/clip-vit-base-patch32                                     # ~605 MB
+```
+
+缺前者死在深度提取（ControlNet 之前），缺后者死在重绘。报错形如
+`OSError: ... is not a local folder and is not a valid model identifier`，很容易误判成代码坏了。
+项目树里的 `0-model/clip-vit-large-patch14`（6.4 G）是**另一个**检查点，替代不了 `base-patch32`，可以删。
+
+**LoRA 是扩展点，不是资产。** 论文主张「换任意 LoRA 都能生成」，所以一个都不随仓库发。契约：
+
+- 格式 kohya / `sd-scripts` safetensors：`lora_unet_*.lora_down.weight` / `.lora_up.weight` / `.alpha`；
+- 加载器 `generator/lora_inpainter_v7.py::_merge_lora` **只合并 UNet**、只认 `lora_unet_` 前缀，
+  指向 text encoder 的 `lora_te_*` 会被**静默跳过**（能加载成功但几乎不改变输出）；
+- 基座必须 **SD 1.5**，SDXL / SD3 的 LoRA 对不上 key；
+- 路径硬编码单文件名，换自己的有三种办法：覆盖该文件 / `LSS_PROJECT_ROOT=<另一套目录树>` /
+  改 `lss_paths.LORA_PATH` 一行；
+- 排查顺序：先 `use_lora=False` 跑通底模链，再怀疑 LoRA。训练脚本与训练集不在本仓库。
+
+**背景池最小可用集**：`__main__` 示例写死 `curated_backgrounds/pure_sky/bg_00070a0c1b49.jpg`。
+只想验证生成能跑，放任意一张 16:9 图到该路径即可，或直接 `generate_with_lora(bg_path=<你的图>, ...)`。
+每类目录建议保留 `_metadata.jsonl`（`filename` / `url` / `source` / `photographer` / `category` /
+`time_of_day` / `weather`），`background_searcher.py` 靠它排序。
 
 ---
 
