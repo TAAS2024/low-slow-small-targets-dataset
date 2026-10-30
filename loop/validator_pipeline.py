@@ -24,15 +24,15 @@ from typing import Optional
 import numpy as np
 
 # 动态导入各阶段模块（归档结构：validator/ 下 v6_quality / v7_consistency / v8 / v9）
-_VALIDATOR_ROOT = Path(__file__).resolve().parent.parent  # → 0-workspace
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # → 0-workspace
+from lss_paths import WORKSPACE  # noqa: E402  (single source of truth)
 
-for _p in [
-    str(_VALIDATOR_ROOT / "validator" / "v6_quality"),
-    str(_VALIDATOR_ROOT / "validator" / "v7_consistency"),
-    str(_VALIDATOR_ROOT / "validator"),
-]:
-    if _p not in sys.path:
-        sys.path.insert(0, _p)
+for _p in (WORKSPACE / "validator" / "v6_quality",
+           WORKSPACE / "validator" / "v7_consistency",
+           WORKSPACE / "validator"):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
+del _p
 
 from quality_validator import QualityValidator, S6Result, S6Verdict          # noqa: E402
 from consistency_validator import ConsistencyValidator, S7Result, S7Verdict   # noqa: E402

@@ -1,0 +1,332 @@
+{
+  "exp": "E6",
+  "n_targets": 40,
+  "n_candidates": 1,
+  "attempts": 40,
+  "qc_mean_best": 0.9234,
+  "qc_mean_ranked": {
+    "top1": 0.9234
+  },
+  "per_target": [
+    {
+      "sample_id": "a0000",
+      "scores": [
+        0.87
+      ],
+      "best": 0.87,
+      "n": 1
+    },
+    {
+      "sample_id": "a0001",
+      "scores": [
+        0.8939
+      ],
+      "best": 0.8939,
+      "n": 1
+    },
+    {
+      "sample_id": "a0002",
+      "scores": [
+        0.9209
+      ],
+      "best": 0.9209,
+      "n": 1
+    },
+    {
+      "sample_id": "a0003",
+      "scores": [
+        0.98
+      ],
+      "best": 0.98,
+      "n": 1
+    },
+    {
+      "sample_id": "a0004",
+      "scores": [
+        0.911
+      ],
+      "best": 0.911,
+      "n": 1
+    },
+    {
+      "sample_id": "a0005",
+      "scores": [
+        0.9764
+      ],
+      "best": 0.9764,
+      "n": 1
+    },
+    {
+      "sample_id": "a0006",
+      "scores": [
+        0.9864
+      ],
+      "best": 0.9864,
+      "n": 1
+    },
+    {
+      "sample_id": "a0007",
+      "scores": [
+        0.8641
+      ],
+      "best": 0.8641,
+      "n": 1
+    },
+    {
+      "sample_id": "a0008",
+      "scores": [
+        0.9949
+      ],
+      "best": 0.9949,
+      "n": 1
+    },
+    {
+      "sample_id": "a0009",
+      "scores": [
+        0.9176
+      ],
+      "best": 0.9176,
+      "n": 1
+    },
+    {
+      "sample_id": "a0010",
+      "scores": [
+        0.9098
+      ],
+      "best": 0.9098,
+      "n": 1
+    },
+    {
+      "sample_id": "a0011",
+      "scores": [
+        0.9554
+      ],
+      "best": 0.9554,
+      "n": 1
+    },
+    {
+      "sample_id": "a0012",
+      "scores": [
+        0.8186
+      ],
+      "best": 0.8186,
+      "n": 1
+    },
+    {
+      "sample_id": "a0013",
+      "scores": [
+        0.9223
+      ],
+      "best": 0.9223,
+      "n": 1
+    },
+    {
+      "sample_id": "a0014",
+      "scores": [
+        0.8163
+      ],
+      "best": 0.8163,
+      "n": 1
+    },
+    {
+      "sample_id": "a0015",
+      "scores": [
+        0.9336
+      ],
+      "best": 0.9336,
+      "n": 1
+    },
+    {
+      "sample_id": "a0016",
+      "scores": [
+        0.9371
+      ],
+      "best": 0.9371,
+      "n": 1
+    },
+    {
+      "sample_id": "a0017",
+      "scores": [
+        0.9941
+      ],
+      "best": 0.9941,
+      "n": 1
+    },
+    {
+      "sample_id": "a0018",
+      "scores": [
+        0.8607
+      ],
+      "best": 0.8607,
+      "n": 1
+    },
+    {
+      "sample_id": "a0019",
+      "scores": [
+        0.8327
+      ],
+      "best": 0.8327,
+      "n": 1
+    },
+    {
+      "sample_id": "a0020",
+      "scores": [
+        0.968
+      ],
+      "best": 0.968,
+      "n": 1
+    },
+    {
+      "sample_id": "a0021",
+      "scores": [
+        0.9974
+      ],
+      "best": 0.9974,
+      "n": 1
+    },
+    {
+      "sample_id": "a0022",
+      "scores": [
+        0.9213
+      ],
+      "best": 0.9213,
+      "n": 1
+    },
+    {
+      "sample_id": "a0023",
+      "scores": [
+        0.9906
+      ],
+      "best": 0.9906,
+      "n": 1
+    },
+    {
+      "sample_id": "a0024",
+      "scores": [
+        0.9869
+      ],
+      "best": 0.9869,
+      "n": 1
+    },
+    {
+      "sample_id": "a0025",
+      "scores": [
+        0.8892
+      ],
+      "best": 0.8892,
+      "n": 1
+    },
+    {
+      "sample_id": "a0026",
+      "scores": [
+        0.919
+      ],
+      "best": 0.919,
+      "n": 1
+    },
+    {
+      "sample_id": "a0027",
+      "scores": [
+        0.9201
+      ],
+      "best": 0.9201,
+      "n": 1
+    },
+    {
+      "sample_id": "a0028",
+      "scores": [
+        0.9362
+      ],
+      "best": 0.9362,
+      "n": 1
+    },
+    {
+      "sample_id": "a0029",
+      "scores": [
+        0.891
+      ],
+      "best": 0.891,
+      "n": 1
+    },
+    {
+      "sample_id": "a0030",
+      "scores": [
+        0.8417
+      ],
+      "best": 0.8417,
+      "n": 1
+    },
+    {
+      "sample_id": "a0031",
+      "scores": [
+        0.9436
+      ],
+      "best": 0.9436,
+      "n": 1
+    },
+    {
+      "sample_id": "a0032",
+      "scores": [
+        0.9151
+      ],
+      "best": 0.9151,
+      "n": 1
+    },
+    {
+      "sample_id": "a0033",
+      "scores": [
+        0.936
+      ],
+      "best": 0.936,
+      "n": 1
+    },
+    {
+      "sample_id": "a0034",
+      "scores": [
+        0.9547
+      ],
+      "best": 0.9547,
+      "n": 1
+    },
+    {
+      "sample_id": "a0035",
+      "scores": [
+        0.9069
+      ],
+      "best": 0.9069,
+      "n": 1
+    },
+    {
+      "sample_id": "a0036",
+      "scores": [
+        0.9188
+      ],
+      "best": 0.9188,
+      "n": 1
+    },
+    {
+      "sample_id": "a0037",
+      "scores": [
+        0.9573
+      ],
+      "best": 0.9573,
+      "n": 1
+    },
+    {
+      "sample_id": "a0038",
+      "scores": [
+        0.9554
+      ],
+      "best": 0.9554,
+      "n": 1
+    },
+    {
+      "sample_id": "a0039",
+      "scores": [
+        0.8893
+      ],
+      "best": 0.8893,
+      "n": 1
+    }
+  ]
+}

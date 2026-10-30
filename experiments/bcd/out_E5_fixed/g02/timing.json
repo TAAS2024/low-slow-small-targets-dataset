@@ -1,0 +1,42 @@
+[
+  {
+    "sample_id": "g02_p00",
+    "ok": true,
+    "sec": 13.94
+  },
+  {
+    "sample_id": "g02_p01",
+    "ok": true,
+    "sec": 14.66
+  },
+  {
+    "sample_id": "g02_p02",
+    "ok": true,
+    "sec": 13.35
+  },
+  {
+    "sample_id": "g02_p03",
+    "ok": true,
+    "sec": 14.54
+  },
+  {
+    "sample_id": "g02_p04",
+    "ok": true,
+    "sec": 13.41
+  },
+  {
+    "sample_id": "g02_p05",
+    "ok": true,
+    "sec": 14.59
+  },
+  {
+    "sample_id": "g02_p06",
+    "ok": true,
+    "sec": 13.49
+  },
+  {
+    "sample_id": "g02_p07",
+    "ok": true,
+    "sec": 13.38
+  }
+]

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>低慢小数据集 — LLM Parser v7.0</title>
+<title>低慢小数据集 — LLM Parser v7.2</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -134,7 +134,7 @@
   .badge-ok { background: var(--green-light); color: var(--green); font-weight: 600; }
   .badge-err { background: #fef2f2; color: #ef4444; font-weight: 600; }
 
-  /* ======== 中：2×3 图片网格 ======== */
+  /* ======== 中：2×5 十格图片网格（10 槽位）======== */
   .main-area {
     display: flex;
     flex-direction: column;
@@ -750,15 +750,15 @@
     </div>
   </div>
 
-  <!-- ========== 中：2×3 图片网格 ========== -->
+  <!-- ========== 中：2×5 十格图片网格 ========== -->
   <div class="main-area" id="main-area" style="position:relative;">
     <div class="main-header" id="main-header">
       <span class="brand">◇</span>
-      <span>生成预览 v7.0</span>
+      <span>生成预览 v7.2</span>
       <button class="btn-back" id="btn-back" onclick="closeExpand()">← 返回网格</button>
     </div>
 
-    <!-- 2×3 网格 -->
+    <!-- 2×5 十格网格（10 槽位）-->
     <div class="image-grid" id="image-grid">
       <!-- slot: bg -->
       <div class="image-slot" data-slot="bg">
@@ -956,6 +956,47 @@
       <span class="tag" onclick="fillExample('大晴天上午，沙漠地带，四旋翼从100米远处飞近到50米')">🏜️ 沙漠飞近</span>
       <span class="tag purple" onclick="fillExample('雪天黄昏，住宅区，横向移动从左侧飞到右侧，俯拍')">🏠 雪景住宅</span>
     </div>
+    <div class="input-hint" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+      <label style="cursor:pointer;display:flex;align-items:center;gap:4px;"
+             title="勾选后跳过 ControlNet 双条件重绘：更快，但产物与论文口径不一致">
+        <input type="checkbox" id="opt-skip-cnet"> 快速模式（跳过重绘）
+      </label>
+      <label style="display:flex;align-items:center;gap:4px;"
+             title="ControlNet 重绘推理步数；有效去噪步数 = round(步数 × 重绘强度)">
+        重绘步数
+        <input type="number" id="opt-blend-steps" value="15" min="1" max="80" step="1"
+               oninput="pipelineKnobs()"
+               style="width:56px;background:transparent;border:1px solid var(--border);color:inherit;border-radius:4px;padding:1px 4px;">
+      </label>
+      <label style="display:flex;align-items:center;gap:4px;"
+             title="重绘强度 strength（img2img 起点比例）。0.65 为生产默认 ≈9 有效步；调高更贴近 LoRA 原图，调低更保留背景纹理">
+        重绘强度
+        <input type="number" id="opt-blend-strength" value="0.65" min="0.05" max="1" step="0.05"
+               oninput="pipelineKnobs()"
+               style="width:62px;background:transparent;border:1px solid var(--border);color:inherit;border-radius:4px;padding:1px 4px;">
+        <span id="opt-eff-steps" style="opacity:.6;"></span>
+      </label>
+    </div>
+    <div class="input-hint" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+      <label style="cursor:pointer;display:flex;align-items:center;gap:4px;"
+             title="取消勾选则用底座模型（不含训练好的 LoRA）重绘，用于对照实验">
+        <input type="checkbox" id="opt-use-lora" checked> 使用 LoRA
+      </label>
+      <label style="display:flex;align-items:center;gap:4px;"
+             title="深度条件（depth）强度 0–1；1.0 为论文口径默认，调低则更依赖背景纹理">
+        深度条件
+        <input type="number" id="opt-cnet-depth" value="0.85" min="0" max="1" step="0.05"
+               oninput="pipelineKnobs()"
+               style="width:62px;background:transparent;border:1px solid var(--border);color:inherit;border-radius:4px;padding:1px 4px;">
+      </label>
+      <label style="display:flex;align-items:center;gap:4px;"
+             title="分割条件（seg）强度 0–1；1.0 为论文口径默认，调低则轮廓约束更松">
+        分割条件
+        <input type="number" id="opt-cnet-seg" value="0.85" min="0" max="1" step="0.05"
+               oninput="pipelineKnobs()"
+               style="width:62px;background:transparent;border:1px solid var(--border);color:inherit;border-radius:4px;padding:1px 4px;">
+      </label>
+    </div>
     <div class="input-bar">
       <input type="text" id="user-input" placeholder="描述无人机场景…" autofocus>
       <button id="send-btn" onclick="sendParse()">一键生成 →</button>
@@ -1146,7 +1187,7 @@ async function focusDrone() {
     const res = await fetch(`/api/focus_drone/${serverSid}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ dronePos, droneScale }),
+      body: JSON.stringify({ dronePos, droneScale, ...pipelineKnobs() }),
     });
     const data = await res.json();
 
@@ -1419,13 +1460,64 @@ function navExpand(delta) {
 // Demo 加载
 // ============================================================
 
+// ── 管线旋钮：读取右侧面板的「快速模式 / 重绘步数 / 重绘强度」──
+//    返回体同时回显「≈N 有效步」给 #opt-eff-steps，便于用户理解 strength 的实际作用。
+function pipelineKnobs() {
+  const skipEl = document.getElementById('opt-skip-cnet');
+  const stepsEl = document.getElementById('opt-blend-steps');
+  const strEl = document.getElementById('opt-blend-strength');
+  const effEl = document.getElementById('opt-eff-steps');
+  const k = { skip_cnet: skipEl ? !!skipEl.checked : false };
+  let n = 15;
+  if (stepsEl && stepsEl.value) {
+    const v = parseInt(stepsEl.value, 10);
+    if (!isNaN(v) && v >= 1) { k.blend_steps = v; n = v; }
+  }
+  let s = 0.65;
+  if (strEl && strEl.value) {
+    const v = parseFloat(strEl.value);
+    if (!isNaN(v) && v > 0 && v <= 1) { k.blend_strength = v; s = v; }
+  }
+  if (effEl) {
+    effEl.textContent = k.skip_cnet
+      ? '（已跳过重绘）'
+      : `≈${Math.max(1, Math.round(n * s))} 有效步`;
+  }
+
+  // v7.5：LoRA 开关与 ControlNet 条件强度（后端 _knobs 早已支持，此前前端未暴露）
+  const loraEl = document.getElementById('opt-use-lora');
+  if (loraEl) k.use_lora = !!loraEl.checked;
+
+  const depEl = document.getElementById('opt-cnet-depth');
+  const segEl = document.getElementById('opt-cnet-seg');
+  const clamp01 = (el, dflt) => {
+    if (!el || el.value === '') return dflt;
+    const v = parseFloat(el.value);
+    return (isNaN(v) || v < 0 || v > 1) ? dflt : v;
+  };
+  k.cnet_scales = [clamp01(depEl, 0.85), clamp01(segEl, 0.85)];
+
+  return k;
+}
+
+// 首屏初始化「≈N 有效步」提示
+document.addEventListener('DOMContentLoaded', function () { pipelineKnobs(); });
+
+// ── 「生成条件图」按钮：该元素已随旧端点移除，此处必须做空值保护 ──
+//    （原实现在 selectDemo / loadSessionDetail 里直接 .style.display，
+//      元素不存在时抛 TypeError 并中断后续逻辑）
+function setGenCondBtn(visible) {
+  const b = document.getElementById('btn-gen-cond');
+  if (b) b.style.display = visible ? 'inline-block' : 'none';
+}
+
 function selectDemo(demoId) {
   activeSid = demoId;
   serverSid = null;  // demo 没有服务器会话
   loadDemo(demoId);
   loadSessions();
   // 隐藏条件图按钮（demo 不支持）
-  document.getElementById('btn-gen-cond').style.display = 'none';
+  setGenCondBtn(false);
 }
 
 function loadDemo(demoId) {
@@ -1513,11 +1605,10 @@ async function loadSessionDetail(sid) {
         highlightJSON(JSON.stringify(s.full_scene_spec, null, 2));
       renderImageGrid(s.images || {});
 
-      // 🔥 显示/隐藏「生成条件图」按钮
-      const genBtn = document.getElementById('btn-gen-cond');
+      // 🔥 显示/隐藏「生成条件图」按钮（元素已移除，helper 内做空值保护）
       const hasBg = s.images && s.images.bg && s.images.bg.length > 0;
       const hasConditions = s.images && s.images.bg_depth && s.images.bg_depth.length > 0;
-      genBtn.style.display = (hasBg && !hasConditions) ? 'inline-block' : 'none';
+      setGenCondBtn(hasBg && !hasConditions);
     }
   } catch(e) { /* ignore */ }
 }
@@ -1538,7 +1629,8 @@ async function sendParse() {
   if (!text) return;
 
   btn.disabled = true;
-  btn.innerHTML = '<span class="loading"></span>一键生成中…（约 50 秒）';
+  btn.innerHTML = '<span class="loading"></span>一键生成中…（'
+      + (pipelineKnobs().skip_cnet ? '约 15 秒' : '约 20 秒') + '）';
 
   const backend = document.getElementById('backend-select').value;
 
@@ -1546,7 +1638,7 @@ async function sendParse() {
     const res = await fetch('/api/parse', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, backend }),
+      body: JSON.stringify({ text, backend, ...pipelineKnobs() }),
     });
     const data = await res.json();
 
@@ -1594,7 +1686,7 @@ async function resetSlot(slot) {
     const res = await fetch(`/api/regenerate/${serverSid}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slot }),
+      body: JSON.stringify({ slot, ...pipelineKnobs() }),
     });
     const data = await res.json();
 

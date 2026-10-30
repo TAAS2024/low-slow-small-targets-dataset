@@ -1,0 +1,41 @@
+{
+ "n_groups": 200,
+ "n_images": 2000,
+ "scenes": {
+  "pure_sky": 23,
+  "coastal": 23,
+  "urban": 22,
+  "rural": 22,
+  "forest": 22,
+  "mountain": 22,
+  "desert": 22,
+  "industrial": 22,
+  "airfield": 22
+ },
+ "time_of_day": {
+  "dawn": 40,
+  "morning": 40,
+  "afternoon": 40,
+  "dusk": 40,
+  "night": 40
+ },
+ "weather": {
+  "clear": 40,
+  "cloudy": 40,
+  "rain": 40,
+  "fog": 40,
+  "haze": 40
+ },
+ "walks": {
+  "sweep": 34,
+  "approach": 34,
+  "retreat": 33,
+  "orbit": 33,
+  "cross": 33,
+  "dwell": 33
+ },
+ "baseline_sec_mean": 17.38,
+ "focus_sec_mean": 9.23,
+ "focus_speedup_mean": 1.89,
+ "total_sec": 18779.4
+}

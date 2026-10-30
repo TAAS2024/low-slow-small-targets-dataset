@@ -1,0 +1,99 @@
+{
+  "exp": "E5",
+  "mode": "fixed",
+  "n_groups": 8,
+  "n_points": 8,
+  "cosine_mean_across_groups": 0.5448,
+  "cosine_std": 0.1842,
+  "per_group": [
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.3462,
+      "cosine_min": -0.0158,
+      "size_range_px": [
+        37.0,
+        90.0
+      ],
+      "group_id": "g00"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.491,
+      "cosine_min": -0.0774,
+      "size_range_px": [
+        30.0,
+        90.0
+      ],
+      "group_id": "g01"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.7061,
+      "cosine_min": 0.4763,
+      "size_range_px": [
+        24.0,
+        96.0
+      ],
+      "group_id": "g02"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.5709,
+      "cosine_min": 0.3611,
+      "size_range_px": [
+        30.0,
+        96.0
+      ],
+      "group_id": "g03"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.1822,
+      "cosine_min": -0.5329,
+      "size_range_px": [
+        30.0,
+        96.0
+      ],
+      "group_id": "g04"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.6781,
+      "cosine_min": 0.3725,
+      "size_range_px": [
+        24.0,
+        90.0
+      ],
+      "group_id": "g05"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.7621,
+      "cosine_min": 0.5454,
+      "size_range_px": [
+        24.0,
+        65.0
+      ],
+      "group_id": "g06"
+    },
+    {
+      "n_frames": 8,
+      "n_signatures": 8,
+      "cosine_mean": 0.6217,
+      "cosine_min": 0.494,
+      "size_range_px": [
+        24.0,
+        90.0
+      ],
+      "group_id": "g07"
+    }
+  ],
+  "note": "cosine 越高 = 同一轨迹内无人机外观越一致。indep 模式给出该管线的下限基线。"
+}

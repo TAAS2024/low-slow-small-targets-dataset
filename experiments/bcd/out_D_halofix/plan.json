@@ -1,0 +1,6002 @@
+[
+  {
+    "sample_id": "d0000",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_999d5a484292.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.696,
+    "norm_v": 0.3439,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.696,
+        "norm_v": 0.3439
+      }
+    ]
+  },
+  {
+    "sample_id": "d0001",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_65956ea98f6e.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.8538,
+    "norm_v": 0.3818,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.8538,
+        "norm_v": 0.3818
+      }
+    ]
+  },
+  {
+    "sample_id": "d0002",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_db70b21c77fe.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.7507,
+    "norm_v": 0.6613,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.7507,
+        "norm_v": 0.6613
+      }
+    ]
+  },
+  {
+    "sample_id": "d0003",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_95f9187a9f13.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5634,
+    "norm_v": 0.6267,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5634,
+        "norm_v": 0.6267
+      }
+    ]
+  },
+  {
+    "sample_id": "d0004",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_e607bc795f1e.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.2258,
+    "norm_v": 0.1811,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.2258,
+        "norm_v": 0.1811
+      }
+    ]
+  },
+  {
+    "sample_id": "d0005",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_18af0e47238e.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.59,
+    "norm_v": 0.2453,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.59,
+        "norm_v": 0.2453
+      }
+    ]
+  },
+  {
+    "sample_id": "d0006",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_c7340dd42dfc.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.8669,
+    "norm_v": 0.5699,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.8669,
+        "norm_v": 0.5699
+      }
+    ]
+  },
+  {
+    "sample_id": "d0007",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_33818a1906d2.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.3557,
+    "norm_v": 0.5233,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.3557,
+        "norm_v": 0.5233
+      }
+    ]
+  },
+  {
+    "sample_id": "d0008",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_f40b4e31c3d2.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.7664,
+    "norm_v": 0.2915,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.7664,
+        "norm_v": 0.2915
+      }
+    ]
+  },
+  {
+    "sample_id": "d0009",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_da346e574a0d.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1965,
+    "norm_v": 0.3518,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1965,
+        "norm_v": 0.3518
+      }
+    ]
+  },
+  {
+    "sample_id": "d0010",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_f06a75eeab20.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.6067,
+    "norm_v": 0.2186,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.6067,
+        "norm_v": 0.2186
+      }
+    ]
+  },
+  {
+    "sample_id": "d0011",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_97ae70110cc1.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.4825,
+    "norm_v": 0.6019,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.4825,
+        "norm_v": 0.6019
+      }
+    ]
+  },
+  {
+    "sample_id": "d0012",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_6cd120fa4720.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.1673,
+    "norm_v": 0.6327,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.1673,
+        "norm_v": 0.6327
+      }
+    ]
+  },
+  {
+    "sample_id": "d0013",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_075efd309116.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.1909,
+    "norm_v": 0.5873,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.1909,
+        "norm_v": 0.5873
+      }
+    ]
+  },
+  {
+    "sample_id": "d0014",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_c139f1678c40.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7469,
+    "norm_v": 0.4875,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7469,
+        "norm_v": 0.4875
+      }
+    ]
+  },
+  {
+    "sample_id": "d0015",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_0062be3e2da1.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.585,
+    "norm_v": 0.5803,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.585,
+        "norm_v": 0.5803
+      }
+    ]
+  },
+  {
+    "sample_id": "d0016",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_6f999978f023.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3054,
+    "norm_v": 0.2886,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3054,
+        "norm_v": 0.2886
+      }
+    ]
+  },
+  {
+    "sample_id": "d0017",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_ec736995f704.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1679,
+    "norm_v": 0.6319,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1679,
+        "norm_v": 0.6319
+      }
+    ]
+  },
+  {
+    "sample_id": "d0018",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_5797b49f6647.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3013,
+    "norm_v": 0.6612,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3013,
+        "norm_v": 0.6612
+      }
+    ]
+  },
+  {
+    "sample_id": "d0019",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_d4f9a815be08.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.4605,
+    "norm_v": 0.1467,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.4605,
+        "norm_v": 0.1467
+      }
+    ]
+  },
+  {
+    "sample_id": "d0020",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_5905804631d2.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.7851,
+    "norm_v": 0.6788,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.7851,
+        "norm_v": 0.6788
+      }
+    ]
+  },
+  {
+    "sample_id": "d0021",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_caf888938b9b.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.2029,
+    "norm_v": 0.4197,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.2029,
+        "norm_v": 0.4197
+      }
+    ]
+  },
+  {
+    "sample_id": "d0022",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_36672f454638.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.5361,
+    "norm_v": 0.5724,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.5361,
+        "norm_v": 0.5724
+      }
+    ]
+  },
+  {
+    "sample_id": "d0023",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_90fc415e24c7.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.2744,
+    "norm_v": 0.5637,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.2744,
+        "norm_v": 0.5637
+      }
+    ]
+  },
+  {
+    "sample_id": "d0024",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_cc794167684d.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.5666,
+    "norm_v": 0.3581,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.5666,
+        "norm_v": 0.3581
+      }
+    ]
+  },
+  {
+    "sample_id": "d0025",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_c8ac26302b41.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7264,
+    "norm_v": 0.2839,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7264,
+        "norm_v": 0.2839
+      }
+    ]
+  },
+  {
+    "sample_id": "d0026",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_4248aba2f080.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3407,
+    "norm_v": 0.2098,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3407,
+        "norm_v": 0.2098
+      }
+    ]
+  },
+  {
+    "sample_id": "d0027",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_47f7f4250f3c.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.1451,
+    "norm_v": 0.6692,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.1451,
+        "norm_v": 0.6692
+      }
+    ]
+  },
+  {
+    "sample_id": "d0028",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_65d7ae4ea9c0.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4822,
+    "norm_v": 0.1521,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4822,
+        "norm_v": 0.1521
+      }
+    ]
+  },
+  {
+    "sample_id": "d0029",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_d4bec85b44b0.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.219,
+    "norm_v": 0.1867,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.219,
+        "norm_v": 0.1867
+      }
+    ]
+  },
+  {
+    "sample_id": "d0030",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_10c549b9e61f.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7603,
+    "norm_v": 0.6209,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7603,
+        "norm_v": 0.6209
+      }
+    ]
+  },
+  {
+    "sample_id": "d0031",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_f511bc0328a1.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6395,
+    "norm_v": 0.586,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6395,
+        "norm_v": 0.586
+      }
+    ]
+  },
+  {
+    "sample_id": "d0032",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_8d14a4ca4d92.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3295,
+    "norm_v": 0.5707,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3295,
+        "norm_v": 0.5707
+      }
+    ]
+  },
+  {
+    "sample_id": "d0033",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_4f6c86173dda.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.8002,
+    "norm_v": 0.4421,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.8002,
+        "norm_v": 0.4421
+      }
+    ]
+  },
+  {
+    "sample_id": "d0034",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_8ce2d5be53f3.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5606,
+    "norm_v": 0.3613,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5606,
+        "norm_v": 0.3613
+      }
+    ]
+  },
+  {
+    "sample_id": "d0035",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_b6065eaa8cc7.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6073,
+    "norm_v": 0.5061,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6073,
+        "norm_v": 0.5061
+      }
+    ]
+  },
+  {
+    "sample_id": "d0036",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_8f5859a4f43c.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.1826,
+    "norm_v": 0.4554,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.1826,
+        "norm_v": 0.4554
+      }
+    ]
+  },
+  {
+    "sample_id": "d0037",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_bfa5878903c8.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.5662,
+    "norm_v": 0.2945,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.5662,
+        "norm_v": 0.2945
+      }
+    ]
+  },
+  {
+    "sample_id": "d0038",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_3611a244835c.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.3047,
+    "norm_v": 0.5243,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.3047,
+        "norm_v": 0.5243
+      }
+    ]
+  },
+  {
+    "sample_id": "d0039",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_312e9266133f.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6561,
+    "norm_v": 0.3158,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6561,
+        "norm_v": 0.3158
+      }
+    ]
+  },
+  {
+    "sample_id": "d0040",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_4b84201df9ec.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3727,
+    "norm_v": 0.5732,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3727,
+        "norm_v": 0.5732
+      }
+    ]
+  },
+  {
+    "sample_id": "d0041",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_1a88eca15fcd.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7152,
+    "norm_v": 0.5961,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7152,
+        "norm_v": 0.5961
+      }
+    ]
+  },
+  {
+    "sample_id": "d0042",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_50b412208688.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.1544,
+    "norm_v": 0.4328,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.1544,
+        "norm_v": 0.4328
+      }
+    ]
+  },
+  {
+    "sample_id": "d0043",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_b45fdc8b22f1.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5776,
+    "norm_v": 0.1429,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5776,
+        "norm_v": 0.1429
+      }
+    ]
+  },
+  {
+    "sample_id": "d0044",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_1ff388d0590d.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.6026,
+    "norm_v": 0.4517,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.6026,
+        "norm_v": 0.4517
+      }
+    ]
+  },
+  {
+    "sample_id": "d0045",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_e13527e4405d.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.211,
+    "norm_v": 0.1531,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.211,
+        "norm_v": 0.1531
+      }
+    ]
+  },
+  {
+    "sample_id": "d0046",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_2dfb9a6caf3a.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.1477,
+    "norm_v": 0.1125,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.1477,
+        "norm_v": 0.1125
+      }
+    ]
+  },
+  {
+    "sample_id": "d0047",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_348ef9b04b57.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6658,
+    "norm_v": 0.378,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6658,
+        "norm_v": 0.378
+      }
+    ]
+  },
+  {
+    "sample_id": "d0048",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_1a0f7d5d97f1.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8321,
+    "norm_v": 0.1132,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8321,
+        "norm_v": 0.1132
+      }
+    ]
+  },
+  {
+    "sample_id": "d0049",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_c2a79a6ba569.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.5917,
+    "norm_v": 0.5848,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.5917,
+        "norm_v": 0.5848
+      }
+    ]
+  },
+  {
+    "sample_id": "d0050",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_1236e13d82d8.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.2878,
+    "norm_v": 0.4752,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.2878,
+        "norm_v": 0.4752
+      }
+    ]
+  },
+  {
+    "sample_id": "d0051",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_8106a89956e6.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.4514,
+    "norm_v": 0.1354,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.4514,
+        "norm_v": 0.1354
+      }
+    ]
+  },
+  {
+    "sample_id": "d0052",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_9c50ce21a160.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.1499,
+    "norm_v": 0.1585,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.1499,
+        "norm_v": 0.1585
+      }
+    ]
+  },
+  {
+    "sample_id": "d0053",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_69d288637003.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.2715,
+    "norm_v": 0.308,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.2715,
+        "norm_v": 0.308
+      }
+    ]
+  },
+  {
+    "sample_id": "d0054",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_b8b799107006.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7571,
+    "norm_v": 0.6327,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7571,
+        "norm_v": 0.6327
+      }
+    ]
+  },
+  {
+    "sample_id": "d0055",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_43137180e586.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6502,
+    "norm_v": 0.218,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6502,
+        "norm_v": 0.218
+      }
+    ]
+  },
+  {
+    "sample_id": "d0056",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_d72089b09681.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.1641,
+    "norm_v": 0.4922,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.1641,
+        "norm_v": 0.4922
+      }
+    ]
+  },
+  {
+    "sample_id": "d0057",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_43512767a6a1.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.3802,
+    "norm_v": 0.2454,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.3802,
+        "norm_v": 0.2454
+      }
+    ]
+  },
+  {
+    "sample_id": "d0058",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_c9ff45bbb16e.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.6259,
+    "norm_v": 0.1077,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.6259,
+        "norm_v": 0.1077
+      }
+    ]
+  },
+  {
+    "sample_id": "d0059",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_b86d51ab2006.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.4315,
+    "norm_v": 0.4301,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.4315,
+        "norm_v": 0.4301
+      }
+    ]
+  },
+  {
+    "sample_id": "d0060",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_be3ab74f9469.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.8173,
+    "norm_v": 0.4764,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.8173,
+        "norm_v": 0.4764
+      }
+    ]
+  },
+  {
+    "sample_id": "d0061",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_825d33c1b66d.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.7566,
+    "norm_v": 0.2455,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.7566,
+        "norm_v": 0.2455
+      }
+    ]
+  },
+  {
+    "sample_id": "d0062",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_9aef13a8f7ef.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.645,
+    "norm_v": 0.3656,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.645,
+        "norm_v": 0.3656
+      }
+    ]
+  },
+  {
+    "sample_id": "d0063",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_1fcf3440de50.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.3753,
+    "norm_v": 0.1265,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.3753,
+        "norm_v": 0.1265
+      }
+    ]
+  },
+  {
+    "sample_id": "d0064",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_6d58585c4925.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.2225,
+    "norm_v": 0.5421,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.2225,
+        "norm_v": 0.5421
+      }
+    ]
+  },
+  {
+    "sample_id": "d0065",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_84f3ecbaa070.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.3877,
+    "norm_v": 0.267,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.3877,
+        "norm_v": 0.267
+      }
+    ]
+  },
+  {
+    "sample_id": "d0066",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_9669396344ff.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5686,
+    "norm_v": 0.6173,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5686,
+        "norm_v": 0.6173
+      }
+    ]
+  },
+  {
+    "sample_id": "d0067",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_39dcc64389b8.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6639,
+    "norm_v": 0.325,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6639,
+        "norm_v": 0.325
+      }
+    ]
+  },
+  {
+    "sample_id": "d0068",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_6f4ce404892c.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.75,
+    "norm_v": 0.1468,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.75,
+        "norm_v": 0.1468
+      }
+    ]
+  },
+  {
+    "sample_id": "d0069",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_deae6175612f.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.2662,
+    "norm_v": 0.294,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.2662,
+        "norm_v": 0.294
+      }
+    ]
+  },
+  {
+    "sample_id": "d0070",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_5086f68d14c7.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.2896,
+    "norm_v": 0.3599,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.2896,
+        "norm_v": 0.3599
+      }
+    ]
+  },
+  {
+    "sample_id": "d0071",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_c2ee5ec4a4b6.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.7853,
+    "norm_v": 0.4295,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.7853,
+        "norm_v": 0.4295
+      }
+    ]
+  },
+  {
+    "sample_id": "d0072",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_a5521ea96f5d.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.144,
+    "norm_v": 0.6056,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.144,
+        "norm_v": 0.6056
+      }
+    ]
+  },
+  {
+    "sample_id": "d0073",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_ded24b275921.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.4379,
+    "norm_v": 0.4841,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.4379,
+        "norm_v": 0.4841
+      }
+    ]
+  },
+  {
+    "sample_id": "d0074",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_0c1011b72a44.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.2459,
+    "norm_v": 0.1371,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.2459,
+        "norm_v": 0.1371
+      }
+    ]
+  },
+  {
+    "sample_id": "d0075",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_41ad1da52f52.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.4592,
+    "norm_v": 0.6133,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.4592,
+        "norm_v": 0.6133
+      }
+    ]
+  },
+  {
+    "sample_id": "d0076",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_fe60d58cee93.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.579,
+    "norm_v": 0.1,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.579,
+        "norm_v": 0.1
+      }
+    ]
+  },
+  {
+    "sample_id": "d0077",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_0a5cc911361a.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.4959,
+    "norm_v": 0.281,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.4959,
+        "norm_v": 0.281
+      }
+    ]
+  },
+  {
+    "sample_id": "d0078",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_ad58a89c9d19.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.1579,
+    "norm_v": 0.5772,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.1579,
+        "norm_v": 0.5772
+      }
+    ]
+  },
+  {
+    "sample_id": "d0079",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_8b5dc96695f0.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.2629,
+    "norm_v": 0.6797,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.2629,
+        "norm_v": 0.6797
+      }
+    ]
+  },
+  {
+    "sample_id": "d0080",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_af2f700cd2d5.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8637,
+    "norm_v": 0.5857,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8637,
+        "norm_v": 0.5857
+      }
+    ]
+  },
+  {
+    "sample_id": "d0081",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_32dc502679f0.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.87,
+    "norm_v": 0.3331,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.87,
+        "norm_v": 0.3331
+      }
+    ]
+  },
+  {
+    "sample_id": "d0082",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_a44701385b53.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3603,
+    "norm_v": 0.2238,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3603,
+        "norm_v": 0.2238
+      }
+    ]
+  },
+  {
+    "sample_id": "d0083",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_c82d4f3295c3.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6936,
+    "norm_v": 0.6685,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6936,
+        "norm_v": 0.6685
+      }
+    ]
+  },
+  {
+    "sample_id": "d0084",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_dac959a56cef.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5852,
+    "norm_v": 0.2105,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5852,
+        "norm_v": 0.2105
+      }
+    ]
+  },
+  {
+    "sample_id": "d0085",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_59243efa6c44.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.784,
+    "norm_v": 0.2624,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.784,
+        "norm_v": 0.2624
+      }
+    ]
+  },
+  {
+    "sample_id": "d0086",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_2f4ed389adeb.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.1961,
+    "norm_v": 0.5953,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.1961,
+        "norm_v": 0.5953
+      }
+    ]
+  },
+  {
+    "sample_id": "d0087",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_938765b9ff3a.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.597,
+    "norm_v": 0.1127,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.597,
+        "norm_v": 0.1127
+      }
+    ]
+  },
+  {
+    "sample_id": "d0088",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_97f7aac543c0.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.7279,
+    "norm_v": 0.1672,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.7279,
+        "norm_v": 0.1672
+      }
+    ]
+  },
+  {
+    "sample_id": "d0089",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_468acb9939e4.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.2214,
+    "norm_v": 0.4021,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.2214,
+        "norm_v": 0.4021
+      }
+    ]
+  },
+  {
+    "sample_id": "d0090",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_fd0c14eb2be3.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.6102,
+    "norm_v": 0.1668,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.6102,
+        "norm_v": 0.1668
+      }
+    ]
+  },
+  {
+    "sample_id": "d0091",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_3c49ace40ac3.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.3316,
+    "norm_v": 0.1108,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.3316,
+        "norm_v": 0.1108
+      }
+    ]
+  },
+  {
+    "sample_id": "d0092",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_0a25faa68f5c.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.2764,
+    "norm_v": 0.2506,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.2764,
+        "norm_v": 0.2506
+      }
+    ]
+  },
+  {
+    "sample_id": "d0093",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_83381b0379d8.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.8393,
+    "norm_v": 0.6443,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.8393,
+        "norm_v": 0.6443
+      }
+    ]
+  },
+  {
+    "sample_id": "d0094",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_12f82bfc41f7.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7632,
+    "norm_v": 0.6575,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7632,
+        "norm_v": 0.6575
+      }
+    ]
+  },
+  {
+    "sample_id": "d0095",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_a366ef4c4f09.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6181,
+    "norm_v": 0.5132,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6181,
+        "norm_v": 0.5132
+      }
+    ]
+  },
+  {
+    "sample_id": "d0096",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_aa5496cfab51.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.6065,
+    "norm_v": 0.316,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.6065,
+        "norm_v": 0.316
+      }
+    ]
+  },
+  {
+    "sample_id": "d0097",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_b585aa0a71ca.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.2555,
+    "norm_v": 0.3178,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.2555,
+        "norm_v": 0.3178
+      }
+    ]
+  },
+  {
+    "sample_id": "d0098",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_4ee7bf70221f.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.1268,
+    "norm_v": 0.1876,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.1268,
+        "norm_v": 0.1876
+      }
+    ]
+  },
+  {
+    "sample_id": "d0099",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_84d8cb5e1c89.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.3765,
+    "norm_v": 0.313,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.3765,
+        "norm_v": 0.313
+      }
+    ]
+  },
+  {
+    "sample_id": "d0100",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_25031db51998.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.3771,
+    "norm_v": 0.4599,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.3771,
+        "norm_v": 0.4599
+      }
+    ]
+  },
+  {
+    "sample_id": "d0101",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_0a655771cd86.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.3249,
+    "norm_v": 0.1867,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.3249,
+        "norm_v": 0.1867
+      }
+    ]
+  },
+  {
+    "sample_id": "d0102",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_f0df9dd75d44.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.34,
+    "norm_v": 0.329,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.34,
+        "norm_v": 0.329
+      }
+    ]
+  },
+  {
+    "sample_id": "d0103",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_f86204d36ff2.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.2185,
+    "norm_v": 0.1666,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.2185,
+        "norm_v": 0.1666
+      }
+    ]
+  },
+  {
+    "sample_id": "d0104",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_c6973b71212e.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3022,
+    "norm_v": 0.128,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3022,
+        "norm_v": 0.128
+      }
+    ]
+  },
+  {
+    "sample_id": "d0105",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_429c2d2ab43b.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7713,
+    "norm_v": 0.5226,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7713,
+        "norm_v": 0.5226
+      }
+    ]
+  },
+  {
+    "sample_id": "d0106",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_65b2a6782b71.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.4264,
+    "norm_v": 0.2905,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.4264,
+        "norm_v": 0.2905
+      }
+    ]
+  },
+  {
+    "sample_id": "d0107",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_6fd621fc304f.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2026,
+    "norm_v": 0.4253,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2026,
+        "norm_v": 0.4253
+      }
+    ]
+  },
+  {
+    "sample_id": "d0108",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_bc06f2d78582.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4802,
+    "norm_v": 0.5877,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4802,
+        "norm_v": 0.5877
+      }
+    ]
+  },
+  {
+    "sample_id": "d0109",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_865c2bdd1a89.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.2145,
+    "norm_v": 0.1673,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.2145,
+        "norm_v": 0.1673
+      }
+    ]
+  },
+  {
+    "sample_id": "d0110",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_88c3de99719b.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.4442,
+    "norm_v": 0.2751,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.4442,
+        "norm_v": 0.2751
+      }
+    ]
+  },
+  {
+    "sample_id": "d0111",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_40e141699dcd.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.819,
+    "norm_v": 0.4635,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.819,
+        "norm_v": 0.4635
+      }
+    ]
+  },
+  {
+    "sample_id": "d0112",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_acada2c3bc22.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.7327,
+    "norm_v": 0.6751,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.7327,
+        "norm_v": 0.6751
+      }
+    ]
+  },
+  {
+    "sample_id": "d0113",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_1676c0f80056.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.17,
+    "norm_v": 0.1491,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.17,
+        "norm_v": 0.1491
+      }
+    ]
+  },
+  {
+    "sample_id": "d0114",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_515a79048350.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.1665,
+    "norm_v": 0.1046,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.1665,
+        "norm_v": 0.1046
+      }
+    ]
+  },
+  {
+    "sample_id": "d0115",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_842b22e13291.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5429,
+    "norm_v": 0.2681,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5429,
+        "norm_v": 0.2681
+      }
+    ]
+  },
+  {
+    "sample_id": "d0116",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_fa7b3b59092b.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4914,
+    "norm_v": 0.4392,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4914,
+        "norm_v": 0.4392
+      }
+    ]
+  },
+  {
+    "sample_id": "d0117",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_559b147e8f71.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.4415,
+    "norm_v": 0.3136,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.4415,
+        "norm_v": 0.3136
+      }
+    ]
+  },
+  {
+    "sample_id": "d0118",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_66141738a448.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.5648,
+    "norm_v": 0.1966,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.5648,
+        "norm_v": 0.1966
+      }
+    ]
+  },
+  {
+    "sample_id": "d0119",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_369bcf0722e7.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.3925,
+    "norm_v": 0.137,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.3925,
+        "norm_v": 0.137
+      }
+    ]
+  },
+  {
+    "sample_id": "d0120",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_0c4f2258dcef.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8063,
+    "norm_v": 0.3619,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8063,
+        "norm_v": 0.3619
+      }
+    ]
+  },
+  {
+    "sample_id": "d0121",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_5a45d8346d21.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.2104,
+    "norm_v": 0.3308,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.2104,
+        "norm_v": 0.3308
+      }
+    ]
+  },
+  {
+    "sample_id": "d0122",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_35c10cf5310e.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.6072,
+    "norm_v": 0.6783,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.6072,
+        "norm_v": 0.6783
+      }
+    ]
+  },
+  {
+    "sample_id": "d0123",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_4f9b44542148.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5938,
+    "norm_v": 0.1607,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5938,
+        "norm_v": 0.1607
+      }
+    ]
+  },
+  {
+    "sample_id": "d0124",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_993e42341c71.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4073,
+    "norm_v": 0.4169,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4073,
+        "norm_v": 0.4169
+      }
+    ]
+  },
+  {
+    "sample_id": "d0125",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_27ac7b7d86b7.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.1996,
+    "norm_v": 0.4458,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.1996,
+        "norm_v": 0.4458
+      }
+    ]
+  },
+  {
+    "sample_id": "d0126",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_bedc45e4482b.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.2328,
+    "norm_v": 0.3354,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.2328,
+        "norm_v": 0.3354
+      }
+    ]
+  },
+  {
+    "sample_id": "d0127",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_a6bd308db7a3.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.787,
+    "norm_v": 0.3873,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.787,
+        "norm_v": 0.3873
+      }
+    ]
+  },
+  {
+    "sample_id": "d0128",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_f91c609bff7f.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3651,
+    "norm_v": 0.3891,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3651,
+        "norm_v": 0.3891
+      }
+    ]
+  },
+  {
+    "sample_id": "d0129",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_cefbf828cb60.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.6026,
+    "norm_v": 0.6073,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.6026,
+        "norm_v": 0.6073
+      }
+    ]
+  },
+  {
+    "sample_id": "d0130",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_f62a65234030.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5834,
+    "norm_v": 0.2269,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5834,
+        "norm_v": 0.2269
+      }
+    ]
+  },
+  {
+    "sample_id": "d0131",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_58f2df11edd5.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6563,
+    "norm_v": 0.5333,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6563,
+        "norm_v": 0.5333
+      }
+    ]
+  },
+  {
+    "sample_id": "d0132",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_763c0c2a2be8.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.7418,
+    "norm_v": 0.1206,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.7418,
+        "norm_v": 0.1206
+      }
+    ]
+  },
+  {
+    "sample_id": "d0133",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_33ecb330d23b.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.7846,
+    "norm_v": 0.4495,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.7846,
+        "norm_v": 0.4495
+      }
+    ]
+  },
+  {
+    "sample_id": "d0134",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_291b8f62e693.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7602,
+    "norm_v": 0.4381,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7602,
+        "norm_v": 0.4381
+      }
+    ]
+  },
+  {
+    "sample_id": "d0135",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_1a3cf2c15f00.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.728,
+    "norm_v": 0.3996,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.728,
+        "norm_v": 0.3996
+      }
+    ]
+  },
+  {
+    "sample_id": "d0136",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_0e5b0d12825f.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.1704,
+    "norm_v": 0.1757,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.1704,
+        "norm_v": 0.1757
+      }
+    ]
+  },
+  {
+    "sample_id": "d0137",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_538d57991887.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1316,
+    "norm_v": 0.5895,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1316,
+        "norm_v": 0.5895
+      }
+    ]
+  },
+  {
+    "sample_id": "d0138",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_89be68d3a676.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.775,
+    "norm_v": 0.5644,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.775,
+        "norm_v": 0.5644
+      }
+    ]
+  },
+  {
+    "sample_id": "d0139",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_d272f552936d.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.8561,
+    "norm_v": 0.3929,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.8561,
+        "norm_v": 0.3929
+      }
+    ]
+  },
+  {
+    "sample_id": "d0140",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_f780165702b5.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5227,
+    "norm_v": 0.1195,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5227,
+        "norm_v": 0.1195
+      }
+    ]
+  },
+  {
+    "sample_id": "d0141",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_218460055c7c.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.6357,
+    "norm_v": 0.567,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.6357,
+        "norm_v": 0.567
+      }
+    ]
+  },
+  {
+    "sample_id": "d0142",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_ffe00c9aefc6.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.5761,
+    "norm_v": 0.1443,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.5761,
+        "norm_v": 0.1443
+      }
+    ]
+  },
+  {
+    "sample_id": "d0143",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_7339a69e35b4.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.8084,
+    "norm_v": 0.2195,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.8084,
+        "norm_v": 0.2195
+      }
+    ]
+  },
+  {
+    "sample_id": "d0144",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_d03bc893f214.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8049,
+    "norm_v": 0.3423,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8049,
+        "norm_v": 0.3423
+      }
+    ]
+  },
+  {
+    "sample_id": "d0145",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_be040c057cbd.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7626,
+    "norm_v": 0.6639,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7626,
+        "norm_v": 0.6639
+      }
+    ]
+  },
+  {
+    "sample_id": "d0146",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_a76bc331d2b9.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5657,
+    "norm_v": 0.5938,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5657,
+        "norm_v": 0.5938
+      }
+    ]
+  },
+  {
+    "sample_id": "d0147",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_0957ff4c594f.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6193,
+    "norm_v": 0.1001,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6193,
+        "norm_v": 0.1001
+      }
+    ]
+  },
+  {
+    "sample_id": "d0148",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_51d13e072e0a.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.3499,
+    "norm_v": 0.4308,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.3499,
+        "norm_v": 0.4308
+      }
+    ]
+  },
+  {
+    "sample_id": "d0149",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_56a176bd3dc1.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.1699,
+    "norm_v": 0.5987,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.1699,
+        "norm_v": 0.5987
+      }
+    ]
+  },
+  {
+    "sample_id": "d0150",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_6feff8867d6a.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7071,
+    "norm_v": 0.3228,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7071,
+        "norm_v": 0.3228
+      }
+    ]
+  },
+  {
+    "sample_id": "d0151",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_813dcccc95b9.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.1673,
+    "norm_v": 0.4718,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.1673,
+        "norm_v": 0.4718
+      }
+    ]
+  },
+  {
+    "sample_id": "d0152",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_2121aca76b09.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3016,
+    "norm_v": 0.5231,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3016,
+        "norm_v": 0.5231
+      }
+    ]
+  },
+  {
+    "sample_id": "d0153",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_8548db11fbe4.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1622,
+    "norm_v": 0.1208,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1622,
+        "norm_v": 0.1208
+      }
+    ]
+  },
+  {
+    "sample_id": "d0154",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_a4690cda307f.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.2271,
+    "norm_v": 0.6162,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.2271,
+        "norm_v": 0.6162
+      }
+    ]
+  },
+  {
+    "sample_id": "d0155",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_a5d84d5cbe8b.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6651,
+    "norm_v": 0.4907,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6651,
+        "norm_v": 0.4907
+      }
+    ]
+  },
+  {
+    "sample_id": "d0156",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_3f3e04d8ab5d.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.7358,
+    "norm_v": 0.3046,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.7358,
+        "norm_v": 0.3046
+      }
+    ]
+  },
+  {
+    "sample_id": "d0157",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_0ff80ea631e7.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.5849,
+    "norm_v": 0.3243,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.5849,
+        "norm_v": 0.3243
+      }
+    ]
+  },
+  {
+    "sample_id": "d0158",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_0ce812bf2447.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.1971,
+    "norm_v": 0.5513,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.1971,
+        "norm_v": 0.5513
+      }
+    ]
+  },
+  {
+    "sample_id": "d0159",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_079f9b469627.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.1447,
+    "norm_v": 0.4581,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.1447,
+        "norm_v": 0.4581
+      }
+    ]
+  },
+  {
+    "sample_id": "d0160",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_d29939724d1b.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.3662,
+    "norm_v": 0.506,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.3662,
+        "norm_v": 0.506
+      }
+    ]
+  },
+  {
+    "sample_id": "d0161",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_b337d492a642.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.3835,
+    "norm_v": 0.3224,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.3835,
+        "norm_v": 0.3224
+      }
+    ]
+  },
+  {
+    "sample_id": "d0162",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_bf8e30ac3d69.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.2044,
+    "norm_v": 0.1349,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.2044,
+        "norm_v": 0.1349
+      }
+    ]
+  },
+  {
+    "sample_id": "d0163",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_b802a15ea75c.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5869,
+    "norm_v": 0.6417,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5869,
+        "norm_v": 0.6417
+      }
+    ]
+  },
+  {
+    "sample_id": "d0164",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_b4d76349980a.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.2145,
+    "norm_v": 0.4959,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.2145,
+        "norm_v": 0.4959
+      }
+    ]
+  },
+  {
+    "sample_id": "d0165",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_7bcc6985980c.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.7193,
+    "norm_v": 0.1737,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.7193,
+        "norm_v": 0.1737
+      }
+    ]
+  },
+  {
+    "sample_id": "d0166",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_b20d47afdefd.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7275,
+    "norm_v": 0.6318,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7275,
+        "norm_v": 0.6318
+      }
+    ]
+  },
+  {
+    "sample_id": "d0167",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_f0d00eb7ab7c.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.8477,
+    "norm_v": 0.6704,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.8477,
+        "norm_v": 0.6704
+      }
+    ]
+  },
+  {
+    "sample_id": "d0168",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_2c766f2bc028.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.5144,
+    "norm_v": 0.5556,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.5144,
+        "norm_v": 0.5556
+      }
+    ]
+  },
+  {
+    "sample_id": "d0169",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_40e25994d954.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.149,
+    "norm_v": 0.3274,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.149,
+        "norm_v": 0.3274
+      }
+    ]
+  },
+  {
+    "sample_id": "d0170",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_6407be2621d2.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.695,
+    "norm_v": 0.3642,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.695,
+        "norm_v": 0.3642
+      }
+    ]
+  },
+  {
+    "sample_id": "d0171",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_f620cd3ea35a.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.1773,
+    "norm_v": 0.1259,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.1773,
+        "norm_v": 0.1259
+      }
+    ]
+  },
+  {
+    "sample_id": "d0172",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_0ec28a7320fe.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4895,
+    "norm_v": 0.6226,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4895,
+        "norm_v": 0.6226
+      }
+    ]
+  },
+  {
+    "sample_id": "d0173",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_8ee641291889.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.6265,
+    "norm_v": 0.4316,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.6265,
+        "norm_v": 0.4316
+      }
+    ]
+  },
+  {
+    "sample_id": "d0174",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_590192d7c82c.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.2945,
+    "norm_v": 0.5503,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.2945,
+        "norm_v": 0.5503
+      }
+    ]
+  },
+  {
+    "sample_id": "d0175",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_e4ef896bc8e1.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6509,
+    "norm_v": 0.3437,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6509,
+        "norm_v": 0.3437
+      }
+    ]
+  },
+  {
+    "sample_id": "d0176",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_4f460f6ecf1d.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8386,
+    "norm_v": 0.1845,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8386,
+        "norm_v": 0.1845
+      }
+    ]
+  },
+  {
+    "sample_id": "d0177",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_d35c14fff0c9.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.4408,
+    "norm_v": 0.1487,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.4408,
+        "norm_v": 0.1487
+      }
+    ]
+  },
+  {
+    "sample_id": "d0178",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_240eb2000e72.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.4359,
+    "norm_v": 0.1575,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.4359,
+        "norm_v": 0.1575
+      }
+    ]
+  },
+  {
+    "sample_id": "d0179",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_d41019290cf2.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2387,
+    "norm_v": 0.6536,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2387,
+        "norm_v": 0.6536
+      }
+    ]
+  },
+  {
+    "sample_id": "d0180",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_afdc9562fdbf.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4476,
+    "norm_v": 0.3419,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4476,
+        "norm_v": 0.3419
+      }
+    ]
+  },
+  {
+    "sample_id": "d0181",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_c4012bf04c7b.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.8187,
+    "norm_v": 0.6581,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.8187,
+        "norm_v": 0.6581
+      }
+    ]
+  },
+  {
+    "sample_id": "d0182",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_c9ba0d5c6820.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.312,
+    "norm_v": 0.3045,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.312,
+        "norm_v": 0.3045
+      }
+    ]
+  },
+  {
+    "sample_id": "d0183",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_32dd1deac4b7.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.393,
+    "norm_v": 0.117,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.393,
+        "norm_v": 0.117
+      }
+    ]
+  },
+  {
+    "sample_id": "d0184",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_a0aea4826ba8.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.2552,
+    "norm_v": 0.5816,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.2552,
+        "norm_v": 0.5816
+      }
+    ]
+  },
+  {
+    "sample_id": "d0185",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_3b31ee0753f8.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7424,
+    "norm_v": 0.1409,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7424,
+        "norm_v": 0.1409
+      }
+    ]
+  },
+  {
+    "sample_id": "d0186",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_358a8aec988e.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.2781,
+    "norm_v": 0.2188,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.2781,
+        "norm_v": 0.2188
+      }
+    ]
+  },
+  {
+    "sample_id": "d0187",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_e37987d278e3.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6764,
+    "norm_v": 0.6225,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6764,
+        "norm_v": 0.6225
+      }
+    ]
+  },
+  {
+    "sample_id": "d0188",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_cdb5c20315be.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.1255,
+    "norm_v": 0.3141,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.1255,
+        "norm_v": 0.3141
+      }
+    ]
+  },
+  {
+    "sample_id": "d0189",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_0afbc5d30925.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.8289,
+    "norm_v": 0.2351,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.8289,
+        "norm_v": 0.2351
+      }
+    ]
+  },
+  {
+    "sample_id": "d0190",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_38114f3c488c.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.2621,
+    "norm_v": 0.1652,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.2621,
+        "norm_v": 0.1652
+      }
+    ]
+  },
+  {
+    "sample_id": "d0191",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_5fba23f00bd1.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6577,
+    "norm_v": 0.2498,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6577,
+        "norm_v": 0.2498
+      }
+    ]
+  },
+  {
+    "sample_id": "d0192",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_0c981f6825ba.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8546,
+    "norm_v": 0.3101,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8546,
+        "norm_v": 0.3101
+      }
+    ]
+  },
+  {
+    "sample_id": "d0193",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_d754ca7b5baf.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.8503,
+    "norm_v": 0.2719,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.8503,
+        "norm_v": 0.2719
+      }
+    ]
+  },
+  {
+    "sample_id": "d0194",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_f23e7e2d96d6.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.8482,
+    "norm_v": 0.4688,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.8482,
+        "norm_v": 0.4688
+      }
+    ]
+  },
+  {
+    "sample_id": "d0195",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_43f6a83e9f29.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5707,
+    "norm_v": 0.1469,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5707,
+        "norm_v": 0.1469
+      }
+    ]
+  },
+  {
+    "sample_id": "d0196",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_b3dc9ec9c609.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5614,
+    "norm_v": 0.1907,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5614,
+        "norm_v": 0.1907
+      }
+    ]
+  },
+  {
+    "sample_id": "d0197",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_f39661bf4734.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.2317,
+    "norm_v": 0.1726,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.2317,
+        "norm_v": 0.1726
+      }
+    ]
+  },
+  {
+    "sample_id": "d0198",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_58004e4b95b4.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.3601,
+    "norm_v": 0.2408,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.3601,
+        "norm_v": 0.2408
+      }
+    ]
+  },
+  {
+    "sample_id": "d0199",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_487593205dbe.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.3412,
+    "norm_v": 0.3435,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.3412,
+        "norm_v": 0.3435
+      }
+    ]
+  },
+  {
+    "sample_id": "d0200",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_0c02fd0be0d9.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.7743,
+    "norm_v": 0.4487,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.7743,
+        "norm_v": 0.4487
+      }
+    ]
+  },
+  {
+    "sample_id": "d0201",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_a3c85f713712.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1792,
+    "norm_v": 0.1425,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1792,
+        "norm_v": 0.1425
+      }
+    ]
+  },
+  {
+    "sample_id": "d0202",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_c01e046fb1f1.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3475,
+    "norm_v": 0.3417,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3475,
+        "norm_v": 0.3417
+      }
+    ]
+  },
+  {
+    "sample_id": "d0203",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_ff3f359b1033.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2281,
+    "norm_v": 0.3449,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2281,
+        "norm_v": 0.3449
+      }
+    ]
+  },
+  {
+    "sample_id": "d0204",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_eee17e404171.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.3895,
+    "norm_v": 0.2439,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.3895,
+        "norm_v": 0.2439
+      }
+    ]
+  },
+  {
+    "sample_id": "d0205",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_d40b48dd07b3.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.4006,
+    "norm_v": 0.6504,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.4006,
+        "norm_v": 0.6504
+      }
+    ]
+  },
+  {
+    "sample_id": "d0206",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_0ee5bc8a74f3.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.4061,
+    "norm_v": 0.1049,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.4061,
+        "norm_v": 0.1049
+      }
+    ]
+  },
+  {
+    "sample_id": "d0207",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_7f3e6b17bd17.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.4554,
+    "norm_v": 0.3155,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.4554,
+        "norm_v": 0.3155
+      }
+    ]
+  },
+  {
+    "sample_id": "d0208",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_b99a53927099.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.1892,
+    "norm_v": 0.2076,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.1892,
+        "norm_v": 0.2076
+      }
+    ]
+  },
+  {
+    "sample_id": "d0209",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_1e5764f0383f.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.3305,
+    "norm_v": 0.4237,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.3305,
+        "norm_v": 0.4237
+      }
+    ]
+  },
+  {
+    "sample_id": "d0210",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_405d2f00d5ef.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.7247,
+    "norm_v": 0.3588,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.7247,
+        "norm_v": 0.3588
+      }
+    ]
+  },
+  {
+    "sample_id": "d0211",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_b706e9941ea3.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2609,
+    "norm_v": 0.3446,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2609,
+        "norm_v": 0.3446
+      }
+    ]
+  },
+  {
+    "sample_id": "d0212",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_2d709c162ba3.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.3084,
+    "norm_v": 0.363,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.3084,
+        "norm_v": 0.363
+      }
+    ]
+  },
+  {
+    "sample_id": "d0213",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_c40dd020536c.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.2284,
+    "norm_v": 0.3682,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.2284,
+        "norm_v": 0.3682
+      }
+    ]
+  },
+  {
+    "sample_id": "d0214",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_d632e8db527b.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.1857,
+    "norm_v": 0.5379,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.1857,
+        "norm_v": 0.5379
+      }
+    ]
+  },
+  {
+    "sample_id": "d0215",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_500388eecda2.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.1214,
+    "norm_v": 0.5054,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.1214,
+        "norm_v": 0.5054
+      }
+    ]
+  },
+  {
+    "sample_id": "d0216",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_f08f94087f3d.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.4711,
+    "norm_v": 0.2269,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.4711,
+        "norm_v": 0.2269
+      }
+    ]
+  },
+  {
+    "sample_id": "d0217",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_2d440a57e378.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7042,
+    "norm_v": 0.4648,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7042,
+        "norm_v": 0.4648
+      }
+    ]
+  },
+  {
+    "sample_id": "d0218",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_95deb2e10313.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.583,
+    "norm_v": 0.346,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.583,
+        "norm_v": 0.346
+      }
+    ]
+  },
+  {
+    "sample_id": "d0219",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_c2b7e92180e8.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.1903,
+    "norm_v": 0.3887,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.1903,
+        "norm_v": 0.3887
+      }
+    ]
+  },
+  {
+    "sample_id": "d0220",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_6791f5899e9b.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5332,
+    "norm_v": 0.3351,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5332,
+        "norm_v": 0.3351
+      }
+    ]
+  },
+  {
+    "sample_id": "d0221",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_aab6236ccc01.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.8679,
+    "norm_v": 0.1701,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.8679,
+        "norm_v": 0.1701
+      }
+    ]
+  },
+  {
+    "sample_id": "d0222",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_faeed6a55bd4.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.1508,
+    "norm_v": 0.2488,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.1508,
+        "norm_v": 0.2488
+      }
+    ]
+  },
+  {
+    "sample_id": "d0223",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_b105b7a2b055.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.7968,
+    "norm_v": 0.5118,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.7968,
+        "norm_v": 0.5118
+      }
+    ]
+  },
+  {
+    "sample_id": "d0224",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_78bd88b683f6.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.1975,
+    "norm_v": 0.2465,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.1975,
+        "norm_v": 0.2465
+      }
+    ]
+  },
+  {
+    "sample_id": "d0225",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_6df2867dccf2.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.7822,
+    "norm_v": 0.4901,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.7822,
+        "norm_v": 0.4901
+      }
+    ]
+  },
+  {
+    "sample_id": "d0226",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_4cf72085fd4c.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5725,
+    "norm_v": 0.1206,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5725,
+        "norm_v": 0.1206
+      }
+    ]
+  },
+  {
+    "sample_id": "d0227",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_de3852fffc31.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.3195,
+    "norm_v": 0.4095,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.3195,
+        "norm_v": 0.4095
+      }
+    ]
+  },
+  {
+    "sample_id": "d0228",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_31aed1e55847.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5229,
+    "norm_v": 0.2444,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5229,
+        "norm_v": 0.2444
+      }
+    ]
+  },
+  {
+    "sample_id": "d0229",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_47d5e0672450.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.1718,
+    "norm_v": 0.5993,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.1718,
+        "norm_v": 0.5993
+      }
+    ]
+  },
+  {
+    "sample_id": "d0230",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_4912b45b2b4e.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.5151,
+    "norm_v": 0.4329,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.5151,
+        "norm_v": 0.4329
+      }
+    ]
+  },
+  {
+    "sample_id": "d0231",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_eb1ca72aa746.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.2798,
+    "norm_v": 0.1611,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.2798,
+        "norm_v": 0.1611
+      }
+    ]
+  },
+  {
+    "sample_id": "d0232",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_d4d09fdf29f5.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.5331,
+    "norm_v": 0.53,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.5331,
+        "norm_v": 0.53
+      }
+    ]
+  },
+  {
+    "sample_id": "d0233",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_f59ac0944b78.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.719,
+    "norm_v": 0.2695,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.719,
+        "norm_v": 0.2695
+      }
+    ]
+  },
+  {
+    "sample_id": "d0234",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_94e8ef26a338.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5519,
+    "norm_v": 0.1799,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5519,
+        "norm_v": 0.1799
+      }
+    ]
+  },
+  {
+    "sample_id": "d0235",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_304c052ef451.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6497,
+    "norm_v": 0.3212,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6497,
+        "norm_v": 0.3212
+      }
+    ]
+  },
+  {
+    "sample_id": "d0236",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_a1c4090177f9.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4756,
+    "norm_v": 0.4246,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4756,
+        "norm_v": 0.4246
+      }
+    ]
+  },
+  {
+    "sample_id": "d0237",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_7cd5b760d086.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.3891,
+    "norm_v": 0.3741,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.3891,
+        "norm_v": 0.3741
+      }
+    ]
+  },
+  {
+    "sample_id": "d0238",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_be04ea99d7e1.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.2857,
+    "norm_v": 0.3835,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.2857,
+        "norm_v": 0.3835
+      }
+    ]
+  },
+  {
+    "sample_id": "d0239",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_86377188ec80.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.3619,
+    "norm_v": 0.4782,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.3619,
+        "norm_v": 0.4782
+      }
+    ]
+  },
+  {
+    "sample_id": "d0240",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_15912dd27f33.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.4574,
+    "norm_v": 0.1828,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.4574,
+        "norm_v": 0.1828
+      }
+    ]
+  },
+  {
+    "sample_id": "d0241",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_a658a8ec0519.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1598,
+    "norm_v": 0.4603,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1598,
+        "norm_v": 0.4603
+      }
+    ]
+  },
+  {
+    "sample_id": "d0242",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_065d78dba21e.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3901,
+    "norm_v": 0.3268,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3901,
+        "norm_v": 0.3268
+      }
+    ]
+  },
+  {
+    "sample_id": "d0243",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_05d8e22bae2e.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.7631,
+    "norm_v": 0.6678,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.7631,
+        "norm_v": 0.6678
+      }
+    ]
+  },
+  {
+    "sample_id": "d0244",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_1fa555fbed70.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.6416,
+    "norm_v": 0.5303,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.6416,
+        "norm_v": 0.5303
+      }
+    ]
+  },
+  {
+    "sample_id": "d0245",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_baa9953d69e7.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.4203,
+    "norm_v": 0.3095,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.4203,
+        "norm_v": 0.3095
+      }
+    ]
+  },
+  {
+    "sample_id": "d0246",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_30cdaabcba33.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.5919,
+    "norm_v": 0.6798,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.5919,
+        "norm_v": 0.6798
+      }
+    ]
+  },
+  {
+    "sample_id": "d0247",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_84f78ebc16e8.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6726,
+    "norm_v": 0.2315,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6726,
+        "norm_v": 0.2315
+      }
+    ]
+  },
+  {
+    "sample_id": "d0248",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_cc446af4d8c2.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.5554,
+    "norm_v": 0.2109,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.5554,
+        "norm_v": 0.2109
+      }
+    ]
+  },
+  {
+    "sample_id": "d0249",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_a12b4fcd0623.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.4703,
+    "norm_v": 0.2915,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.4703,
+        "norm_v": 0.2915
+      }
+    ]
+  },
+  {
+    "sample_id": "d0250",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_3a472f8d29ab.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3713,
+    "norm_v": 0.4758,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3713,
+        "norm_v": 0.4758
+      }
+    ]
+  },
+  {
+    "sample_id": "d0251",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_bd5be6676dbc.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.4508,
+    "norm_v": 0.3594,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.4508,
+        "norm_v": 0.3594
+      }
+    ]
+  },
+  {
+    "sample_id": "d0252",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_3a620ee51468.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5184,
+    "norm_v": 0.1749,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5184,
+        "norm_v": 0.1749
+      }
+    ]
+  },
+  {
+    "sample_id": "d0253",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_496f5fa787e4.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.4575,
+    "norm_v": 0.5578,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.4575,
+        "norm_v": 0.5578
+      }
+    ]
+  },
+  {
+    "sample_id": "d0254",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_6b207d5afde8.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.4447,
+    "norm_v": 0.3853,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.4447,
+        "norm_v": 0.3853
+      }
+    ]
+  },
+  {
+    "sample_id": "d0255",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_5aea87c2ed96.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.7246,
+    "norm_v": 0.3548,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.7246,
+        "norm_v": 0.3548
+      }
+    ]
+  },
+  {
+    "sample_id": "d0256",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_5b98e1710688.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.5658,
+    "norm_v": 0.1289,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.5658,
+        "norm_v": 0.1289
+      }
+    ]
+  },
+  {
+    "sample_id": "d0257",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_66fa5f98147b.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1453,
+    "norm_v": 0.4672,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1453,
+        "norm_v": 0.4672
+      }
+    ]
+  },
+  {
+    "sample_id": "d0258",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_451da80a89c6.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3963,
+    "norm_v": 0.531,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3963,
+        "norm_v": 0.531
+      }
+    ]
+  },
+  {
+    "sample_id": "d0259",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_e47e9db9c8c3.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2518,
+    "norm_v": 0.4543,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2518,
+        "norm_v": 0.4543
+      }
+    ]
+  },
+  {
+    "sample_id": "d0260",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_a9e073ab2353.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.1858,
+    "norm_v": 0.6039,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.1858,
+        "norm_v": 0.6039
+      }
+    ]
+  },
+  {
+    "sample_id": "d0261",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_6e7782c4f888.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.7063,
+    "norm_v": 0.6121,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.7063,
+        "norm_v": 0.6121
+      }
+    ]
+  },
+  {
+    "sample_id": "d0262",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_a1b7eec5e64e.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.4683,
+    "norm_v": 0.4665,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.4683,
+        "norm_v": 0.4665
+      }
+    ]
+  },
+  {
+    "sample_id": "d0263",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_8dbf84bf9fa5.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.6259,
+    "norm_v": 0.4761,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.6259,
+        "norm_v": 0.4761
+      }
+    ]
+  },
+  {
+    "sample_id": "d0264",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_e1b69725487f.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.8266,
+    "norm_v": 0.6418,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.8266,
+        "norm_v": 0.6418
+      }
+    ]
+  },
+  {
+    "sample_id": "d0265",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_d01ac231c764.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.4926,
+    "norm_v": 0.5084,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.4926,
+        "norm_v": 0.5084
+      }
+    ]
+  },
+  {
+    "sample_id": "d0266",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_37cede6bb21a.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.3763,
+    "norm_v": 0.1245,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.3763,
+        "norm_v": 0.1245
+      }
+    ]
+  },
+  {
+    "sample_id": "d0267",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_12f8a13a7633.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2438,
+    "norm_v": 0.1022,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2438,
+        "norm_v": 0.1022
+      }
+    ]
+  },
+  {
+    "sample_id": "d0268",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_dd62d61fcdb1.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.1254,
+    "norm_v": 0.1369,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.1254,
+        "norm_v": 0.1369
+      }
+    ]
+  },
+  {
+    "sample_id": "d0269",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_73aa64310b1d.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.6372,
+    "norm_v": 0.663,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.6372,
+        "norm_v": 0.663
+      }
+    ]
+  },
+  {
+    "sample_id": "d0270",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_9daf4602daf2.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.5439,
+    "norm_v": 0.2282,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.5439,
+        "norm_v": 0.2282
+      }
+    ]
+  },
+  {
+    "sample_id": "d0271",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_4b8e028289f5.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.378,
+    "norm_v": 0.1594,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.378,
+        "norm_v": 0.1594
+      }
+    ]
+  },
+  {
+    "sample_id": "d0272",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_f812c2831e38.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.1851,
+    "norm_v": 0.285,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.1851,
+        "norm_v": 0.285
+      }
+    ]
+  },
+  {
+    "sample_id": "d0273",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_ddb5a10bbe85.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.4664,
+    "norm_v": 0.2886,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.4664,
+        "norm_v": 0.2886
+      }
+    ]
+  },
+  {
+    "sample_id": "d0274",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_0d7aaaedb7b8.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.5167,
+    "norm_v": 0.2103,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.5167,
+        "norm_v": 0.2103
+      }
+    ]
+  },
+  {
+    "sample_id": "d0275",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_14b3048b1978.jpg",
+    "time_of_day": "dawn",
+    "weather": "clear",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.2793,
+    "norm_v": 0.4042,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.2793,
+        "norm_v": 0.4042
+      }
+    ]
+  },
+  {
+    "sample_id": "d0276",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_4596b4860454.jpg",
+    "time_of_day": "morning",
+    "weather": "clear",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.7563,
+    "norm_v": 0.2457,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.7563,
+        "norm_v": 0.2457
+      }
+    ]
+  },
+  {
+    "sample_id": "d0277",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_f545dd281c9d.jpg",
+    "time_of_day": "afternoon",
+    "weather": "clear",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.6791,
+    "norm_v": 0.2811,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.6791,
+        "norm_v": 0.2811
+      }
+    ]
+  },
+  {
+    "sample_id": "d0278",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_e9925b0142ac.jpg",
+    "time_of_day": "dusk",
+    "weather": "clear",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.4124,
+    "norm_v": 0.3796,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.4124,
+        "norm_v": 0.3796
+      }
+    ]
+  },
+  {
+    "sample_id": "d0279",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_5f4c5e8c9b82.jpg",
+    "time_of_day": "night",
+    "weather": "clear",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.1538,
+    "norm_v": 0.6418,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.1538,
+        "norm_v": 0.6418
+      }
+    ]
+  },
+  {
+    "sample_id": "d0280",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_1bc93c7cda8d.jpg",
+    "time_of_day": "dawn",
+    "weather": "cloudy",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.127,
+    "norm_v": 0.3873,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.127,
+        "norm_v": 0.3873
+      }
+    ]
+  },
+  {
+    "sample_id": "d0281",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_77f1bdc799bb.jpg",
+    "time_of_day": "morning",
+    "weather": "cloudy",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.1561,
+    "norm_v": 0.5692,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.1561,
+        "norm_v": 0.5692
+      }
+    ]
+  },
+  {
+    "sample_id": "d0282",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_cce342eee1c4.jpg",
+    "time_of_day": "afternoon",
+    "weather": "cloudy",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.47,
+    "norm_v": 0.1685,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.47,
+        "norm_v": 0.1685
+      }
+    ]
+  },
+  {
+    "sample_id": "d0283",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_234cb98b11f7.jpg",
+    "time_of_day": "dusk",
+    "weather": "cloudy",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.3033,
+    "norm_v": 0.5792,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.3033,
+        "norm_v": 0.5792
+      }
+    ]
+  },
+  {
+    "sample_id": "d0284",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_27fb1341cb76.jpg",
+    "time_of_day": "night",
+    "weather": "cloudy",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.4346,
+    "norm_v": 0.6332,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.4346,
+        "norm_v": 0.6332
+      }
+    ]
+  },
+  {
+    "sample_id": "d0285",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_a3b3624f1d69.jpg",
+    "time_of_day": "dawn",
+    "weather": "rain",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.5857,
+    "norm_v": 0.5744,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.5857,
+        "norm_v": 0.5744
+      }
+    ]
+  },
+  {
+    "sample_id": "d0286",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_bc3b358f5124.jpg",
+    "time_of_day": "morning",
+    "weather": "rain",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.6937,
+    "norm_v": 0.581,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.6937,
+        "norm_v": 0.581
+      }
+    ]
+  },
+  {
+    "sample_id": "d0287",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_0979403e20b5.jpg",
+    "time_of_day": "afternoon",
+    "weather": "rain",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.8488,
+    "norm_v": 0.2448,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.8488,
+        "norm_v": 0.2448
+      }
+    ]
+  },
+  {
+    "sample_id": "d0288",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_569ca4063b0d.jpg",
+    "time_of_day": "dusk",
+    "weather": "rain",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.2173,
+    "norm_v": 0.6052,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.2173,
+        "norm_v": 0.6052
+      }
+    ]
+  },
+  {
+    "sample_id": "d0289",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_8a118f46729d.jpg",
+    "time_of_day": "night",
+    "weather": "rain",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.3629,
+    "norm_v": 0.3522,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.3629,
+        "norm_v": 0.3522
+      }
+    ]
+  },
+  {
+    "sample_id": "d0290",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_98806d436b68.jpg",
+    "time_of_day": "dawn",
+    "weather": "fog",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.8037,
+    "norm_v": 0.4538,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.8037,
+        "norm_v": 0.4538
+      }
+    ]
+  },
+  {
+    "sample_id": "d0291",
+    "scene": "rural",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/rural/bg_53ed5106d5c1.jpg",
+    "time_of_day": "morning",
+    "weather": "fog",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.6604,
+    "norm_v": 0.5509,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.6604,
+        "norm_v": 0.5509
+      }
+    ]
+  },
+  {
+    "sample_id": "d0292",
+    "scene": "forest",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/forest/bg_e93defb6f538.jpg",
+    "time_of_day": "afternoon",
+    "weather": "fog",
+    "distance": 95,
+    "action": "hover",
+    "norm_u": 0.5795,
+    "norm_v": 0.411,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 95,
+        "norm_u": 0.5795,
+        "norm_v": 0.411
+      }
+    ]
+  },
+  {
+    "sample_id": "d0293",
+    "scene": "mountain",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/mountain/bg_4419b55a04f9.jpg",
+    "time_of_day": "dusk",
+    "weather": "fog",
+    "distance": 180,
+    "action": "hover",
+    "norm_u": 0.3271,
+    "norm_v": 0.1096,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 180,
+        "norm_u": 0.3271,
+        "norm_v": 0.1096
+      }
+    ]
+  },
+  {
+    "sample_id": "d0294",
+    "scene": "desert",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/desert/bg_e6461fe1c823.jpg",
+    "time_of_day": "night",
+    "weather": "fog",
+    "distance": 55,
+    "action": "hover",
+    "norm_u": 0.7155,
+    "norm_v": 0.1574,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 55,
+        "norm_u": 0.7155,
+        "norm_v": 0.1574
+      }
+    ]
+  },
+  {
+    "sample_id": "d0295",
+    "scene": "industrial",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/industrial/bg_f70b3e0130bc.jpg",
+    "time_of_day": "dawn",
+    "weather": "haze",
+    "distance": 120,
+    "action": "hover",
+    "norm_u": 0.4351,
+    "norm_v": 0.2265,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 120,
+        "norm_u": 0.4351,
+        "norm_v": 0.2265
+      }
+    ]
+  },
+  {
+    "sample_id": "d0296",
+    "scene": "airfield",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/airfield/bg_eedc0265d974.jpg",
+    "time_of_day": "morning",
+    "weather": "haze",
+    "distance": 30,
+    "action": "hover",
+    "norm_u": 0.6794,
+    "norm_v": 0.4826,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 30,
+        "norm_u": 0.6794,
+        "norm_v": 0.4826
+      }
+    ]
+  },
+  {
+    "sample_id": "d0297",
+    "scene": "pure_sky",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/pure_sky/bg_c870604dcf5c.jpg",
+    "time_of_day": "afternoon",
+    "weather": "haze",
+    "distance": 75,
+    "action": "hover",
+    "norm_u": 0.4455,
+    "norm_v": 0.1289,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 75,
+        "norm_u": 0.4455,
+        "norm_v": 0.1289
+      }
+    ]
+  },
+  {
+    "sample_id": "d0298",
+    "scene": "coastal",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/coastal/bg_97159c48282f.jpg",
+    "time_of_day": "dusk",
+    "weather": "haze",
+    "distance": 150,
+    "action": "hover",
+    "norm_u": 0.6103,
+    "norm_v": 0.1686,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 150,
+        "norm_u": 0.6103,
+        "norm_v": 0.1686
+      }
+    ]
+  },
+  {
+    "sample_id": "d0299",
+    "scene": "urban",
+    "background": "/mnt/d/learning/ObsidianVault/Paper-\u4f4e\u6162\u5c0f\u6570\u636e\u96c6\u751f\u6210\u67b6\u6784/1-background-pool/curated_backgrounds/urban/bg_ce250a820921.jpg",
+    "time_of_day": "night",
+    "weather": "haze",
+    "distance": 40,
+    "action": "hover",
+    "norm_u": 0.5491,
+    "norm_v": 0.2331,
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "hover",
+        "distance": 40,
+        "norm_u": 0.5491,
+        "norm_v": 0.2331
+      }
+    ]
+  }
+]

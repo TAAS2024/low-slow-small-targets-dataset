@@ -33,14 +33,20 @@ import torch
 
 # ── 路径配置 ──────────────────────────────────────────────
 HERE = Path(__file__).resolve().parent
-OUTPUT_DIR = HERE / "output_images"
-OUTPUT_DIR.mkdir(exist_ok=True)
+sys.path.insert(0, str(HERE.parent))  # → 0-workspace
+from lss_paths import WORKSPACE, PROJECT_ROOT, OUTPUT_DIR  # noqa: E402
 
-PROJECT_ROOT = HERE.parent
+# ── 加载 IR 转换器 ────────────────────────────────────────
+# 兼容两种目录布局（追加搜索，只加真实存在的路径）：
+#   归档   0-workspace/generator/rgb2ir_converter.py
+#   原项目 ../2-Lora training/
+_LAYOUT_DIRS = (WORKSPACE / "generator",
+                PROJECT_ROOT / "2-Lora training")
+for _d in _LAYOUT_DIRS:
+    if _d.is_dir() and str(_d) not in sys.path:
+        sys.path.insert(0, str(_d))
+del _d
 
-# ── 加载 IR 转换器（归档结构：generator/）───────────────────
-sys.path.insert(0, str(PROJECT_ROOT / "generator"))
-from rgb2ir_converter import rgb_to_whitehot
 
 # 语义分割颜色表（与 ControlNet seg 兼容）
 SEG_COLORS = {
@@ -65,7 +71,19 @@ def _get_midas():
     global _detector
     if _detector is None:
         from controlnet_aux import MidasDetector
-        _detector = MidasDetector.from_pretrained("lllyasviel/Annotators")
+        # v7.3: 深度估计器不应硬依赖网络。原实现无条件联网（HEAD 查 revision），
+        #   在 proxy 未启动 / hf-mirror 抖动时会先空转 5 次重试（~23s）再抛
+        #   ConnectionError，直接崩掉整条生成管线（实测 2026-10-05：/api/parse
+        #   只回一张背景图，十槽位空 9 个，前端表现为「只有背景」）。
+        #   改为 local_files_only 优先：命中缓存时零网络、启动更快、模型版本可复现
+        #   （研究产物应固定权重而非跟随上游更新）；未命中再联网（仅首次部署）。
+        try:
+            _detector = MidasDetector.from_pretrained(
+                "lllyasviel/Annotators", local_files_only=True)
+        except Exception as _e:
+            print(f"  \u26a0 MidasDetector 本地缓存未命中"
+                  f"（{type(_e).__name__}），联网下载 ...", flush=True)
+            _detector = MidasDetector.from_pretrained("lllyasviel/Annotators")
     return _detector
 
 
@@ -176,7 +194,10 @@ def _get_inpainter():
         if not hasattr(transformers.utils, 'FLAX_WEIGHTS_NAME'):
             transformers.utils.FLAX_WEIGHTS_NAME = 'flax_model.msgpack'
 
-        sys.path.insert(0, str(PROJECT_ROOT / "generator"))
+        for _d in _LAYOUT_DIRS:
+            if _d.is_dir() and str(_d) not in sys.path:
+                sys.path.insert(0, str(_d))
+
         from lora_inpainter_v7 import LoraInpainterV7
         _inpainter = LoraInpainterV7()
         _inpainter.load()
@@ -501,12 +522,38 @@ def focus_reposition(bg_path: str, drone_rgba_path: str,
 # 离线 Demo
 # ═══════════════════════════════════════════════════════════
 
+
+# ─────────────────────────────────────────────────────────────
+# v7.2 并发保护
+#   Flask app.run() 默认 threaded=True：两个请求会同时进入同一个 GPU
+#   管线（首次调用还会并发触发模型加载），轻则显存翻倍 OOM，重则
+#   CUDA 上下文报错。这里把重资产入口串行化；用 RLock 保证内部
+#   互相调用（focus_reposition → generate_with_lora）不会自锁死。
+# ─────────────────────────────────────────────────────────────
+import functools as _functools
+import threading as _threading
+
+_PIPE_LOCK = _threading.RLock()
+
+
+def _serialized(_fn):
+    @_functools.wraps(_fn)
+    def _wrapper(*a, **kw):
+        with _PIPE_LOCK:
+            return _fn(*a, **kw)
+    return _wrapper
+
+
+for _name in ("generate_with_lora", "focus_reposition"):
+    if callable(globals().get(_name)):
+        globals()[_name] = _serialized(globals()[_name])
+del _name
+
 if __name__ == "__main__":
     import json
 
-    BG_PATH = str(PROJECT_ROOT /
-                  "1-background-pool/curated_backgrounds/pure_sky/"
-                  "bg_00070a0c1b49.jpg")
+    from lss_paths import POOL_ROOT
+    BG_PATH = str(POOL_ROOT / "pure_sky" / "bg_00070a0c1b49.jpg")
 
     SCENES = {
         "scene1_sky_hover": {

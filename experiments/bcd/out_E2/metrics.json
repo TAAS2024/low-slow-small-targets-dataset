@@ -1,0 +1,3040 @@
+{
+  "exp": "E2",
+  "sources": [
+    "out_D",
+    "out_E1_full",
+    "out_E1_paste"
+  ],
+  "n": 302,
+  "brisque_thr": 45.0,
+  "accepted_by_weak": 267,
+  "accepted_by_strong": 161,
+  "accepted_by_both": 158,
+  "agreement_rate": 0.6291,
+  "jaccard": 0.5852,
+  "weak_accept_rate": 0.8841,
+  "strong_accept_rate": 0.5331,
+  "rows": [
+    {
+      "src": "out_D",
+      "sample_id": "d0000",
+      "brisque": 12.43,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0001",
+      "brisque": 27.31,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0002",
+      "brisque": 0.99,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0003",
+      "brisque": 26.31,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0004",
+      "brisque": 20.7,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0005",
+      "brisque": 15.94,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0006",
+      "brisque": 63.23,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0007",
+      "brisque": 14.04,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0008",
+      "brisque": 12.68,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0009",
+      "brisque": 4.79,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0010",
+      "brisque": 40.65,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0011",
+      "brisque": 70.46,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0012",
+      "brisque": 19.67,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0013",
+      "brisque": 2.13,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0014",
+      "brisque": 41.7,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0015",
+      "brisque": 8.6,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0016",
+      "brisque": 22.51,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0017",
+      "brisque": 2.54,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0018",
+      "brisque": 3.85,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0019",
+      "brisque": 3.98,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0020",
+      "brisque": 14.49,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0021",
+      "brisque": 13.61,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0022",
+      "brisque": 0.07,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0023",
+      "brisque": -3.78,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0024",
+      "brisque": 0.25,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0025",
+      "brisque": 31.76,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0026",
+      "brisque": 16.55,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0027",
+      "brisque": 34.93,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0028",
+      "brisque": 67.57,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0029",
+      "brisque": -3.51,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0030",
+      "brisque": 17.74,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0031",
+      "brisque": 20.31,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0032",
+      "brisque": -3.9,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0033",
+      "brisque": -3.73,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0034",
+      "brisque": 20.76,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0035",
+      "brisque": 28.53,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0036",
+      "brisque": 25.4,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0037",
+      "brisque": -9.08,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0038",
+      "brisque": 29.9,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0039",
+      "brisque": 7.91,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0040",
+      "brisque": 43.38,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0041",
+      "brisque": 13.48,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0042",
+      "brisque": 7.0,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0043",
+      "brisque": 12.07,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0044",
+      "brisque": 23.88,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0045",
+      "brisque": 84.41,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0046",
+      "brisque": 6.92,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0047",
+      "brisque": 4.88,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0048",
+      "brisque": 24.27,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0049",
+      "brisque": 9.63,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0050",
+      "brisque": -0.5,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0051",
+      "brisque": 10.67,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0052",
+      "brisque": 20.59,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0053",
+      "brisque": 13.53,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0054",
+      "brisque": 50.94,
+      "brisque_pass": false,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0055",
+      "brisque": 17.91,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0056",
+      "brisque": 19.57,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0057",
+      "brisque": 13.82,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0058",
+      "brisque": 18.7,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0059",
+      "brisque": 26.74,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0060",
+      "brisque": 52.31,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0061",
+      "brisque": 17.34,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0062",
+      "brisque": 53.22,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0063",
+      "brisque": 55.13,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0064",
+      "brisque": 6.57,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0065",
+      "brisque": 18.54,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0066",
+      "brisque": 13.39,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0067",
+      "brisque": 2.82,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0068",
+      "brisque": 39.56,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0069",
+      "brisque": -0.54,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0070",
+      "brisque": 2.17,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0071",
+      "brisque": 102.05,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0072",
+      "brisque": 41.15,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0073",
+      "brisque": 13.4,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0074",
+      "brisque": 27.26,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0075",
+      "brisque": 8.69,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0076",
+      "brisque": 34.89,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0077",
+      "brisque": 27.61,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0078",
+      "brisque": 43.58,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0079",
+      "brisque": 8.26,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0080",
+      "brisque": 9.26,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0081",
+      "brisque": 26.13,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0082",
+      "brisque": 20.44,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0083",
+      "brisque": 30.59,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0084",
+      "brisque": -1.84,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0085",
+      "brisque": 14.67,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0086",
+      "brisque": 3.13,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0087",
+      "brisque": 26.01,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0088",
+      "brisque": 7.82,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0089",
+      "brisque": 10.46,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0090",
+      "brisque": -3.29,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0091",
+      "brisque": 10.56,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0092",
+      "brisque": 3.77,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0093",
+      "brisque": 28.72,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0094",
+      "brisque": 18.53,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0095",
+      "brisque": 1.29,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0096",
+      "brisque": 22.23,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0097",
+      "brisque": 49.25,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0098",
+      "brisque": 4.01,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0099",
+      "brisque": 61.62,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0100",
+      "brisque": 5.86,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0101",
+      "brisque": 11.95,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0102",
+      "brisque": 17.36,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0103",
+      "brisque": 17.0,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0104",
+      "brisque": -3.9,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0105",
+      "brisque": 16.38,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0106",
+      "brisque": 9.2,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0107",
+      "brisque": 16.79,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0108",
+      "brisque": 54.29,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0109",
+      "brisque": 15.72,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0110",
+      "brisque": 19.63,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0111",
+      "brisque": 21.56,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0112",
+      "brisque": -11.13,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0113",
+      "brisque": -3.99,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0114",
+      "brisque": 60.66,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0115",
+      "brisque": 24.65,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0116",
+      "brisque": 68.92,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0117",
+      "brisque": 8.36,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0118",
+      "brisque": 23.87,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0119",
+      "brisque": 5.09,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0120",
+      "brisque": 36.96,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0121",
+      "brisque": 11.77,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0122",
+      "brisque": 58.6,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0123",
+      "brisque": 91.1,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0124",
+      "brisque": 25.3,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0125",
+      "brisque": 5.54,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0126",
+      "brisque": 29.46,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0127",
+      "brisque": 5.41,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0128",
+      "brisque": 21.81,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0129",
+      "brisque": 11.43,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0130",
+      "brisque": 8.05,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0131",
+      "brisque": 11.21,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0132",
+      "brisque": 17.3,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0133",
+      "brisque": 39.31,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0134",
+      "brisque": 9.06,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0135",
+      "brisque": 43.12,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0136",
+      "brisque": 9.14,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0137",
+      "brisque": 11.13,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0138",
+      "brisque": 9.72,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0139",
+      "brisque": 18.46,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0140",
+      "brisque": 0.65,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0141",
+      "brisque": -7.88,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0142",
+      "brisque": 6.9,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0143",
+      "brisque": -1.24,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0144",
+      "brisque": 90.23,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0145",
+      "brisque": 16.85,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0146",
+      "brisque": 38.61,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0147",
+      "brisque": 43.39,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0148",
+      "brisque": 11.77,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0149",
+      "brisque": -3.36,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0150",
+      "brisque": -3.58,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0151",
+      "brisque": 15.4,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0152",
+      "brisque": 18.65,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0153",
+      "brisque": 13.53,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0154",
+      "brisque": 14.5,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0155",
+      "brisque": 23.52,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0156",
+      "brisque": 3.8,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0157",
+      "brisque": 13.57,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0158",
+      "brisque": 9.96,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0159",
+      "brisque": 9.27,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0160",
+      "brisque": 17.53,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0161",
+      "brisque": 10.79,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0162",
+      "brisque": 43.2,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0163",
+      "brisque": 64.8,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0164",
+      "brisque": 16.16,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0165",
+      "brisque": 47.19,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0166",
+      "brisque": 13.18,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0167",
+      "brisque": 10.45,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0168",
+      "brisque": -2.06,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0169",
+      "brisque": 5.37,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0170",
+      "brisque": 12.27,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0171",
+      "brisque": 93.62,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0172",
+      "brisque": 20.04,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0173",
+      "brisque": 14.69,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0174",
+      "brisque": 41.7,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0175",
+      "brisque": 26.42,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0176",
+      "brisque": 55.92,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0177",
+      "brisque": 19.05,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0178",
+      "brisque": 44.06,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0179",
+      "brisque": 34.78,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0180",
+      "brisque": 52.23,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0181",
+      "brisque": 85.88,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0182",
+      "brisque": 29.01,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0183",
+      "brisque": 2.52,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0184",
+      "brisque": 17.02,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0185",
+      "brisque": 7.0,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0186",
+      "brisque": 6.15,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0187",
+      "brisque": 18.99,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0188",
+      "brisque": 7.65,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0189",
+      "brisque": 26.75,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0190",
+      "brisque": 9.73,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0191",
+      "brisque": 14.66,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0192",
+      "brisque": 9.81,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0193",
+      "brisque": 19.4,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0194",
+      "brisque": 4.38,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0195",
+      "brisque": -8.43,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0196",
+      "brisque": 62.41,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0197",
+      "brisque": 17.46,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0198",
+      "brisque": 0.64,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0199",
+      "brisque": 29.77,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0200",
+      "brisque": 8.8,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0201",
+      "brisque": 13.72,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0202",
+      "brisque": 5.41,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0203",
+      "brisque": 11.46,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0204",
+      "brisque": 32.42,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0205",
+      "brisque": 16.1,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0206",
+      "brisque": 16.82,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0207",
+      "brisque": 4.44,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0208",
+      "brisque": 47.49,
+      "brisque_pass": false,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0209",
+      "brisque": 82.05,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0210",
+      "brisque": 17.82,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0211",
+      "brisque": 14.62,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0212",
+      "brisque": 12.83,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0213",
+      "brisque": -3.68,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0214",
+      "brisque": 32.77,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0215",
+      "brisque": 12.83,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0216",
+      "brisque": 85.76,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0217",
+      "brisque": -0.47,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0218",
+      "brisque": 57.5,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0219",
+      "brisque": 15.66,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0220",
+      "brisque": 10.88,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0221",
+      "brisque": 40.41,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0222",
+      "brisque": -0.12,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0223",
+      "brisque": 12.2,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0224",
+      "brisque": 9.02,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0225",
+      "brisque": 23.09,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0226",
+      "brisque": 12.09,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0227",
+      "brisque": -0.34,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0228",
+      "brisque": 30.45,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0229",
+      "brisque": 10.57,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0230",
+      "brisque": 58.06,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0231",
+      "brisque": 47.51,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0232",
+      "brisque": 7.66,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0233",
+      "brisque": 0.82,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0234",
+      "brisque": 26.9,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0235",
+      "brisque": 9.9,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0236",
+      "brisque": 23.01,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0237",
+      "brisque": 4.54,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0238",
+      "brisque": 3.54,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0239",
+      "brisque": -6.24,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0240",
+      "brisque": -0.12,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0241",
+      "brisque": 1.1,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0242",
+      "brisque": 8.28,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0243",
+      "brisque": 2.46,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0244",
+      "brisque": 3.21,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0245",
+      "brisque": 21.32,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0246",
+      "brisque": 18.93,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0247",
+      "brisque": 36.53,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0248",
+      "brisque": 16.28,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0249",
+      "brisque": -2.66,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0250",
+      "brisque": 78.44,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0251",
+      "brisque": 67.28,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0252",
+      "brisque": 55.56,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0253",
+      "brisque": 34.25,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0254",
+      "brisque": 36.23,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0255",
+      "brisque": 4.68,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0256",
+      "brisque": 15.46,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0257",
+      "brisque": 0.02,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0258",
+      "brisque": 6.83,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0259",
+      "brisque": 46.99,
+      "brisque_pass": false,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0260",
+      "brisque": 11.54,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0261",
+      "brisque": 33.29,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0262",
+      "brisque": 13.87,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0263",
+      "brisque": 38.77,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0264",
+      "brisque": 43.79,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0265",
+      "brisque": 15.34,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0266",
+      "brisque": 3.78,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0267",
+      "brisque": 3.75,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0268",
+      "brisque": 9.37,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0269",
+      "brisque": 24.5,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0270",
+      "brisque": 12.3,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0271",
+      "brisque": 8.11,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0272",
+      "brisque": 43.94,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0273",
+      "brisque": 4.02,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0274",
+      "brisque": -3.38,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0275",
+      "brisque": -2.36,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0276",
+      "brisque": 4.24,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0277",
+      "brisque": 9.28,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0278",
+      "brisque": 18.45,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0279",
+      "brisque": 46.91,
+      "brisque_pass": false,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0280",
+      "brisque": 44.93,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0281",
+      "brisque": -3.81,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0282",
+      "brisque": 11.34,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0283",
+      "brisque": 14.5,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0284",
+      "brisque": 29.45,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0285",
+      "brisque": 10.19,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0286",
+      "brisque": 12.72,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0287",
+      "brisque": 21.36,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0288",
+      "brisque": 12.87,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0289",
+      "brisque": 36.34,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0290",
+      "brisque": 38.7,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "urban"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0291",
+      "brisque": 4.19,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "rural"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0292",
+      "brisque": 14.36,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 37,
+      "distance": 95,
+      "scene": "forest"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0293",
+      "brisque": 31.57,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0294",
+      "brisque": 33.33,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 65,
+      "distance": 55,
+      "scene": "desert"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0295",
+      "brisque": -7.5,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 30,
+      "distance": 120,
+      "scene": "industrial"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0296",
+      "brisque": -2.06,
+      "brisque_pass": true,
+      "validator_pass": true,
+      "target_px": 96,
+      "distance": 30,
+      "scene": "airfield"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0297",
+      "brisque": 15.64,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 48,
+      "distance": 75,
+      "scene": "pure_sky"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0298",
+      "brisque": 4.52,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 24,
+      "distance": 150,
+      "scene": "coastal"
+    },
+    {
+      "src": "out_D",
+      "sample_id": "d0299",
+      "brisque": 8.03,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 90,
+      "distance": 40,
+      "scene": "urban"
+    },
+    {
+      "src": "out_E1_full",
+      "sample_id": "a0149",
+      "brisque": -3.36,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    },
+    {
+      "src": "out_E1_paste",
+      "sample_id": "a0149",
+      "brisque": -3.37,
+      "brisque_pass": true,
+      "validator_pass": false,
+      "target_px": 20,
+      "distance": 180,
+      "scene": "mountain"
+    }
+  ],
+  "note": "E2 量化的是『过滤器强度』而非生成质量：弱判据接受的样本里有多少被强判据否决（false accept），以及强判据是否过严。"
+}

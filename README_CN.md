@@ -6,6 +6,8 @@
 >
 > 只保留**最终活跃版本**的架构代码（生成端 + 验证端 + 循环机制 + 前端后端），
 > **不含**：数据集、模型权重、历史版本（`_v1~_v6` 等）、中间产物、demo/test 脚本。
+>
+> 原始项目根目录：`D:\learning\ObsidianVault\Paper-低慢小数据集生成架构`，本目录未删除原项目任何内容。
 
 ---
 
@@ -43,6 +45,11 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
 0-workspace/
 ├── README.md                          # 英文版（English）
 ├── README_CN.md                       # 中文版（本文档）
+├── LICENSE                            # MIT
+├── requirements.txt                   # 依赖清单
+├── .gitignore
+├── lss_paths.py                       # **唯一真源**：全部资产路径解析
+├── experiments/                       # 复现脚本 + 汇总 JSON（见第十节）
 ├── app/                               # 前端 + 后端（Flask 服务 + 生成编排）
 │   ├── web_app.py                     #   Flask 入口（唯一前端）
 │   ├── llm_parser.py                  #   M1 语义解析
@@ -76,6 +83,7 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
     ├── validator_pipeline.py          #   S6→S9 短路串联 + 失败写入 Buffer
     ├── failure_buffer.py              #   FailureBuffer（失败缓冲池）
     ├── trainable_classifier.py        #   范式 A：Pass→Train 可训练分类器
+    └── 7-持续学习循环设计.md           #   闭环机制设计规格（CDFF v2.0）
 ```
 
 ---
@@ -114,6 +122,7 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
 | `loop/failure_buffer.py` | `FailureBuffer`：失败样本缓冲 + 阈值触发 | 三范式共用基础 |
 | `loop/validator_pipeline.py` | `ValidatorPipeline`：S6→S9 短路求值，失败写 Buffer | 失败码路由 |
 | `loop/trainable_classifier.py` | 可训练 EfficientNet 分类器（train/infer） | 范式 A（Pass→Train） |
+| `loop/7-持续学习循环设计.md` | 闭环机制完整规格（§6/§9.1/§13/§16） | CDFF v2.0 设计文档 |
 
 ---
 
@@ -162,19 +171,43 @@ validator_pipeline.py（S6→S9 串联）
 
 ---
 
-## 六、运行方式（需在原项目内）
+## 六、运行方式
+
+全部资产路径由 `lss_paths.py` 统一解析，顺序为：
+
+1. 环境变量 `LSS_PROJECT_ROOT`（若设置）；
+2. 否则沿 `0-model` / `1-background-pool` / `2-Lora training` 三条软链接回到真实项目根；
+3. 否则退回归档目录自身（独立 checkout 场景）。
 
 ```bash
+# 先自检：逐项打印 OK / MISSING
+python lss_paths.py
+
 # 前端 + 后端（Flask）
-cd "3-LLM starter"
+cd app
 cp .env.example .env        # 填入 API Key
 python web_app.py           # → http://127.0.0.1:5000
 
-# 验证端串联管线（S6→S9）
-cd "6-Validator/V5-pipeline/code"
+# 验证端串联管线（V6→V9）
+cd loop
 python validator_pipeline.py
 
+# 复算论文全部数字
+python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
+
+**独立 checkout**（无软链接、权重放在别处）：
+
+```bash
+export LSS_PROJECT_ROOT=/path/to/project   # 需含 0-model/、1-background-pool/、2-Lora training/
+python lss_paths.py                        # 先验证再运行
+```
+
+> 完整推理仍需模型权重（`0-model/stable-diffusion-v1-5`、两个 ControlNet 检查点、
+> `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`）与九类背景池（37,852 张），
+> 这些**不在本仓库内**。
+>
+> **循环机制设计文档**：`loop/7-持续学习循环设计.md`
 
 ---
 
@@ -201,5 +234,88 @@ python validator_pipeline.py
 | `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
+| `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
 
+---
 
+## 八、可运行性验证与修复记录
+
+归档后对全部 27 个 `.py` 文件做了可运行性测试，修复了 4 处因「目录重排 + 文件改名」导致的
+`sys.path` / import 断裂（以下修复仅存在于归档副本，**未改动原项目**）。
+
+### 修复清单
+
+| # | 文件 | 原问题 | 修复方式 |
+|---|---|---|---|
+| 1 | `app/web_app.py` | 顶层 `from condition_generator import ...`（旧版，已废弃）导致启动即崩；`/api/generate-conditions` 旧端点重复 | 删除旧版 import 与整个旧端点（功能由 `/api/generate-lora` 承接） |
+| 2 | `app/condition_generator_v7.py` | `sys.path` 指向 `2-Lora training/`、`5-Controlnet/`（原项目路径） | 改为指向归档的 `generator/`（rgb2ir + lora_inpainter） |
+| 3 | `generator/lora_inpainter_v7.py` | 运行时 `from condition_generator_v7 import seg_to_rgb` 找不到 app/ | import 前注入 `sys.path → app/` |
+| 4 | `loop/validator_pipeline.py` | `sys.path` 指向 `S6/S7/S8/S9/code`（原项目路径）+ `trajectory_validator`/`detection_validator` 旧名 | 改为指向 `validator/v6_quality`、`validator/v7_consistency`、`validator/`，并改用 `v8_*`/`v9_*` 新名 |
+
+| 5 | `lss_paths.py`（**新增**）+ 5 个调用点 | 资产路径（`../1-background-pool`、`../0-model`、`../2-Lora training`）在各模块里按自身 `__file__` 重复推导，实际依赖归档内预建的三条软链接 | 新增 `lss_paths.py` 作为**唯一真源**；`background_searcher.py`、`condition_generator_v7.py`、`web_app.py`、`lora_inpainter_v7.py`、`validator_pipeline.py` 全部改为从中导入。解析顺序：`LSS_PROJECT_ROOT` 环境变量 → 三个资产目录的软链接目标 → 归档目录自身 |
+
+另将 `v1~v5` docstring 内的用法示例旧模块名（`s1_json_validator` 等）同步为新名。
+
+### 验证结果（2026-08-31 全部通过）
+
+| 测试项 | 结果 |
+|---|---|
+| 语法检查（`py_compile`，30 文件） | ✓ 全部通过 |
+| 模块 import（18 个模块，含跨目录依赖） | ✓ 全部通过 |
+| 关键符号存在性（27 个类/函数） | ✓ 全部存在 |
+| 纯函数冒烟：`seg_to_rgb` | ✓ 输出 shape/颜色正确 |
+| 纯函数冒烟：`rgb_to_whitehot` | ✓ 白热 IR 转换正常 |
+| 纯函数冒烟：`trajectory_to_frames` | ✓ 轨迹解析正常 |
+| Flask 路由清单（删端点后） | ✓ 无残留旧引用，11 个路由干净 |
+
+> 说明：以上验证覆盖「代码结构完整、模块可加载、核心纯函数可运行」。
+> **端到端生成（LoRA + ControlNet 推理）仍需原项目的模型权重（`0-model/`、`best_models/`）与
+> 九类背景池（`1-background-pool/`），本归档不含这些二进制资产**，故无法在归档目录内独立跑完整推理。
+
+---
+
+## 九、论文 ↔ 代码口径核对（manuscript v20）
+
+论文全部数字由 `experiments/bcd/_reports/scripts/audit_tables_v20.py` 从逐样本原始 JSON 复算
+（43 条断言，`Decimal` + `ROUND_HALF_UP`）：**43 通过 / 0 失败**。
+
+| 表 | 内容 | 结果 |
+|---|---|---|
+| 表 3 | 300 对基准：位置 1.226±0.448 px、尺度 0.028±0.021、IoU 0.706±0.126、94.0% @IoU≥0.5、BRISQUE 20.55、通过率 88.3% | ✓ |
+| 表 4 | E1 边界：LCR 1.338 vs 1.655（p=4.9e-05），RLJ / BGE 无显著差异 | ✓ |
+| 表 5 | 消融 E2 / E3 | ✓ |
+| 表 6 | 闭环 A1 / A2 / A3 | ✓ |
+| 表 7 | 下游代理 8 臂 | ✓ |
+| 表 8 | LLM vs 模板解析 7 项 | ✓ |
+| 表 2 | 吞吐 14.58 s 均值 / 14.57 s 中位 | ✓ |
+| §3.1 | 背景池 37,852 张、9 类 | ✓ 逐目录重新计数一致 |
+
+论文引用的实现参数与代码默认值核对：
+
+| 论文声明 | 代码默认值 | 状态 |
+|---|---|---|
+| `N = 15`、`s = 0.65` | `steps=15, strength=0.65` | ✓ |
+| 双条件强度 `0.85` | `cnet_scales=(0.85, 0.85)` | ✓ |
+| guidance `7.5` | `guidance=7.5` | ✓ |
+| BRISQUE 阈值 `45` | `brisque_thr=45.0` | ✓ |
+| V9：IoU `0.5`、置信度 `0.25` | `iou_thr=0.5, conf_thr=0.25` | ✓ |
+| V1–V9 九项检查 | `validator/v1…v9` | ✓ |
+| 滑动排除队列 | `app/probe_exclude_queue.py` + `background_searcher.py` 内的排除队列 | ✓ |
+| 三个失败缓冲（V4/V6、V3/V7、V1/V8），阈值 50 / 30 / 20 | `loop/failure_buffer.py` 只实现**一个**参数化缓冲（`threshold=50`），pipeline 只实例化一个 | ⚠ 部分实现，分流调度层未落地 |
+| 式 (12)：批次通过率低于 10% 时阈值动态回退 | 全项目 `grep -ri "rollback\|acceptance_rate"` **0 命中** | ⚠ 未实现（设计约束） |
+
+最后两项在论文 §3.3 中是方法描述，但**属于设计约束而非已交付代码**：归档实现了缓冲机制本体、
+V3/V5/V8 的确定性规则和分级短路，但未实现三路缓冲分流与通过率回退。论文本身已声明五条锚点是
+"a design argument rather than a demonstrated guarantee"，这两项应作同样理解。
+
+---
+
+## 十、实验复现产物
+
+`experiments/` 含 50 个产出论文的实验脚本与各次运行的汇总 JSON/Markdown（4.5 MB）。
+逐样本 `manifest.json`、YOLO 训练中间件以及 `_smoke*/`、`_v8_prework/`、`_v9_prehalofix/`、
+`*_buggy_*`、`*_stale_*` 等中间目录已排除。
+
+```bash
+python experiments/bcd/_reports/scripts/audit_tables_v20.py   # 复算论文全部表格
+```

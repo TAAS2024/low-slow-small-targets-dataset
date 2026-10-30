@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Secrets — never commit a real .env
+.env
+*.env
+!*.env.example
+
+# Generated images and runtime artefacts
+output_images/
+*.log
+*.jsonl
+
+# Model weights / datasets / background pool (not part of this archive)
+# These three are symlinks inside the original project tree.
+0-model
+1-background-pool
+2-Lora training
+*.safetensors
+*.ckpt
+*.bin
+*.pt
+*.pth
+
+# Per-sample dumps and intermediate runs (regenerable, large)
+experiments/**/manifest.json
+experiments/**/samples/
+experiments/**/_smoke*/
+experiments/**/_scratch/
+experiments/**/_v8_prework/
+experiments/**/_v9_prehalofix/
+experiments/**/*_buggy_*
+experiments/**/*_stale_*
+experiments/**/*_partial_*
+experiments/**/crops/
+
+# OS
+.DS_Store
+Thumbs.db

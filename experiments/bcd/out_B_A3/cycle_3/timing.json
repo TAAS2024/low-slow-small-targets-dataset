@@ -1,0 +1,287 @@
+[
+  {
+    "sample_id": "k3_0000_r2",
+    "ok": true,
+    "sec": 16.91
+  },
+  {
+    "sample_id": "k3_0001_r2",
+    "ok": true,
+    "sec": 21.88
+  },
+  {
+    "sample_id": "k3_0002_r2",
+    "ok": true,
+    "sec": 18.58
+  },
+  {
+    "sample_id": "k3_0003_r2",
+    "ok": true,
+    "sec": 21.66
+  },
+  {
+    "sample_id": "k3_0004_r2",
+    "ok": true,
+    "sec": 17.35
+  },
+  {
+    "sample_id": "k3_0005_r2",
+    "ok": true,
+    "sec": 20.39
+  },
+  {
+    "sample_id": "k3_0006_r2",
+    "ok": true,
+    "sec": 15.43
+  },
+  {
+    "sample_id": "k3_0007_r2",
+    "ok": true,
+    "sec": 17.71
+  },
+  {
+    "sample_id": "k3_0008_r2",
+    "ok": true,
+    "sec": 13.65
+  },
+  {
+    "sample_id": "k3_0009_r2",
+    "ok": true,
+    "sec": 19.17
+  },
+  {
+    "sample_id": "k3_0010_r2",
+    "ok": true,
+    "sec": 14.74
+  },
+  {
+    "sample_id": "k3_0011_r2",
+    "ok": true,
+    "sec": 19.67
+  },
+  {
+    "sample_id": "k3_0012_r2",
+    "ok": true,
+    "sec": 17.63
+  },
+  {
+    "sample_id": "k3_0013_r2",
+    "ok": true,
+    "sec": 17.18
+  },
+  {
+    "sample_id": "k3_0014_r2",
+    "ok": true,
+    "sec": 14.47
+  },
+  {
+    "sample_id": "k3_0015_r2",
+    "ok": true,
+    "sec": 18.61
+  },
+  {
+    "sample_id": "k3_0016_r2",
+    "ok": true,
+    "sec": 16.3
+  },
+  {
+    "sample_id": "k3_0017_r2",
+    "ok": true,
+    "sec": 17.82
+  },
+  {
+    "sample_id": "k3_0018_r2",
+    "ok": true,
+    "sec": 14.41
+  },
+  {
+    "sample_id": "k3_0019_r2",
+    "ok": true,
+    "sec": 17.25
+  },
+  {
+    "sample_id": "k3_0020_r2",
+    "ok": true,
+    "sec": 14.03
+  },
+  {
+    "sample_id": "k3_0021_r2",
+    "ok": true,
+    "sec": 17.51
+  },
+  {
+    "sample_id": "k3_0022_r2",
+    "ok": true,
+    "sec": 14.34
+  },
+  {
+    "sample_id": "k3_0023_r2",
+    "ok": true,
+    "sec": 16.97
+  },
+  {
+    "sample_id": "k3_0024_r2",
+    "ok": true,
+    "sec": 14.82
+  },
+  {
+    "sample_id": "k3_0025_r2",
+    "ok": true,
+    "sec": 17.0
+  },
+  {
+    "sample_id": "k3_0026_r2",
+    "ok": true,
+    "sec": 14.55
+  },
+  {
+    "sample_id": "k3_0027_r2",
+    "ok": true,
+    "sec": 13.91
+  },
+  {
+    "sample_id": "k3_0028_r2",
+    "ok": true,
+    "sec": 18.25
+  },
+  {
+    "sample_id": "k3_0029_r2",
+    "ok": true,
+    "sec": 16.43
+  },
+  {
+    "sample_id": "k3_0031_r2",
+    "ok": true,
+    "sec": 20.67
+  },
+  {
+    "sample_id": "k3_0032_r2",
+    "ok": true,
+    "sec": 21.17
+  },
+  {
+    "sample_id": "k3_0033_r2",
+    "ok": true,
+    "sec": 17.38
+  },
+  {
+    "sample_id": "k3_0034_r2",
+    "ok": true,
+    "sec": 20.42
+  },
+  {
+    "sample_id": "k3_0035_r2",
+    "ok": true,
+    "sec": 17.63
+  },
+  {
+    "sample_id": "k3_0036_r2",
+    "ok": true,
+    "sec": 20.82
+  },
+  {
+    "sample_id": "k3_0037_r2",
+    "ok": true,
+    "sec": 19.23
+  },
+  {
+    "sample_id": "k3_0038_r2",
+    "ok": true,
+    "sec": 19.28
+  },
+  {
+    "sample_id": "k3_0039_r2",
+    "ok": true,
+    "sec": 16.79
+  },
+  {
+    "sample_id": "k3_0040_r2",
+    "ok": true,
+    "sec": 21.48
+  },
+  {
+    "sample_id": "k3_0041_r2",
+    "ok": true,
+    "sec": 19.13
+  },
+  {
+    "sample_id": "k3_0042_r2",
+    "ok": true,
+    "sec": 15.74
+  },
+  {
+    "sample_id": "k3_0043_r2",
+    "ok": true,
+    "sec": 18.63
+  },
+  {
+    "sample_id": "k3_0044_r2",
+    "ok": true,
+    "sec": 17.58
+  },
+  {
+    "sample_id": "k3_0045_r2",
+    "ok": true,
+    "sec": 19.64
+  },
+  {
+    "sample_id": "k3_0046_r2",
+    "ok": true,
+    "sec": 16.93
+  },
+  {
+    "sample_id": "k3_0047_r2",
+    "ok": true,
+    "sec": 21.75
+  },
+  {
+    "sample_id": "k3_0048_r2",
+    "ok": true,
+    "sec": 16.31
+  },
+  {
+    "sample_id": "k3_0050_r2",
+    "ok": true,
+    "sec": 20.21
+  },
+  {
+    "sample_id": "k3_0051_r2",
+    "ok": true,
+    "sec": 17.38
+  },
+  {
+    "sample_id": "k3_0053_r2",
+    "ok": true,
+    "sec": 20.67
+  },
+  {
+    "sample_id": "k3_0054_r2",
+    "ok": true,
+    "sec": 20.77
+  },
+  {
+    "sample_id": "k3_0055_r2",
+    "ok": true,
+    "sec": 16.94
+  },
+  {
+    "sample_id": "k3_0056_r2",
+    "ok": true,
+    "sec": 20.33
+  },
+  {
+    "sample_id": "k3_0057_r2",
+    "ok": true,
+    "sec": 15.96
+  },
+  {
+    "sample_id": "k3_0058_r2",
+    "ok": true,
+    "sec": 23.48
+  },
+  {
+    "sample_id": "k3_0059_r2",
+    "ok": true,
+    "sec": 17.46
+  }
+]

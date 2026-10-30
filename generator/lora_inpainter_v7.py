@@ -24,11 +24,11 @@ from PIL import Image
 from pathlib import Path
 from rembg import remove
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MODEL_DIR = PROJECT_ROOT / "0-model"
-BEST_MODELS = PROJECT_ROOT / "2-Lora training" / "best_models"
-SD15_PATH = MODEL_DIR / "stable-diffusion-v1-5"
-LORA_PATH = BEST_MODELS / "drn3_pocket_uav_v3_step2000.safetensors"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # → 0-workspace
+from lss_paths import (  # noqa: E402  (single source of truth)
+    PROJECT_ROOT, MODEL_DIR, BEST_MODELS, SD15_PATH, LORA_PATH,
+    CONTROLNET_DEPTH, CONTROLNET_SEG,
+)
 
 # ── 基础 prompt 模板 ──────────────────────────────────────
 # v7.2: 时间驱动背景颜色 (item 1+2)
@@ -75,6 +75,13 @@ BLEND_NEG = "blurry, distorted, bad anatomy, watermark, text, low quality, worst
 GEN_SIZE = 512
 DEFAULT_GEN_STEPS = 20
 
+
+def _halo_fix_enabled() -> bool:
+    """v7.4 融合带修复开关（默认开）。设 BCD_HALO_FIX=0 可关闭做 A/B 对照。"""
+    return os.environ.get("BCD_HALO_FIX", "1").strip().lower() not in (
+        "0", "false", "no", "off")
+
+
 # ═══════════════════════════════════════════════════════════
 # CLIP 背景上下文分类（用于动态 prompt 生成）
 # ═══════════════════════════════════════════════════════════
@@ -103,11 +110,18 @@ LIGHTING_MAP = {
     "sunset": "dramatic sunset colors, warm orange sky",
 }
 
+# v7.3: 词表必须覆盖背景池 _metadata.jsonl 的实际取值
+#   weather ∈ {foggy, clear, overcast, rainy, dusty, backlight}
+#   原表缺 overcast/dusty/backlight → 这些场景的天气描述被静默丢弃，
+#   动态 prompt 少了一个语义条件。现全部补齐（并保留旧别名）。
 WEATHER_MAP = {
     "clear": "clear weather, high visibility",
     "cloudy": "overcast sky, soft diffused light",
+    "overcast": "overcast sky, soft diffused light, muted colors",
     "rainy": "rainy weather, wet surfaces, muted colors",
     "foggy": "foggy atmosphere, low visibility haze",
+    "dusty": "airborne dust haze, hazy low-contrast distant background",
+    "backlight": "strong backlight, contre-jour, bright rim light",
     "snowy": "snow covered, cold winter light",
 }
 
@@ -223,6 +237,7 @@ class LoraInpainterV7:
         self.pipe_cnet_nolora = None
         self.cn_depth = None
         self.cn_seg = None
+        self._lora_merged = False
         self._loaded = False
 
     # ═══════════════════════════════════════════════════════════
@@ -237,6 +252,7 @@ class LoraInpainterV7:
             StableDiffusionPipeline,
             StableDiffusionImg2ImgPipeline,
             StableDiffusionControlNetPipeline,
+            StableDiffusionControlNetImg2ImgPipeline,
             ControlNetModel,
             DDIMScheduler,
         )
@@ -267,14 +283,30 @@ class LoraInpainterV7:
         # ── ControlNet 双条件（depth + seg） ──
         print("  Loading ControlNet: depth + seg ...")
         self.cn_depth = ControlNetModel.from_pretrained(
-            str(MODEL_DIR / "sd-controlnet-depth"),
+            str(CONTROLNET_DEPTH),
             torch_dtype=self.dtype, local_files_only=True)
         self.cn_seg = ControlNetModel.from_pretrained(
-            str(MODEL_DIR / "sd-controlnet-seg"),
+            str(CONTROLNET_SEG),
             torch_dtype=self.dtype, local_files_only=True)
 
         # ControlNet with LoRA (shared UNet)
-        self.pipe_cnet = StableDiffusionControlNetPipeline(
+        #
+        # 🔴 v7.3 关键修复：这里**必须**用 Img2Img 版本。
+        #   原实现用的是 StableDiffusionControlNetPipeline（txt2img 版），
+        #   而它的 __call__ 签名里：
+        #     - image          → 是 **ControlNet 条件图**（不是 init 图！）
+        #     - control_image  → 不存在的参数，被 **kwargs 静默吞掉
+        #     - strength       → 不存在的参数，被 **kwargs 静默吞掉
+        #   后果（实测确认，diffusers 0.39）：
+        #     1) 传入的 depth/seg 条件图从未生效，反而把 composite 照片当条件图；
+        #     2) 没有 img2img 语义 → 每次都从纯噪声重新生成整张 512² 图；
+        #     3) strength 完全无效 —— 0.30 与 1.00 的输出**逐字节相同**；
+        #     4) 模型连背景一起幻觉重画，经 soft_mask 混回后就是无人机周围
+        #        那圈「灰绿糊块」。
+        #   Img2Img 版签名 (image, control_image, strength, ...) 才与本方法的
+        #   调用方式一致，恢复「以 composite 为起点、depth+seg 为条件、按
+        #   strength 局部重绘」的设计意图。
+        self.pipe_cnet = StableDiffusionControlNetImg2ImgPipeline(
             vae=self.pipe_txt.vae,
             text_encoder=self.pipe_txt.text_encoder,
             tokenizer=self.pipe_txt.tokenizer,
@@ -288,24 +320,13 @@ class LoraInpainterV7:
         self.pipe_cnet.to(self.device)
         self.pipe_cnet.enable_attention_slicing()
 
-        # ControlNet WITHOUT LoRA (clean SD1.5 UNet)
-        from diffusers import UNet2DConditionModel
-        clean_unet = UNet2DConditionModel.from_pretrained(
-            str(SD15_PATH), subfolder="unet",
-            torch_dtype=self.dtype, local_files_only=True)
-        self.pipe_cnet_nolora = StableDiffusionControlNetPipeline(
-            vae=self.pipe_txt.vae,
-            text_encoder=self.pipe_txt.text_encoder,
-            tokenizer=self.pipe_txt.tokenizer,
-            unet=clean_unet,
-            scheduler=self.pipe_txt.scheduler,
-            controlnet=[self.cn_depth, self.cn_seg],
-            safety_checker=None,
-            feature_extractor=getattr(self.pipe_txt, 'feature_extractor', None),
-            requires_safety_checker=False,
-        )
-        self.pipe_cnet_nolora.to(self.device)
-        self.pipe_cnet_nolora.enable_attention_slicing()
+        # ControlNet WITHOUT LoRA (clean SD1.5 UNet) —— **懒加载**
+        #   归档实现在 load() 阶段就把这份重复的干净 UNet（+3.4 GB）也推上
+        #   GPU，峰值显存 ≈ 10 GB。在 8 GB 卡（RTX 4060 Laptop）上会触发
+        #   WSL2 的共享内存回退 —— 表现为 GPU 100% 占用但零进度（假死）。
+        #   该管线只有 use_lora=False 时才用到，故改为按需构建（见
+        #   _get_nolora_pipe）。若 LoRA 未合并，pipe_cnet 本身就是干净的。
+        self.pipe_cnet_nolora = None
 
         self.pipe_txt.to(self.device)
         self.pipe_txt.enable_attention_slicing()
@@ -319,6 +340,40 @@ class LoraInpainterV7:
 
         self._loaded = True
         print(f"LoraInpainterV7 ready (DDIM, 512² + ControlNet depth+seg)")
+
+    def _get_nolora_pipe(self):
+        """按需构建"无 LoRA"ControlNet 管线（避免常驻 3.4 GB 显存）。
+
+        - 若 LoRA 从未合并（--no-lora 进程），pipe_cnet 的 UNet 本身就是
+          干净的 SD1.5，直接复用；
+        - 否则才真正加载一份干净 UNet 并构建独立管线。
+        """
+        if self.pipe_cnet_nolora is not None:
+            return self.pipe_cnet_nolora
+        if not getattr(self, "_lora_merged", False):
+            self.pipe_cnet_nolora = self.pipe_cnet
+            return self.pipe_cnet_nolora
+
+        from diffusers import (StableDiffusionControlNetImg2ImgPipeline,
+                               UNet2DConditionModel)
+        print("  [lazy] 构建 no-LoRA ControlNet 管线 ...", flush=True)
+        clean_unet = UNet2DConditionModel.from_pretrained(
+            str(SD15_PATH), subfolder="unet",
+            torch_dtype=self.dtype, local_files_only=True)
+        self.pipe_cnet_nolora = StableDiffusionControlNetImg2ImgPipeline(
+            vae=self.pipe_txt.vae,
+            text_encoder=self.pipe_txt.text_encoder,
+            tokenizer=self.pipe_txt.tokenizer,
+            unet=clean_unet,
+            scheduler=self.pipe_txt.scheduler,
+            controlnet=[self.cn_depth, self.cn_seg],
+            safety_checker=None,
+            feature_extractor=getattr(self.pipe_txt, 'feature_extractor', None),
+            requires_safety_checker=False,
+        )
+        self.pipe_cnet_nolora.to(self.device)
+        self.pipe_cnet_nolora.enable_attention_slicing()
+        return self.pipe_cnet_nolora
 
     def _merge_lora(self):
         from safetensors.torch import load_file
@@ -362,6 +417,7 @@ class LoraInpainterV7:
                 param.data += delta.T
                 merged += 1
         print(f"  LoRA merged: {merged}/{len(deltas)}")
+        self._lora_merged = True
 
     # ═══════════════════════════════════════════════════════════
     # Step 1: LoRA 生成
@@ -406,7 +462,14 @@ class LoraInpainterV7:
 
         crop = drone_rgba.crop((x1, y1, x2, y2))
         nw, nh = max(1, int(dw * scale)), max(1, int(dh * scale))
-        drone_s = crop.resize((nw, nh), Image.LANCZOS)
+        # v7.3: 大倍率下采样不要用锐化核。LANCZOS/BICUBIC 带负瓣，8× 下采样时
+        #   会把高频折叠成振铃/摩尔纹，肉眼就是目标上的「沙砾感」。
+        #   实测 512²→64px 目标区 Immerkær 高频噪声：
+        #     LANCZOS 8.84 / BICUBIC 8.11 / BOX 8.83 / BILINEAR 5.69（-36%）
+        #   见 experiments/step_sweep/downscale_test.py
+        _ds_ratio = ds / max(1, max(nw, nh))
+        _rs = Image.BILINEAR if _ds_ratio >= 3.0 else Image.LANCZOS
+        drone_s = crop.resize((nw, nh), _rs)
 
         cx, cy = int(nu * W_bg), int(nv * H_bg)
         px1, py1 = cx - nw // 2, cy - nh // 2
@@ -507,6 +570,13 @@ class LoraInpainterV7:
             time_of_day: str, 如 "afternoon", "dusk", "night"
             weather: str, 如 "clear", "cloudy", "rainy"
         """
+        # v7.2: 步数守卫。steps<=0 或 strength<=0 时直接返回合成图（等价 skip_cnet），
+        #       避免把非法值透传给 diffusers。
+        if steps is None or int(steps) <= 0 or float(strength) <= 0:
+            print(f"  [cnet] skipped (steps={steps}, strength={strength})")
+            return composite_bgr
+        steps = int(steps)
+
         H_bg, W_bg = bg_bgr.shape[:2]
 
         # ── Crop 区域（pad_ratio 倍 drone 大小） ──
@@ -525,7 +595,11 @@ class LoraInpainterV7:
         crop_seg = drone_seg[y1:y2, x1:x2]
 
         # ── Lighting match ──
-        crop_comp = self._match_lighting(crop_comp, crop_bg, actual_px,
+        # v7.3: 传进去的应是**半径**而不是目标边长。原来传 actual_px(=64)，
+        #   而 _match_lighting 内部再乘 1.2 → 实际作用半径 76.8px，是无人机
+        #   半尺寸(32px)的 2.4 倍：整片背景被乘上一个标量亮度系数，形成一圈
+        #   宽约 154px 的亮度台阶（实测 ring 内 74~100% 像素被改动）。
+        crop_comp = self._match_lighting(crop_comp, crop_bg, actual_px / 2.0,
                                          cx - x1, cy - y1)
 
         # ── Init image（光照匹配后的 composite） ──
@@ -538,8 +612,16 @@ class LoraInpainterV7:
         depth_uint8 = ((1.0 - dn) * 255).astype(np.uint8)
         depth_pil = Image.fromarray(np.stack([depth_uint8] * 3, axis=-1))
 
-        # seg → RGB（归档结构：condition_generator_v7 在 app/）
-        sys.path.insert(0, str(PROJECT_ROOT / "app"))
+        # seg → RGB
+        # condition_generator_v7 在两种布局下的位置不同：
+        #   归档  0-workspace/app/
+        #   原项目 3-LLM starter/
+        # 逐目录探测（只加真实存在的），避免把不存在的路径插进 sys.path。
+        for _p in (PROJECT_ROOT / "app",
+                   PROJECT_ROOT / "3-LLM starter",
+                   Path(__file__).resolve().parent):
+            if _p.is_dir() and str(_p) not in sys.path:
+                sys.path.insert(0, str(_p))
         from condition_generator_v7 import seg_to_rgb
         seg_pil = Image.fromarray(seg_to_rgb(crop_seg))
 
@@ -569,20 +651,40 @@ class LoraInpainterV7:
         dynamic_prompt = build_blend_prompt(crop_comp, time_of_day, weather)
         
         # ── ControlNet 推理 ──
+        # diffusers 在 strength<1 时只跑尾部若干步：
+        #   实际去噪步数 = int(num_inference_steps × strength)
+        # 打印出来，避免"我明明设了 15 步"的误解。
+        eff_steps = max(1, int(steps * float(strength)))
+        print(f"  [cnet] steps={steps} strength={strength} "
+              f"→ effective_denoise_steps={eff_steps} "
+              f"crop={cw}x{ch}→{new_w}x{new_h} scales={cnet_scales} "
+              f"lora={use_lora} prompt={dynamic_prompt[:60]!r}")
         g = torch.Generator(device=self.device).manual_seed(seed)
-        pipe = self.pipe_cnet if use_lora else self.pipe_cnet_nolora
-        result = pipe(
+        pipe = self.pipe_cnet if use_lora else self._get_nolora_pipe()
+
+        # v7.3: 按管线类型选择正确的参数名。两个版本的语义完全不同：
+        #   Img2Img 版：image=起点图, control_image=[depth,seg], strength=有效
+        #   txt2img 版：image=条件图, 无 control_image / strength（会被忽略）
+        from diffusers import StableDiffusionControlNetImg2ImgPipeline as _CNI2I
+        call_kw = dict(
             prompt=dynamic_prompt,
             negative_prompt=BLEND_NEG,
-            image=[init_resized, init_resized],  # 每个 ControlNet 一个
-            control_image=[depth_resized, seg_resized],
-            strength=strength,
             num_inference_steps=steps,
             guidance_scale=guidance,
             generator=g,
             controlnet_conditioning_scale=list(cnet_scales),
             output_type="pil",
         )
+        if isinstance(pipe, _CNI2I):
+            call_kw.update(image=init_resized,
+                           control_image=[depth_resized, seg_resized],
+                           strength=float(strength))
+        else:
+            # 兼容旧路径：txt2img ControlNet，image 即条件图
+            print("  [cnet] ⚠ 当前为 txt2img ControlNet 管线："
+                  "control_image / strength 会被忽略（结果与 strength 无关）")
+            call_kw.update(image=[init_resized, init_resized])
+        result = pipe(**call_kw)
         cnet_output = np.array(result.images[0])
 
         # ── Resize 回原始 crop 大小 ──
@@ -591,18 +693,80 @@ class LoraInpainterV7:
             (cw, ch), interpolation=cv2.INTER_LANCZOS4)
 
         # ── Soft mask 融合：无人机区域用 ControlNet 输出，背景保持原样 ──
-        fp = max(2, feather_px)
+        # v7.3: 融合带宽度必须随目标尺寸自适应。原实现固定 feather_px=12 →
+        #   dilate 25×25 + GaussianBlur σ=4.8，在 64px 小目标上融合带比目标
+        #   本身还宽（ring 面积 ≈ 目标的 3 倍），这段背景会被重绘结果整块替换
+        #   → 就是无人机周围那圈「灰绿糊块」。
+        #   实测（experiments/step_sweep/feather/metrics.csv，urban，单位=8bit）：
+        #     feather  2px → ring 绿偏 +0.82、ring 噪声 5.64、饱和几乎不变
+        #     feather 12px → ring 绿偏 +6.47、ring 噪声 15.21、饱和 -93.9(pure_sky)
+        #   故取上限 min(feather_px, 5% 目标边长)：64px → 3px。
+        fp = int(max(2, min(int(feather_px), round(0.05 * float(actual_px)))))
         fk = fp * 2 + 1
         kernel = np.ones((fk, fk), np.uint8)
         dm_dilated = cv2.dilate(crop_mask, kernel, iterations=1)
         soft_mask = cv2.GaussianBlur(
             dm_dilated.astype(np.float32) / 255.0,
-            (fk, fk), fp / 2.5)
+            (fk, fk), max(0.8, fp / 2.5))
         soft_mask = np.clip(soft_mask, 0, 1)
 
+        # ── v7.4 融合带（halo）修复 ──
+        # 诊断来源 experiments/bcd/diag_halo_detail.py（out_D，n=60，目标周边 w px 环带）：
+        #   final 高频噪声 20.01 vs 背景 5.35（+14.7）；Laplacian 方差比 1147（中位 172）；
+        #   环带外完全干净（噪声差 −0.06、lapvar 比 1.37）。
+        #   → 「灰绿糊块」的主体不是均匀绿偏（green 均值仅 −0.97、sat −1.11），
+        #     而是被漏进背景的 CN 高频颗粒 + crop↔512 两次 LANCZOS 重采样振铃；
+        #     偏色的方差很大（sat std 17.6），所以肉眼看起来是一圈脏斑。
+        # 成因：cnet_crop 在 mask 外也带 9 步少步去噪的颗粒，soft_mask 羽化把这些
+        #   颗粒按 10~50% 权重漏进背景。
+        # 修法：mask 外做「低频/高频分离 + 统计对齐」——保留 CN 的低频（光照/色调
+        #   过渡），高频换回原背景；再把该带的 (μ,σ) 对齐到背景。目标本体不动。
+        # 离线实测（experiments/bcd/fix_halo_offline.py，n=40，mode=lf）：
+        #   ring 噪声 19.79→10.90、lapvar 比 |中位| 169.8→56.4、|sat 差| 7.83→1.16、
+        #   |val 差| 7.92→1.37、|green 差| 1.81→0.25、delta 23.11→11.74。
+        cnet_f = cnet_crop.astype(np.float32)
+        comp_f = crop_comp.astype(np.float32)
+        if os.environ.get("BCD_HALO_DEBUG", "0") == "1":
+            _dbg = (crop_mask == 0) & (soft_mask > 0.002)
+            print(f"  [halo-debug] module={__file__} enabled={_halo_fix_enabled()} "
+                  f"fp={fp} band={int(_dbg.sum())} mask_dtype={crop_mask.dtype} "
+                  f"sm_gt0={int(((crop_mask == 0) & (soft_mask > 0)).sum())}", flush=True)
+        if _halo_fix_enabled():
+            # 关键：修补域必须覆盖 soft_mask 泄漏的全部范围，而不是只补 dilate 出来的
+            # 2px 窄环 —— 否则羽化外圈（权重 0.1~0.5）的高频颗粒照样漏进背景。
+            band = (crop_mask == 0) & (soft_mask > 0.002)
+            if int(band.sum()) >= 64:
+                # σ 标定（10-07 扫描，n=8×4 档）：系数 0.5/1.0/1.5/2.0 →
+                #   noise_drop −12.87/−11.88/−12.54/−13.76，lapvar 比 424/490/444/607，
+                #   绝对偏色 |sat| 5.65/0.10/0.09/2.62、|val| 3.26/1.07/0.15/2.33，
+                #   delta 19.95/19.49/21.05/24.80 → 取 1.0（偏色与总差最小）。
+                #   系数 <1 时 LANCZOS 回缩振铃留在低频里，环带仍脏。
+                _sig = max(3.0, fp * float(os.environ.get("BCD_HALO_SIGMA", "1.0")))
+                _cn_lo = cv2.GaussianBlur(cnet_f, (0, 0), _sig)
+                _cp_lo = cv2.GaussianBlur(comp_f, (0, 0), _sig)
+                _cand = _cn_lo + (comp_f - _cp_lo)
+                for _c in range(3):
+                    _m_b = comp_f[..., _c][band].mean()
+                    _s_b = comp_f[..., _c][band].std()
+                    _m_c = _cand[..., _c][band].mean()
+                    _s_c = _cand[..., _c][band].std() + 1e-6
+                    _cand[..., _c] = (_cand[..., _c] - _m_c) * (_s_b / _s_c) + _m_b
+                cnet_f = np.where((crop_mask == 0)[..., None], _cand, cnet_f)
+
         mask3 = np.stack([soft_mask] * 3, axis=-1)
-        final_crop = (mask3 * cnet_crop.astype(float) +
-                      (1 - mask3) * crop_comp.astype(float)).astype(np.uint8)
+        # v7.4b（实验开关，默认关闭）：mask 外一律取原背景。
+        #   动机：soft_mask 在 mask 外 0~5px 仍高达 0.5~0.97（dm_dilated 先膨胀了 fp px），
+        #   于是 CN 重绘的「周边场景」以高权重漏进背景 —— 这是 ring 残留的根因
+        #   （diag：ring 落在 soft 0.5~0.97 的近端，只换高频治不了低频差）。
+        #   风险：mask 边界的颜色突变从「摊在羽化带」变成「集中在 1px」；若 mask
+        #   未贴合目标轮廓会出现硬接缝。必须 A/B 实测（BCD_HALO_HARD=1）后再决定转正。
+        if os.environ.get("BCD_HALO_HARD", "0") == "1":
+            _solid = (crop_mask > 0).astype(np.float32)[..., None]
+            final_crop = np.where(
+                _solid > 0, mask3 * cnet_f + (1 - mask3) * comp_f, comp_f
+            ).astype(np.uint8)
+        else:
+            final_crop = (mask3 * cnet_f + (1 - mask3) * comp_f).astype(np.uint8)
 
         # ── 写回全图 ──
         result_bgr = composite_bgr.copy()

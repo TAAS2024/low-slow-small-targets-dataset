@@ -1,0 +1,690 @@
+{
+  "metadata": {
+    "brisque_threshold": 45.0,
+    "cross_modal_iou_threshold": 0.95,
+    "device": "cuda",
+    "background_pool_size": 28000
+  },
+  "samples": [
+    {
+      "sample_id": "s000",
+      "scene": "coastal",
+      "time_of_day": "afternoon",
+      "weather": "clear",
+      "nu": 0.4633,
+      "nv": 0.5364,
+      "target_px": 76,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        555.0,
+        432.0,
+        630.0,
+        481.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.172762155532837,
+        "scale_err": 0.01315789483487606,
+        "iou": 0.6359205842018127
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 29.17523193359375,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s001",
+      "scene": "desert",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.2565,
+      "nv": 0.589,
+      "target_px": 74,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        297.0,
+        465.0,
+        359.0,
+        538.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.9712256789207458,
+        "scale_err": 0.013513513840734959,
+        "iou": 0.8179327845573425
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 16.35662841796875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s002",
+      "scene": "desert",
+      "time_of_day": "dusk",
+      "weather": "clear",
+      "nu": 0.2769,
+      "nv": 0.3527,
+      "target_px": 77,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1625,
+      "H": 1300,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        411.0,
+        426.0,
+        487.0,
+        489.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.3951753377914429,
+        "scale_err": 0.012987012974917889,
+        "iou": 0.7987165451049805
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 19.81072998046875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s003",
+      "scene": "urban",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.7561,
+      "nv": 0.4397,
+      "target_px": 54,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1880,
+      "H": 1250,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        1394.0,
+        528.0,
+        1447.0,
+        569.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.484143853187561,
+        "scale_err": 0.018518518656492233,
+        "iou": 0.7337896823883057
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 79.19635009765625,
+      "brisque_passed": false
+    },
+    {
+      "sample_id": "s004",
+      "scene": "forest",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.3363,
+      "nv": 0.3996,
+      "target_px": 56,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        402.0,
+        317.0,
+        457.0,
+        362.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.6660131216049194,
+        "scale_err": 0.01785714365541935,
+        "iou": 0.7773881554603577
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 37.95831298828125,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s005",
+      "scene": "pure_sky",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.6966,
+      "nv": 0.4342,
+      "target_px": 39,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 852,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        872.0,
+        355.0,
+        910.0,
+        382.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.5776149034500122,
+        "scale_err": 0.025641025975346565,
+        "iou": 0.6701679825782776
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 0.68450927734375,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s006",
+      "scene": "desert",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.7824,
+      "nv": 0.5519,
+      "target_px": 51,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 754,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        976.0,
+        395.0,
+        1026.0,
+        436.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.7893089652061462,
+        "scale_err": 0.019607843831181526,
+        "iou": 0.7881575226783752
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 6.48504638671875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s007",
+      "scene": "desert",
+      "time_of_day": "afternoon",
+      "weather": "clear",
+      "nu": 0.3168,
+      "nv": 0.36,
+      "target_px": 59,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        376.0,
+        282.0,
+        434.0,
+        332.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.5103054642677307,
+        "scale_err": 0.016949152573943138,
+        "iou": 0.8329886794090271
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 7.21685791015625,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s008",
+      "scene": "forest",
+      "time_of_day": "dusk",
+      "weather": "clear",
+      "nu": 0.6098,
+      "nv": 0.4851,
+      "target_px": 39,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        764.0,
+        394.0,
+        796.0,
+        432.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.9594470858573914,
+        "scale_err": 0.025641025975346565,
+        "iou": 0.7885498404502869
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 9.67913818359375,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s009",
+      "scene": "airfield",
+      "time_of_day": "dusk",
+      "weather": "clear",
+      "nu": 0.3955,
+      "nv": 0.3167,
+      "target_px": 34,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1880,
+      "H": 1253,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        726.0,
+        382.0,
+        759.0,
+        410.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.3275355100631714,
+        "scale_err": 0.029411764815449715,
+        "iou": 0.7760785222053528
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 40.88201904296875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s010",
+      "scene": "desert",
+      "time_of_day": "afternoon",
+      "weather": "clear",
+      "nu": 0.278,
+      "nv": 0.3641,
+      "target_px": 41,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1880,
+      "H": 1255,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        502.0,
+        444.0,
+        542.0,
+        468.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.141744613647461,
+        "scale_err": 0.024390242993831635,
+        "iou": 0.5679542422294617
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 12.03851318359375,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s011",
+      "scene": "urban",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.6019,
+      "nv": 0.3467,
+      "target_px": 39,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 720,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        751.0,
+        240.0,
+        789.0,
+        258.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.7589446902275085,
+        "scale_err": 0.025641025975346565,
+        "iou": 0.4497041404247284
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 18.03875732421875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s012",
+      "scene": "mountain",
+      "time_of_day": "dusk",
+      "weather": "clear",
+      "nu": 0.3874,
+      "nv": 0.5245,
+      "target_px": 72,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1880,
+      "H": 1077,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        694.0,
+        528.0,
+        761.0,
+        599.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.6067590713500977,
+        "scale_err": 0.013888888992369175,
+        "iou": 0.8959095478057861
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 49.57049560546875,
+      "brisque_passed": false
+    },
+    {
+      "sample_id": "s013",
+      "scene": "desert",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.4325,
+      "nv": 0.2797,
+      "target_px": 44,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1880,
+      "H": 1253,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        791.0,
+        336.0,
+        834.0,
+        364.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.7585315108299255,
+        "scale_err": 0.022727273404598236,
+        "iou": 0.6195590496063232
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 21.59881591796875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s014",
+      "scene": "mountain",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.3199,
+      "nv": 0.1533,
+      "target_px": 38,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        390.0,
+        115.0,
+        427.0,
+        145.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.2368569374084473,
+        "scale_err": 0.02631578966975212,
+        "iou": 0.7515231370925903
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": -0.61627197265625,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s015",
+      "scene": "desert",
+      "time_of_day": "night",
+      "weather": "clear",
+      "nu": 0.5989,
+      "nv": 0.4673,
+      "target_px": 46,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 849,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        743.0,
+        380.0,
+        788.0,
+        412.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.3178101778030396,
+        "scale_err": 0.021739130839705467,
+        "iou": 0.6656179428100586
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 6.40618896484375,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s016",
+      "scene": "forest",
+      "time_of_day": "afternoon",
+      "weather": "clear",
+      "nu": 0.5412,
+      "nv": 0.2129,
+      "target_px": 57,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 819,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        664.0,
+        154.0,
+        720.0,
+        193.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.1358356475830078,
+        "scale_err": 0.017543859779834747,
+        "iou": 0.6674826145172119
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 6.62774658203125,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s017",
+      "scene": "coastal",
+      "time_of_day": "dusk",
+      "weather": "clear",
+      "nu": 0.601,
+      "nv": 0.362,
+      "target_px": 81,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 837,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        729.0,
+        265.0,
+        809.0,
+        339.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.0326802730560303,
+        "scale_err": 0.012345679104328156,
+        "iou": 0.9023014903068542
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 6.82574462890625,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s018",
+      "scene": "coastal",
+      "time_of_day": "afternoon",
+      "weather": "clear",
+      "nu": 0.5808,
+      "nv": 0.3991,
+      "target_px": 75,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 853,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        706.0,
+        321.0,
+        780.0,
+        359.0
+      ],
+      "alignment": {
+        "pos_err_px": 0.60554039478302,
+        "scale_err": 0.013333333656191826,
+        "iou": 0.4999110996723175
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 29.17987060546875,
+      "brisque_passed": true
+    },
+    {
+      "sample_id": "s019",
+      "scene": "forest",
+      "time_of_day": "dusk",
+      "weather": "clear",
+      "nu": 0.3824,
+      "nv": 0.1639,
+      "target_px": 50,
+      "rgb_loaded": true,
+      "ir_loaded": true,
+      "W": 1280,
+      "H": 928,
+      "gt_bbox_source": "explicit",
+      "gt_bbox": [
+        464.0,
+        140.0,
+        513.0,
+        163.0
+      ],
+      "alignment": {
+        "pos_err_px": 1.1418371200561523,
+        "scale_err": 0.019999999552965164,
+        "iou": 0.44452744722366333
+      },
+      "cross_modal": {
+        "iou": 1.0,
+        "w_diff": 0.0,
+        "h_diff": 0.0,
+        "passed": true,
+        "assumed": true
+      },
+      "brisque": 14.42437744140625,
+      "brisque_passed": true
+    }
+  ]
+}

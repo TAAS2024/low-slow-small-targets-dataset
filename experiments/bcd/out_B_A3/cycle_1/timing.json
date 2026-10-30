@@ -1,0 +1,277 @@
+[
+  {
+    "sample_id": "k1_0000_r2",
+    "ok": true,
+    "sec": 20.23
+  },
+  {
+    "sample_id": "k1_0001_r2",
+    "ok": true,
+    "sec": 17.9
+  },
+  {
+    "sample_id": "k1_0002_r2",
+    "ok": true,
+    "sec": 20.46
+  },
+  {
+    "sample_id": "k1_0003_r2",
+    "ok": true,
+    "sec": 21.22
+  },
+  {
+    "sample_id": "k1_0004_r2",
+    "ok": true,
+    "sec": 19.59
+  },
+  {
+    "sample_id": "k1_0005_r2",
+    "ok": true,
+    "sec": 20.87
+  },
+  {
+    "sample_id": "k1_0006_r2",
+    "ok": true,
+    "sec": 19.77
+  },
+  {
+    "sample_id": "k1_0007_r2",
+    "ok": true,
+    "sec": 20.12
+  },
+  {
+    "sample_id": "k1_0008_r2",
+    "ok": true,
+    "sec": 20.67
+  },
+  {
+    "sample_id": "k1_0009_r2",
+    "ok": true,
+    "sec": 18.02
+  },
+  {
+    "sample_id": "k1_0010_r2",
+    "ok": true,
+    "sec": 21.05
+  },
+  {
+    "sample_id": "k1_0011_r2",
+    "ok": true,
+    "sec": 20.86
+  },
+  {
+    "sample_id": "k1_0012_r2",
+    "ok": true,
+    "sec": 20.44
+  },
+  {
+    "sample_id": "k1_0013_r2",
+    "ok": true,
+    "sec": 20.56
+  },
+  {
+    "sample_id": "k1_0015_r2",
+    "ok": true,
+    "sec": 19.42
+  },
+  {
+    "sample_id": "k1_0016_r2",
+    "ok": true,
+    "sec": 20.93
+  },
+  {
+    "sample_id": "k1_0018_r2",
+    "ok": true,
+    "sec": 17.68
+  },
+  {
+    "sample_id": "k1_0019_r2",
+    "ok": true,
+    "sec": 23.87
+  },
+  {
+    "sample_id": "k1_0021_r2",
+    "ok": true,
+    "sec": 21.22
+  },
+  {
+    "sample_id": "k1_0022_r2",
+    "ok": true,
+    "sec": 18.66
+  },
+  {
+    "sample_id": "k1_0023_r2",
+    "ok": true,
+    "sec": 22.4
+  },
+  {
+    "sample_id": "k1_0025_r2",
+    "ok": true,
+    "sec": 20.19
+  },
+  {
+    "sample_id": "k1_0026_r2",
+    "ok": true,
+    "sec": 21.28
+  },
+  {
+    "sample_id": "k1_0027_r2",
+    "ok": true,
+    "sec": 20.52
+  },
+  {
+    "sample_id": "k1_0028_r2",
+    "ok": true,
+    "sec": 17.33
+  },
+  {
+    "sample_id": "k1_0029_r2",
+    "ok": true,
+    "sec": 20.7
+  },
+  {
+    "sample_id": "k1_0030_r2",
+    "ok": true,
+    "sec": 19.23
+  },
+  {
+    "sample_id": "k1_0031_r2",
+    "ok": true,
+    "sec": 20.51
+  },
+  {
+    "sample_id": "k1_0032_r2",
+    "ok": true,
+    "sec": 17.21
+  },
+  {
+    "sample_id": "k1_0033_r2",
+    "ok": true,
+    "sec": 20.41
+  },
+  {
+    "sample_id": "k1_0034_r2",
+    "ok": true,
+    "sec": 19.69
+  },
+  {
+    "sample_id": "k1_0035_r2",
+    "ok": true,
+    "sec": 18.36
+  },
+  {
+    "sample_id": "k1_0036_r2",
+    "ok": true,
+    "sec": 21.79
+  },
+  {
+    "sample_id": "k1_0037_r2",
+    "ok": true,
+    "sec": 19.11
+  },
+  {
+    "sample_id": "k1_0038_r2",
+    "ok": true,
+    "sec": 20.4
+  },
+  {
+    "sample_id": "k1_0039_r2",
+    "ok": true,
+    "sec": 21.46
+  },
+  {
+    "sample_id": "k1_0041_r2",
+    "ok": true,
+    "sec": 20.03
+  },
+  {
+    "sample_id": "k1_0042_r2",
+    "ok": true,
+    "sec": 20.77
+  },
+  {
+    "sample_id": "k1_0043_r2",
+    "ok": true,
+    "sec": 19.97
+  },
+  {
+    "sample_id": "k1_0044_r2",
+    "ok": true,
+    "sec": 20.44
+  },
+  {
+    "sample_id": "k1_0045_r2",
+    "ok": true,
+    "sec": 18.59
+  },
+  {
+    "sample_id": "k1_0046_r2",
+    "ok": true,
+    "sec": 19.21
+  },
+  {
+    "sample_id": "k1_0047_r2",
+    "ok": true,
+    "sec": 20.22
+  },
+  {
+    "sample_id": "k1_0048_r2",
+    "ok": true,
+    "sec": 18.48
+  },
+  {
+    "sample_id": "k1_0049_r2",
+    "ok": true,
+    "sec": 21.62
+  },
+  {
+    "sample_id": "k1_0050_r2",
+    "ok": true,
+    "sec": 17.62
+  },
+  {
+    "sample_id": "k1_0051_r2",
+    "ok": true,
+    "sec": 20.51
+  },
+  {
+    "sample_id": "k1_0052_r2",
+    "ok": true,
+    "sec": 19.95
+  },
+  {
+    "sample_id": "k1_0053_r2",
+    "ok": true,
+    "sec": 17.25
+  },
+  {
+    "sample_id": "k1_0054_r2",
+    "ok": true,
+    "sec": 20.78
+  },
+  {
+    "sample_id": "k1_0055_r2",
+    "ok": true,
+    "sec": 17.88
+  },
+  {
+    "sample_id": "k1_0056_r2",
+    "ok": true,
+    "sec": 20.79
+  },
+  {
+    "sample_id": "k1_0057_r2",
+    "ok": true,
+    "sec": 17.68
+  },
+  {
+    "sample_id": "k1_0058_r2",
+    "ok": true,
+    "sec": 20.38
+  },
+  {
+    "sample_id": "k1_0059_r2",
+    "ok": true,
+    "sec": 17.72
+  }
+]

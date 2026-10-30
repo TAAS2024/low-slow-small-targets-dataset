@@ -1,0 +1,5521 @@
+{
+  "meta": {
+    "model": "deepseek-chat",
+    "n_items": 100,
+    "workers": 5,
+    "subsets": [
+      "canonical_cn",
+      "canonical_en",
+      "conflict_oov",
+      "paraphrase_cn",
+      "paraphrase_en",
+      "underspecified"
+    ],
+    "timestamp": "2026-10-01 17:30:39"
+  },
+  "overall": {
+    "llm": {
+      "n": 100,
+      "field_accuracy": {
+        "scene_type": 0.9789473684210527,
+        "time_of_day": 1.0,
+        "weather": 0.967032967032967,
+        "camera_position": 1.0,
+        "action": 0.9789473684210527
+      },
+      "field_n": {
+        "scene_type": 95,
+        "time_of_day": 92,
+        "weather": 91,
+        "camera_position": 94,
+        "action": 95
+      },
+      "field_hits": {
+        "scene_type": 93,
+        "time_of_day": 92,
+        "weather": 88,
+        "camera_position": 94,
+        "action": 93
+      },
+      "joint_accuracy": 0.9850107066381156,
+      "complete_match_rate": 0.93
+    },
+    "llm_repaired": {
+      "n": 100,
+      "field_accuracy": {
+        "scene_type": 0.9789473684210527,
+        "time_of_day": 1.0,
+        "weather": 0.967032967032967,
+        "camera_position": 1.0,
+        "action": 0.9789473684210527
+      },
+      "field_n": {
+        "scene_type": 95,
+        "time_of_day": 92,
+        "weather": 91,
+        "camera_position": 94,
+        "action": 95
+      },
+      "field_hits": {
+        "scene_type": 93,
+        "time_of_day": 92,
+        "weather": 88,
+        "camera_position": 94,
+        "action": 93
+      },
+      "joint_accuracy": 0.9850107066381156,
+      "complete_match_rate": 0.93
+    },
+    "template": {
+      "n": 100,
+      "field_accuracy": {
+        "scene_type": 0.8210526315789474,
+        "time_of_day": 0.8043478260869565,
+        "weather": 0.8681318681318682,
+        "camera_position": 0.8617021276595744,
+        "action": 0.8947368421052632
+      },
+      "field_n": {
+        "scene_type": 95,
+        "time_of_day": 92,
+        "weather": 91,
+        "camera_position": 94,
+        "action": 95
+      },
+      "field_hits": {
+        "scene_type": 78,
+        "time_of_day": 74,
+        "weather": 79,
+        "camera_position": 81,
+        "action": 85
+      },
+      "joint_accuracy": 0.8501070663811563,
+      "complete_match_rate": 0.57
+    }
+  },
+  "by_subset": {
+    "canonical_cn": {
+      "llm": {
+        "n": 20,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 1.0,
+          "weather": 1.0,
+          "camera_position": 1.0,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "field_hits": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "joint_accuracy": 1.0,
+        "complete_match_rate": 1.0
+      },
+      "template": {
+        "n": 20,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 0.9,
+          "weather": 1.0,
+          "camera_position": 0.95,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "field_hits": {
+          "scene_type": 20,
+          "time_of_day": 18,
+          "weather": 20,
+          "camera_position": 19,
+          "action": 20
+        },
+        "joint_accuracy": 0.97,
+        "complete_match_rate": 0.85
+      }
+    },
+    "canonical_en": {
+      "llm": {
+        "n": 20,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 1.0,
+          "weather": 1.0,
+          "camera_position": 1.0,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "field_hits": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "joint_accuracy": 1.0,
+        "complete_match_rate": 1.0
+      },
+      "template": {
+        "n": 20,
+        "field_accuracy": {
+          "scene_type": 0.95,
+          "time_of_day": 0.95,
+          "weather": 0.9,
+          "camera_position": 0.75,
+          "action": 0.95
+        },
+        "field_n": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "field_hits": {
+          "scene_type": 19,
+          "time_of_day": 19,
+          "weather": 18,
+          "camera_position": 15,
+          "action": 19
+        },
+        "joint_accuracy": 0.9,
+        "complete_match_rate": 0.65
+      }
+    },
+    "conflict_oov": {
+      "llm": {
+        "n": 10,
+        "field_accuracy": {
+          "scene_type": 0.6,
+          "action": 0.6,
+          "camera_position": 1.0,
+          "time_of_day": 1.0,
+          "weather": 1.0
+        },
+        "field_n": {
+          "scene_type": 5,
+          "action": 5,
+          "camera_position": 4,
+          "time_of_day": 2,
+          "weather": 1
+        },
+        "field_hits": {
+          "scene_type": 3,
+          "action": 3,
+          "camera_position": 4,
+          "time_of_day": 2,
+          "weather": 1
+        },
+        "joint_accuracy": 0.7647058823529411,
+        "complete_match_rate": 0.6
+      },
+      "template": {
+        "n": 10,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "action": 1.0,
+          "camera_position": 1.0,
+          "time_of_day": 0.5,
+          "weather": 1.0
+        },
+        "field_n": {
+          "scene_type": 5,
+          "action": 5,
+          "camera_position": 4,
+          "time_of_day": 2,
+          "weather": 1
+        },
+        "field_hits": {
+          "scene_type": 5,
+          "action": 5,
+          "camera_position": 4,
+          "time_of_day": 1,
+          "weather": 1
+        },
+        "joint_accuracy": 0.9411764705882353,
+        "complete_match_rate": 0.9
+      }
+    },
+    "paraphrase_cn": {
+      "llm": {
+        "n": 20,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 1.0,
+          "weather": 0.9,
+          "camera_position": 1.0,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "field_hits": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 18,
+          "camera_position": 20,
+          "action": 20
+        },
+        "joint_accuracy": 0.98,
+        "complete_match_rate": 0.9
+      },
+      "template": {
+        "n": 20,
+        "field_accuracy": {
+          "scene_type": 0.75,
+          "time_of_day": 0.55,
+          "weather": 0.8,
+          "camera_position": 0.8,
+          "action": 0.9
+        },
+        "field_n": {
+          "scene_type": 20,
+          "time_of_day": 20,
+          "weather": 20,
+          "camera_position": 20,
+          "action": 20
+        },
+        "field_hits": {
+          "scene_type": 15,
+          "time_of_day": 11,
+          "weather": 16,
+          "camera_position": 16,
+          "action": 18
+        },
+        "joint_accuracy": 0.76,
+        "complete_match_rate": 0.15
+      }
+    },
+    "paraphrase_en": {
+      "llm": {
+        "n": 15,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 1.0,
+          "weather": 0.9333333333333333,
+          "camera_position": 1.0,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 15,
+          "camera_position": 15,
+          "action": 15
+        },
+        "field_hits": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 14,
+          "camera_position": 15,
+          "action": 15
+        },
+        "joint_accuracy": 0.9866666666666667,
+        "complete_match_rate": 0.9333333333333333
+      },
+      "template": {
+        "n": 15,
+        "field_accuracy": {
+          "scene_type": 0.26666666666666666,
+          "time_of_day": 0.6666666666666666,
+          "weather": 0.6666666666666666,
+          "camera_position": 0.8,
+          "action": 0.5333333333333333
+        },
+        "field_n": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 15,
+          "camera_position": 15,
+          "action": 15
+        },
+        "field_hits": {
+          "scene_type": 4,
+          "time_of_day": 10,
+          "weather": 10,
+          "camera_position": 12,
+          "action": 8
+        },
+        "joint_accuracy": 0.5866666666666667,
+        "complete_match_rate": 0.06666666666666667
+      }
+    },
+    "underspecified": {
+      "llm": {
+        "n": 15,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 1.0,
+          "weather": 1.0,
+          "camera_position": 1.0,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 15,
+          "camera_position": 15,
+          "action": 15
+        },
+        "field_hits": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 15,
+          "camera_position": 15,
+          "action": 15
+        },
+        "joint_accuracy": 1.0,
+        "complete_match_rate": 1.0
+      },
+      "template": {
+        "n": 15,
+        "field_accuracy": {
+          "scene_type": 1.0,
+          "time_of_day": 1.0,
+          "weather": 0.9333333333333333,
+          "camera_position": 1.0,
+          "action": 1.0
+        },
+        "field_n": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 15,
+          "camera_position": 15,
+          "action": 15
+        },
+        "field_hits": {
+          "scene_type": 15,
+          "time_of_day": 15,
+          "weather": 14,
+          "camera_position": 15,
+          "action": 15
+        },
+        "joint_accuracy": 0.9866666666666667,
+        "complete_match_rate": 0.9333333333333333
+      }
+    }
+  },
+  "trajectory": {
+    "llm": {
+      "n": 9,
+      "first": 1,
+      "last": 1,
+      "exact": 1
+    },
+    "template": {
+      "n": 9,
+      "first": 1,
+      "last": 1,
+      "exact": 1
+    }
+  },
+  "ambiguity": {
+    "llm": {
+      "flagged_ambiguous": 1,
+      "flagged_determinate": 1
+    },
+    "template": {
+      "flagged_ambiguous": 0.6,
+      "flagged_determinate": 0
+    },
+    "llm_substantive_ambiguous": 1.0,
+    "llm_substantive_failures": []
+  },
+  "invalid_rate": {
+    "llm": 0.0,
+    "template": 0.0
+  },
+  "repair": {
+    "n_invalid": 0,
+    "n_recovered": 0,
+    "invalid_rate_after_repair": 0.0,
+    "failure_modes": []
+  },
+  "api_errors": 0,
+  "latency": {
+    "llm_mean": 1.1014863324165345,
+    "llm_median": 0.9633125066757202,
+    "template_mean": 0.0001
+  },
+  "items": [
+    {
+      "id": "A01",
+      "subset": "canonical_cn",
+      "text": "晴天下午，城市高楼背景，四旋翼悬停在天空中",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"city high-rise buildings under clear afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A02",
+      "subset": "canonical_cn",
+      "text": "阴天上午，乡村田野上空，无人机从左往右横向飞行",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.2,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.8,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"overcast\",\"scene_type\":\"rural\",\"scene_description\":\"rural farmland and fields under overcast morning sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A03",
+      "subset": "canonical_cn",
+      "text": "雨天正午，工业区厂房背景，无人机从远处飞近",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "noon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "noon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 150.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定起始距离，默认150m；未指定视角，默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":150.0,\"norm_u\":0.5,\"norm_v\":0.4},{\"t\":1,\"action\":\"approach\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.4}],\"time_of_day\":\"noon\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"industrial factory buildings under rainy noon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定起始距离，默认150m；未指定视角，默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "industrial",
+        "time_of_day": "noon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A04",
+      "subset": "canonical_cn",
+      "text": "雾天黎明，森林树冠上方，无人机缓慢下降",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "descend"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍；下降动作以单时间步表示"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"descend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"foggy\",\"scene_type\":\"forest\",\"scene_description\":\"forest canopy in misty dawn atmosphere\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍；下降动作以单时间步表示\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "top",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "A05",
+      "subset": "canonical_cn",
+      "text": "多云的早晨，海岸线上空，无人机悬停拍摄",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"cloudy\",\"scene_type\":\"coastal\",\"scene_description\":\"coastline with ocean and shore under cloudy morning sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A06",
+      "subset": "canonical_cn",
+      "text": "沙尘天气的下午，沙漠腹地，无人机悬停",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"dusty\",\"scene_type\":\"desert\",\"scene_description\":\"vast desert landscape under dusty afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A07",
+      "subset": "canonical_cn",
+      "text": "雪天黄昏，山地背景，无人机俯拍",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "top",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与动作，默认悬停75m；俯拍时无人机在画面偏上"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"snowy\",\"scene_type\":\"mountain\",\"scene_description\":\"snow-covered mountain range at dusk\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定距离与动作，默认悬停75m；俯拍时无人机在画面偏上\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "A08",
+      "subset": "canonical_cn",
+      "text": "夜晚，城市夜景上空，无人机逆时针盘旋",
+      "gold": {
+        "scene_type": "night_city",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_ccw"
+      },
+      "llm_spec": {
+        "scene_type": "night_city",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_ccw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_ccw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"night_city\",\"scene_description\":\"city skyline with illuminated buildings at night\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "night_city",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_ccw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A09",
+      "subset": "canonical_cn",
+      "text": "晴朗的中午，机场跑道上空，无人机侧面拍摄",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和动作，默认悬停75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"airfield\",\"scene_description\":\"airport runway under clear midday sky\",\"camera\":{\"position\":\"side\"},\"confidence_note\":\"未指定距离和动作，默认悬停75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "A10",
+      "subset": "canonical_cn",
+      "text": "背光条件下，住宅小区上空，无人机上升",
+      "gold": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段，默认下午；未指定距离，默认75m；未指定视角，默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"backlight\",\"scene_type\":\"residential\",\"scene_description\":\"residential neighborhood under backlit sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段，默认下午；未指定距离，默认75m；未指定视角，默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A11",
+      "subset": "canonical_cn",
+      "text": "纯天空背景，正午，无人机从100米处飞远到300米",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 100.0,
+        "distance_last": 300.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定天气与视角，默认晴天和仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"retreat\",\"distance\":300.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"clear blue sky at noon\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气与视角，默认晴天和仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 100.0,
+        "distance_last": 300.0,
+        "n_points": 2,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A12",
+      "subset": "canonical_cn",
+      "text": "逆光清晨，雪地背景，无人机顺时针盘旋",
+      "gold": {
+        "scene_type": "snow",
+        "time_of_day": "morning",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "circle_cw"
+      },
+      "llm_spec": {
+        "scene_type": "snow",
+        "time_of_day": "morning",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_cw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"backlight\",\"scene_type\":\"snow\",\"scene_description\":\"snow-covered landscape under backlit morning light\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "snow",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A13",
+      "subset": "canonical_cn",
+      "text": "多云下午，城市街道上空，无人机正面拍摄并悬停",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "距离未指定，默认75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"cloudy\",\"scene_type\":\"urban\",\"scene_description\":\"city street with buildings under cloudy afternoon sky\",\"camera\":{\"position\":\"front\"},\"confidence_note\":\"距离未指定，默认75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "A14",
+      "subset": "canonical_cn",
+      "text": "阴天傍晚，沿海港口，无人机横向移动",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍；横向移动方向未指定，默认从左到右"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"overcast\",\"scene_type\":\"coastal\",\"scene_description\":\"coastal harbor with ships and docks under overcast dusk sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍；横向移动方向未指定，默认从左到右\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A15",
+      "subset": "canonical_cn",
+      "text": "晴天上午，山地峡谷，无人机从50米飞近到20米",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 50.0,
+        "distance_last": 20.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定视角，默认仰拍；未指定画面位置，默认天空区域"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"approach\",\"distance\":20.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"clear\",\"scene_type\":\"mountain\",\"scene_description\":\"mountain canyon landscape under clear morning sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定视角，默认仰拍；未指定画面位置，默认天空区域\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 50.0,
+        "distance_last": 20.0,
+        "n_points": 2,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A16",
+      "subset": "canonical_cn",
+      "text": "雨夜，工业区，无人机俯拍下降",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "descend"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离，默认75m；俯拍时无人机在画面偏上方"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"descend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"industrial complex with factories under rainy night sky\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定距离，默认75m；俯拍时无人机在画面偏上方\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "industrial",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day"
+        ]
+      }
+    },
+    {
+      "id": "A17",
+      "subset": "canonical_cn",
+      "text": "雾天中午，乡村，无人机悬停在75米",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "noon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "noon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定视角，默认仰拍；未指定画面位置，默认天空区域"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"foggy\",\"scene_type\":\"rural\",\"scene_description\":\"rural countryside with fields and scattered farmhouses in foggy noon\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定视角，默认仰拍；未指定画面位置，默认天空区域\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "noon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "A18",
+      "subset": "canonical_cn",
+      "text": "晴朗黎明，森林，无人机侧面横移",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear"
+        ],
+        "confidence_note": "距离未指定，默认75m；垂直位置取森林场景常用值0.4"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.4},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.4}],\"time_of_day\":\"dawn\",\"weather\":\"clear\",\"scene_type\":\"forest\",\"scene_description\":\"forest canopy under clear dawn sky with soft morning light\",\"camera\":{\"position\":\"side\"},\"confidence_note\":\"距离未指定，默认75m；垂直位置取森林场景常用值0.4\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "A19",
+      "subset": "canonical_cn",
+      "text": "沙尘下午，沙漠，无人机仰拍上升",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离，默认75m；上升动作单时间步表示"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"dusty\",\"scene_type\":\"desert\",\"scene_description\":\"desert landscape under dusty afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离，默认75m；上升动作单时间步表示\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "A20",
+      "subset": "canonical_cn",
+      "text": "雪天上午，机场跑道，无人机尾部视角飞远",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 150.0,
+        "n_points": 2,
+        "default_fills": [],
+        "confidence_note": "未指定距离，默认75m起始并飞远至150m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"retreat\",\"distance\":150.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"snowy\",\"scene_type\":\"airfield\",\"scene_description\":\"airport runway covered in snow on a winter morning\",\"camera\":{\"position\":\"back\"},\"confidence_note\":\"未指定距离，默认75m起始并飞远至150m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "B01",
+      "subset": "canonical_en",
+      "text": "Clear afternoon over an urban skyline; the quadrotor hovers in place.",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，使用默认值(75m, 仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"urban skyline under clear afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，使用默认值(75m, 仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B02",
+      "subset": "canonical_en",
+      "text": "Overcast morning above rural farmland; the drone moves laterally across the frame.",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"overcast\",\"scene_type\":\"rural\",\"scene_description\":\"rural farmland under overcast morning sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B03",
+      "subset": "canonical_en",
+      "text": "Rainy noon over an industrial complex; the drone approaches from a distance.",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "noon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "noon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 150.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "距离未指定，默认150m接近至75m；视角未指定，默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":150.0,\"norm_u\":0.5,\"norm_v\":0.4},{\"t\":1,\"action\":\"approach\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.4}],\"time_of_day\":\"noon\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"industrial complex with factories and smokestacks under rainy noon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"距离未指定，默认150m接近至75m；视角未指定，默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "industrial",
+        "time_of_day": "noon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B04",
+      "subset": "canonical_en",
+      "text": "Foggy dawn above a forest canopy; the drone descends slowly.",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "descend"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "distance, camera position, and norm_u/norm_v not specified; using defaults"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"descend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"foggy\",\"scene_type\":\"forest\",\"scene_description\":\"forest canopy in foggy dawn light\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"distance, camera position, and norm_u/norm_v not specified; using defaults\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B05",
+      "subset": "canonical_en",
+      "text": "Cloudy morning over a coastal shoreline; the drone hovers.",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，使用默认值(75m, 仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"cloudy\",\"scene_type\":\"coastal\",\"scene_description\":\"coastal shoreline under a cloudy morning sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，使用默认值(75m, 仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B06",
+      "subset": "canonical_en",
+      "text": "Dusty afternoon in the desert; the drone hovers.",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，使用默认值(75m, 仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"dusty\",\"scene_type\":\"desert\",\"scene_description\":\"desert landscape under dusty afternoon haze\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，使用默认值(75m, 仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B07",
+      "subset": "canonical_en",
+      "text": "Snowy dusk over a mountain range; the shot is taken from above.",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "top",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定动作与距离，默认悬停75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"snowy\",\"scene_type\":\"mountain\",\"scene_description\":\"snow-covered mountain range under snowy dusk sky\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定动作与距离，默认悬停75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather"
+        ],
+        "silent_defaults": [
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "B08",
+      "subset": "canonical_en",
+      "text": "At night above a city skyline; the drone circles anticlockwise.",
+      "gold": {
+        "scene_type": "night_city",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_ccw"
+      },
+      "llm_spec": {
+        "scene_type": "night_city",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_ccw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离、天气与视角，使用默认值(75m, clear, 仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_ccw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"night_city\",\"scene_description\":\"city skyline illuminated at night with glowing lights\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离、天气与视角，使用默认值(75m, clear, 仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B09",
+      "subset": "canonical_en",
+      "text": "Clear noon above an airfield runway; side view.",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与动作，默认悬停75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"airfield\",\"scene_description\":\"airfield runway under clear noon sky\",\"camera\":{\"position\":\"side\"},\"confidence_note\":\"未指定距离与动作，默认悬停75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "B10",
+      "subset": "canonical_en",
+      "text": "Backlit conditions over a residential district; the drone ascends.",
+      "gold": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段，默认下午；未指定视角，默认仰拍；未指定距离，默认75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"backlight\",\"scene_type\":\"residential\",\"scene_description\":\"residential district under backlit conditions with strong sun glare\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段，默认下午；未指定视角，默认仰拍；未指定距离，默认75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather"
+        ]
+      }
+    },
+    {
+      "id": "B11",
+      "subset": "canonical_en",
+      "text": "Pure sky background at noon; the drone retreats from 100 m to 300 m.",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 100.0,
+        "distance_last": 300.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "weather and camera position not specified, using defaults (clear, bottom)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"retreat\",\"distance\":300.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"clear blue sky at midday\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"weather and camera position not specified, using defaults (clear, bottom)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 100.0,
+        "distance_last": 300.0,
+        "n_points": 2,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather"
+        ]
+      }
+    },
+    {
+      "id": "B12",
+      "subset": "canonical_en",
+      "text": "Backlit morning over a snowfield; the drone circles clockwise.",
+      "gold": {
+        "scene_type": "snow",
+        "time_of_day": "morning",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "circle_cw"
+      },
+      "llm_spec": {
+        "scene_type": "snow",
+        "time_of_day": "morning",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_cw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"backlight\",\"scene_type\":\"snow\",\"scene_description\":\"snowfield under backlit morning light\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "snow",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "B13",
+      "subset": "canonical_en",
+      "text": "Cloudy afternoon above city streets; front view, hovering.",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "distance not specified, default 75m used"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"cloudy\",\"scene_type\":\"urban\",\"scene_description\":\"city streets viewed from above under cloudy afternoon sky\",\"camera\":{\"position\":\"front\"},\"confidence_note\":\"distance not specified, default 75m used\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "B14",
+      "subset": "canonical_en",
+      "text": "Overcast evening over a coastal harbour; the drone moves laterally.",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "evening mapped to dusk; distance, camera position and vertical placement defaulted"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"overcast\",\"scene_type\":\"coastal\",\"scene_description\":\"coastal harbour under overcast evening sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"evening mapped to dusk; distance, camera position and vertical placement defaulted\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B15",
+      "subset": "canonical_en",
+      "text": "Clear morning in a mountain valley; the drone approaches from 50 m to 20 m.",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 50.0,
+        "distance_last": 20.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定视角，默认仰拍；未指定画面位置，默认天空区域"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"approach\",\"distance\":20.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"clear\",\"scene_type\":\"mountain\",\"scene_description\":\"mountain valley under clear morning light\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定视角，默认仰拍；未指定画面位置，默认天空区域\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 50.0,
+        "distance_last": 20.0,
+        "n_points": 2,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B16",
+      "subset": "canonical_en",
+      "text": "Rainy night at an industrial plant; top view while descending.",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "descend"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离，默认75m；未指定水平位置，默认画面中央"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"descend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"industrial plant at night in the rain with artificial lighting\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定距离，默认75m；未指定水平位置，默认画面中央\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "B17",
+      "subset": "canonical_en",
+      "text": "Foggy noon in the countryside; the drone hovers at 75 m.",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "noon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "noon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定视角，默认仰拍；未指定画面位置，默认天空区域"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"foggy\",\"scene_type\":\"rural\",\"scene_description\":\"countryside fields and farmland shrouded in fog at noon\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定视角，默认仰拍；未指定画面位置，默认天空区域\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "noon",
+        "weather": "foggy",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "B18",
+      "subset": "canonical_en",
+      "text": "Clear dawn over a forest; the drone moves laterally, side view.",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear"
+        ],
+        "confidence_note": "distance not specified, default 75m used"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.4},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.4}],\"time_of_day\":\"dawn\",\"weather\":\"clear\",\"scene_type\":\"forest\",\"scene_description\":\"forest canopy under clear dawn light\",\"camera\":{\"position\":\"side\"},\"confidence_note\":\"distance not specified, default 75m used\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "B19",
+      "subset": "canonical_en",
+      "text": "Dusty afternoon in the desert; the drone ascends, shot from below.",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "distance not specified, using default 75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"dusty\",\"scene_type\":\"desert\",\"scene_description\":\"dusty desert landscape in the afternoon haze\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"distance not specified, using default 75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "B20",
+      "subset": "canonical_en",
+      "text": "Snowy morning on an airfield runway; rear view while retreating.",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "distance not specified, default 75m used"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"snowy\",\"scene_type\":\"airfield\",\"scene_description\":\"snowy airfield runway in the morning\",\"camera\":{\"position\":\"back\"},\"confidence_note\":\"distance not specified, default 75m used\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "C01",
+      "subset": "paraphrase_cn",
+      "text": "天刚擦黑，摩天楼群之间，飞行器悬停不动",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气、距离与视角，默认晴天、75m、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"skyscrapers in a city at dusk with lights beginning to glow\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、距离与视角，默认晴天、75m、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "subset": "paraphrase_cn",
+      "text": "东方既白，海岬上空，无人机缓缓爬升",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离、天气与视角，默认75m、晴天、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"clear\",\"scene_type\":\"coastal\",\"scene_description\":\"coastal headland over the sea at dawn with pale eastern sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离、天气与视角，默认75m、晴天、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "subset": "paraphrase_cn",
+      "text": "骄阳当空，一望无际的沙丘，飞行器原地不动",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离、视角，默认75m仰拍；'骄阳当空'推断为正午晴天"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"desert\",\"scene_description\":\"vast endless sand dunes under blazing midday sun\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离、视角，默认75m仰拍；'骄阳当空'推断为正午晴天\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "weather"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "subset": "paraphrase_cn",
+      "text": "细雨纷纷的午后，化工厂区上方，无人机逐步靠近拍摄点",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 100.0,
+        "distance_last": 50.0,
+        "n_points": 2,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "细雨归为rainy；未指定距离，默认100m接近至50m；未指定视角，默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"approach\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"chemical plant complex with industrial structures under light rain\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"细雨归为rainy；未指定距离，默认100m接近至50m；未指定视角，默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "industrial",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "top",
+        "action": "approach",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "C05",
+      "subset": "paraphrase_cn",
+      "text": "夜色深沉，居民小区上空，飞行器自上而下俯视",
+      "gold": {
+        "scene_type": "residential",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "residential",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气，默认晴天；未指定距离，默认75m悬停"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"residential\",\"scene_description\":\"residential neighborhood at night with dim street lights\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定天气，默认晴天；未指定距离，默认75m悬停\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "C06",
+      "subset": "paraphrase_cn",
+      "text": "薄雾笼罩的清晨，松林上空，无人机横向掠过画面",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "morning",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "morning",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍；薄雾映射为foggy"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.2,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.8,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"foggy\",\"scene_type\":\"forest\",\"scene_description\":\"pine forest canopy shrouded in thin morning mist\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍；薄雾映射为foggy\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C07",
+      "subset": "paraphrase_cn",
+      "text": "大雪纷飞的傍晚，群山之间，无人机顺时针绕圈",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "circle_cw"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 100.0,
+        "distance_last": 100.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离，默认100m；未指定视角，默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_cw\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.4}],\"time_of_day\":\"dusk\",\"weather\":\"snowy\",\"scene_type\":\"mountain\",\"scene_description\":\"snow-covered mountain range in heavy snowfall at dusk\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离，默认100m；未指定视角，默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C08",
+      "subset": "paraphrase_cn",
+      "text": "晴空万里，正午时分，机场跑道边，无人机升高",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离和视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"airfield\",\"scene_description\":\"airport runway with clear blue sky at noon\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离和视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather"
+        ],
+        "silent_defaults": [
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "C09",
+      "subset": "paraphrase_cn",
+      "text": "天色阴沉的下昼，乡村田埂上方，无人机飞离镜头",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 150.0,
+        "n_points": 2,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m起、仰拍；飞离镜头按retreat处理"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"retreat\",\"distance\":150.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"overcast\",\"scene_type\":\"rural\",\"scene_description\":\"rural farmland with field ridges under overcast sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m起、仰拍；飞离镜头按retreat处理\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "overcast",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "C10",
+      "subset": "paraphrase_cn",
+      "text": "风沙扑面，荒漠腹地，飞行器逆时针打转",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "circle_ccw"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "circle_ccw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/距离/视角，默认下午、75m、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_ccw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"dusty\",\"scene_type\":\"desert\",\"scene_description\":\"vast desert landscape with blowing sand and dust\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/距离/视角，默认下午、75m、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "circle_ccw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C11",
+      "subset": "paraphrase_cn",
+      "text": "海风习习的黄昏，礁石海岸线上空，无人机从200米接近到50米",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 200.0,
+        "distance_last": 50.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定天气与视角，默认晴天和仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":200.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"approach\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"clear\",\"scene_type\":\"coastal\",\"scene_description\":\"rocky coastline with waves under breezy dusk sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气与视角，默认晴天和仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 200.0,
+        "distance_last": 50.0,
+        "n_points": 2,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C12",
+      "subset": "paraphrase_cn",
+      "text": "寒意袭人的黎明，雪原之上，无人机侧面跟拍悬停",
+      "gold": {
+        "scene_type": "snow",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "snow",
+        "time_of_day": "dawn",
+        "weather": "snowy",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "距离未指定，默认75m；悬停位置默认天空区域"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"snowy\",\"scene_type\":\"snow\",\"scene_description\":\"vast snowfield under cold dawn light\",\"camera\":{\"position\":\"side\"},\"confidence_note\":\"距离未指定，默认75m；悬停位置默认天空区域\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "dawn",
+        "weather": "snowy",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type"
+        ]
+      }
+    },
+    {
+      "id": "C13",
+      "subset": "paraphrase_cn",
+      "text": "烈日当头的下午，城市高架桥上，飞行器背对镜头飞远",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 150.0,
+        "n_points": 2,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear"
+        ],
+        "confidence_note": "距离未指定，默认75m起始并推断飞远至150m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"retreat\",\"distance\":150.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"city elevated highway overpass under bright afternoon sun\",\"camera\":{\"position\":\"back\"},\"confidence_note\":\"距离未指定，默认75m起始并推断飞远至150m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C14",
+      "subset": "paraphrase_cn",
+      "text": "薄云遮日的上午，田野上空，无人机正面朝镜头悬停",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "距离未指定，默认75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"cloudy\",\"scene_type\":\"rural\",\"scene_description\":\"open farmland fields under a partly cloudy morning sky\",\"camera\":{\"position\":\"front\"},\"confidence_note\":\"距离未指定，默认75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather"
+        ]
+      }
+    },
+    {
+      "id": "C15",
+      "subset": "paraphrase_cn",
+      "text": "滂沱大雨的夜晚，钢铁厂区，飞行器缓缓降落，镜头从下方仰视",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "descend"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离，默认75m；未指定水平位置，默认画面中央"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"descend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"steel mill complex with smokestacks and glowing furnaces under heavy night rain\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离，默认75m；未指定水平位置，默认画面中央\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type"
+        ]
+      }
+    },
+    {
+      "id": "C16",
+      "subset": "paraphrase_cn",
+      "text": "天光微亮，森林上空，无人机上升至100米",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 100.0,
+        "distance_last": 100.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气，默认晴天；未指定视角，默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"clear\",\"scene_type\":\"forest\",\"scene_description\":\"forest canopy at first light of dawn\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气，默认晴天；未指定视角，默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 100.0,
+        "distance_last": 100.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C17",
+      "subset": "paraphrase_cn",
+      "text": "午后烈日刺眼，海岸沙滩上空，飞行器悬停不动",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "backlight",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "烈日刺眼推断为backlight；未指定距离与视角，使用默认悬停75m、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"backlight\",\"scene_type\":\"coastal\",\"scene_description\":\"sunny coastal beach with bright glaring sunlight over the sea\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"烈日刺眼推断为backlight；未指定距离与视角，使用默认悬停75m、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C18",
+      "subset": "paraphrase_cn",
+      "text": "入夜后，山地营地上空，无人机缓慢升空",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定天气、距离与视角，默认晴天、75m、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.2}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"mountain\",\"scene_description\":\"mountain campsite at night with tents and campfires under starry sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、距离与视角，默认晴天、75m、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C19",
+      "subset": "paraphrase_cn",
+      "text": "薄暮时分，住宅区上空，飞行器横向左移",
+      "gold": {
+        "scene_type": "residential",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "residential",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定天气、距离与视角，默认晴天、75m、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"clear\",\"scene_type\":\"residential\",\"scene_description\":\"residential neighborhood at dusk with soft twilight sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、距离与视角，默认晴天、75m、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "C20",
+      "subset": "paraphrase_cn",
+      "text": "大雪过后的清晨，机场停机坪，无人机尾部视角悬停",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "morning",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "距离未指定，默认75m；清晨映射为morning"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"snowy\",\"scene_type\":\"airfield\",\"scene_description\":\"airport apron covered in heavy snow on a clear winter morning\",\"camera\":{\"position\":\"back\"},\"confidence_note\":\"距离未指定，默认75m；清晨映射为morning\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "afternoon",
+        "weather": "snowy",
+        "camera_position": "back",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day"
+        ]
+      }
+    },
+    {
+      "id": "D01",
+      "subset": "paraphrase_en",
+      "text": "At blue hour, a quadrotor hangs motionless above a cluster of skyscrapers.",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "blue hour mapped to dusk; distance, camera angle and weather not specified, using defaults"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"cluster of skyscrapers at blue hour twilight\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"blue hour mapped to dusk; distance, camera angle and weather not specified, using defaults\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D02",
+      "subset": "paraphrase_en",
+      "text": "First light over a rocky coastline; the drone climbs steadily.",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气、距离与视角，默认晴天、75m、仰拍；上升动作以单步ascend表示"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"clear\",\"scene_type\":\"coastal\",\"scene_description\":\"rocky coastline at first light with calm sea and soft dawn glow\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、距离与视角，默认晴天、75m、仰拍；上升动作以单步ascend表示\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D03",
+      "subset": "paraphrase_en",
+      "text": "Under a blazing midday sun, the drone holds position over endless dunes.",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离、视角与画面位置，使用默认值(75m, 仰拍, 天空区域)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"desert\",\"scene_description\":\"endless sand dunes under blazing midday sun\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离、视角与画面位置，使用默认值(75m, 仰拍, 天空区域)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D04",
+      "subset": "paraphrase_en",
+      "text": "Drizzle in the early afternoon above a chemical plant; the drone closes in on the target.",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 100.0,
+        "distance_last": 50.0,
+        "n_points": 2,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "drizzle mapped to rainy; distance values inferred; camera position defaulted to bottom"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"approach\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"chemical plant with industrial structures under drizzly early afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"drizzle mapped to rainy; distance values inferred; camera position defaulted to bottom\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D05",
+      "subset": "paraphrase_en",
+      "text": "Deep in the night above a suburban estate, the camera looks down from above.",
+      "gold": {
+        "scene_type": "residential",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "residential",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气，默认晴天；未指定距离，默认75m"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"residential\",\"scene_description\":\"suburban residential estate at night with street lights\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定天气，默认晴天；未指定距离，默认75m\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D06",
+      "subset": "paraphrase_en",
+      "text": "Mist at daybreak over a pine forest; the drone sweeps laterally across the frame.",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "dawn",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "camera.position=bottom"
+        ],
+        "confidence_note": "distance, camera position, and vertical placement not specified; using defaults (75m, bottom, sky region)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.2,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.8,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"foggy\",\"scene_type\":\"forest\",\"scene_description\":\"pine forest shrouded in mist at daybreak\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"distance, camera position, and vertical placement not specified; using defaults (75m, bottom, sky region)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "D07",
+      "subset": "paraphrase_en",
+      "text": "Heavy snowfall at sundown among the peaks; the drone orbits clockwise.",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "circle_cw"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "dusk",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_cw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"snowy\",\"scene_type\":\"mountain\",\"scene_description\":\"snow-covered mountain peaks under heavy snowfall at sundown\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "snow",
+        "time_of_day": "afternoon",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D08",
+      "subset": "paraphrase_en",
+      "text": "A cloudless noon beside an airfield runway; the drone gains altitude.",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "ascend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离与视角，默认75m仰拍；上升动作以单时间步表示"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"ascend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"clear\",\"scene_type\":\"airfield\",\"scene_description\":\"airfield runway under a cloudless noon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认75m仰拍；上升动作以单时间步表示\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "noon",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "weather",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D09",
+      "subset": "paraphrase_en",
+      "text": "A leaden afternoon sky above farmland; the drone pulls away from the lens.",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "overcast",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 50.0,
+        "distance_last": 100.0,
+        "n_points": 2,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定距离与视角，默认仰拍；retreat距离为推断值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"retreat\",\"distance\":100.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"overcast\",\"scene_type\":\"rural\",\"scene_description\":\"farmland under a leaden overcast afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离与视角，默认仰拍；retreat距离为推断值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D10",
+      "subset": "paraphrase_en",
+      "text": "Blowing sand in the badlands; the drone turns anticlockwise.",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "circle_ccw"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "circle_ccw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/距离/视角，默认下午、75m、仰拍；逆时针盘旋用circle_ccw表示"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_ccw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"dusty\",\"scene_type\":\"desert\",\"scene_description\":\"badlands terrain with blowing sand and dust haze\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/距离/视角，默认下午、75m、仰拍；逆时针盘旋用circle_ccw表示\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "weather"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D11",
+      "subset": "paraphrase_en",
+      "text": "A breezy dusk above a rocky shore; the drone closes from 200 m to 50 m.",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "approach",
+        "distance_first": 200.0,
+        "distance_last": 50.0,
+        "n_points": 2,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "breezy mapped to clear weather; camera position defaulted to bottom"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"approach\",\"distance\":200.0,\"norm_u\":0.5,\"norm_v\":0.3},{\"t\":1,\"action\":\"approach\",\"distance\":50.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"clear\",\"scene_type\":\"coastal\",\"scene_description\":\"rocky shoreline at breezy dusk with waves and rugged cliffs\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"breezy mapped to clear weather; camera position defaulted to bottom\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 200.0,
+        "distance_last": 50.0,
+        "n_points": 2,
+        "matched": [
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "D12",
+      "subset": "paraphrase_en",
+      "text": "A biting dawn on a snowfield; the drone is filmed from the side while hovering.",
+      "gold": {
+        "scene_type": "snow",
+        "time_of_day": "dawn",
+        "weather": "clear",
+        "camera_position": "side",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "snow",
+        "time_of_day": "dawn",
+        "weather": "snowy",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "distance not specified, default 75m used"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dawn\",\"weather\":\"snowy\",\"scene_type\":\"snow\",\"scene_description\":\"snowfield at biting cold dawn\",\"camera\":{\"position\":\"side\"},\"confidence_note\":\"distance not specified, default 75m used\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "snow",
+        "time_of_day": "dawn",
+        "weather": "snowy",
+        "camera_position": "side",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": []
+      }
+    },
+    {
+      "id": "D13",
+      "subset": "paraphrase_en",
+      "text": "Harsh afternoon light above a city flyover; the drone retreats, rear view.",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "retreat"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "距离未指定，默认75m；天气未指定，默认晴天"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"harsh afternoon light over a city flyover with elevated roads\",\"camera\":{\"position\":\"back\"},\"confidence_note\":\"距离未指定，默认75m；天气未指定，默认晴天\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "back",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "camera_position",
+          "action"
+        ],
+        "silent_defaults": [
+          "weather"
+        ]
+      }
+    },
+    {
+      "id": "D14",
+      "subset": "paraphrase_en",
+      "text": "Thin cloud in the morning over open fields; the drone faces the lens, hovering.",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "morning",
+        "weather": "cloudy",
+        "camera_position": "front",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "distance not specified, default 75m used"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"cloudy\",\"scene_type\":\"rural\",\"scene_description\":\"open fields under a thin cloudy morning sky\",\"camera\":{\"position\":\"front\"},\"confidence_note\":\"distance not specified, default 75m used\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day",
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "D15",
+      "subset": "paraphrase_en",
+      "text": "Pouring rain at night in a steelworks; the drone descends slowly, filmed from below.",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "descend"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "descend represented as single time step; distance unspecified, default 75m used"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"descend\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"rainy\",\"scene_type\":\"industrial\",\"scene_description\":\"steelworks with blast furnaces and smokestacks under heavy night rain\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"descend represented as single time step; distance unspecified, default 75m used\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "night",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "descend",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day",
+          "weather",
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "E01",
+      "subset": "underspecified",
+      "text": "拍摄一段无人机画面",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定任何细节，全部使用默认值：悬停75m、下午晴天、纯天空背景、仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"clear blue sky background\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定任何细节，全部使用默认值：悬停75m、下午晴天、纯天空背景、仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E02",
+      "subset": "underspecified",
+      "text": "城市背景",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"city buildings under clear afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E03",
+      "subset": "underspecified",
+      "text": "夜晚",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气、场景、动作、距离和视角，均使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"night sky with stars\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、场景、动作、距离和视角，均使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E04",
+      "subset": "underspecified",
+      "text": "下雨天，城市上空",
+      "gold": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段、动作、距离和视角，使用默认值(下午/悬停/75m/仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"rainy\",\"scene_type\":\"urban\",\"scene_description\":\"city skyline under rainy sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段、动作、距离和视角，使用默认值(下午/悬停/75m/仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "rainy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E05",
+      "subset": "underspecified",
+      "text": "森林里",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/视角/动作，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"forest\",\"scene_description\":\"dense forest with tall trees\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/视角/动作，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E06",
+      "subset": "underspecified",
+      "text": "黄昏时分",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气、场景、动作、距离和视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"dusk\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"dusk sky with warm gradient colors\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、场景、动作、距离和视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "dusk",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E07",
+      "subset": "underspecified",
+      "text": "沙漠",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/视角，使用默认值(下午/晴天/仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"desert\",\"scene_description\":\"vast desert landscape with sand dunes under clear sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/视角，使用默认值(下午/晴天/仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "dusty",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E08",
+      "subset": "underspecified",
+      "text": "雪天",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/场景/视角，使用默认值(下午/纯天空/仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"snowy\",\"scene_type\":\"puresky\",\"scene_description\":\"snowfall against a pale overcast sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/场景/视角，使用默认值(下午/纯天空/仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "weather"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E09",
+      "subset": "underspecified",
+      "text": "机场附近",
+      "gold": {
+        "scene_type": "airfield",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "airfield",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/动作/视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"airfield\",\"scene_description\":\"airfield with runways and airport facilities\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/动作/视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "airfield",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E10",
+      "subset": "underspecified",
+      "text": "海边",
+      "gold": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/动作/视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"coastal\",\"scene_description\":\"coastal seascape with ocean and shoreline under clear sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/动作/视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E11",
+      "subset": "underspecified",
+      "text": "工业区，上午",
+      "gold": {
+        "scene_type": "industrial",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "industrial",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定天气、轨迹和视角，使用默认值(晴天、悬停75m、仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"morning\",\"weather\":\"clear\",\"scene_type\":\"industrial\",\"scene_description\":\"industrial complex with factories and smokestacks in morning light\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定天气、轨迹和视角，使用默认值(晴天、悬停75m、仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "industrial",
+        "time_of_day": "morning",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day"
+        ],
+        "silent_defaults": [
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E12",
+      "subset": "underspecified",
+      "text": "山地，雾天",
+      "gold": {
+        "scene_type": "mountain",
+        "time_of_day": "afternoon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "mountain",
+        "time_of_day": "afternoon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段、动作、距离和视角，使用默认值(下午/悬停/75m/仰拍)"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"foggy\",\"scene_type\":\"mountain\",\"scene_description\":\"mountain range shrouded in fog\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段、动作、距离和视角，使用默认值(下午/悬停/75m/仰拍)\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "mountain",
+        "time_of_day": "afternoon",
+        "weather": "foggy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "weather"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E13",
+      "subset": "underspecified",
+      "text": "住宅区，俯拍",
+      "gold": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/距离，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"residential\",\"scene_description\":\"suburban residential area with houses and streets\",\"camera\":{\"position\":\"top\"},\"confidence_note\":\"未指定时段/天气/距离，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "residential",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "top",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "E14",
+      "subset": "underspecified",
+      "text": "乡村，横向移动",
+      "gold": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move"
+      },
+      "llm_spec": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 2,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom"
+        ],
+        "confidence_note": "未指定时段/天气/距离/视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.3,\"norm_v\":0.3},{\"t\":1,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.7,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"rural\",\"scene_description\":\"rural countryside with fields and farmland\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/距离/视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "rural",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "E15",
+      "subset": "underspecified",
+      "text": "纯天空，顺时针盘旋",
+      "gold": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_cw"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_cw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"clear blue sky with no ground features\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "F01",
+      "subset": "conflict_oov",
+      "text": "火星表面的无人机侦察",
+      "gold": {
+        "scene_type": "puresky"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "火星表面无对应场景类型，以desert近似；时段/天气/距离/视角均未指定，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"desert\",\"scene_description\":\"rocky reddish Martian surface with dusty terrain and distant craters under a pale sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"火星表面无对应场景类型，以desert近似；时段/天气/距离/视角均未指定，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F02",
+      "subset": "conflict_oov",
+      "text": "无人机在2000米高空悬停",
+      "gold": {
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 500.0,
+        "distance_last": 500.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "距离2000米超出范围(20-500)，已截断为500米；未指定时段/天气/场景/视角，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":500.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"high altitude sky view from 2000 meters\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"距离2000米超出范围(20-500)，已截断为500米；未指定时段/天气/场景/视角，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 2000.0,
+        "distance_last": 2000.0,
+        "n_points": 1,
+        "matched": [
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "F03",
+      "subset": "conflict_oov",
+      "text": "无人机倒着飞",
+      "gold": {
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "retreat",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定距离、时段、天气、场景和视角，使用默认值；倒飞对应retreat动作"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"retreat\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"clear sky background\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定距离、时段、天气、场景和视角，使用默认值；倒飞对应retreat动作\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F04",
+      "subset": "conflict_oov",
+      "text": "同时仰拍和俯拍",
+      "gold": {
+        "camera_position": "bottom"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "用户要求同时仰拍和俯拍，单相机无法同时实现，默认采用仰拍(bottom)；如需俯拍请指定top"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"clear sky background\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"用户要求同时仰拍和俯拍，单相机无法同时实现，默认采用仰拍(bottom)；如需俯拍请指定top\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "camera_position"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F05",
+      "subset": "conflict_oov",
+      "text": "雪天大晴天正午，沙漠",
+      "gold": {
+        "scene_type": "desert",
+        "time_of_day": "noon"
+      },
+      "llm_spec": {
+        "scene_type": "desert",
+        "time_of_day": "noon",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定轨迹与视角，使用默认悬停75m、仰拍；雪天与晴天并存为罕见组合，按用户描述保留"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"noon\",\"weather\":\"snowy\",\"scene_type\":\"desert\",\"scene_description\":\"snow-covered desert landscape under bright midday sun\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定轨迹与视角，使用默认悬停75m、仰拍；雪天与晴天并存为罕见组合，按用户描述保留\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "desert",
+        "time_of_day": "noon",
+        "weather": "snowy",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "time_of_day",
+          "weather"
+        ],
+        "silent_defaults": [
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F06",
+      "subset": "conflict_oov",
+      "text": "四面环绕拍摄",
+      "gold": {
+        "camera_position": "bottom"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/场景/距离，使用默认值；环绕方向默认顺时针"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"circle_cw\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/场景/距离，使用默认值；环绕方向默认顺时针\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "circle_cw",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "action"
+        ],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    },
+    {
+      "id": "F07",
+      "subset": "conflict_oov",
+      "text": "无人机以超音速穿梭",
+      "gold": {
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "lateral_move",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "scene_type=puresky",
+          "camera.position=bottom",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "'超音速穿梭'为速度描述，四旋翼无人机无法超音速飞行，已映射为横向移动；未指定背景、时段、天气、视角，均使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"lateral_move\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"puresky\",\"scene_description\":\"\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"'超音速穿梭'为速度描述，四旋翼无人机无法超音速飞行，已映射为横向移动；未指定背景、时段、天气、视角，均使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F08",
+      "subset": "conflict_oov",
+      "text": "水下场景中的无人机",
+      "gold": {
+        "scene_type": "puresky"
+      },
+      "llm_spec": {
+        "scene_type": "coastal",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "水下场景非标准选项，映射为coastal；时段/天气/相机位置未指定，使用默认值"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"coastal\",\"scene_description\":\"underwater scene with blue water and light rays, drone submerged\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"水下场景非标准选项，映射为coastal；时段/天气/相机位置未指定，使用默认值\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "puresky",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [],
+        "silent_defaults": [
+          "scene_type",
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F09",
+      "subset": "conflict_oov",
+      "text": "凌晨三点，漆黑一片的森林，注意避开鸟群",
+      "gold": {
+        "scene_type": "forest",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "forest",
+        "time_of_day": "night",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "凌晨三点映射为night；漆黑一片映射为clear(无云无雨)；避开鸟群为飞行安全约束，不影响视觉参数；未指定视角默认仰拍"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"night\",\"weather\":\"clear\",\"scene_type\":\"forest\",\"scene_description\":\"dark forest at night with minimal visibility\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"凌晨三点映射为night；漆黑一片映射为clear(无云无雨)；避开鸟群为飞行安全约束，不影响视觉参数；未指定视角默认仰拍\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "forest",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "F10",
+      "subset": "conflict_oov",
+      "text": "用 8K 120fps 拍摄城市，无人机悬停",
+      "gold": {
+        "scene_type": "urban",
+        "camera_position": "bottom",
+        "action": "hover"
+      },
+      "llm_spec": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "default_fills": [
+          "time_of_day=afternoon",
+          "weather=clear",
+          "camera.position=bottom",
+          "trajectory.action=hover",
+          "trajectory.distance=75.0m",
+          "trajectory.norm_u/v=0.5/0.3"
+        ],
+        "confidence_note": "未指定时段/天气/视角，使用默认值；8K 120fps 为拍摄参数，不影响场景解析"
+      },
+      "llm_raw": "{\"trajectory\":[{\"t\":0,\"action\":\"hover\",\"distance\":75.0,\"norm_u\":0.5,\"norm_v\":0.3}],\"time_of_day\":\"afternoon\",\"weather\":\"clear\",\"scene_type\":\"urban\",\"scene_description\":\"city skyline under clear afternoon sky\",\"camera\":{\"position\":\"bottom\"},\"confidence_note\":\"未指定时段/天气/视角，使用默认值；8K 120fps 为拍摄参数，不影响场景解析\"}",
+      "llm_schema_error": "",
+      "llm_api_error": "",
+      "template": {
+        "scene_type": "urban",
+        "time_of_day": "afternoon",
+        "weather": "clear",
+        "camera_position": "bottom",
+        "action": "hover",
+        "distance_first": 75.0,
+        "distance_last": 75.0,
+        "n_points": 1,
+        "matched": [
+          "scene_type",
+          "action"
+        ],
+        "silent_defaults": [
+          "time_of_day",
+          "weather",
+          "camera_position"
+        ]
+      }
+    }
+  ],
+  "replication": {
+    "runs": 3,
+    "completions": 300,
+    "pooled_invalid_rate": 0.0,
+    "joint_accuracy_mean": 0.9850107066381156,
+    "joint_accuracy_sd": 0.0,
+    "complete_match_mean": 0.93,
+    "complete_match_sd": 0.0,
+    "run_stubs": [
+      {
+        "timestamp": "2026-10-01 17:29:51",
+        "n": 100,
+        "n_invalid": 0,
+        "joint_accuracy": 0.9850107066381156,
+        "complete_match_rate": 0.93,
+        "template_joint_accuracy": 0.8501070663811563,
+        "latency_mean": 0.9849451351165771
+      },
+      {
+        "timestamp": "2026-10-01 17:30:15",
+        "n": 100,
+        "n_invalid": 0,
+        "joint_accuracy": 0.9850107066381156,
+        "complete_match_rate": 0.93,
+        "template_joint_accuracy": 0.8501070663811563,
+        "latency_mean": 0.9851823687553406
+      },
+      {
+        "timestamp": "2026-10-01 17:30:39",
+        "n": 100,
+        "n_invalid": 0,
+        "joint_accuracy": 0.9850107066381156,
+        "complete_match_rate": 0.93,
+        "template_joint_accuracy": 0.8501070663811563,
+        "latency_mean": 1.1014863324165345
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "n": 100,
+  "n_scored": 100,
+  "n_no_bbox": 0,
+  "iou_mean": 0.7064,
+  "pos_err_mean_px": 1.252,
+  "brisque_mean": 20.55,
+  "brisque_pass_rate": 0.89,
+  "target_px_hist": {
+    "near>=72": 26,
+    "mid40-72": 25,
+    "far<40": 49
+  },
+  "exp": "E4",
+  "cond": "both",
+  "cnet_scales": [
+    0.85,
+    0.85
+  ]
+}
