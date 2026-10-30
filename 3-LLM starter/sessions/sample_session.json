@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "description": "LLM Parser 输出样例 — 9 字段完整 JSON 结构参考",
+    "session_id": 0,
+    "timestamp": "2026-07-30T16:45:00",
+    "backend": "deepseek",
+    "raw_input": "一架四旋翼无人机在阴天傍晚低空飞近工业区厂房，仰拍观察"
+  },
+  "spec": {
+    "drone_type": "quadrotor",
+    "trajectory": [
+      {
+        "t": 0,
+        "action": "approach",
+        "distance": 60.0,
+        "norm_u": 0.5,
+        "norm_v": 0.5
+      },
+      {
+        "t": 1,
+        "action": "approach",
+        "distance": 40.0,
+        "norm_u": 0.48,
+        "norm_v": 0.45
+      },
+      {
+        "t": 2,
+        "action": "hover",
+        "distance": 20.0,
+        "norm_u": 0.45,
+        "norm_v": 0.35
+      }
+    ],
+    "time_of_day": "dusk",
+    "weather": "overcast",
+    "scene_type": "industrial",
+    "scene_description": "dusk overcast, quadrotor drone approaching an industrial complex from 60m to 20m, bottom-up angle",
+    "modality": "RGB",
+    "camera": {
+      "position": "bottom",
+      "elevation_deg": 45.0,
+      "fov_deg": 60.0
+    },
+    "confidence_note": "傍晚+阴天光线条件明确，仰拍对应bottom位置，飞近→approach距离递减合理"
+  },
+  "_schema_reference": {
+    "drone_type": "string — quadrotor (当前仅支持四旋翼)",
+    "trajectory": "array[TrajectoryPoint] — t(时间步序号), action(hover/approach/retreat/lateral_move/ascend/descend/circle/noise), distance(米), norm_u(归一化水平0-1), norm_v(归一化垂直0-1)",
+    "time_of_day": "string — dawn/morning/afternoon/dusk/night",
+    "weather": "string — clear/overcast/rainy/foggy/dusty/backlight",
+    "scene_type": "string — urban/rural/mountain/coastal/desert/forest/industrial/airfield",
+    "scene_description": "string — 自然语言摘要",
+    "modality": "string — RGB/IR",
+    "camera": "{position(bottom/front/side/top), elevation_deg, fov_deg}",
+    "confidence_note": "string — LLM 低置信度推断附注"
+  }
+}

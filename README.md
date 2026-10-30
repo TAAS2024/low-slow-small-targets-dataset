@@ -86,8 +86,71 @@ CDFF is a **dual-agent adversarial + closed-loop feedback** architecture:
     └── 7-持续学习循环设计.md           #   closed-loop mechanism design spec (CDFF v2.0)
 ```
 
-`0-model/`, `1-background-pool/`, `2-Lora training/` are **not** part of the repository: in the
-original project tree they appear here as relative symlinks, and `lss_paths.py` follows them.
+The tree above is the **final, consolidated pipeline** — it is what `0-workspace/` contained in
+the research project, promoted to the repository root.
+
+### 2.1 Research-stage trees (kept for provenance)
+
+The pipeline did not appear in one go. Each numbered directory below is the stage tree it was
+actually built in, kept verbatim so every design decision in the paper can be traced back to the
+code that produced it. These trees are *history*, not part of the runtime path — the final modules
+in `app/`, `generator/`, `validator/`, `loop/` supersede them.
+
+```
+0-database/              # dataset assembly (image corpora + kohya configs)
+│                        #   only the configs are tracked — the image corpora are not
+├── README.md
+├── kohya_dataset/training_config.toml
+├── kohya_dataset/11_drn3_pocket_uav/dataset_config.toml
+└── kohya_dataset/sample_prompts.txt
+2-Lora training/         # M0: drone LoRA training (the adapter the generator loads)
+├── train_drn3_lora.py           #   kohya/sd-scripts wrapper, v3-768 recipe
+├── training_config_v3_768.toml  #   rank / lr / steps actually used
+├── collect_drone_images.py      #   corpus harvesting
+└── rgb2ir_converter.py          #   prototype of M6
+3-LLM starter/           # M1–M3 prototypes (pre-refactor, v7 lives here first)
+├── web_app.py, llm_parser.py, background_searcher.py, condition_generator_v7.py
+├── condition_generator.py       #   v6 predecessor, kept to show the refactor delta
+├── e2e_webcheck.py              #   end-to-end HTTP smoke test + _e2e_report.json
+├── templates/index.html
+└── sessions/sample_session.json
+4-Transformer/           # M2.5: Depth-Anything-V2 trajectory branch (deprecated in v20)
+├── smoke_test.py, README.md
+└── archive/                     #   transformer_b.py, training_pipeline.py, json_schema.py,
+                                 #   gen_jsons_*.py, demo_*.py — the full exploratory line
+5-Controlnet/            # M4/M5 engine, every iteration v1→v7
+├── lora_inpainter.py … lora_inpainter_v7.py    # generator evolution, one file per version
+├── demo_v5.py, demo_v6.py, demo_v6_batch_A.py, demo_v7.py
+├── diagnose_pipeline.py                        #   NaN/black-frame triage tool
+├── test_blend_v2.py, test_blend_strength_comparison.py
+└── archive/                                    #   dual_controlnet_pipeline.py, full_pipeline.py…
+6-Validator/             # V1–V9, built as nine independent agents before being flattened
+├── S1 Agent 1 JSON校验/ … S9 YOLO结果检查/    # each: code/ config/ tests/ demos/
+├── V4-trainable/, V5-pipeline/                 #   paradigm-A and chaining prototypes
+├── Demo S1~5/, Demo S6~9/                      #   cross-agent demos + failure logs
+└── S6 …/models/brisque_svm_weights.pt          #   115 KB SVM head, tracked (V6 needs it)
+参考资料/                 # literature notes that seeded the design
+·重点节点总结笔记/          # design notes (md) + the overall architecture figure
+```
+
+`·重点节点总结笔记/` keeps the markdown only: the 12 manuscript `.docx` drafts (≈100 MB of
+versioned copies) and the rendered figure dumps are gitignored. `000-整体架构研发图.png` is the
+architecture drawing referred to in §1.
+
+### 2.2 What is deliberately absent
+
+| Excluded | Size in the research tree | Why |
+|---|---|---|
+| `0-model/` (SD1.5, 3× ControlNet, CLIP-ViT-L, YOLOv8x) | 22 GB | public weights, re-downloadable |
+| `1-background-pool/` (9 scenes, 37,852 files) | 11 GB | the dataset itself |
+| `0-database/{11_drone_clean, Drone_pic, 官方数据集, lora_logs_v3_768}` | 304 MB | image corpora + YOLO labels + tfevents |
+| `2-Lora training/{best_models, demo_output*, drn3_pocket_uav}` | 344 MB | trained LoRA adapters (`.safetensors`) |
+| `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | per-sample dumps, regenerable |
+| `·-1豆包案例图/`, `5-Controlnet/demo_output*/` | 82 MB | reference and generated imagery |
+| `z-文件格式参考/` | 7 MB | third-party papers, not ours to redistribute |
+
+Everything a reader needs to *rebuild* the pipeline is here; everything that is either
+redistributable from upstream or regenerable from the tracked scripts is not.
 
 ---
 
@@ -157,20 +220,30 @@ validator_pipeline.py (S6→S9 chaining)
 
 ---
 
-## 5. Deduplication Notes (what this archive excludes)
+## 5. Deduplication Notes (why the final tree is lean)
 
-| Excluded content | Original location | Reason |
+The repository carries the pipeline **twice**, on purpose:
+
+- **§2 final tree** (`app/`, `generator/`, `validator/`, `loop/`) — one file per module, no
+  duplicated implementations. This is the only tree that runs.
+- **§2.1 stage trees** (`5-Controlnet/`, `3-LLM starter/`, `6-Validator/`, …) — the iterations
+  each module went through, kept verbatim. Nothing here is imported at runtime.
+
+So the duplication is deliberate and partitioned. Within the *final* tree the audit found no
+duplicate function bodies and no versioned siblings:
+
+| Not carried into the final tree | Where it still lives verbatim | Why it was dropped from the final tree |
 |---|---|---|
-| `lora_inpainter.py` ~ `_v6.py` (6 files) | `5-Controlnet/` | historical versions; the final is `_v7` |
-| `demo_v5/v6/v6_batch_A.py` | `5-Controlnet/` | old demos |
-| `condition_generator.py` (no suffix) | `3-LLM starter/` | old version (Gaussian blob), superseded by v7 |
-| the entire `4-Transformer/` module | project root | Agent 2 spatio-temporal encoder removed from the CDFF six-module architecture |
-| all demo/test scripts except `V4-trainable/` | `6-Validator/` | demo and test scripts |
-| three `archive/` directories | several locations | historical archives |
-| model weights / datasets / background pool / intermediate artifacts | `0-model/ 0-database/ 1-background-pool/ …` | non-code |
+| `lora_inpainter.py` ~ `_v6.py` (6 files) | `5-Controlnet/` | superseded by `generator/lora_inpainter_v7.py` |
+| `demo_v5/v6/v6_batch_A.py` | `5-Controlnet/` | old demos; `v7` is the shipped path |
+| `condition_generator.py` (no suffix) | `3-LLM starter/` | Gaussian-blob predecessor of v7 |
+| the whole Transformer branch | `4-Transformer/` | Agent 2 spatio-temporal encoder removed in v20 |
+| per-agent `tests/` and demo scripts | `6-Validator/S*/` | flattened into `validator/v1…v9` |
+| the three `archive/` directories | `5-Controlnet/`, `4-Transformer/` | exploratory lines |
 
-**Retained exception**: `loop/trainable_classifier.py` is named after V4, but it is the trainable component
-(`train`/`infer` interface) of closed-loop paradigm A and belongs to the loop-mechanism design, so it is retained.
+**Retained exception**: `loop/trainable_classifier.py` is named after V4, but it is the trainable
+component (`train`/`infer` interface) of closed-loop paradigm A and belongs to the loop-mechanism
+design, so it is retained.
 
 ---
 
@@ -239,6 +312,9 @@ python lss_paths.py                        # verify before running anything
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
 | `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
+
+Every "original project path" in this table is now also present in the repository (§2.1), so the
+mapping can be cross-checked directly rather than taken on trust.
 
 ---
 

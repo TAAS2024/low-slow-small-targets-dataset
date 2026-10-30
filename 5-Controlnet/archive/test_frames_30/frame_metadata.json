@@ -1,0 +1,242 @@
+[
+  {
+    "frame": 0,
+    "action": "approach",
+    "norm_u": 0.35,
+    "norm_v": -0.15,
+    "distance": 100.0,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 1,
+    "action": "approach",
+    "norm_u": 0.339,
+    "norm_v": -0.172,
+    "distance": 93.3,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 2,
+    "action": "approach",
+    "norm_u": 0.328,
+    "norm_v": -0.194,
+    "distance": 86.7,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 3,
+    "action": "approach",
+    "norm_u": 0.317,
+    "norm_v": -0.217,
+    "distance": 80.0,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 4,
+    "action": "approach",
+    "norm_u": 0.306,
+    "norm_v": -0.239,
+    "distance": 73.3,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 5,
+    "action": "approach",
+    "norm_u": 0.294,
+    "norm_v": -0.261,
+    "distance": 66.7,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 6,
+    "action": "approach",
+    "norm_u": 0.283,
+    "norm_v": -0.283,
+    "distance": 60.0,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 7,
+    "action": "approach",
+    "norm_u": 0.272,
+    "norm_v": -0.306,
+    "distance": 53.3,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 8,
+    "action": "approach",
+    "norm_u": 0.261,
+    "norm_v": -0.328,
+    "distance": 46.7,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 9,
+    "action": "approach",
+    "norm_u": 0.25,
+    "norm_v": -0.35,
+    "distance": 40.0,
+    "prompt": "overcast evening, industrial factory, drone approaching from distance, looking up at cooling towers and smokestacks, photorealistic"
+  },
+  {
+    "frame": 10,
+    "action": "hover",
+    "norm_u": 0.25,
+    "norm_v": -0.3,
+    "distance": 40.0,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 11,
+    "action": "hover",
+    "norm_u": 0.29,
+    "norm_v": -0.304,
+    "distance": 40.7,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 12,
+    "action": "hover",
+    "norm_u": 0.319,
+    "norm_v": -0.317,
+    "distance": 40.9,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 13,
+    "action": "hover",
+    "norm_u": 0.33,
+    "norm_v": -0.335,
+    "distance": 40.1,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 14,
+    "action": "hover",
+    "norm_u": 0.319,
+    "norm_v": -0.355,
+    "distance": 38.5,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 15,
+    "action": "hover",
+    "norm_u": 0.29,
+    "norm_v": -0.375,
+    "distance": 36.5,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 16,
+    "action": "hover",
+    "norm_u": 0.25,
+    "norm_v": -0.391,
+    "distance": 34.9,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 17,
+    "action": "hover",
+    "norm_u": 0.21,
+    "norm_v": -0.399,
+    "distance": 34.1,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 18,
+    "action": "hover",
+    "norm_u": 0.181,
+    "norm_v": -0.399,
+    "distance": 34.3,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 19,
+    "action": "hover",
+    "norm_u": 0.17,
+    "norm_v": -0.391,
+    "distance": 35.0,
+    "prompt": "overcast evening, industrial factory, drone hovering mid-air, steady observation shot of factory complex, photorealistic"
+  },
+  {
+    "frame": 20,
+    "action": "lateral_move",
+    "norm_u": 0.25,
+    "norm_v": -0.35,
+    "distance": 35.0,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 21,
+    "action": "lateral_move",
+    "norm_u": 0.233,
+    "norm_v": -0.344,
+    "distance": 36.1,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 22,
+    "action": "lateral_move",
+    "norm_u": 0.217,
+    "norm_v": -0.339,
+    "distance": 37.2,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 23,
+    "action": "lateral_move",
+    "norm_u": 0.2,
+    "norm_v": -0.333,
+    "distance": 38.3,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 24,
+    "action": "lateral_move",
+    "norm_u": 0.183,
+    "norm_v": -0.328,
+    "distance": 39.4,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 25,
+    "action": "lateral_move",
+    "norm_u": 0.167,
+    "norm_v": -0.322,
+    "distance": 40.6,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 26,
+    "action": "lateral_move",
+    "norm_u": 0.15,
+    "norm_v": -0.317,
+    "distance": 41.7,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 27,
+    "action": "lateral_move",
+    "norm_u": 0.133,
+    "norm_v": -0.311,
+    "distance": 42.8,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 28,
+    "action": "lateral_move",
+    "norm_u": 0.117,
+    "norm_v": -0.306,
+    "distance": 43.9,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  },
+  {
+    "frame": 29,
+    "action": "lateral_move",
+    "norm_u": 0.1,
+    "norm_v": -0.3,
+    "distance": 45.0,
+    "prompt": "overcast evening, industrial factory, drone lateral tracking movement, cinematic pan across factory buildings, photorealistic"
+  }
+]

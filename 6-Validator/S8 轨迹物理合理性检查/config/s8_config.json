@@ -1,0 +1,26 @@
+{
+  "_note": "S2 轨迹连续性配置。纯物理规则，零 ML 依赖。硬锚点：S2 永不可训。",
+  "physics": {
+    "v_max": 0.3,
+    "_v_max_note": "归一化最大帧间位移（30% 帧宽/帧），对应无人机正常飞行",
+    "a_max": 0.15,
+    "_a_max_note": "归一化最大加速度（帧宽/帧²），对应无人机平缓变速",
+    "theta_max": 45.0,
+    "_theta_max_note": "最大帧间转向角（度），允许 45° 内转向",
+    "size_mutation_thr": 0.3,
+    "_size_mutation_note": "尺寸突变阈值，宽度变化超过 30% 触发告警",
+    "dt": 1.0,
+    "_dt_note": "帧间时间间隔（帧），默认 1 帧"
+  },
+  "pass_threshold": 0.8,
+  "_pass_threshold_note": "总分 >= 0.8 通过。每帧过渡每触发一条规则扣对应 penalty。",
+  "scoring": {
+    "_note": "score = max(0, 1.0 - Σ penalties)，penalty = min(1.0, excess/margin)",
+    "position_penalty": "proportional to excess beyond v_max",
+    "size_penalty": "proportional to excess beyond size_mutation_thr",
+    "accel_penalty": "proportional to excess beyond a_max",
+    "direction_penalty": "proportional to excess beyond theta_max"
+  },
+  "hard_anchor": true,
+  "_hard_anchor_note": "S2 是 CDFF 最安全的 Validator。物理规律不可过拟合，不可被 Generator hack。永不可训。"
+}

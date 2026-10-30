@@ -1,0 +1,11 @@
+# ir_thresholds.yaml — S5 IR 校验阈值
+
+# 检 2: 灰度确认
+grayscale:
+  channel_std_max: 0.01  # RGB 三通道标准差 < 此值 → 确认灰度
+
+# 检 3: 直方图合理性
+histogram:
+  min_peaks: 2            # 直方图至少需要 N 个峰（避免全灰单峰或均匀噪声）
+  peak_prominence: 0.05   # find_peaks 的 prominence 参数（归一化后）
+  # 单峰 → 全灰输出；全范围均匀 → 噪声。正常灰度直方图应多峰分散

@@ -1,0 +1,70 @@
+{
+  "demo_name": "Transformer B + ControlNet — 端到端 Demo (8场景)",
+  "description": "从 Agent 1 JSON 语义 → Transformer B depth+seg → ControlNet 双条件 → 最终 RGB 场景",
+  "scenes": [
+    {
+      "label": "01_urban_hover_50m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"hover\", \"distance\": 50.0, \"norm_u\": 0.45, \"norm_v\": 0.35}], \"time_of_day\": \"afternoon\", \"weather\": \"clear\", \"scene_type\": \"urban\", \"scene_description\": \"城市CBD上空悬停侦察，高楼林立，蓝天白云\", \"modality\": \"RGB\", \"camera\": {\"position\": \"bottom\", \"elevation_deg\": 30.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "aerial view of modern city skyline, skyscrapers, blue sky with clouds, photorealistic, 8K",
+      "position_uv": [0.45, 0.35],
+      "distance_m": 50.0,
+      "seed": 42
+    },
+    {
+      "label": "02_industrial_approach_35m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"approach\", \"distance\": 35.0, \"norm_u\": 0.4, \"norm_v\": 0.3}], \"time_of_day\": \"morning\", \"weather\": \"overcast\", \"scene_type\": \"industrial\", \"scene_description\": \"工业区仓库群，阴天清晨俯冲接近目标\", \"modality\": \"RGB\", \"camera\": {\"position\": \"top\", \"elevation_deg\": -20.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "industrial warehouse district, factories, overcast morning light, photorealistic",
+      "position_uv": [0.4, 0.3],
+      "distance_m": 35.0,
+      "seed": 43
+    },
+    {
+      "label": "03_mountain_retreat_80m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"retreat\", \"distance\": 80.0, \"norm_u\": 0.55, \"norm_v\": 0.4}], \"time_of_day\": \"dusk\", \"weather\": \"clear\", \"scene_type\": \"mountain\", \"scene_description\": \"黄昏山脊线前无人机拉远，金色余晖\", \"modality\": \"RGB\", \"camera\": {\"position\": \"front\", \"elevation_deg\": 5.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "mountain ridge at golden hour, warm sunset light, dramatic sky, photorealistic",
+      "position_uv": [0.55, 0.4],
+      "distance_m": 80.0,
+      "seed": 44
+    },
+    {
+      "label": "04_coastal_lateral_60m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"lateral_move\", \"distance\": 60.0, \"norm_u\": 0.35, \"norm_v\": 0.45}], \"time_of_day\": \"afternoon\", \"weather\": \"clear\", \"scene_type\": \"coastal\", \"scene_description\": \"海岸线横向巡航，碧海蓝天，白色沙滩\", \"modality\": \"RGB\", \"camera\": {\"position\": \"side\", \"elevation_deg\": 0.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "coastal shoreline, turquoise water, white sand beach, clear sky, photorealistic",
+      "position_uv": [0.35, 0.45],
+      "distance_m": 60.0,
+      "seed": 45
+    },
+    {
+      "label": "05_rural_ascend_45m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"ascend\", \"distance\": 45.0, \"norm_u\": 0.5, \"norm_v\": 0.25}], \"time_of_day\": \"morning\", \"weather\": \"foggy\", \"scene_type\": \"rural\", \"scene_description\": \"晨雾乡村田野上升，农舍点缀\", \"modality\": \"RGB\", \"camera\": {\"position\": \"bottom\", \"elevation_deg\": 40.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "rural farmland in morning fog, farmhouses, fields, atmospheric, photorealistic",
+      "position_uv": [0.5, 0.25],
+      "distance_m": 45.0,
+      "seed": 46
+    },
+    {
+      "label": "06_forest_descend_30m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"descend\", \"distance\": 30.0, \"norm_u\": 0.6, \"norm_v\": 0.5}], \"time_of_day\": \"afternoon\", \"weather\": \"clear\", \"scene_type\": \"forest\", \"scene_description\": \"森林树冠层下降，翠绿林海\", \"modality\": \"RGB\", \"camera\": {\"position\": \"top\", \"elevation_deg\": -30.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "dense forest canopy from above, lush green trees, sunlight filtering through, photorealistic",
+      "position_uv": [0.6, 0.5],
+      "distance_m": 30.0,
+      "seed": 47
+    },
+    {
+      "label": "07_desert_circle_100m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"circle\", \"distance\": 100.0, \"norm_u\": 0.5, \"norm_v\": 0.3}], \"time_of_day\": \"afternoon\", \"weather\": \"dusty\", \"scene_type\": \"desert\", \"scene_description\": \"沙漠盘旋侦察，沙尘弥漫，热浪滚滚\", \"modality\": \"RGB\", \"camera\": {\"position\": \"front\", \"elevation_deg\": 10.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "vast desert landscape, sand dunes, dusty atmosphere, heat haze, photorealistic",
+      "position_uv": [0.5, 0.3],
+      "distance_m": 100.0,
+      "seed": 48
+    },
+    {
+      "label": "08_airfield_hover_25m",
+      "json_text": "{\"drone_type\": \"quadrotor\", \"trajectory\": [{\"t\": 0, \"action\": \"hover\", \"distance\": 25.0, \"norm_u\": 0.5, \"norm_v\": 0.5}], \"time_of_day\": \"night\", \"weather\": \"clear\", \"scene_type\": \"airfield\", \"scene_description\": \"夜间机场跑道灯光，无人机近距离悬停\", \"modality\": \"RGB\", \"camera\": {\"position\": \"bottom\", \"elevation_deg\": 25.0, \"fov_deg\": 60.0}, \"confidence_note\": \"\"}",
+      "bg_prompt": "airport runway at night, runway lights, dark sky, cinematic, photorealistic",
+      "position_uv": [0.5, 0.5],
+      "distance_m": 25.0,
+      "seed": 49
+    }
+  ]
+}

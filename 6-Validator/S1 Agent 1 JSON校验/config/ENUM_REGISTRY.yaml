@@ -1,0 +1,72 @@
+# ENUM_REGISTRY.yaml — S1 JSON 校验用枚举值注册表
+# 所有枚举值的单一事实来源，Agent 1 和 Validator 共用此文件
+
+drone_type:
+  - fixed_wing
+  - quadcopter
+  - hexacopter
+  - mini_drone
+  - fpv_drone
+  - vtol
+
+weather:
+  - clear
+  - cloudy
+  - overcast
+  - rainy
+  - foggy
+  - fog
+  - snowy
+  - backlight
+
+time_of_day:
+  - dawn
+  - morning
+  - noon
+  - afternoon
+  - dusk
+  - night
+
+scene_type:
+  - outdoor_urban
+  - outdoor_suburban
+  - outdoor_rural
+  - outdoor_mountain
+  - outdoor_coastal
+  - outdoor_forest
+  - outdoor_desert
+  - indoor
+
+modality:
+  - RGB
+  - IR
+  - RGB_IR_pair
+  - RGB_depth_pair
+
+camera:
+  position:
+    - top_down
+    - high_angle
+    - eye_level
+    - low_angle
+    - bottom
+  fov_deg:
+    min: 20
+    max: 120
+  elevation_deg:
+    top_down: [60, 90]
+    high_angle: [30, 60]
+    eye_level: [-10, 30]
+    low_angle: [-60, -10]
+    bottom: [-90, -60]
+
+trajectory:
+  action:
+    - fly_straight
+    - fly_curve
+    - hover
+    - ascend
+    - descend
+    - spiral
+    - zigzag
+  distance_min: 0.0  # 允许 0（悬停）

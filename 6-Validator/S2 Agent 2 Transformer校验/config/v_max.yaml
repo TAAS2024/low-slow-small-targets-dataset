@@ -1,0 +1,36 @@
+# v_max.yaml — 各类无人机最大像素位移约束
+# 数值含义：相邻帧之间无人机中心的像素位移上限
+# 基于 512×512 帧、30fps 估算
+
+drone_types:
+  fixed_wing:
+    v_max_px: 60     # 固定翼最快，每帧最多移动 60px
+    description: "固定翼无人机巡航速度快"
+  quadcopter:
+    v_max_px: 30     # 四旋翼中等
+    description: "四旋翼无人机常规飞行"
+  hexacopter:
+    v_max_px: 25     # 六旋翼略慢
+    description: "六旋翼无人机通常载重飞行"
+  mini_drone:
+    v_max_px: 15     # 微型无人机慢
+    description: "微型无人机通常在室内/近距飞行"
+  fpv_drone:
+    v_max_px: 50     # FPV 竞速快
+    description: "FPV 穿越机速度极快"
+  vtol:
+    v_max_px: 35     # VTOL 介于固定翼和旋翼之间
+    description: "垂直起降无人机"
+
+# 默认值（当 drone_type 未知时使用）
+default:
+  v_max_px: 30
+
+# 帧间尺寸变化阈值（与 S8 保持一致）
+size_delta_threshold: 0.3  # 30% 突变阈值
+
+# seg 图无人机区域最小像素数
+seg_min_pixels: 50
+
+# depth 图无人机区域与背景差异阈值
+depth_diff_threshold: 0.1  # 归一化 depth 的均值差

@@ -1,0 +1,45 @@
+{
+  "_note": "S1 无人机-场景一致性配置。四维度：尺寸 / 光照 / IR bbox / 跨模态对齐。",
+  "require_all_dims": true,
+  "_require_all_dims_note": "true=全部维度通过才PASS, false=任一通过即PASS",
+
+  "size_config": null,
+  "_size_config_note": "设为 null 使用内置默认参数（fov=60°, tolerance=0.5）",
+
+  "lighting_config": null,
+  "_lighting_config_note": "设为 null 使用内置默认参数（kl_thr=0.5, bins=32）",
+
+  "ir_bbox_epsilon": 0.02,
+  "_ir_bbox_epsilon_note": "|w_rgb-w_ir| 和 |h_rgb-h_ir| 的允许偏差（归一化坐标）",
+
+  "cross_modal_iou_thr": 0.95,
+  "_cross_modal_iou_thr_note": "RGB-IR bbox IoU 最小阈值",
+
+  "drone_sizes": {
+    "_note": "无人机类别→真实宽度(米)，用于尺寸一致性计算",
+    "small_quadcopter": 0.25,
+    "medium_quadcopter": 0.35,
+    "large_quadcopter": 0.50,
+    "fixed_wing_small": 0.80,
+    "fixed_wing_large": 2.00,
+    "kite": 1.00,
+    "balloon": 2.00,
+    "airship": 5.00,
+    "bird": 0.30
+  },
+
+  "fov_deg": 60.0,
+  "_fov_deg_note": "相机水平视场角（度），用于尺寸期望计算",
+
+  "tolerance": 0.5,
+  "_tolerance_note": "尺寸允许偏差比例（±50%）",
+
+  "kl_threshold": 8.0,
+  "_kl_threshold_note": "光照 KL 散度阈值（逐通道平均，P1 20帧经验标定：正常样本 max=6.99，取 8.0 保守余量）",
+
+  "min_crop_px": 20,
+  "_min_crop_px_note": "光照检查的最小无人机crop尺寸（像素）",
+
+  "bins": 16,
+  "_bins_note": "光照直方图每通道 bins 数（3×16=48 bins，逐通道独立 + Laplace 平滑）"
+}

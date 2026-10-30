@@ -13,18 +13,30 @@ venv/
 # Generated images and runtime artefacts
 output_images/
 *.log
-*.jsonl
 
-# Model weights / datasets / background pool (not part of this archive)
-# These three are symlinks inside the original project tree.
+# Model weights, datasets and the background pool.
+# These directories exist in the original project tree and are deliberately
+# NOT tracked: the weights are ~22 GB and the background pool ~11 GB.
 0-model
 1-background-pool
-2-Lora training
 *.safetensors
 *.ckpt
 *.bin
-*.pt
 *.pth
+
+# LoRA adapters / kohya training outputs — the training *code* is tracked,
+# the produced weights and demo frames are not.
+2-Lora training/best_models/
+2-Lora training/demo_output*/
+2-Lora training/drn3_pocket_uav/
+0-database/kohya_dataset/output/
+0-database/11_drone_clean/
+0-database/Drone_pic/
+0-database/官方数据集/
+0-database/lora_logs_v3_768/
+
+# ... except the small BRISQUE SVM weights that V6 needs to run (115 KB)
+!6-Validator/**/models/*.pt
 
 # Per-sample dumps and intermediate runs (regenerable, large)
 experiments/**/manifest.json
@@ -37,6 +49,12 @@ experiments/**/*_buggy_*
 experiments/**/*_stale_*
 experiments/**/*_partial_*
 experiments/**/crops/
+
+# Paper manuscripts (large .docx, versioned outside git) and rendered figures
+·重点节点总结笔记/**/*.docx
+·重点节点总结笔记/**/*.pdf
+·重点节点总结笔记/**/*.bak
+·重点节点总结笔记/论文写作/figures/标准图设置/
 
 # OS
 .DS_Store
