@@ -28,7 +28,7 @@ from docx import Document
 # 只用仓库内产物就能跑通、且是复现入口的是 audit_tables_v20.py。
 # 找得到 docx 才做文本比对；找不到就明确说明并跳过，不输出误导性的失败。
 _HERE = Path(__file__).resolve()
-ROOT = Path(os.environ.get("CDFF_ROOT", _HERE.parents[3]))
+ROOT = Path(os.environ.get("CDFF_ROOT", _HERE.parents[4]))
 BCD = ROOT / 'experiments' / 'bcd'
 DOC = Path(os.environ.get(
     "CDFF_DOCX", ROOT / '·重点节点总结笔记' / '论文写作' / 'CDFF_Neurocomputing_v20.docx'))
