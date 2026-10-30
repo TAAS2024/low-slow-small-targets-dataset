@@ -1,0 +1,81 @@
+# ============================================================================
+# kohya-ss/sd-scripts recipe — SD 1.5 LoRA for the CDFF target class
+#
+# This is the recipe recorded in the metadata of the released adapter
+# (modelspec.implementation = sd-scripts). Reproduce with:
+#
+#   git clone https://github.com/kohya-ss/sd-scripts
+#   accelerate launch --num_cpu_threads_per_process 2 train_network.py \
+#       --config_file training/configs/kohya_sd15_drn3.toml
+#
+# LICENCE: the base model is CreativeML OpenRAIL-M. The adapter is a derivative
+# and inherits that licence and its Attachment A use restrictions.
+# ============================================================================
+
+[model]
+pretrained_model_name_or_path = "path/to/0-model/stable-diffusion-v1-5"
+v2 = false
+v_parameterization = false
+
+[network]
+network_module = "networks.lora"
+network_dim = 8
+network_alpha = 4
+network_train_unet_only = false     # the released adapter carries text-encoder keys
+network_train_text_encoder_only = false
+
+[optimizer]
+optimizer_type = "AdamW8bit"
+learning_rate = 1e-4
+unet_lr = 1e-4
+text_encoder_lr = 1e-4
+lr_scheduler = "cosine_with_restarts"
+lr_scheduler_num_cycles = 3
+lr_warmup_steps = 0
+max_grad_norm = 1.0
+
+[training]
+max_train_steps = 3000
+train_batch_size = 1
+gradient_accumulation_steps = 1
+gradient_checkpointing = true
+xformers = true
+mixed_precision = "fp16"
+save_every_n_steps = 500          # the released checkpoint is step 2000
+save_precision = "fp16"
+seed = 42
+min_snr_gamma = 5.0
+noise_offset = 0
+clip_skip = 1
+shuffle_caption = false
+keep_tokens = 1
+caption_dropout_rate = 0.0
+cache_latents = true
+color_aug = false
+flip_aug = false
+random_crop = false
+
+[dataset]
+resolution = 512
+
+# One subset per class directory. Repeat count lives in the directory name
+# (`10_drn3_uav` = 10 repeats), which is the kohya convention.
+[[datasets]]
+batch_size = 1
+enable_bucket = false
+
+[[datasets.subsets]]
+image_dir = "path/to/0-database/kohya_dataset/10_drn3_uav"
+is_reg = false
+num_repeats = 10
+class_tokens = "drn3_uav"
+
+[logging]
+log_with = "tensorboard"
+logging_dir = "runs/kohya_sd15_drn3/logs"
+output_dir = "runs/kohya_sd15_drn3"
+output_name = "drn3_pocket_uav_v3"
+
+[sample]
+sample_every_n_steps = 500
+sample_prompts = "path/to/sample_prompts.txt"

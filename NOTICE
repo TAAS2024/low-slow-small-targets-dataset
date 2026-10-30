@@ -1,0 +1,44 @@
+CDFF — Closed-loop Data Flywheel Framework
+Copyright (c) 2026 Qingming Li (Tiger)
+
+This product includes software and model weights developed by third parties.
+The MIT license in LICENSE applies to the original source code in this
+repository only. It does not apply to, and does not relicense, any of the
+following.
+
+1. Base generative model
+   Stable Diffusion v1.5 (sd-legacy/stable-diffusion-v1-5)
+   License: CreativeML OpenRAIL-M
+   https://huggingface.co/spaces/CompVis/stable-diffusion-license
+
+   The LoRA adapter used by this pipeline, and any checkpoint merged from it,
+   is a derivative of Stable Diffusion v1.5 and remains subject to the
+   CreativeML OpenRAIL-M license, including its Attachment A use-based
+   restrictions. It is not MIT-licensed and must not be presented as such.
+
+2. ControlNet conditioning branches
+   lllyasviel/sd-controlnet-depth — OpenRAIL
+   lllyasviel/sd-controlnet-seg   — OpenRAIL
+
+3. Perception models
+   CLIP ViT-B/32 (openai/clip-vit-base-patch32) — MIT
+   MiDaS DPT-Hybrid (intel-isl/MiDaS) — MIT
+   U-2-Net weights via rembg — Apache-2.0
+
+4. Optional detector
+   Ultralytics YOLOv8 — AGPL-3.0. Imported lazily and never vendored; see
+   THIRD_PARTY_LICENSES.md §2 before distributing any product that bundles it.
+
+5. Libraries
+   torch / torchvision (BSD-3-Clause), diffusers / transformers / peft /
+   accelerate / safetensors / opencv-python / piq / openai SDK (Apache-2.0),
+   numpy / SciPy / Flask / python-dotenv (BSD-3-Clause), Pillow (MIT-CMU),
+   matplotlib (PSF-based), scikit-image–style helpers via SciPy, rembg (MIT),
+   python-docx (MIT), anthropic SDK (MIT), tqdm (MPL-2.0 / MIT),
+   PyYAML (MIT), einops (MIT).
+
+No model weights, no background photographs and no benchmark images are
+distributed with this repository. Full terms and the obligations they create are
+in THIRD_PARTY_LICENSES.md.
+
+SPDX-License-Identifier: MIT (source code only)

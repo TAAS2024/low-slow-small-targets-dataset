@@ -79,7 +79,24 @@ CDFF 把这两件事当作同一个问题处理：把一张普通背景照片转
 │   ├── validator_pipeline.py       # S6→S9 短路串联
 │   ├── failure_buffer.py           # 失败缓冲 + 阈值触发
 │   └── trainable_classifier.py     # 范式 A 可训练分类器
-└── experiments/                    # 复现脚本与汇总结果
+├── training/                       # 目标 LoRA：配方 + 训练脚本 + 说明
+│   ├── train_lora.py               # diffusers+PEFT 训练器，导出 kohya 键
+│   ├── README.md                   # 已发布权重元数据里记录的配方
+│   └── configs/
+│       ├── lora_sd15_drn3.yaml     # train_lora.py 的配置
+│       └── kohya_sd15_drn3.toml    # sd-scripts 原配方
+├── preprocessing/                  # 数据集构建（纯 CPU）
+│   ├── prepare_background_pool.py  # 实拍图 → 九类背景池 + JSONL
+│   └── prepare_lora_dataset.py     # 目标图 → kohya 训练目录
+├── notebooks/
+│   ├── 01_quickstart.ipynb         # 由 build_quickstart.py 生成
+│   ├── build_quickstart.py
+│   └── smoke_run.py                # 无权重执行全部单元
+├── tests/
+│   └── test_lora_loader.py         # 键名映射 + 合并数值自检
+├── experiments/                    # 复现脚本与汇总结果
+├── THIRD_PARTY_LICENSES.md         # 第三方许可清单及其影响
+└── NOTICE                          # 署名，含底模许可声明
 ```
 
 ---
@@ -121,7 +138,7 @@ cd low-slow-small-targets-dataset
 pip install -r requirements.txt
 ```
 
-依赖：PyTorch（CUDA 可选）、diffusers、transformers、ControlNet、`piq`、ultralytics、Flask。论文中的单帧耗时在单张 8 GB GPU 上测得。
+依赖装在 `requirements.txt` 里（PyTorch 走 +cu124 wheel）。验证器、审计脚本、预处理脚本与 `tests/` 纯 CPU 即可；生成需要 GPU，论文中的单帧耗时在单张 8 GB 显卡上测得。`ultralytics` **默认不安装**——V9 属可选项，且其许可为 AGPL-3.0（见 §11）。
 
 ---
 
@@ -129,20 +146,21 @@ pip install -r requirements.txt
 
 仓库不含权重与图片，需自行下载或准备。全部路径由 `lss_paths.py` 解析，设置 `LSS_PROJECT_ROOT` 指向资产所在目录即可。
 
-| 资产 | 默认路径 | 获取 |
-|---|---|---|
-| SD 1.5 底模 | `0-model/stable-diffusion-v1-5` | `hf download stable-diffusion-v1-5/stable-diffusion-v1-5 --local-dir <path>` |
-| ControlNet depth | `0-model/sd-controlnet-depth` | `hf download lllyasviel/sd-controlnet-depth --local-dir <path>` |
-| ControlNet seg | `0-model/sd-controlnet-seg` | `hf download lllyasviel/sd-controlnet-seg --local-dir <path>` |
-| MiDaS 深度权重 | HF 缓存 | `hf download lllyasviel/Annotators --include "dpt_hybrid-midas-501f0c75.pt"` |
-| CLIP ViT-B/32 | HF 缓存 | `hf download openai/clip-vit-base-patch32` |
-| YOLOv8x（仅 V9） | `0-model/yolov8x.pt` | `python -c "from ultralytics import YOLO; YOLO('yolov8x.pt')"` |
+| 资产 | 默认路径 | 获取 | 许可 |
+|---|---|---|---|
+| SD 1.5 底模 | `0-model/stable-diffusion-v1-5` | `hf download sd-legacy/stable-diffusion-v1-5 --local-dir <path>` | CreativeML OpenRAIL-M |
+| ControlNet depth | `0-model/sd-controlnet-depth` | `hf download lllyasviel/sd-controlnet-depth --local-dir <path>` | OpenRAIL |
+| ControlNet seg | `0-model/sd-controlnet-seg` | `hf download lllyasviel/sd-controlnet-seg --local-dir <path>` | OpenRAIL |
+| MiDaS 深度权重 | HF 缓存 | `hf download lllyasviel/Annotators --include "dpt_hybrid-midas-501f0c75.pt"` | MIT（MiDaS 本体） |
+| CLIP ViT-B/32 | HF 缓存 | `hf download openai/clip-vit-base-patch32` | MIT |
+| YOLOv8x（仅 V9） | `0-model/yolov8x.pt` | `python -c "from ultralytics import YOLO; YOLO('yolov8x.pt')"` | **AGPL-3.0** |
+| 目标 LoRA | `2-Lora training/best_models/*.safetensors` | 自己训练，见 `training/README.md` | 继承 OpenRAIL-M |
 
 前三个必须是 diffusers 目录快照（代码对它们调 `from_pretrained`），不是单文件 `.safetensors`。MiDaS 与 CLIP 两项按 repo id 加载，必须落在 HuggingFace 缓存里，指向本地目录无效。国内可设 `HF_ENDPOINT=https://hf-mirror.com`。
 
-**背景池**：论文使用九类共 37,852 张实拍背景（`airfield` / `coastal` / `desert` / `forest` / `industrial` / `mountain` / `pure_sky` / `rural` / `urban`），本仓库不含。自备时按类建目录放入 16:9 图片，并在每类目录内提供 `_metadata.jsonl` 描述时段与天气，检索器据此做四层降级匹配。数量不设下限，几十张即可跑通流程。
+**背景池**：论文使用九类共 37,852 张实拍背景（`airfield` / `coastal` / `desert` / `forest` / `industrial` / `mountain` / `pure_sky` / `rural` / `urban`），本仓库不含。自备时跑 `preprocessing/prepare_background_pool.py`：它按类建目录、统一裁成 16:9，并写出检索器要读的 `_metadata.jsonl`（时段 / 天气，用于四层降级匹配）。数量不设下限，几十张即可跑通流程，细节见 `preprocessing/README.md`。
 
-**目标 LoRA**：本仓库按设计不附带任何 LoRA——论文的主张是换用任意目标 LoRA 都能生成，因此把它作为可替换扩展点。需要 SD 1.5 架构的 kohya 格式 LoRA（`lora_unet_*` 键）。路径在 `lss_paths.LORA_PATH`，改一行即可指向自己的权重。注意加载器只合并 UNet 部分，text encoder 分支会被跳过。
+**目标 LoRA**：本仓库按设计不附带任何 LoRA——论文的主张是换用任意目标 LoRA 都能生成，因此把它作为可替换扩展点。需要 SD 1.5 架构的 kohya 格式 LoRA（`lora_unet_*` 键），路径在 `lss_paths.LORA_PATH`，改一行即可指向自己的权重。合并只作用于 UNet，text encoder 分支默认跳过。用 `python generator/lora_loader.py <权重>` 可先体检：键数、rank/alpha、UNet 与 text encoder 各覆盖多少模块、元数据里记录的许可。要自己训一个，见 `training/README.md`。
 
 ---
 
@@ -166,6 +184,23 @@ python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model yolo
 
 # 复算论文全部表格（49 条断言，49 通过）
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
+
+# LoRA：体检 → 训练
+python generator/lora_loader.py path/to/adapter.safetensors
+python generator/lora_loader.py path/to/adapter.safetensors --json
+python training/train_lora.py --print-config                 # 只解析配置，不用 GPU
+python training/train_lora.py --config training/configs/lora_sd15_drn3.yaml \
+    --set data.image_dir="$LSS_PROJECT_ROOT/0-database/kohya_dataset/10_drn3_uav"
+
+# 数据准备（纯 CPU）
+python preprocessing/prepare_background_pool.py --src ~/photos --labels labels.jsonl
+python preprocessing/prepare_lora_dataset.py --src ~/drones \
+    --out "$LSS_PROJECT_ROOT/0-database/kohya_dataset" --class-name drn3_uav
+
+# 不需要权重的自检
+python tests/test_lora_loader.py
+python validator/v7_consistency/test_s7_tristate.py
+python notebooks/smoke_run.py                                 # 执行 Notebook 全部单元
 ```
 
 `loop/validator_pipeline.py` 是库不是脚本，用法为：
@@ -237,4 +272,32 @@ for geo in out["geometry"]:
 
 ## 11. 许可
 
-MIT
+**本仓库的源码是 MIT，但整个项目不是 MIT。** 模型权重、模型衍生权重以及一个可选依赖各自另有许可，`LICENSE` 里的 MIT 文本不会覆盖它们中的任何条款。
+
+| 组成 | 许可 | 是否随仓库分发 |
+|---|---|---|
+| 我们写的源码（`app/`、`generator/`、`validator/`、`loop/`、`training/`、`preprocessing/`、`notebooks/`、`tests/`、`experiments/`） | **MIT** | 是 |
+| Stable Diffusion v1.5 底模 | **CreativeML OpenRAIL-M** | 否，自行下载 |
+| ControlNet depth / seg | **OpenRAIL** | 否，自行下载 |
+| 用本仓库训练的 LoRA 适配器、以及由它合并出的 checkpoint | **CreativeML OpenRAIL-M（继承）** | 否 |
+| MiDaS、CLIP | MIT | 否，自行下载 |
+| Ultralytics YOLOv8（可选，V9 用） | **AGPL-3.0** | 否，默认不安装 |
+| 背景池、无人机原图、评测集图片 | 各自原始来源的条款 | 否 |
+
+### 底模许可如何向下传导
+
+- LoRA 适配器是底模的**衍生作品**。我们的适配器训在 SD 1.5 上，因此它本身、以及由它合并出的任何 checkpoint，都继续受 CreativeML OpenRAIL-M 约束，包括其 Attachment A 的**使用限制**；分发这些权重时必须一并附上该许可与使用限制。
+- CreativeML OpenRAIL-M 允许商用，但**附带上述使用限制**，它不是 MIT 式的无条件授权。不得把适配器标为 MIT 或 Apache-2.0，也不得把整个项目说成「完全 MIT」。
+- 如果换用**非商用**底模（研究专用、CC-BY-NC 等），则全部衍生权重——包括适配器——同样只能非商用。MIT 只覆盖代码，改变不了权重的许可。
+- ControlNet 两个分支也是 OpenRAIL，因此 SD 1.5 + ControlNet 组成的管线继承两者中更严格的一套，而两者同属 OpenRAIL-M 家族。
+
+### AGPL 边界
+
+V9（`validator/v9_detection_validator.py`）与下游评估脚本只在调用方显式传入检测器路径时**惰性导入** `ultralytics`，且该包在 `requirements.txt` 里是注释状态。使用本仓库源码本身不会让你落入 AGPL；但**把 `ultralytics` 一起打包分发**的产品会，且 AGPL 第 13 条把网络服务视为分发。需要规避时传入任何带 `.predict()` 的对象（例如 Apache-2.0 的 DETR/RT-DETR 权重）即可。
+
+完整清单、各库条款与决策表见 `THIRD_PARTY_LICENSES.md`；署名与底模声明见 `NOTICE`。
+
+### 底模引用
+
+> Runway ML / Stability AI，*Stable Diffusion v1.5*，CreativeML OpenRAIL-M。
+> Zhang, Rao & Agrawala，*Adding Conditional Control to Text-to-Image Diffusion Models*（ControlNet），对应 depth 与 segmentation 两个分支。

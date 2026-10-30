@@ -1,0 +1,70 @@
+# ============================================================================
+# CDFF — LoRA adapter training recipe for the SD 1.5 architecture
+#
+# This file configures `training/train_lora.py` (diffusers + PEFT).
+# The equivalent kohya-ss/sd-scripts recipe — which is what produced the
+# checkpoint released with the paper — is in kohya_sd15_drn3.toml.
+#
+# Override any key on the command line: --set resolution=768
+# ============================================================================
+
+# ── base model ──────────────────────────────────────────────────────────────
+# Absolute path to a diffusers directory snapshot of SD 1.5. Resolved through
+# lss_paths.SD15_PATH when left empty.
+#
+# LICENSE: the base model is CreativeML OpenRAIL-M. Every adapter trained with
+# this script is a derivative of it and inherits that licence, including its
+# Attachment A use-based restrictions. It is not MIT and must not be published
+# as MIT.
+base_model: ""                    # e.g. /data/0-model/stable-diffusion-v1-5
+base_model_id: "sd-legacy/stable-diffusion-v1-5"   # used only if the path is empty
+
+# ── data ────────────────────────────────────────────────────────────────────
+data:
+  image_dir: ""                   # directory of images + one .txt caption per image
+  resolution: 512
+  num_repeats: 10                 # each image is seen `num_repeats` times per epoch
+  flip_aug: false                 # class has an orientation; left as in the paper
+  caption_extension: ".txt"
+  class_token: "drn3_uav"         # prepended to captions that do not contain it
+
+# ── adapter ─────────────────────────────────────────────────────────────────
+lora:
+  rank: 8                         # paper: rank-8 adapter
+  alpha: 4                        # paper: alpha 4
+  dropout: 0.0
+  train_text_encoder: false       # the pyproject-faithful original trains UNet only;
+                                  # set true to add CLIP attention adapters as well
+  text_encoder_rank: 8
+  text_encoder_alpha: 4
+
+# ── optimisation ────────────────────────────────────────────────────────────
+train:
+  max_train_steps: 3000           # paper: 3,000 steps over the drone pool
+  batch_size: 1
+  gradient_accumulation_steps: 1
+  learning_rate: 1.0e-4
+  lr_scheduler: cosine_with_restarts
+  lr_num_cycles: 3
+  lr_warmup_steps: 0
+  adam_weight_decay: 0.01
+  max_grad_norm: 1.0
+  mixed_precision: fp16
+  gradient_checkpointing: true
+  use_xformers: true
+  min_snr_gamma: 5.0              # kohya metadata records min_snr_gamma = 5.0
+  seed: 42
+
+# ── output ──────────────────────────────────────────────────────────────────
+output:
+  output_dir: "runs/lora_sd15_drn3"
+  save_every_n_steps: 500         # the released checkpoint is step 2000
+  export_format: kohya            # kohya-format keys (lora_unet_*) so that
+                                  # generator/lora_loader.py can read the result
+  emit_metadata: true             # writes modelspec + ss_* metadata into the safetensors
+
+# ── provenance ──────────────────────────────────────────────────────────────
+# Written verbatim into the exported metadata and into the run summary.
+provenance:
+  adapter_name: "drn3_pocket_uav"
+  notes: "CDFF target adapter, SD 1.5 architecture, CreativeML OpenRAIL-M derivative"

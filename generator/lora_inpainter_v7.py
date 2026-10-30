@@ -29,6 +29,7 @@ from lss_paths import (  # noqa: E402  (single source of truth)
     PROJECT_ROOT, MODEL_DIR, BEST_MODELS, SD15_PATH, LORA_PATH,
     CONTROLNET_DEPTH, CONTROLNET_SEG,
 )
+from generator.lora_loader import merge_lora_into_unet  # noqa: E402
 
 # ── 基础 prompt 模板 ──────────────────────────────────────
 # v7.2: 时间驱动背景颜色 (item 1+2)
@@ -376,47 +377,8 @@ class LoraInpainterV7:
         return self.pipe_cnet_nolora
 
     def _merge_lora(self):
-        from safetensors.torch import load_file
-        state_dict = load_file(str(LORA_PATH))
-        unet = self.pipe_txt.unet
-        info = {}
-        for k in state_dict:
-            if k.endswith(".alpha"):
-                info[k[:-6]] = {"alpha": state_dict[k].item()}
-        for k, v in state_dict.items():
-            if k.endswith(".lora_down.weight"):
-                mn = k[:-18]
-                if mn in info:
-                    info[mn]["rank"] = v.shape[0]
-        deltas = {}
-        for mn in info:
-            if not mn.startswith("lora_unet_"):
-                continue
-            dk, uk = f"{mn}.lora_down.weight", f"{mn}.lora_up.weight"
-            if dk not in state_dict or uk not in state_dict:
-                continue
-            A = state_dict[dk].squeeze() if state_dict[dk].dim() > 2 else state_dict[dk]
-            B = state_dict[uk].squeeze() if state_dict[uk].dim() > 2 else state_dict[uk]
-            deltas[mn] = (info[mn].get("alpha", 1.0) / info[mn].get("rank", A.shape[0])) * (B @ A)
-        merged = 0
-        for pn, param in unet.named_parameters():
-            bn = pn.replace('.weight', '').replace('.bias', '')
-            if bn == pn:
-                continue
-            sk = 'lora_unet_' + '_'.join(bn.split('.'))
-            if sk not in deltas:
-                continue
-            delta = deltas[sk].to(param.device, param.dtype)
-            if delta.shape == param.data.shape:
-                param.data += delta
-                merged += 1
-            elif param.data.dim() == 4 and delta.dim() == 2:
-                param.data += delta.reshape(param.data.shape)
-                merged += 1
-            elif delta.T.shape == param.data.shape:
-                param.data += delta.T
-                merged += 1
-        print(f"  LoRA merged: {merged}/{len(deltas)}")
+        """把 kohya 格式 LoRA 折叠进共享 UNet（实现见 generator/lora_loader.py）."""
+        merge_lora_into_unet(self.pipe_txt.unet, LORA_PATH)
         self._lora_merged = True
 
     # ═══════════════════════════════════════════════════════════
