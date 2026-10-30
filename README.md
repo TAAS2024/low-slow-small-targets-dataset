@@ -89,67 +89,32 @@ CDFF is a **dual-agent adversarial + closed-loop feedback** architecture:
 The tree above is the **final, consolidated pipeline** — it is what `0-workspace/` contained in
 the research project, promoted to the repository root.
 
-### 2.1 Research-stage trees (kept for provenance)
+Nothing else is tracked. The research tree this archive was extracted from
+(`0-database/`, `2-Lora training/`, `3-LLM starter/`, `4-Transformer/`,
+`5-Controlnet/`, `6-Validator/`) is **not** part of the repository: it holds the
+intermediate iterations, demo scripts and per-agent prototypes that the above
+supersedes. This repository carries the final version only — the original
+project tree on disk keeps everything.
 
-The pipeline did not appear in one go. Each numbered directory below is the stage tree it was
-actually built in, kept verbatim so every design decision in the paper can be traced back to the
-code that produced it. These trees are *history*, not part of the runtime path — the final modules
-in `app/`, `generator/`, `validator/`, `loop/` supersede them.
-
-```
-0-database/              # dataset assembly (image corpora + kohya configs)
-│                        #   only the configs are tracked — the image corpora are not
-├── README.md
-├── kohya_dataset/training_config.toml
-├── kohya_dataset/11_drn3_pocket_uav/dataset_config.toml
-└── kohya_dataset/sample_prompts.txt
-2-Lora training/         # M0: drone LoRA training (the adapter the generator loads)
-├── train_drn3_lora.py           #   kohya/sd-scripts wrapper, v3-768 recipe
-├── training_config_v3_768.toml  #   rank / lr / steps actually used
-├── collect_drone_images.py      #   corpus harvesting
-└── rgb2ir_converter.py          #   prototype of M6
-3-LLM starter/           # M1–M3 prototypes (pre-refactor, v7 lives here first)
-├── web_app.py, llm_parser.py, background_searcher.py, condition_generator_v7.py
-├── condition_generator.py       #   v6 predecessor, kept to show the refactor delta
-├── e2e_webcheck.py              #   end-to-end HTTP smoke test + _e2e_report.json
-├── templates/index.html
-└── sessions/sample_session.json
-4-Transformer/           # M2.5: Depth-Anything-V2 trajectory branch (deprecated in v20)
-├── smoke_test.py, README.md
-└── archive/                     #   transformer_b.py, training_pipeline.py, json_schema.py,
-                                 #   gen_jsons_*.py, demo_*.py — the full exploratory line
-5-Controlnet/            # M4/M5 engine, every iteration v1→v7
-├── lora_inpainter.py … lora_inpainter_v7.py    # generator evolution, one file per version
-├── demo_v5.py, demo_v6.py, demo_v6_batch_A.py, demo_v7.py
-├── diagnose_pipeline.py                        #   NaN/black-frame triage tool
-├── test_blend_v2.py, test_blend_strength_comparison.py
-└── archive/                                    #   dual_controlnet_pipeline.py, full_pipeline.py…
-6-Validator/             # V1–V9, built as nine independent agents before being flattened
-├── S1 Agent 1 JSON校验/ … S9 YOLO结果检查/    # each: code/ config/ tests/ demos/
-├── V4-trainable/, V5-pipeline/                 #   paradigm-A and chaining prototypes
-├── Demo S1~5/, Demo S6~9/                      #   cross-agent demos + failure logs
-└── S6 …/models/brisque_svm_weights.pt          #   115 KB SVM head, tracked (V6 needs it)
-```
-
-The research notes, task lists, manuscript drafts and tutor-feedback audits that sat next to these
-trees (`·重点节点总结笔记/`, `参考资料/`) are deliberately **not** in the repository — they are
-working documents, not architecture.
-
-### 2.2 What is deliberately absent
+### What is deliberately absent
 
 | Excluded | Size in the research tree | Why |
 |---|---|---|
 | `0-model/` (SD1.5, 3× ControlNet, CLIP-ViT-L, YOLOv8x) | 22 GB | public weights, re-downloadable |
 | `1-background-pool/` (9 scenes, 37,852 files) | 11 GB | the dataset itself |
-| `0-database/{11_drone_clean, Drone_pic, 官方数据集, lora_logs_v3_768}` | 304 MB | image corpora + YOLO labels + tfevents |
-| `2-Lora training/{best_models, demo_output*, drn3_pocket_uav}` | 344 MB | trained LoRA adapters (`.safetensors`) |
+| `0-database/` | 304 MB | image corpora, YOLO labels, tfevents; the configs it held are superseded |
+| `2-Lora training/` | 344 MB | LoRA training harness; the adapter it produced is a weight, not code |
+| `3-LLM starter/`, `5-Controlnet/` | 9 MB | M1–M5 prototypes (`lora_inpainter` v1→v6, every demo); superseded by `app/` + `generator/` |
+| `4-Transformer/` | 1.8 MB | the Depth-Anything-V2 trajectory branch, abandoned in v20 |
+| `6-Validator/` | 3.8 MB | the nine stand-alone agent trees before they were flattened into `validator/` |
 | `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | per-sample dumps, regenerable |
 | `·-1豆包案例图/`, `5-Controlnet/demo_output*/` | 82 MB | reference and generated imagery |
 | `z-文件格式参考/` | 7 MB | third-party papers, not ours to redistribute |
-| `·重点节点总结笔记/`, `参考资料/` | 21 MB | research notes, task lists, 12 manuscript drafts, tutor-feedback audits — working documents |
+| `·重点节点总结笔记/`, `参考资料/` | 21 MB | research notes, task lists, 12 manuscript drafts, tutor-feedback audits |
 
 Everything a reader needs to *rebuild* the pipeline is here; everything that is either
-redistributable from upstream or regenerable from the tracked scripts is not.
+redistributable from upstream, regenerable from the tracked scripts, or superseded by a
+later version of the same module is not.
 
 ---
 
@@ -219,26 +184,29 @@ validator_pipeline.py (S6→S9 chaining)
 
 ---
 
-## 5. Deduplication Notes (why the final tree is lean)
+## 5. Deduplication Notes (one file per module, no versioned siblings)
 
-The repository carries the pipeline **twice**, on purpose:
+Within the tracked tree the audit found no duplicate function bodies and no versioned
+siblings: every module appears exactly once, in its final form. The iterations that led there
+are **not** carried — they remain in the original project tree only:
 
-- **§2 final tree** (`app/`, `generator/`, `validator/`, `loop/`) — one file per module, no
-  duplicated implementations. This is the only tree that runs.
-- **§2.1 stage trees** (`5-Controlnet/`, `3-LLM starter/`, `6-Validator/`, …) — the iterations
-  each module went through, kept verbatim. Nothing here is imported at runtime.
-
-So the duplication is deliberate and partitioned. Within the *final* tree the audit found no
-duplicate function bodies and no versioned siblings:
-
-| Not carried into the final tree | Where it still lives verbatim | Why it was dropped from the final tree |
+| Not carried | Where it still lives | Why it was dropped |
 |---|---|---|
 | `lora_inpainter.py` ~ `_v6.py` (6 files) | `5-Controlnet/` | superseded by `generator/lora_inpainter_v7.py` |
 | `demo_v5/v6/v6_batch_A.py` | `5-Controlnet/` | old demos; `v7` is the shipped path |
 | `condition_generator.py` (no suffix) | `3-LLM starter/` | Gaussian-blob predecessor of v7 |
 | the whole Transformer branch | `4-Transformer/` | Agent 2 spatio-temporal encoder removed in v20 |
 | per-agent `tests/` and demo scripts | `6-Validator/S*/` | flattened into `validator/v1…v9` |
-| the three `archive/` directories | `5-Controlnet/`, `4-Transformer/` | exploratory lines |
+| the `archive/` directories | `5-Controlnet/`, `4-Transformer/` | exploratory lines |
+| `kohya_dataset/` configs, LoRA training harness | `0-database/`, `2-Lora training/` | setup, not pipeline code |
+
+Two consequences worth knowing when reading the code:
+
+- **`app/llm_parser.py` is the single parser.** There is no second copy to drift against; the
+  evaluation scripts under `experiments/llm_eval/` import this one.
+- **`validator/v6_quality/` computes BRISQUE through `piq`**, which ships its own weights. The
+  115 KB SVM head under `6-Validator/S6 …/models/` was only used by the earlier stand-alone
+  agent and is not needed at runtime.
 
 **Retained exception**: `loop/trainable_classifier.py` is named after V4, but it is the trainable
 component (`train`/`infer` interface) of closed-loop paradigm A and belongs to the loop-mechanism
@@ -311,10 +279,12 @@ python lss_paths.py                        # verify before running anything
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
 
-Every "original project path" in this table that lies under a tracked stage tree (§2.1) can be
-cross-checked directly in the repository. The design note `7-持续学习循环设计.md` is the one
-exception: its research-tree original is a working document and lives outside git, so only the
-curated copy in `loop/` is versioned.
+The right-hand column names a directory that is **not** in this repository (the exclusion table in §2); it is where
+the file came from in the original project tree, which is unchanged on disk. The mapping is
+documentation of provenance, not a set of links you can follow here.
+
+Two files are renamed rather than moved: `validator/v8_trajectory_validator.py` and
+`validator/v9_detection_validator.py` drop the `s8_`/`s9_` prefix their originals carried.
 
 ---
 
@@ -418,3 +388,9 @@ To recompute every table from the raw artefacts:
 ```bash
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
+
+`audit_tables_v20.py` reads only the JSON already in the repository, so it runs from a bare
+checkout. The scripts that *generated* those JSONs (`p1/`, `step_sweep/`, `bcd/run_*`) are a
+record of how the numbers were obtained: they resolve paths against the original project root
+and need `0-model/`, `1-background-pool/` and the stage trees to be present. Run them there,
+not here.

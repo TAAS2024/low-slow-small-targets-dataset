@@ -88,64 +88,28 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
 
 上面这棵树是**最终整合后的管线**——即研究项目里 `0-workspace/` 的全部内容，已提升为仓库根。
 
-### 2.1 研发阶段目录树（保留以便溯源）
+除此之外一律不入库。本归档所自的研发树（`0-database/`、`2-Lora training/`、`3-LLM starter/`、
+`4-Transformer/`、`5-Controlnet/`、`6-Validator/`）**不属于本仓库**——里面是上面这份最终版所取代的
+中间迭代、演示脚本与分 Agent 原型。本仓库只收最终版；原项目目录里的一切都原样保留。
 
-管线不是一次成型的。下面每个编号目录都是它当初实际被搭出来的阶段树，**逐字保留**，以便论文里
-每一个设计决策都能回溯到产出它的代码。这些目录属于**历史**，不在运行路径上——最终模块
-（`app/`、`generator/`、`validator/`、`loop/`）已取代它们。
-
-```
-0-database/              # 数据集组装（图像语料 + kohya 配置）
-│                        #   只跟踪配置，图像语料不入库
-├── README.md
-├── kohya_dataset/training_config.toml
-├── kohya_dataset/11_drn3_pocket_uav/dataset_config.toml
-└── kohya_dataset/sample_prompts.txt
-2-Lora training/         # M0：无人机 LoRA 训练（生成端加载的那个 adapter）
-├── train_drn3_lora.py           #   kohya/sd-scripts 封装，v3-768 配方
-├── training_config_v3_768.toml  #   实际使用的 rank / lr / steps
-├── collect_drone_images.py      #   语料采集
-└── rgb2ir_converter.py          #   M6 原型
-3-LLM starter/           # M1–M3 原型（重构前，v7 最早诞生于此）
-├── web_app.py、llm_parser.py、background_searcher.py、condition_generator_v7.py
-├── condition_generator.py       #   v6 前身，留作重构差异对照
-├── e2e_webcheck.py              #   端到端 HTTP 冒烟 + _e2e_report.json
-├── templates/index.html
-└── sessions/sample_session.json
-4-Transformer/           # M2.5：Depth-Anything-V2 轨迹分支（v20 已弃用）
-├── smoke_test.py、README.md
-└── archive/                     #   transformer_b.py、training_pipeline.py、json_schema.py、
-                                 #   gen_jsons_*.py、demo_*.py —— 完整探索线
-5-Controlnet/            # M4/M5 引擎，v1→v7 每一次迭代
-├── lora_inpainter.py … lora_inpainter_v7.py    # 生成器演进，一版一文件
-├── demo_v5.py、demo_v6.py、demo_v6_batch_A.py、demo_v7.py
-├── diagnose_pipeline.py                        #   NaN/黑帧排障工具
-├── test_blend_v2.py、test_blend_strength_comparison.py
-└── archive/                                    #   dual_controlnet_pipeline.py、full_pipeline.py…
-6-Validator/             # V1–V9，先做成九个独立 Agent 再拍平
-├── S1 Agent 1 JSON校验/ … S9 YOLO结果检查/    # 每个含 code/ config/ tests/ demos/
-├── V4-trainable/、V5-pipeline/                 #   范式 A 与串联原型
-├── Demo S1~5/、Demo S6~9/                      #   跨 Agent 演示 + 失败日志
-└── S6 …/models/brisque_svm_weights.pt          #   115 KB SVM 权重，已跟踪（V6 运行需要）
-```
-
-与这些阶段树并列的研究笔记、任务清单、论文版本稿、导师反馈核实记录（`·重点节点总结笔记/`、
-`参考资料/`）**刻意不入库**——它们是工作过程文档，不属于架构。
-
-### 2.2 刻意不入库的内容
+### 刻意不入库的内容
 
 | 排除项 | 原目录体积 | 原因 |
 |---|---|---|
 | `0-model/`（SD1.5、3× ControlNet、CLIP-ViT-L、YOLOv8x） | 22 GB | 上游公开权重，可重新下载 |
 | `1-background-pool/`（9 类场景，37,852 张） | 11 GB | 数据集本体 |
-| `0-database/{11_drone_clean, Drone_pic, 官方数据集, lora_logs_v3_768}` | 304 MB | 图像语料 + YOLO 标注 + tfevents |
-| `2-Lora training/{best_models, demo_output*, drn3_pocket_uav}` | 344 MB | 训练好的 LoRA adapter（`.safetensors`） |
+| `0-database/` | 304 MB | 图像语料 + YOLO 标注 + tfevents；其中的配置已被取代 |
+| `2-Lora training/` | 344 MB | LoRA 训练脚手架；它产出的 adapter 是权重不是代码 |
+| `3-LLM starter/`、`5-Controlnet/` | 9 MB | M1–M5 原型（`lora_inpainter` v1→v6、各类 demo），已被 `app/` + `generator/` 取代 |
+| `4-Transformer/` | 1.8 MB | Depth-Anything-V2 轨迹分支，v20 已弃用 |
+| `6-Validator/` | 3.8 MB | 拍平进 `validator/` 之前的九个独立 Agent 树 |
 | `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | 逐样本 dump，可重新生成 |
 | `·-1豆包案例图/`、`5-Controlnet/demo_output*/` | 82 MB | 参考图与生成图 |
 | `z-文件格式参考/` | 7 MB | 第三方论文，无权再分发 |
-| `·重点节点总结笔记/`、`参考资料/` | 21 MB | 研究笔记、任务清单、12 版论文稿、导师反馈核实记录——工作过程文档 |
+| `·重点节点总结笔记/`、`参考资料/` | 21 MB | 研究笔记、任务清单、12 版论文稿、导师反馈核实记录 |
 
-读者重建管线所需的一切都在库里；凡是「上游可下载」或「由已跟踪脚本可再生成」的，一律不入库。
+读者重建管线所需的一切都在库里；凡是「上游可下载」「由已跟踪脚本可再生成」或「已被同一模块的
+后续版本取代」的，一律不入库。
 
 ---
 
@@ -215,25 +179,27 @@ validator_pipeline.py（S6→S9 串联）
 
 ---
 
-## 五、去重说明（为什么最终树是精简的）
+## 五、去重说明（一模块一文件，无版本并列）
 
-本仓库**有意**保留了两份管线：
+在**已入库的树**内部，审计未发现重复函数体，也无版本并列文件：每个模块只以其最终形态出现一次。
+通向它的那些迭代**不入库**，仅留在原项目目录中：
 
-- **第 2 节最终树**（`app/`、`generator/`、`validator/`、`loop/`）——一模块一文件，无重复实现。
-  只有这棵树会运行。
-- **第 2.1 节阶段树**（`5-Controlnet/`、`3-LLM starter/`、`6-Validator/` …）——各模块走过的迭代，
-  逐字保留。运行时不会 import 其中任何文件。
-
-所以重复是刻意且分区隔离的。在**最终树**内部，审计未发现重复函数体，也无版本并列文件：
-
-| 未进入最终树的内容 | 逐字留存位置 | 从最终树移出的原因 |
+| 未入库的内容 | 其仍在何处 | 未入库的原因 |
 |---|---|---|
 | `lora_inpainter.py` ~ `_v6.py`（6 个） | `5-Controlnet/` | 被 `generator/lora_inpainter_v7.py` 取代 |
 | `demo_v5/v6/v6_batch_A.py` | `5-Controlnet/` | 旧 demo，出货路径是 v7 |
 | `condition_generator.py`（无后缀） | `3-LLM starter/` | v7 的 Gaussian blob 前身 |
 | Transformer 整个分支 | `4-Transformer/` | v20 已移除 Agent 2 时空编码器 |
 | 各 Agent 的 `tests/` 与 demo 脚本 | `6-Validator/S*/` | 已拍平进 `validator/v1…v9` |
-| 三个 `archive/` 目录 | `5-Controlnet/`、`4-Transformer/` | 探索期代码线 |
+| `archive/` 目录 | `5-Controlnet/`、`4-Transformer/` | 探索期代码线 |
+| `kohya_dataset/` 配置、LoRA 训练脚手架 | `0-database/`、`2-Lora training/` | 属环境搭建，非管线代码 |
+
+读代码时值得知道的两点：
+
+- **`app/llm_parser.py` 是唯一的 parser**，没有第二份副本会漂移；`experiments/llm_eval/` 下的评测
+  脚本 import 的就是这一份。
+- **`validator/v6_quality/` 通过 `piq` 计算 BRISQUE**，`piq` 自带权重。`6-Validator/S6 …/models/`
+  下的 115 KB SVM 头只服务于更早的独立 Agent，运行时不需。
 
 **保留的例外**：`loop/trainable_classifier.py` 虽为 V4 命名，但它是闭环范式 A 的
 可训练组件（`train/infer` 接口），属于循环机制设计的一部分，故保留。
@@ -304,9 +270,11 @@ python lss_paths.py                        # 先验证再运行
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
 
-表中「原项目路径」凡是落在已入库阶段树（2.1 节）下的，都可在本仓库直接交叉核对。唯一例外是
-设计文档 `7-持续学习循环设计.md`：它在研发树里的原件属于工作文档、不在 git 中，故仅有 `loop/`
-下的整理版入库。
+右列所指目录**不在本仓库内**（见第 2 节排除表），那是文件在原项目树中的来处——原项目目录保持原样。
+本表用于记录来源，并非可在库内跟随的链接。
+
+有两个文件属于改名而非移动：`validator/v8_trajectory_validator.py` 与
+`validator/v9_detection_validator.py` 去掉了原件携带的 `s8_` / `s9_` 前缀。
 
 ---
 
@@ -391,3 +359,7 @@ V3/V5/V8 的确定性规则和分级短路，但未实现三路缓冲分流与�
 ```bash
 python experiments/bcd/_reports/scripts/audit_tables_v20.py   # 复算论文全部表格
 ```
+
+`audit_tables_v20.py` 只读仓库内已有的 JSON，裸 clone 即可运行。而**产出**这些 JSON 的脚本
+（`p1/`、`step_sweep/`、`bcd/run_*`）是「数字怎么来的」的留档：它们按原项目根解析路径，需要
+`0-model/`、`1-background-pool/` 与各阶段树在场，请在原项目里跑，不要在仓库里跑。

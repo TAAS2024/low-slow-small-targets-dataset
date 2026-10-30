@@ -14,29 +14,33 @@ venv/
 output_images/
 *.log
 
-# Model weights, datasets and the background pool.
-# These directories exist in the original project tree and are deliberately
-# NOT tracked: the weights are ~22 GB and the background pool ~11 GB.
-0-model
-1-background-pool
+# Model weights of any kind — this repository carries code only
 *.safetensors
 *.ckpt
 *.bin
 *.pth
+*.pt
 
-# LoRA adapters / kohya training outputs — the training *code* is tracked,
-# the produced weights and demo frames are not.
-2-Lora training/best_models/
-2-Lora training/demo_output*/
-2-Lora training/drn3_pocket_uav/
-0-database/kohya_dataset/output/
-0-database/11_drone_clean/
-0-database/Drone_pic/
-0-database/官方数据集/
-0-database/lora_logs_v3_768/
+# The original research tree. The archive holds the final version of every
+# module; the trees below hold the iterations that led there, and are kept on
+# disk only. Ignoring them wholesale also stops a checkout that lives inside
+# the project root from re-adding them by accident.
+0-model/
+1-background-pool/
+0-database/
+2-Lora training/
+3-LLM starter/
+4-Transformer/
+5-Controlnet/
+6-Validator/
+experiments/**/output_images/
 
-# ... except the small BRISQUE SVM weights that V6 needs to run (115 KB)
-!6-Validator/**/models/*.pt
+# Working documents: notes, manuscript drafts, tutor-feedback audits,
+# third-party reference material.
+·重点节点总结笔记/
+参考资料/
+·-1豆包案例图/
+z-文件格式参考/
 
 # Per-sample dumps and intermediate runs (regenerable, large)
 experiments/**/manifest.json
@@ -49,14 +53,6 @@ experiments/**/*_buggy_*
 experiments/**/*_stale_*
 experiments/**/*_partial_*
 experiments/**/crops/
-
-# Research notes, task lists and manuscript working documents.
-# These sit next to the code in the research tree but are not part of the
-# architecture, so the whole directories are kept out of the repository.
-·重点节点总结笔记/
-参考资料/
-·-1豆包案例图/
-z-文件格式参考/
 
 # OS
 .DS_Store

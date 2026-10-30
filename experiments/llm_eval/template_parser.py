@@ -30,7 +30,7 @@ from pathlib import Path
 # Load the controlled vocabulary from the deployed parser (single source of truth)
 # ---------------------------------------------------------------------------
 _PARSER_PATH = (Path(__file__).resolve().parents[2]
-                / "3-LLM starter" / "llm_parser.py")
+                / "app" / "llm_parser.py")
 
 _spec = importlib.util.spec_from_file_location("llm_parser_ref", _PARSER_PATH)
 llm_parser = importlib.util.module_from_spec(_spec)

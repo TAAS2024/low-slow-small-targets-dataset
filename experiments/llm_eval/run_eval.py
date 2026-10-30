@@ -39,7 +39,7 @@ sys.path.insert(0, str(HERE))
 import template_parser as tp  # noqa: E402
 import importlib.util  # noqa: E402
 
-_PARSER_PATH = HERE.parents[1] / "3-LLM starter" / "llm_parser.py"
+_PARSER_PATH = HERE.parents[1] / "app" / "llm_parser.py"
 _spec = importlib.util.spec_from_file_location("llm_parser_ref", _PARSER_PATH)
 lp = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(lp)

@@ -1,5 +1,0 @@
-drn3_uav, a white drone flying in the blue sky, professional photography --n negative_prompt, bad quality, blurry
-drn3_uav, a drone hovering over a mountain landscape, sunset lighting --n negative_prompt, bad quality, blurry
-drn3_uav, a black quadcopter on a wooden table, product photography --n negative_prompt, bad quality, blurry
-drn3_uav, a commercial drone in flight, city background, sharp focus --n negative_prompt, bad quality, blurry
-drn3_uav, a person holding a drone, outdoor, natural light --n negative_prompt, bad quality, blurry
