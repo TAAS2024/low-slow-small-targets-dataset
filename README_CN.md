@@ -223,13 +223,23 @@ cd app
 cp .env.example .env        # 填入 API Key
 python web_app.py           # → http://127.0.0.1:5000
 
-# 验证端串联管线（V6→V9）
-cd loop
-python validator_pipeline.py
+# 验证端——各 validator 自带 CLI
+python validator/v6_quality/quality_validator.py  IMG.png --ir IR.png
+python validator/v7_consistency/consistency_validator.py IMG.png --ir IR.png --gt gt.json
+python validator/v8_trajectory_validator.py traj.json
+python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model /path/to/yolov8x.pt
 
 # 复算论文全部数字
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
+
+`loop/validator_pipeline.py` 是**库不是脚本**：没有 `__main__`，直接 `python` 它什么也不做。
+正确用法是 `ValidatorPipeline(s0, s1, s2, s3).validate(sample)`，`sample` 为
+`{"id", "rgb", "ir", "rgb_bbox", "ir_bbox", "gt_bboxes", "drone_category", "distance_m"}`，图像传
+`np.ndarray`。注意两套 bbox 约定：`rgb_bbox` / `ir_bbox` 是**归一化 `[cx, cy, w, h]`**（传像素
+`[x1, y1, x2, y2]` 会被判成尺寸不符），`gt_bboxes` 是**像素 `[x1, y1, x2, y2]`**。所以
+`v7 --gt` 要 `{"rgb_bbox": [cx, cy, w, h], "drone_category": ..., "distance_m": ...}`，
+`v9 --gt` 要裸列表 `[[x1, y1, x2, y2]]`。
 
 **独立 checkout**（无软链接、权重放在别处）：
 
@@ -238,11 +248,16 @@ export LSS_PROJECT_ROOT=/path/to/project   # 需含 0-model/、1-background-pool
 python lss_paths.py                        # 先验证再运行
 ```
 
-> 完整推理仍需模型权重（`0-model/stable-diffusion-v1-5`、两个 ControlNet 检查点、
-> `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`）与九类背景池（37,852 张），
-> 这些**不在本仓库内**。
+> 完整推理所需资产**不止本仓库**：
 >
-> **循环机制设计文档**：`loop/7-持续学习循环设计.md`
+> - **项目树内权重**（由 `lss_paths.py` 解析）：`0-model/stable-diffusion-v1-5`、两个 ControlNet 检查点、
+>   `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`；
+> - **背景池**：`1-background-pool/curated_backgrounds/` 下九类共 37,852 张；
+> - **首次运行需联网抓取的两个 HF 检查点**——`lllyasviel/Annotators`
+>   （`dpt_hybrid-midas-501f0c75.pt`，约 470 MB，Midas 深度）与 `openai/clip-vit-base-patch32`
+>   （约 605 MB，背景上下文分类器）。代码先以 `local_files_only=True` 调用，故运行前必须已在 HF 缓存里；
+>   缺前者生成会死在深度提取那一步，缺后者会死在 ControlNet 重绘那一步。项目树里的
+>   `0-model/clip-vit-large-patch14` 是**另一个**检查点，替代不了后者。
 
 ---
 
@@ -280,7 +295,7 @@ python lss_paths.py                        # 先验证再运行
 
 ## 八、可运行性验证与修复记录
 
-归档后对全部 27 个 `.py` 文件做了可运行性测试，修复了 4 处因「目录重排 + 文件改名」导致的
+归档后对最终管线的 29 个 `.py` 文件做了可运行性测试，修复了 6 处因「目录重排 + 文件改名 + 归档重写」导致的
 `sys.path` / import 断裂（以下修复仅存在于归档副本，**未改动原项目**）。
 
 ### 修复清单
@@ -294,13 +309,15 @@ python lss_paths.py                        # 先验证再运行
 
 | 5 | `lss_paths.py`（**新增**）+ 5 个调用点 | 资产路径（`../1-background-pool`、`../0-model`、`../2-Lora training`）在各模块里按自身 `__file__` 重复推导，实际依赖归档内预建的三条软链接 | 新增 `lss_paths.py` 作为**唯一真源**；`background_searcher.py`、`condition_generator_v7.py`、`web_app.py`、`lora_inpainter_v7.py`、`validator_pipeline.py` 全部改为从中导入。解析顺序：`LSS_PROJECT_ROOT` 环境变量 → 三个资产目录的软链接目标 → 归档目录自身 |
 
+| 6 | `app/condition_generator_v7.py` | 第 2 条路径重写时**漏掉** `from rgb2ir_converter import rgb_to_whitehot`——目录加进了 `sys.path`，符号却从未 import，于是每次运行都跑到 IR 那一步（ControlNet 已耗时约 4 分钟后）抛 `NameError: name 'rgb_to_whitehot' is not defined`。2026-10-30 真跑一次生成才发现，靠 import 冒烟查不出来 | 在路径搜索之后补回该 import |
+
 另将 `v1~v5` docstring 内的用法示例旧模块名（`s1_json_validator` 等）同步为新名。
 
 ### 验证结果（2026-08-31 全部通过）
 
 | 测试项 | 结果 |
 |---|---|
-| 语法检查（`py_compile`，30 文件） | ✓ 全部通过 |
+| 语法检查（`py_compile`，29 文件） | ✓ 全部通过 |
 | 模块 import（18 个模块，含跨目录依赖） | ✓ 全部通过 |
 | 关键符号存在性（27 个类/函数） | ✓ 全部存在 |
 | 纯函数冒烟：`seg_to_rgb` | ✓ 输出 shape/颜色正确 |
@@ -308,9 +325,27 @@ python lss_paths.py                        # 先验证再运行
 | 纯函数冒烟：`trajectory_to_frames` | ✓ 轨迹解析正常 |
 | Flask 路由清单（删端点后） | ✓ 无残留旧引用，11 个路由干净 |
 
-> 说明：以上验证覆盖「代码结构完整、模块可加载、核心纯函数可运行」。
-> **端到端生成（LoRA + ControlNet 推理）仍需原项目的模型权重（`0-model/`、`best_models/`）与
-> 九类背景池（`1-background-pool/`），本归档不含这些二进制资产**，故无法在归档目录内独立跑完整推理。
+上表只证明「模块能加载、纯函数能跑」。2026-10-30 又做了一遍完整实测（RTX 4060 Laptop，
+torch 2.6.0+cu124，跑在权重所在的原项目树里），上面第 6 条就是这轮测出来的：
+
+| 测试项 | 结果 |
+|---|---|
+| `0-workspace/` 下 `python lss_paths.py` | ✓ 8/8 资产全部解析（POOL_ROOT、SD15、两个 ControlNet、LoRA） |
+| `generate_with_lora` 单帧（pure_sky，60 m，1 架） | ✓ `ok=True`，11 个产物齐全（bg、bg_depth、bg_seg、drone_raw、drone_clean、drone_rgba、drone_depth、drone_seg、final_rgb、ir、bbox） |
+| 单帧耗时 | 冷启 144 s（含模型加载），热跑约 30 s |
+| `app/smoke_endpoints.py`（33 条断言，路由全打桩） | ✓ 33/33 |
+| `v6 quality_validator` 验该产物 | ✓ PASS |
+| `v7 consistency_validator` | ✓ 可运行——lighting PASS，size FAIL（见下） |
+| `v8 trajectory_validator`（3 帧序列） | ✓ PASS，score 1.000 |
+| `v9 detection_validator`（`yolov8x.pt`） | ✓ 可运行，8 个预测，gt 框未命中（COCO 无无人机类） |
+| 裸 clone 跑 `audit_tables_v20.py` | ✓ 41/41 表格与论文一致 |
+
+> **一处未修的口径缺口，如实记下。** 生成端按经验公式定尺寸
+> （`size_px = clip(3600 / max(distance, 25), 12, 96)`，60 m → 60 px），而 `v7` 的尺寸检查按真实物理
+> 反推（`real_w / (2·d·tan(fov/2))`，0.25 m 四旋翼在 60 m → 4.6 px）。两者差约 13 倍，所以**新生成的
+> 样本在 `S7` 会因 size 被判 FAIL**，除非把 `drone_category` 设成 3 m 量级的机型。论文里的结果不受
+> 影响（全部由已提交的逐样本 JSON 复算），但**端到端重新造数据一定会撞上**。这是建模选择，
+> 不是代码缺陷，故保持原样。
 
 ---
 

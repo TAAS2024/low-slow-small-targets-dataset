@@ -232,13 +232,23 @@ cd app
 cp .env.example .env        # fill in the API key
 python web_app.py           # → http://127.0.0.1:5000
 
-# validation-side chained pipeline (V6→V9)
-cd loop
-python validator_pipeline.py
+# validation side — each validator is a CLI of its own
+python validator/v6_quality/quality_validator.py  IMG.png --ir IR.png
+python validator/v7_consistency/consistency_validator.py IMG.png --ir IR.png --gt gt.json
+python validator/v8_trajectory_validator.py traj.json
+python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model /path/to/yolov8x.pt
 
 # reproduce every number in the manuscript
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
+
+`loop/validator_pipeline.py` is a **library**, not a script: it has no `__main__`, so running it
+directly does nothing. Use `ValidatorPipeline(s0, s1, s2, s3).validate(sample)` — `sample` is
+`{"id", "rgb", "ir", "rgb_bbox", "ir_bbox", "gt_bboxes", "drone_category", "distance_m"}`, images as
+`np.ndarray`. Note the two bbox conventions: `rgb_bbox` / `ir_bbox` are **normalised `[cx, cy, w, h]`**
+(pixel `[x1, y1, x2, y2]` is rejected as a size mismatch), while `gt_bboxes` is **pixel `[x1, y1, x2, y2]`**.
+`v7 --gt` therefore wants `{"rgb_bbox": [cx, cy, w, h], "drone_category": ..., "distance_m": ...}` and
+`v9 --gt` wants a bare list of boxes `[[x1, y1, x2, y2]]`.
 
 **Standalone checkout** (no symlinks, weights stored elsewhere):
 
@@ -247,11 +257,17 @@ export LSS_PROJECT_ROOT=/path/to/project   # must contain 0-model/, 1-background
 python lss_paths.py                        # verify before running anything
 ```
 
-> Full inference needs the model weights (`0-model/stable-diffusion-v1-5`, the two ControlNet
-> checkpoints and `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`) plus the
-> nine-category background pool (37,852 images). None of them are in this repository.
+> Full inference needs more than this repository carries:
 >
-> **loop design document**: `loop/7-持续学习循环设计.md`
+> - **project tree weights** (resolved by `lss_paths.py`): `0-model/stable-diffusion-v1-5`, the two
+>   ControlNet checkpoints, `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors`;
+> - **background pool**: 37,852 images in nine categories under `1-background-pool/curated_backgrounds/`;
+> - **two HuggingFace checkpoints fetched on first run** — `lllyasviel/Annotators`
+>   (`dpt_hybrid-midas-501f0c75.pt`, ~470 MB, Midas depth) and `openai/clip-vit-base-patch32` (~605 MB,
+>   background-context classifier). Both are called with `local_files_only=True` first, so they must be
+>   in the HF cache before a run; without them generation dies at the depth-extraction step and at the
+>   ControlNet repaint step respectively. `0-model/clip-vit-large-patch14` in the project tree is a
+>   *different* checkpoint and does not satisfy the second one.
 
 ---
 
@@ -290,8 +306,8 @@ Two files are renamed rather than moved: `validator/v8_trajectory_validator.py` 
 
 ## 8. Runnability Verification & Fix Log
 
-After archiving, all 30 `.py` files were tested for runnability, and 5 breakages caused by
-"directory reorganisation + file renaming" (`sys.path` / import breakage) were fixed. The following fixes exist
+After archiving, all 29 `.py` files of the final pipeline were tested for runnability, and 6 breakages caused by
+"directory reorganisation + file renaming + the archive rewrite" (`sys.path` / import breakage) were fixed. The following fixes exist
 only in the archived copy and **do not modify the original project**.
 
 ### Fix list
@@ -305,13 +321,15 @@ only in the archived copy and **do not modify the original project**.
 
 | 5 | `lss_paths.py` (**new**) + 5 call sites | asset paths (`../1-background-pool`, `../0-model`, `../2-Lora training`) were re-derived in every module from its own `__file__`, so the tree only worked through three symlinks (`0-model`, `1-background-pool`, `2-Lora training`) pre-created inside the archive | added `lss_paths.py` as the **single source of truth**; `background_searcher.py`, `condition_generator_v7.py`, `web_app.py`, `lora_inpainter_v7.py` and `validator_pipeline.py` now import from it. Resolution order: `LSS_PROJECT_ROOT` env var → symlink target of the three asset directories → the archive directory itself |
 
+| 6 | `app/condition_generator_v7.py` | the `sys.path` rewrite in fix #2 **dropped** `from rgb2ir_converter import rgb_to_whitehot` — the module was added to `sys.path` but its symbol never imported, so every run reached the IR step (after ~4 min of ControlNet) and died with `NameError: name 'rgb_to_whitehot' is not defined`. Found 2026-10-30 by actually generating a sample, not by importing modules | re-added the import after the path search |
+
 The docstring usage examples in `v1`–`v5` were also updated from the old module names (e.g. `s1_json_validator`) to the new names.
 
 ### Verification results (all passed, 2026-08-31)
 
 | Test | Result |
 |---|---|
-| Syntax check (`py_compile`, 30 files) | ✓ all passed |
+| Syntax check (`py_compile`, 29 files) | ✓ all passed |
 | Module import (18 modules, incl. cross-directory dependencies) | ✓ all passed |
 | Key symbol existence (27 classes / functions) | ✓ all present |
 | Pure-function smoke: `seg_to_rgb` | ✓ output shape / colour correct |
@@ -319,10 +337,29 @@ The docstring usage examples in `v1`–`v5` were also updated from the old modul
 | Pure-function smoke: `trajectory_to_frames` | ✓ trajectory parsing OK |
 | Flask route list (after endpoint removal) | ✓ no stale references, 11 clean routes |
 
-> Note: the verification above covers "code structure is complete, modules load, and core pure functions run".
-> **End-to-end generation (LoRA + ControlNet inference) still requires the original project's model weights
-> (`0-model/`, `best_models/`) and the nine-category background pool (`1-background-pool/`), which this archive does not
-> include** — so full inference cannot run independently inside the archive directory.
+The 2026-08-31 pass above only proved "modules load and pure functions run". A second pass on 2026-10-30
+went through the whole pipeline on a real GPU (RTX 4060 Laptop, torch 2.6.0+cu124), inside the original
+project tree where the weights live — this is what turned up fix #6:
+
+| Test | Result |
+|---|---|
+| `python lss_paths.py` from `0-workspace/` | ✓ 8/8 assets resolve (POOL_ROOT, SD15, 2× ControlNet, LoRA) |
+| `generate_with_lora` on one `pure_sky` frame, 60 m, 1 drone | ✓ `ok=True`, 11 artifacts (bg, bg_depth, bg_seg, drone_raw, drone_clean, drone_rgba, drone_depth, drone_seg, final_rgb, ir, bbox) |
+| Wall clock, single frame | 144 s cold (model load included), ≈30 s warm |
+| `app/smoke_endpoints.py` (33 assertions, every route stubbed) | ✓ 33/33 |
+| `v6 quality_validator` on the generated frame | ✓ PASS |
+| `v7 consistency_validator` | ✓ runs — lighting PASS, size FAIL (see below) |
+| `v8 trajectory_validator` on a 3-frame sequence | ✓ PASS, score 1.000 |
+| `v9 detection_validator` with `yolov8x.pt` | ✓ runs, 8 predictions, gt box missed (COCO has no UAV class) |
+| `audit_tables_v20.py` from a bare clone | ✓ 41/41 tables match the manuscript |
+
+> **One open calibration gap, recorded rather than fixed.** The generator sizes the drone by an empirical
+> rule (`size_px = clip(3600 / max(distance, 25), 12, 96)` → 60 px at 60 m), whereas `v7`'s size check
+> derives the expected width from physics (`real_w / (2·d·tan(fov/2))` → 4.6 px for a 0.25 m quadcopter
+> at 60 m). The two differ by ~13×, so a freshly generated sample fails `S7` on size unless
+> `drone_category` names an airframe on the order of 3 m. The results in the manuscript are unaffected —
+> they are recomputed from committed per-sample JSON — but **regenerating data end-to-end will hit this**.
+> It is a modelling decision, not a code defect, so it is left as is.
 
 ---
 

@@ -47,6 +47,8 @@ for _d in _LAYOUT_DIRS:
         sys.path.insert(0, str(_d))
 del _d
 
+from rgb2ir_converter import rgb_to_whitehot  # noqa: E402
+
 
 # 语义分割颜色表（与 ControlNet seg 兼容）
 SEG_COLORS = {
