@@ -213,4 +213,40 @@ if POOL.is_dir():
 else:
     print(f"   (pool dir not found: {POOL})")
 
+# ── 表 E2：验证链 vs 单标量阈值 ──────────────────────────────────
+print("\n【Table E2】chain vs scalar criterion  (out_E2/metrics.json)")
+E2 = load("out_E2/metrics.json")
+ROWS = E2["rows"]
+w_ids = {r["src"] + "/" + r["sample_id"] for r in ROWS if r["brisque_pass"]}
+s_ids = {r["src"] + "/" + r["sample_id"] for r in ROWS if r["validator_pass"]}
+b_ids = w_ids & s_ids
+n = len(ROWS)
+print(f"  ·  pool n={n}  weak(BRISQUE<=45)={len(w_ids)} ({100*len(w_ids)/n:.1f}%)"
+      f"  strong(V6->V7->V9)={len(s_ids)} ({100*len(s_ids)/n:.1f}%)  agree={len(b_ids)}")
+# agreement = (both accept + both reject) / n，不是 both/n；后者是重叠率
+agree = (len(b_ids) + (n - len(w_ids | s_ids))) / n
+print(f"  ·  Jaccard paper 0.585   product {len(b_ids)/len(w_ids | s_ids):.3f}"
+      f"   agreement paper 0.629   product {agree:.3f}")
+chk("Table E2 n=302", n == 302, n)
+chk("Table E2 weak accepts 267 (88.4%)", len(w_ids) == 267, len(w_ids))
+chk("Table E2 strong accepts 161 (53.3%)", len(s_ids) == 161, len(s_ids))
+chk("Table E2 agreement 158", len(b_ids) == 158, len(b_ids))
+chk("Table E2 Jaccard 0.585", round(len(b_ids) / len(w_ids | s_ids), 3) == 0.585,
+    round(len(b_ids) / len(w_ids | s_ids), 4))
+chk("Table E2 agreement 0.629", round(agree, 3) == 0.629, round(agree, 4))
+chk("Table E2 rejected by both 32 (302-267-161+158)", n - len(w_ids | s_ids) == 32,
+    n - len(w_ids | s_ids))
+
+# 该池是主基准 300 条 + E1 各一条难例（a0149，BRISQUE 通过而验证链拒绝）。
+# 并入难例使 Jaccard 由 0.590 降到 0.585，方向对验证链不利，故不是择优挑选；
+# 但口径必须写明，避免读者按 300 条复算得到 265/161/0.590 后误认为数字不符。
+D_ROWS = [r for r in ROWS if r["src"] == "out_D"]
+dw = {r["sample_id"] for r in D_ROWS if r["brisque_pass"]}
+ds = {r["sample_id"] for r in D_ROWS if r["validator_pass"]}
+print(f"  ·  300-only (out_D)  n=300 weak={len(dw)} strong={len(ds)}"
+      f" agree={len(dw & ds)} Jaccard={len(dw & ds)/len(dw | ds):.3f}")
+chk("Table E2 pool = out_D 300 + E1 full/paste a0149",
+    len(D_ROWS) == 300 and n - len(D_ROWS) == 2,
+    f"{len(D_ROWS)} + {n - len(D_ROWS)}")
+
 print(f"\n{'='*60}\n表格核对：{OK} 通过 / {BAD} 失败")

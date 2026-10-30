@@ -163,7 +163,7 @@ python validator/v7_consistency/consistency_validator.py IMG.png --gt gt.json --
 python validator/v8_trajectory_validator.py traj.json
 python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model yolov8x.pt
 
-# recompute every table in the paper
+# recompute every table in the paper from the per-sample records (49 assertions, 49 pass)
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
 
@@ -215,7 +215,7 @@ The benchmark is 300 visible and pseudo-infrared pairs, stratified over nine sce
 | Acceptance rate | 88.3% |
 | Generation time per pair | 14.58 s |
 
-On the value of the chain over a scalar criterion: across 302 composites, the BRISQUE threshold alone accepts 267 (88.4%), while the V6→V7→V9 chain accepts 161 (53.3%), agreeing on 158. The paper additionally reports ablations (E1–E3), the three closed-loop paradigms, a downstream proxy and a parser comparison; every number is recomputable from the per-sample JSON in this repository via `audit_tables_v20.py`.
+On the value of the chain over a scalar criterion: across 302 composites, the BRISQUE threshold alone accepts 267 (88.4%), while the V6→V7→V9 chain accepts 161 (53.3%), agreeing on 158. That pool is `out_E2/metrics.json`: the 300 main-benchmark samples plus the same hard case (a0149, target 20 px at 180 m) from the repaint and paste arms — merged because it passes the scalar threshold while the chain rejects it, which moves the Jaccard index *down* from 0.590 to 0.585, so the pooling is not a selection effect. `audit_tables_v20.py` recomputes every table from those per-sample records and asserts each cell; it currently passes 49/49. Two caveats: the background pool itself (37,852 images) is not in this repository, so for Table 2 only the throughput row is asserted, and `audit_v20.py` is an author-side tool that needs the paper's .docx source and is not a repository-internal entry point.
 
 A boundary on the evidence: the experiments characterise the **generation process** — whether the target lands at the requested position and scale, and whether defective samples are caught — not the utility of the product. No detector was trained on CDFF output and evaluated on real imagery, so nothing here supports a claim of improved detection accuracy.
 

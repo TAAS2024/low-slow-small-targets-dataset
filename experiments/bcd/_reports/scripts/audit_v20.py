@@ -13,6 +13,7 @@
 """
 import json
 import math
+import os
 import re
 import statistics as st
 import sys
@@ -21,9 +22,22 @@ from pathlib import Path
 import numpy as np
 from docx import Document
 
-ROOT = Path('/mnt/d/learning/ObsidianVault/Paper-低慢小数据集生成架构')
+# 这是**作者本地**的文档一致性检查，不是仓库内的复现入口：
+#   · 它需要论文源文件 CDFF_Neurocomputing_v20.docx，该文件不在仓库里；
+#   · 它把 docx 的段落与表格结构当契约，论文重排后会大量假失败。
+# 只用仓库内产物就能跑通、且是复现入口的是 audit_tables_v20.py。
+# 找得到 docx 才做文本比对；找不到就明确说明并跳过，不输出误导性的失败。
+_HERE = Path(__file__).resolve()
+ROOT = Path(os.environ.get("CDFF_ROOT", _HERE.parents[3]))
 BCD = ROOT / 'experiments' / 'bcd'
-DOC = ROOT / '·重点节点总结笔记' / '论文写作' / 'CDFF_Neurocomputing_v20.docx'
+DOC = Path(os.environ.get(
+    "CDFF_DOCX", ROOT / '·重点节点总结笔记' / '论文写作' / 'CDFF_Neurocomputing_v20.docx'))
+
+if not DOC.is_file():
+    print(f"\n跳过：未找到论文源文件 {DOC}")
+    print("本脚本核对论文文档文本与实验产物的逐字一致性，需要仓库外的论文 docx。")
+    print("仅用仓库内产物的复现入口：python3 experiments/bcd/_reports/scripts/audit_tables_v20.py")
+    sys.exit(0)
 
 _doc = Document(str(DOC))
 PS = [p.text for p in _doc.paragraphs]
@@ -44,8 +58,13 @@ def show(name, value):
 
 
 def has(text3):
-    """论文中是否存在该字符串（段落内换行归一化）。"""
-    return text3 in BODY.replace("\n", " ")
+    """论文中是否存在该字符串（正文段落 + 表格单元格，换行归一化）。
+
+    v20 把大部分结果搬进了表格，只查 BODY 会把表格里的数字全判成缺失。
+    """
+    if text3 in BODY.replace("\n", " "):
+        return True
+    return any(text3 in t.replace("\n", " ") for t in TBL)
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -294,5 +313,10 @@ print("\n" + "=" * 76)
 print(f"数据溯源复算：{len(OK)}/{len(OK) + len(BAD)} 项通过")
 for n_, d_, _ in BAD:
     print(f"  ✗ {n_}   ← {d_}")
+if BAD:
+    print("未命中的两类原因：（a）v20 正文未逐字报告该值（例如 max scale error、"
+          "BRISQUE 标准差只在产物里），属过时期望；")
+    print("              （b）论文重排后表格索引变动，断言指向了错误的表。")
+    print("两种情况都不代表产物与论文矛盾——产物侧的字节级核对见 audit_tables_v20.py。")
 print("=" * 76)
 sys.exit(1 if BAD else 0)

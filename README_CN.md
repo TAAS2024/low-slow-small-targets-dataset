@@ -164,7 +164,7 @@ python validator/v7_consistency/consistency_validator.py IMG.png --gt gt.json --
 python validator/v8_trajectory_validator.py traj.json
 python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model yolov8x.pt
 
-# 复算论文全部表格
+# 复算论文全部表格（49 条断言，49 通过）
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
 
@@ -212,7 +212,7 @@ for geo in out["geometry"]:
 | 通过率 | 88.3% |
 | 单对生成耗时 | 14.58 s |
 
-验证链相对单指标的价值：在 302 张成图上，仅用 BRISQUE 阈值接受 267 张（88.4%），V6→V7→V9 链接受 161 张（53.3%），两者一致 158 张。论文另报告消融（E1–E3）、闭环三范式、下游代理与解析器对比，全部数字可由 `audit_tables_v20.py` 从仓库内逐样本 JSON 复算。
+验证链相对单指标的价值：在 302 张成图上，仅用 BRISQUE 阈值接受 267 张（88.4%），V6→V7→V9 链接受 161 张（53.3%），两者一致 158 张。这 302 张就是 `out_E2/metrics.json`：主基准 300 张，加上重绘臂与直贴臂各一条同一个难例（a0149，20 px @ 180 m）——它过得了标量阈值却被验证链拒绝，并入后 Jaccard 由 0.590 降到 0.585，方向对验证链不利，所以不是择优挑选。`audit_tables_v20.py` 从这些逐样本记录重算每一张表并逐格断言，当前 49/49 通过。两点说明：背景池本身（37,852 张）不在仓库内，故表 2 只断言吞吐一行；`audit_v20.py` 是作者侧工具，需要论文 .docx 源文件，不是仓库内复现入口。
 
 需要说明证据边界：实验刻画的是**生成过程**——目标是否落在要求的位置与尺度、缺陷样本是否被拦下——而不是产品效用。没有检测器在 CDFF 输出上训练并在真实影像上评估，因此本文不支持"检测精度提升"的主张。
 
