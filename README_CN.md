@@ -1,476 +1,224 @@
-# 0-workspace — 低慢小生成架构「最终代码结构」归档（中文版）
+# CDFF — 低慢小目标合成数据集生成框架
 
-[English](README.md)
+[English](README.md) | 中文
 
-> 本目录是 **CDFF（Closed-loop Data Flywheel Framework）低慢小目标合成数据生成架构** 的**干净代码归档**。
->
-> 只保留**最终活跃版本**的架构代码（生成端 + 验证端 + 循环机制 + 前端后端），
-> **不含**：数据集、模型权重、历史版本（`_v1~_v6` 等）、中间产物、demo/test 脚本。
->
-> 原始项目根目录：`D:\learning\ObsidianVault\Paper-低慢小数据集生成架构`，本目录未删除原项目任何内容。
+面向低慢小（LSS）空中目标的**合成数据生成框架**：双 Agent 对抗 + 闭环反馈。
+每个样本的目标位置、尺度与标注框在渲染之前就已确定，渲染之后可被独立验证。
+
+配套论文：*A Spatially Controlled Closed-Loop Framework for Synthetic Low-Slow-Small Target Dataset Generation*（Neurocomputing 投稿）。
 
 ---
 
-## 一、架构总览
+## 1. 问题
 
-CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
+低慢小目标——小型多旋翼、系留风筝、浮空器、气球——在 200–500 m 距离上只占 15×15 到 30×30 像素，雷达截面小、声学与热特征弱，真实数据极难采集。用扩散模型批量生成训练数据看似直接，实际有两个障碍：
+
+**无法无人值守地控制几何。** 布局条件模型需要逐样本手工准备条件图；提示词条件给不出可信的坐标与尺度。生成器不知道目标该落在哪、该多大，标注框也就无从谈起。
+
+**无法判断哪些样本该留下。** 感知指标（BRISQUE、ImageReward 等）在成图上计算，与检测器需要的几何一致性解耦：一张图可以很逼真，却违反透视或尺度。
+
+CDFF 把这两件事当作同一个问题处理：把一张普通背景照片转成几何已声明、且事后可验证的样本。
+
+---
+
+## 2. 架构
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        GENERATOR（生成端）                        │
-│  M1 语义解析 → M2 背景匹配 → M3 场景提取 → M4 LoRA生成            │
-│  → M5 ControlNet重绘 → M6 RGB→IR转换                             │
-└──────────────────────────────┬──────────────────────────────────┘
-                               │  pixel-aligned RGB–IR pair + bbox
-                               ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                        VALIDATOR（验证端）                        │
-│  V1–V5  输入端/生成中拦截（22 项规则检查）                         │
-│  V6–V9  输出端审查（BRISQUE → 一致性 → 轨迹物理 → YOLO）          │
-└──────────────────────────────┬──────────────────────────────────┘
-                               │ 结构化失败码（S6_BLUR / S8_POSITION_JUMP …）
-                               ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    CLOSED-LOOP（循环机制）                        │
-│  失败码 → Component Router → FailureBuffer → 增量微调 → 权重替换  │
-│  三范式：A(Pass→Train) / B(Fail→Fix→Contrast) / C(Rank→Align)    │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                       GENERATOR（生成端）                      │
+│  M1 语义解析 → M2 背景检索 → M3 深度/可供性提取 → M4 marker 注入 │
+│  → M5 LoRA 目标合成 → M6 ControlNet 条件重绘 → M7 RGB→伪红外    │
+└───────────────────────────────┬──────────────────────────────┘
+                                │ 像素对齐 RGB–IR 对 + 标注框
+                                ▼
+┌──────────────────────────────────────────────────────────────┐
+│                       VALIDATOR（验证端）                      │
+│  V1–V5 输入与生成中拦截       V6–V9 输出审查                    │
+└───────────────────────────────┬──────────────────────────────┘
+                                │ 结构化失败码（S6_BLUR / S8_POSITION_JUMP …）
+                                ▼
+┌──────────────────────────────────────────────────────────────┐
+│                     CLOSED LOOP（闭环）                        │
+│  失败码 → 组件路由 → FailureBuffer → 增量微调 → 权重替换          │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**生成端**从背景图自身推导空间条件，不做人工布局。单目相对深度给出插入深度，规则化可供性图给出语义条件，marker 注入把两者写进 ControlNet 的 depth/seg 条件图。目标 footprint 由声明距离经解析式直接给出，不从深度估计里读取——正因为它是解析的，事后才能拿实际落位去核对。
+
+**验证端**与生成端完全解耦，任何模块不给自己打分。九个阶段逐步检查，通过则短路继续，失败则返回命名阶段的失败码。
+
+**闭环**按失败码把样本路由到产生它的模块，三范式分别为 Pass→Train、Fail→Fix→Contrast、Rank→Align。
+
+---
+
+## 3. 代码结构
+
+```
+.
+├── lss_paths.py                    # 资产路径解析（唯一真源）
+├── app/
+│   ├── web_app.py                  # Flask 入口
+│   ├── llm_parser.py               # M1 语义解析 → 结构化 schema
+│   ├── background_searcher.py      # M2 背景检索（四层降级）
+│   └── condition_generator_v7.py   # M3 深度/可供性 + 逐帧编排
+├── generator/
+│   ├── lora_inpainter_v7.py        # M4/M5 LoRA 合成 + ControlNet 重绘
+│   └── rgb2ir_converter.py         # M6 RGB→伪红外
+├── validator/                      # V1–V9
+│   ├── v1_json_validator.py
+│   ├── v2_transformer_validator.py
+│   ├── v3_controlnet_validator.py
+│   ├── v4_lora_validator.py
+│   ├── v5_ir_validator.py
+│   ├── v6_quality/                 # 感知质量 + IR 信号
+│   ├── v7_consistency/             # 尺寸 / 光照 / IR 框 / 跨模态
+│   ├── v8_trajectory_validator.py
+│   └── v9_detection_validator.py
+├── loop/
+│   ├── validator_pipeline.py       # S6→S9 短路串联
+│   ├── failure_buffer.py           # 失败缓冲 + 阈值触发
+│   └── trainable_classifier.py     # 范式 A 可训练分类器
+└── experiments/                    # 复现脚本与汇总结果
 ```
 
 ---
 
-## 二、目录结构
+## 4. 论文 ↔ 代码对应
 
-```
-0-workspace/
-├── README.md                          # 英文版（English）
-├── README_CN.md                       # 中文版（本文档）
-├── LICENSE                            # MIT
-├── requirements.txt                   # 依赖清单
-├── .gitignore
-├── lss_paths.py                       # **唯一真源**：全部资产路径解析
-├── experiments/                       # 复现脚本 + 汇总 JSON（见第十节）
-├── app/                               # 前端 + 后端（Flask 服务 + 生成编排）
-│   ├── web_app.py                     #   Flask 入口（唯一前端）
-│   ├── llm_parser.py                  #   M1 语义解析
-│   ├── background_searcher.py         #   M2 背景匹配
-│   ├── condition_generator_v7.py      #   M3 场景提取 + 逐帧编排
-│   ├── .env.example                   #   环境变量模板（已脱敏）
-│   └── templates/index.html           #   前端页面
-├── generator/                         # 生成端核心引擎
-│   ├── lora_inpainter_v7.py           #   M4 LoRA生成 + M5 ControlNet重绘
-│   └── rgb2ir_converter.py            #   M6 RGB→白热IR
-├── validator/                         # 验证端（V1–V9）
-│   ├── v1_json_validator.py           #   V1
-│   ├── v2_transformer_validator.py    #   V2（目标模块已废弃，见§五）
-│   ├── v3_controlnet_validator.py     #   V3
-│   ├── v4_lora_validator.py           #   V4
-│   ├── v5_ir_validator.py             #   V5
-│   ├── v6_quality/                    #   V6（4 文件，同目录平铺 import）
-│   │   ├── quality_validator.py       #     V6 入口
-│   │   ├── rgb_quality.py             #     EfficientNet 二分类
-│   │   ├── ir_sanity.py               #     IR 信号级 3 检查
-│   │   └── calibrate.py               #     BRISQUE 阈值标定
-│   ├── v7_consistency/                #   V7（5 文件）
-│   │   ├── consistency_validator.py   #     V7 入口
-│   │   ├── size_consistency.py        #     尺寸一致性
-│   │   ├── lighting_consistency.py    #     光照一致性
-│   │   ├── ir_bbox_check.py           #     IR bbox 对齐
-│   │   └── cross_modal_alignment.py   #     跨模态对齐
-│   ├── v8_trajectory_validator.py     #   V8 轨迹物理
-│   └── v9_detection_validator.py      #   V9 YOLO 检测
-└── loop/                              # 循环机制（闭环反馈）
-    ├── validator_pipeline.py          #   S6→S9 短路串联 + 失败写入 Buffer
-    ├── failure_buffer.py              #   FailureBuffer（失败缓冲池）
-    ├── trainable_classifier.py        #   范式 A：Pass→Train 可训练分类器
-    └── 7-持续学习循环设计.md           #   闭环机制设计规格（CDFF v2.0）
-```
-
-上面这棵树是**最终整合后的管线**——即研究项目里 `0-workspace/` 的全部内容，已提升为仓库根。
-
-除此之外一律不入库。本归档所自的研发树（`0-database/`、`2-Lora training/`、`3-LLM starter/`、
-`4-Transformer/`、`5-Controlnet/`、`6-Validator/`）**不属于本仓库**——里面是上面这份最终版所取代的
-中间迭代、演示脚本与分 Agent 原型。本仓库只收最终版；原项目目录里的一切都原样保留。
-
-### 刻意不入库的内容
-
-| 排除项 | 原目录体积 | 原因 |
+| 论文模块 | 文件 | 入口 |
 |---|---|---|
-| `0-model/`（SD1.5、3× ControlNet、CLIP-ViT-L、YOLOv8x） | 22 GB | 上游公开权重，可重新下载 |
-| `1-background-pool/`（9 类场景，37,852 张） | 11 GB | 数据集本体 |
-| `0-database/` | 304 MB | 图像语料 + YOLO 标注 + tfevents；其中的配置已被取代 |
-| `2-Lora training/` | 344 MB | LoRA 训练脚手架；它产出的 adapter 是权重不是代码 |
-| `3-LLM starter/`、`5-Controlnet/` | 9 MB | M1–M5 原型（`lora_inpainter` v1→v6、各类 demo），已被 `app/` + `generator/` 取代 |
-| `4-Transformer/` | 1.8 MB | Depth-Anything-V2 轨迹分支，v20 已弃用 |
-| `6-Validator/` | 3.8 MB | 拍平进 `validator/` 之前的九个独立 Agent 树 |
-| `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | 逐样本 dump，可重新生成 |
-| `·-1豆包案例图/`、`5-Controlnet/demo_output*/` | 82 MB | 参考图与生成图 |
-| `z-文件格式参考/` | 7 MB | 第三方论文，无权再分发 |
-| `·重点节点总结笔记/`、`参考资料/` | 21 MB | 研究笔记、任务清单、12 版论文稿、导师反馈核实记录 |
+| M1 语义解析 | `app/llm_parser.py` | `parse_to_dual_json()` |
+| M2 背景检索 | `app/background_searcher.py` | `search_background()` |
+| M3 深度/可供性提取 | `app/condition_generator_v7.py` | `extract_depth_matched()` / `heuristic_segment()` |
+| M4 marker 注入 + LoRA 合成 | `generator/lora_inpainter_v7.py` | `LoraInpainterV7._generate()` |
+| M5 ControlNet 重绘 | `generator/lora_inpainter_v7.py` | `LoraInpainterV7.inpaint()` |
+| M6 RGB→伪红外 | `generator/rgb2ir_converter.py` | `rgb_to_whitehot()` |
 
-读者重建管线所需的一切都在库里；凡是「上游可下载」「由已跟踪脚本可再生成」或「已被同一模块的
-后续版本取代」的，一律不入库。
-
----
-
-## 三、论文模块 ↔ 代码映射
-
-### 生成端（Generator，M1–M6）
-
-| 论文模块 | 文件 | 核心函数/类 | 行数 |
+| 验证阶段 | 文件 | 检查数 | 失败码 |
 |---|---|---|---|
-| M1 语义解析 | `app/llm_parser.py` | `parse()` / `parse_to_dual_json()` / `SceneSpec` | 695 |
-| M2 背景匹配 | `app/background_searcher.py` | `search_background()` | 149 |
-| M3 场景提取 | `app/condition_generator_v7.py` | `extract_depth_matched()` / `heuristic_segment()` / `trajectory_to_frames()` | 536 |
-| M4 LoRA 生成 | `generator/lora_inpainter_v7.py` | `LoraInpainterV7`（LoRA txt2img 部分） | 807 |
-| M5 ControlNet 重绘 | `generator/lora_inpainter_v7.py` | `LoraInpainterV7.inpaint()`（depth+seg 双条件） | 807 |
-| M6 RGB→IR | `generator/rgb2ir_converter.py` | `rgb_to_whitehot()` | 136 |
+| V1 JSON 结构 | `validator/v1_json_validator.py` | 6 | `A1_*` |
+| V2 Transformer | `validator/v2_transformer_validator.py` | 6 | `A2_*` |
+| V3 ControlNet 条件 | `validator/v3_controlnet_validator.py` | 4 | `A3_*` |
+| V4 LoRA 采样 | `validator/v4_lora_validator.py` | 3 | `A4_*` |
+| V5 红外通道 | `validator/v5_ir_validator.py` | 3 | `A5_*` |
+| V6 感知质量 | `validator/v6_quality/quality_validator.py` | 3 | `S6_*` |
+| V7 一致性 | `validator/v7_consistency/consistency_validator.py` | 4 | `S7_*` |
+| V8 轨迹物理 | `validator/v8_trajectory_validator.py` | 4 | `S8_*` |
+| V9 检测 | `validator/v9_detection_validator.py` | 3 | `S9_*` |
 
-### 验证端（Validator，V1–V9）
-
-| 论文阶段 | 文件 | 核心类 | 检查数 | 失败码前缀 |
-|---|---|---|---|---|
-| V1 | `validator/v1_json_validator.py` | `S1JSONValidator` | 6 | `A1_*` |
-| V2 | `validator/v2_transformer_validator.py` | `S2TransformerValidator` | 6 | `A2_*` |
-| V3 | `validator/v3_controlnet_validator.py` | `S3ControlNetValidator` | 4 | `A3_*` |
-| V4 | `validator/v4_lora_validator.py` | `S4LoRAValidator` | 3 | `A4_*` |
-| V5 | `validator/v5_ir_validator.py` | `S5IRValidator` | 3 | `A5_*` |
-| V6 | `validator/v6_quality/quality_validator.py` | `QualityValidator` | 3 | `S6_*` |
-| V7 | `validator/v7_consistency/consistency_validator.py` | `ConsistencyValidator` | 4 | `S7_*` |
-| V8 | `validator/v8_trajectory_validator.py` | `TrajectoryValidator` | 4 | `S8_*` |
-| V9 | `validator/v9_detection_validator.py` | `DetectionValidator` | 3 | `S9_*` |
-
-### 循环机制（Closed-Loop）
-
-| 文件 | 作用 | 对应 README 范式 |
-|---|---|---|
-| `loop/failure_buffer.py` | `FailureBuffer`：失败样本缓冲 + 阈值触发 | 三范式共用基础 |
-| `loop/validator_pipeline.py` | `ValidatorPipeline`：S6→S9 短路求值，失败写 Buffer | 失败码路由 |
-| `loop/trainable_classifier.py` | 可训练 EfficientNet 分类器（train/infer） | 范式 A（Pass→Train） |
-| `loop/7-持续学习循环设计.md` | 闭环机制完整规格（§6/§9.1/§13/§16） | CDFF v2.0 设计文档 |
+闭环组件：`failure_buffer.py`（缓冲与阈值）、`validator_pipeline.py`（短路串联）、`trainable_classifier.py`（范式 A）。
 
 ---
 
-## 四、关键依赖链（代码内部调用关系）
-
-```
-web_app.py（Flask 入口）
-  ├─ import llm_parser.py            → parse_to_dual_json()
-  ├─ import background_searcher.py   → search_background()
-  └─ import condition_generator_v7.py（函数内 import）
-        ├─ import generator/lora_inpainter_v7.py  → LoraInpainterV7.inpaint()
-        │     └─ 读取 0-model/stable-diffusion-v1-5 + sd-controlnet-*
-        │        读取 2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors
-        └─ import generator/rgb2ir_converter.py   → rgb_to_whitehot()
-
-validator_pipeline.py（S6→S9 串联）
-  ├─ import v6_quality/quality_validator.py
-  ├─ import v7_consistency/consistency_validator.py
-  ├─ import v8_trajectory_validator.py
-  ├─ import v9_detection_validator.py
-  └─ import failure_buffer.py        → FailureBuffer
-```
-
-> ⚠️ **路径硬编码说明**：归档代码内部保留了原项目的相对路径假设
-> （`PROJECT_ROOT = Path(__file__).resolve().parent.parent`、`MODEL_DIR = .../0-model`、
-> `POOL_ROOT = .../1-background-pool/curated_backgrounds`、`BEST_MODELS = .../2-Lora training/best_models`）。
-> 由于本归档不含数据集与模型，**这些代码需在原项目目录内运行**；本目录定位为**架构索引与代码副本**，
-> 用于理解、查阅、迁移，而非独立可执行环境。
-
----
-
-## 五、去重说明（一模块一文件，无版本并列）
-
-在**已入库的树**内部，审计未发现重复函数体，也无版本并列文件：每个模块只以其最终形态出现一次。
-通向它的那些迭代**不入库**，仅留在原项目目录中：
-
-| 未入库的内容 | 其仍在何处 | 未入库的原因 |
-|---|---|---|
-| `lora_inpainter.py` ~ `_v6.py`（6 个） | `5-Controlnet/` | 被 `generator/lora_inpainter_v7.py` 取代 |
-| `demo_v5/v6/v6_batch_A.py` | `5-Controlnet/` | 旧 demo，出货路径是 v7 |
-| `condition_generator.py`（无后缀） | `3-LLM starter/` | v7 的 Gaussian blob 前身 |
-| Transformer 整个分支 | `4-Transformer/` | v20 已移除 Agent 2 时空编码器 |
-| 各 Agent 的 `tests/` 与 demo 脚本 | `6-Validator/S*/` | 已拍平进 `validator/v1…v9` |
-| `archive/` 目录 | `5-Controlnet/`、`4-Transformer/` | 探索期代码线 |
-| `kohya_dataset/` 配置、LoRA 训练脚手架 | `0-database/`、`2-Lora training/` | 属环境搭建，非管线代码 |
-
-读代码时值得知道的两点：
-
-- **`app/llm_parser.py` 是唯一的 parser**，没有第二份副本会漂移；`experiments/llm_eval/` 下的评测
-  脚本 import 的就是这一份。
-- **`validator/v6_quality/` 通过 `piq` 计算 BRISQUE**，`piq` 自带权重。`6-Validator/S6 …/models/`
-  下的 115 KB SVM 头只服务于更早的独立 Agent，运行时不需。
-
-**保留的例外**：`loop/trainable_classifier.py` 虽为 V4 命名，但它是闭环范式 A 的
-可训练组件（`train/infer` 接口），属于循环机制设计的一部分，故保留。
-
----
-
-## 六、运行方式
-
-> **这是可审计的归档，不是开箱即用的产线。** 论文里的每个数字都能从裸 clone 复算（41/41，不需要任何权重、GPU、网络）；但生成新样本需要下面的资产，而 S7 的尺寸口径缺口意味着即使配齐，新样本也仍会被判 FAIL（见 §九）。**「复算表格」和「重造数据集」是两个不同的承诺**，行文里请勿混用。
-
-全部资产路径由 `lss_paths.py` 统一解析，顺序为：
-
-1. 环境变量 `LSS_PROJECT_ROOT`（若设置）；
-2. 否则沿 `0-model` / `1-background-pool` / `2-Lora training` 三条软链接回到真实项目根；
-3. 否则退回归档目录自身（独立 checkout 场景）。
+## 5. 安装
 
 ```bash
-# 先自检：逐项打印 OK / MISSING
+git clone https://github.com/TAAS2024/low-slow-small-targets-dataset.git
+cd low-slow-small-targets-dataset
+pip install -r requirements.txt
+```
+
+依赖：PyTorch（CUDA 可选）、diffusers、transformers、ControlNet、`piq`、ultralytics、Flask。论文中的单帧耗时在单张 8 GB GPU 上测得。
+
+---
+
+## 6. 模型与资产
+
+仓库不含权重与图片，需自行下载或准备。全部路径由 `lss_paths.py` 解析，设置 `LSS_PROJECT_ROOT` 指向资产所在目录即可。
+
+| 资产 | 默认路径 | 获取 |
+|---|---|---|
+| SD 1.5 底模 | `0-model/stable-diffusion-v1-5` | `hf download stable-diffusion-v1-5/stable-diffusion-v1-5 --local-dir <path>` |
+| ControlNet depth | `0-model/sd-controlnet-depth` | `hf download lllyasviel/sd-controlnet-depth --local-dir <path>` |
+| ControlNet seg | `0-model/sd-controlnet-seg` | `hf download lllyasviel/sd-controlnet-seg --local-dir <path>` |
+| MiDaS 深度权重 | HF 缓存 | `hf download lllyasviel/Annotators --include "dpt_hybrid-midas-501f0c75.pt"` |
+| CLIP ViT-B/32 | HF 缓存 | `hf download openai/clip-vit-base-patch32` |
+| YOLOv8x（仅 V9） | `0-model/yolov8x.pt` | `python -c "from ultralytics import YOLO; YOLO('yolov8x.pt')"` |
+
+前三个必须是 diffusers 目录快照（代码对它们调 `from_pretrained`），不是单文件 `.safetensors`。MiDaS 与 CLIP 两项按 repo id 加载，必须落在 HuggingFace 缓存里，指向本地目录无效。国内可设 `HF_ENDPOINT=https://hf-mirror.com`。
+
+**背景池**：论文使用九类共 37,852 张实拍背景（`airfield` / `coastal` / `desert` / `forest` / `industrial` / `mountain` / `pure_sky` / `rural` / `urban`），本仓库不含。自备时按类建目录放入 16:9 图片，并在每类目录内提供 `_metadata.jsonl` 描述时段与天气，检索器据此做四层降级匹配。数量不设下限，几十张即可跑通流程。
+
+**目标 LoRA**：本仓库按设计不附带任何 LoRA——论文的主张是换用任意目标 LoRA 都能生成，因此把它作为可替换扩展点。需要 SD 1.5 架构的 kohya 格式 LoRA（`lora_unet_*` 键）。路径在 `lss_paths.LORA_PATH`，改一行即可指向自己的权重。注意加载器只合并 UNet 部分，text encoder 分支会被跳过。
+
+---
+
+## 7. 使用
+
+```bash
+# 检查资产是否就位
 python lss_paths.py
 
-# 前端 + 后端（Flask）
-cd app
-cp .env.example .env        # 填入 API Key
-python web_app.py           # → http://127.0.0.1:5000
+# Web 界面
+cd app && cp .env.example .env   # 填 API Key
+python web_app.py                # → http://127.0.0.1:5000
 
-# 验证端——各 validator 自带 CLI
-python validator/v6_quality/quality_validator.py  IMG.png --ir IR.png
+# 单独调用验证器
+python validator/v6_quality/quality_validator.py IMG.png --ir IR.png
 python validator/v7_consistency/consistency_validator.py IMG.png --ir IR.png --gt gt.json
 python validator/v8_trajectory_validator.py traj.json
-python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model /path/to/yolov8x.pt
+python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model yolov8x.pt
 
-# 复算论文全部数字
+# 复算论文全部表格
 python experiments/bcd/_reports/scripts/audit_tables_v20.py
 ```
 
-`loop/validator_pipeline.py` 是**库不是脚本**：没有 `__main__`，直接 `python` 它什么也不做。
-正确用法是 `ValidatorPipeline(s0, s1, s2, s3).validate(sample)`，`sample` 为
-`{"id", "rgb", "ir", "rgb_bbox", "ir_bbox", "gt_bboxes", "drone_category", "distance_m"}`，图像传
-`np.ndarray`。注意两套 bbox 约定：`rgb_bbox` / `ir_bbox` 是**归一化 `[cx, cy, w, h]`**（传像素
-`[x1, y1, x2, y2]` 会被判成尺寸不符），`gt_bboxes` 是**像素 `[x1, y1, x2, y2]`**。所以
-`v7 --gt` 要 `{"rgb_bbox": [cx, cy, w, h], "drone_category": ..., "distance_m": ...}`，
-`v9 --gt` 要裸列表 `[[x1, y1, x2, y2]]`。
+`loop/validator_pipeline.py` 是库不是脚本，用法为：
 
-**独立 checkout**（无软链接、权重放在别处）：
+```python
+from loop.validator_pipeline import ValidatorPipeline
 
-```bash
-export LSS_PROJECT_ROOT=/path/to/project   # 需含 0-model/、1-background-pool/、2-Lora training/
-python lss_paths.py                        # 先验证再运行
+pipe = ValidatorPipeline(s0, s1, s2, s3)
+result = pipe.validate({
+    "id": "s001",
+    "rgb": rgb_ndarray, "ir": ir_ndarray,
+    "rgb_bbox": [cx, cy, w, h],      # 归一化
+    "ir_bbox":  [cx, cy, w, h],      # 归一化
+    "gt_bboxes": [[x1, y1, x2, y2]], # 像素
+})
 ```
 
-完整推理所需资产**不止本仓库**（合计约 12 GB，全部刻意不入库）：
-
-| 资产 | 位置（`lss_paths.py` 解析） | 获取方式 | 体积 |
-|---|---|---|---|
-| SD 1.5 底模 | `0-model/stable-diffusion-v1-5` | `hf download stable-diffusion-v1-5/stable-diffusion-v1-5 --local-dir <该路径>` | 6.1 G |
-| ControlNet depth | `0-model/sd-controlnet-depth` | `hf download lllyasviel/sd-controlnet-depth --local-dir <该路径>` | 2.7 G |
-| ControlNet seg | `0-model/sd-controlnet-seg` | `hf download lllyasviel/sd-controlnet-seg --local-dir <该路径>` | 2.7 G |
-| LoRA | `2-Lora training/best_models/drn3_pocket_uav_v3_step2000.safetensors` | 自行训练 | 67 M |
-| 背景池 | `1-background-pool/curated_backgrounds/` 九类 | 自行收集 | 11 G |
-| yolov8x（仅 V9） | `0-model/yolov8x.pt` | `python -c "from ultralytics import YOLO; YOLO('yolov8x.pt')"` | 131 M |
-
-前三项必须是 **diffusers 目录快照**，不能是单个 `.safetensors`（代码对它们调 `from_pretrained(str(path))`）。
-国内加 `export HF_ENDPOINT=https://hf-mirror.com`，上面命令通用。老版 CLI 把 `hf download` 换成
-`huggingface-cli download`，参数一致。
-
-**两个必先进 HF 缓存、否则静默失败的检查点** —— 代码按 repo id + `local_files_only=True` 加载，指本地目录没用：
-
-```bash
-hf download lllyasviel/Annotators --include "dpt_hybrid-midas-501f0c75.pt"   # ~470 MB
-hf download openai/clip-vit-base-patch32                                     # ~605 MB
-```
-
-缺前者死在深度提取（ControlNet 之前），缺后者死在重绘。报错形如
-`OSError: ... is not a local folder and is not a valid model identifier`，很容易误判成代码坏了。
-项目树里的 `0-model/clip-vit-large-patch14`（6.4 G）是**另一个**检查点，替代不了 `base-patch32`，可以删。
-
-**LoRA 是扩展点，不是资产。** 论文主张「换任意 LoRA 都能生成」，所以一个都不随仓库发。契约：
-
-- 格式 kohya / `sd-scripts` safetensors：`lora_unet_*.lora_down.weight` / `.lora_up.weight` / `.alpha`；
-- 加载器 `generator/lora_inpainter_v7.py::_merge_lora` **只合并 UNet**、只认 `lora_unet_` 前缀，
-  指向 text encoder 的 `lora_te_*` 会被**静默跳过**（能加载成功但几乎不改变输出）；
-- 基座必须 **SD 1.5**，SDXL / SD3 的 LoRA 对不上 key；
-- 路径硬编码单文件名，换自己的有三种办法：覆盖该文件 / `LSS_PROJECT_ROOT=<另一套目录树>` /
-  改 `lss_paths.LORA_PATH` 一行；
-- 排查顺序：先 `use_lora=False` 跑通底模链，再怀疑 LoRA。训练脚本与训练集不在本仓库。
-
-**背景池怎么拿到**：没有对应的公开数据集，本仓库也不带采集脚本——`app/background_searcher.py`
-只做**检索**，不做下载。自建即可：按九类建目录（`airfield` / `coastal` / `desert` / `forest` /
-`industrial` / `mountain` / `pure_sky` / `rural` / `urban`），每类放 16:9 实拍图，并写同目录
-`_metadata.jsonl`，逐行一条：
-
-```json
-{"filename": "bg_00070a0c1b49.jpg", "url": "https://…", "source": "unsplash",
- "photographer": "…", "category": "pure_sky", "time_of_day": "dusk", "weather": "clear"}
-```
-
-合法取值 `time_of_day ∈ {dawn, morning, afternoon, dusk, night}`、
-`weather ∈ {clear, overcast, rainy, foggy, dusty, backlight}`。检索器按「时段 × 天气」分级命中
-（双命中 → 单命中 → 任意），命中等级写进返回值的 `match_level`；`BG_MATCH=random` 可退回纯随机。
-论文用的池子是 37,852 张，量级仅供参考——几十张也能跑通链路，只是多样性出不来。
-
-**LoRA 怎么训**：训练脚本与训练集不在本仓库，但**发布的那份权重里写死了完整配方**
-（safetensors `__metadata__`，kohya `sd-scripts` 原生字段），照它复刻即可：
-
-| 项 | 值 |
-|---|---|
-| 基座 | SD 1.5（`ss_sd_model_name = 451f4fe1…`），`--v1` |
-| 数据 | 49 张 `pocket_uav`，`num_repeats = 10` → 490 张/epoch |
-| 分辨率 | 512×512，`enable_bucket = false` |
-| 网络 | `networks.lora`，`network_dim = 8`，`network_alpha = 4` |
-| 优化 | AdamW8bit，lr `1e-4`，`cosine_with_restarts`，warmup 0，grad ckpt，fp16，bs 1 |
-| 步数 | 上限 3000，实测取用 2000 步（epoch 4） |
-| 其他 | `min_snr_gamma = 5.0`，`multires_noise_discount = 0.3`，seed 42 |
-
-```bash
-git clone https://github.com/kohya-ss/sd-scripts && cd sd-scripts
-accelerate launch --num_cpu_threads_per_process 8 train_network.py \
-  --pretrained_model_name_or_path <SD1.5 目录> \
-  --train_data_dir <数据集根> \
-  --network_module networks.lora --network_dim 8 --network_alpha 4 \
-  --resolution 512,512 --enable_bucket=false \
-  --learning_rate 1e-4 --optimizer_type AdamW8bit \
-  --lr_scheduler cosine_with_restarts --lr_warmup_steps 0 \
-  --min_snr_gamma 5 --multires_noise_discount 0.3 \
-  --max_train_steps 3000 --save_every_n_epochs 1 \
-  --mixed_precision fp16 --gradient_checkpointing --seed 42 \
-  --output_dir <输出目录> --output_name drn3_pocket_uav
-```
-
-数据集布局：`<数据集根>/10_Pocket_UAV/` 下放图 + 同名 `.txt`，**目录名前缀 `10_` 就是
-`num_repeats`**。caption 用触发词加结构化属性，权重里实际的词频分布是
-`pocket_uav, a compact foldable drone with a small body and foldable arms, arms unfolded, hovering,
-front view`。产物是 792 个 key（576 个 `lora_unet_*` + 216 个 `lora_te_*`），其中 text encoder
-那 216 个不会被本仓库的加载器合并——见上文契约。
+两套 bbox 约定不同：`rgb_bbox` / `ir_bbox` 归一化 `[cx, cy, w, h]`，`gt_bboxes` 像素 `[x1, y1, x2, y2]`。
 
 ---
 
-## 七、原项目路径 ↔ 归档路径映射
+## 8. 结果
 
-| 归档路径 | 原项目路径 |
+基准为 300 对可见光–伪红外样本，覆盖九类场景、五个时段、五类天气，300 组条件互不重复：
+
+| 指标 | 值 |
 |---|---|
-| `app/web_app.py` | `3-LLM starter/web_app.py` |
-| `app/llm_parser.py` | `3-LLM starter/llm_parser.py` |
-| `app/background_searcher.py` | `3-LLM starter/background_searcher.py` |
-| `app/condition_generator_v7.py` | `3-LLM starter/condition_generator_v7.py` |
-| `app/templates/index.html` | `3-LLM starter/templates/index.html` |
-| `generator/lora_inpainter_v7.py` | `5-Controlnet/lora_inpainter_v7.py` |
-| `generator/rgb2ir_converter.py` | `2-Lora training/rgb2ir_converter.py` |
-| `validator/v1_json_validator.py` | `6-Validator/S1 Agent 1 JSON校验/code/s1_json_validator.py` |
-| `validator/v2_transformer_validator.py` | `6-Validator/S2 Agent 2 Transformer校验/code/s2_transformer_validator.py` |
-| `validator/v3_controlnet_validator.py` | `6-Validator/S3 Agent 3 ControlNet校验/code/s3_controlnet_validator.py` |
-| `validator/v4_lora_validator.py` | `6-Validator/S4 Agent 4 LoRA校验/code/s4_lora_validator.py` |
-| `validator/v5_ir_validator.py` | `6-Validator/S5 Agent 5 IR校验/code/s5_ir_validator.py` |
-| `validator/v6_quality/*` | `6-Validator/S6 RGB 图像质量检查/code/*` |
-| `validator/v7_consistency/*` | `6-Validator/S7 无人机与场景一致性检查/code/*` |
-| `validator/v8_trajectory_validator.py` | `6-Validator/S8 轨迹物理合理性检查/code/trajectory_validator.py` |
-| `validator/v9_detection_validator.py` | `6-Validator/S9 YOLO结果检查/code/detection_validator.py` |
-| `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
-| `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
-| `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
+| 位置误差 E_pos | 1.226 ± 0.448 px |
+| 尺度误差 E_scale | 0.028 ± 0.021 |
+| IoU | 0.706 ± 0.126 |
+| IoU ≥ 0.5 占比 | 94.0% |
+| BRISQUE | 20.55 |
+| 通过率 | 88.3% |
+| 单对生成耗时 | 14.58 s |
 
-右列所指目录**不在本仓库内**（见第 2 节排除表），那是文件在原项目树中的来处——原项目目录保持原样。
-本表用于记录来源，并非可在库内跟随的链接。
+验证链相对单指标的价值：在 302 张成图上，仅用 BRISQUE 阈值接受 267 张（88.4%），V6→V7→V9 链接受 161 张（53.3%），两者一致 158 张。论文另报告消融（E1–E3）、闭环三范式、下游代理与解析器对比，全部数字可由 `audit_tables_v20.py` 从仓库内逐样本 JSON 复算。
 
-有两个文件属于改名而非移动：`validator/v8_trajectory_validator.py` 与
-`validator/v9_detection_validator.py` 去掉了原件携带的 `s8_` / `s9_` 前缀。
+需要说明证据边界：实验刻画的是**生成过程**——目标是否落在要求的位置与尺度、缺陷样本是否被拦下——而不是产品效用。没有检测器在 CDFF 输出上训练并在真实影像上评估，因此本文不支持"检测精度提升"的主张。
 
 ---
 
-## 八、可运行性验证与修复记录
+## 9. 已知限制
 
-归档后对最终管线的 29 个 `.py` 文件做了可运行性测试，修复了 6 处因「目录重排 + 文件改名 + 归档重写」导致的
-`sys.path` / import 断裂（以下修复仅存在于归档副本，**未改动原项目**）。
+- **尺度判据的两套几何未统一。** 生成端按声明距离的解析式定尺寸，V7 的尺寸检查在拿不到上游期望值时退回物理投影反推（机型真实尺寸 + 60° FOV）。两套几何相差约一个数量级，直接跑端到端流程时小目标样本会被判失败。论文报告的尺度误差由上游声明值计算，不受影响。
+- 论文描述的三路失败缓冲分流与「批次通过率低于 10% 时阈值回退」属于设计约束，代码实现了缓冲本体与分级短路，未实现分流调度与回退。
+- V9 使用 COCO 预训练的 YOLOv8x，其类别表不含无人机，因此只作为下游显著性代理，不构成检测精度证据。
 
-### 修复清单
+## 10. 引用
 
-| # | 文件 | 原问题 | 修复方式 |
-|---|---|---|---|
-| 1 | `app/web_app.py` | 顶层 `from condition_generator import ...`（旧版，已废弃）导致启动即崩；`/api/generate-conditions` 旧端点重复 | 删除旧版 import 与整个旧端点（功能由 `/api/generate-lora` 承接） |
-| 2 | `app/condition_generator_v7.py` | `sys.path` 指向 `2-Lora training/`、`5-Controlnet/`（原项目路径） | 改为指向归档的 `generator/`（rgb2ir + lora_inpainter） |
-| 3 | `generator/lora_inpainter_v7.py` | 运行时 `from condition_generator_v7 import seg_to_rgb` 找不到 app/ | import 前注入 `sys.path → app/` |
-| 4 | `loop/validator_pipeline.py` | `sys.path` 指向 `S6/S7/S8/S9/code`（原项目路径）+ `trajectory_validator`/`detection_validator` 旧名 | 改为指向 `validator/v6_quality`、`validator/v7_consistency`、`validator/`，并改用 `v8_*`/`v9_*` 新名 |
-
-| 5 | `lss_paths.py`（**新增**）+ 5 个调用点 | 资产路径（`../1-background-pool`、`../0-model`、`../2-Lora training`）在各模块里按自身 `__file__` 重复推导，实际依赖归档内预建的三条软链接 | 新增 `lss_paths.py` 作为**唯一真源**；`background_searcher.py`、`condition_generator_v7.py`、`web_app.py`、`lora_inpainter_v7.py`、`validator_pipeline.py` 全部改为从中导入。解析顺序：`LSS_PROJECT_ROOT` 环境变量 → 三个资产目录的软链接目标 → 归档目录自身 |
-
-| 6 | `app/condition_generator_v7.py` | 第 2 条路径重写时**漏掉** `from rgb2ir_converter import rgb_to_whitehot`——目录加进了 `sys.path`，符号却从未 import，于是每次运行都跑到 IR 那一步（ControlNet 已耗时约 4 分钟后）抛 `NameError: name 'rgb_to_whitehot' is not defined`。2026-10-30 真跑一次生成才发现，靠 import 冒烟查不出来 | 在路径搜索之后补回该 import |
-
-另将 `v1~v5` docstring 内的用法示例旧模块名（`s1_json_validator` 等）同步为新名。
-
-### 验证结果（2026-08-31 全部通过）
-
-| 测试项 | 结果 |
-|---|---|
-| 语法检查（`py_compile`，29 文件） | ✓ 全部通过 |
-| 模块 import（18 个模块，含跨目录依赖） | ✓ 全部通过 |
-| 关键符号存在性（27 个类/函数） | ✓ 全部存在 |
-| 纯函数冒烟：`seg_to_rgb` | ✓ 输出 shape/颜色正确 |
-| 纯函数冒烟：`rgb_to_whitehot` | ✓ 白热 IR 转换正常 |
-| 纯函数冒烟：`trajectory_to_frames` | ✓ 轨迹解析正常 |
-| Flask 路由清单（删端点后） | ✓ 无残留旧引用，11 个路由干净 |
-
-上表只证明「模块能加载、纯函数能跑」。2026-10-30 又做了一遍完整实测（RTX 4060 Laptop，
-torch 2.6.0+cu124，跑在权重所在的原项目树里），上面第 6 条就是这轮测出来的：
-
-| 测试项 | 结果 |
-|---|---|
-| `0-workspace/` 下 `python lss_paths.py` | ✓ 8/8 资产全部解析（POOL_ROOT、SD15、两个 ControlNet、LoRA） |
-| `generate_with_lora` 单帧（pure_sky，60 m，1 架） | ✓ `ok=True`，11 个产物齐全（bg、bg_depth、bg_seg、drone_raw、drone_clean、drone_rgba、drone_depth、drone_seg、final_rgb、ir、bbox） |
-| 单帧耗时 | 冷启 144 s（含模型加载），热跑约 30 s |
-| `app/smoke_endpoints.py`（33 条断言，路由全打桩） | ✓ 33/33 |
-| `v6 quality_validator` 验该产物 | ✓ PASS |
-| `v7 consistency_validator` | ✓ 可运行——lighting PASS，size FAIL（见下） |
-| `v8 trajectory_validator`（3 帧序列） | ✓ PASS，score 1.000 |
-| `v9 detection_validator`（`yolov8x.pt`） | ✓ 可运行，8 个预测，gt 框未命中（COCO 无无人机类） |
-| 裸 clone 跑 `audit_tables_v20.py` | ✓ 41/41 表格与论文一致 |
-
-> **一处未修的口径缺口，如实记下。** 生成端按经验公式定尺寸
-> （`size_px = clip(3600 / max(distance, 25), 12, 96)`，60 m → 60 px），而 `v7` 的尺寸检查按真实物理
-> 反推（`real_w / (2·d·tan(fov/2))`，0.25 m 四旋翼在 60 m → 4.6 px）。两者差约 13 倍，所以**新生成的
-> 样本在 `S7` 会因 size 被判 FAIL**，除非把 `drone_category` 设成 3 m 量级的机型。论文里的结果不受
-> 影响（全部由已提交的逐样本 JSON 复算），但**端到端重新造数据一定会撞上**。这是建模选择，
-> 不是代码缺陷，故保持原样。
-
----
-
-## 九、论文 ↔ 代码口径核对（manuscript v20）
-
-论文全部数字由 `experiments/bcd/_reports/scripts/audit_tables_v20.py` 从逐样本原始 JSON 复算
-（43 条断言，`Decimal` + `ROUND_HALF_UP`）：**43 通过 / 0 失败**。
-
-| 表 | 内容 | 结果 |
-|---|---|---|
-| 表 3 | 300 对基准：位置 1.226±0.448 px、尺度 0.028±0.021、IoU 0.706±0.126、94.0% @IoU≥0.5、BRISQUE 20.55、通过率 88.3% | ✓ |
-| 表 4 | E1 边界：LCR 1.338 vs 1.655（p=4.9e-05），RLJ / BGE 无显著差异 | ✓ |
-| 表 5 | 消融 E2 / E3 | ✓ |
-| 表 6 | 闭环 A1 / A2 / A3 | ✓ |
-| 表 7 | 下游代理 8 臂 | ✓ |
-| 表 8 | LLM vs 模板解析 7 项 | ✓ |
-| 表 2 | 吞吐 14.58 s 均值 / 14.57 s 中位 | ✓ |
-| §3.1 | 背景池 37,852 张、9 类 | ✓ 逐目录重新计数一致 |
-
-论文引用的实现参数与代码默认值核对：
-
-| 论文声明 | 代码默认值 | 状态 |
-|---|---|---|
-| `N = 15`、`s = 0.65` | `steps=15, strength=0.65` | ✓ |
-| 双条件强度 `0.85` | `cnet_scales=(0.85, 0.85)` | ✓ |
-| guidance `7.5` | `guidance=7.5` | ✓ |
-| BRISQUE 阈值 `45` | `brisque_thr=45.0` | ✓ |
-| V9：IoU `0.5`、置信度 `0.25` | `iou_thr=0.5, conf_thr=0.25` | ✓ |
-| V1–V9 九项检查 | `validator/v1…v9` | ✓ |
-| 滑动排除队列 | `app/probe_exclude_queue.py` + `background_searcher.py` 内的排除队列 | ✓ |
-| 三个失败缓冲（V4/V6、V3/V7、V1/V8），阈值 50 / 30 / 20 | `loop/failure_buffer.py` 只实现**一个**参数化缓冲（`threshold=50`），pipeline 只实例化一个 | ⚠ 部分实现，分流调度层未落地 |
-| 式 (12)：批次通过率低于 10% 时阈值动态回退 | 全项目 `grep -ri "rollback\|acceptance_rate"` **0 命中** | ⚠ 未实现（设计约束） |
-
-最后两项在论文 §3.3 中是方法描述，但**属于设计约束而非已交付代码**：归档实现了缓冲机制本体、
-V3/V5/V8 的确定性规则和分级短路，但未实现三路缓冲分流与通过率回退。论文本身已声明五条锚点是
-"a design argument rather than a demonstrated guarantee"，这两项应作同样理解。
-
----
-
-## 十、实验复现产物
-
-`experiments/` 含 50 个产出论文的实验脚本与各次运行的汇总 JSON/Markdown（4.5 MB）。
-逐样本 `manifest.json`、YOLO 训练中间件以及 `_smoke*/`、`_v8_prework/`、`_v9_prehalofix/`、
-`*_buggy_*`、`*_stale_*` 等中间目录已排除。
-
-```bash
-python experiments/bcd/_reports/scripts/audit_tables_v20.py   # 复算论文全部表格
+```bibtex
+@article{li_cdff,
+  title  = {A Spatially Controlled Closed-Loop Framework for Synthetic
+            Low-Slow-Small Target Dataset Generation},
+  author = {Li, Qingming and Zhang, Yanxin and Zhu, Zhongpan and He, Bin},
+  note   = {Manuscript under review, Neurocomputing}
+}
 ```
 
-`audit_tables_v20.py` 只读仓库内已有的 JSON，裸 clone 即可运行。而**产出**这些 JSON 的脚本
-（`p1/`、`step_sweep/`、`bcd/run_*`）是「数字怎么来的」的留档：它们按原项目根解析路径，需要
-`0-model/`、`1-background-pool/` 与各阶段树在场，请在原项目里跑，不要在仓库里跑。
+## 11. 许可
+
+MIT
