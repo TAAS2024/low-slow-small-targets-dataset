@@ -127,12 +127,10 @@ CDFF 是**双 Agent 对抗 + 闭环反馈**架构：
 ├── V4-trainable/、V5-pipeline/                 #   范式 A 与串联原型
 ├── Demo S1~5/、Demo S6~9/                      #   跨 Agent 演示 + 失败日志
 └── S6 …/models/brisque_svm_weights.pt          #   115 KB SVM 权重，已跟踪（V6 运行需要）
-参考资料/                 # 催生本设计的文献笔记
-·重点节点总结笔记/          # 设计笔记（md）+ 整体架构图
 ```
 
-`·重点节点总结笔记/` 只保留 markdown：12 个论文 `.docx` 版本稿（约 100 MB 的历史副本）与渲染图
-dump 均已 gitignore。`000-整体架构研发图.png` 就是第一节引用的那张架构图。
+与这些阶段树并列的研究笔记、任务清单、论文版本稿、导师反馈核实记录（`·重点节点总结笔记/`、
+`参考资料/`）**刻意不入库**——它们是工作过程文档，不属于架构。
 
 ### 2.2 刻意不入库的内容
 
@@ -145,6 +143,7 @@ dump 均已 gitignore。`000-整体架构研发图.png` 就是第一节引用的
 | `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | 逐样本 dump，可重新生成 |
 | `·-1豆包案例图/`、`5-Controlnet/demo_output*/` | 82 MB | 参考图与生成图 |
 | `z-文件格式参考/` | 7 MB | 第三方论文，无权再分发 |
+| `·重点节点总结笔记/`、`参考资料/` | 21 MB | 研究笔记、任务清单、12 版论文稿、导师反馈核实记录——工作过程文档 |
 
 读者重建管线所需的一切都在库里；凡是「上游可下载」或「由已跟踪脚本可再生成」的，一律不入库。
 
@@ -304,9 +303,10 @@ python lss_paths.py                        # 先验证再运行
 | `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
-| `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
 
-表中「原项目路径」现在同样存在于本仓库（见 2.1 节），可直接交叉核对，无需只凭本表取信。
+表中「原项目路径」凡是落在已入库阶段树（2.1 节）下的，都可在本仓库直接交叉核对。唯一例外是
+设计文档 `7-持续学习循环设计.md`：它在研发树里的原件属于工作文档、不在 git 中，故仅有 `loop/`
+下的整理版入库。
 
 ---
 

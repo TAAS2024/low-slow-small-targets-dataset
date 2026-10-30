@@ -129,13 +129,11 @@ in `app/`, `generator/`, `validator/`, `loop/` supersede them.
 ├── V4-trainable/, V5-pipeline/                 #   paradigm-A and chaining prototypes
 ├── Demo S1~5/, Demo S6~9/                      #   cross-agent demos + failure logs
 └── S6 …/models/brisque_svm_weights.pt          #   115 KB SVM head, tracked (V6 needs it)
-参考资料/                 # literature notes that seeded the design
-·重点节点总结笔记/          # design notes (md) + the overall architecture figure
 ```
 
-`·重点节点总结笔记/` keeps the markdown only: the 12 manuscript `.docx` drafts (≈100 MB of
-versioned copies) and the rendered figure dumps are gitignored. `000-整体架构研发图.png` is the
-architecture drawing referred to in §1.
+The research notes, task lists, manuscript drafts and tutor-feedback audits that sat next to these
+trees (`·重点节点总结笔记/`, `参考资料/`) are deliberately **not** in the repository — they are
+working documents, not architecture.
 
 ### 2.2 What is deliberately absent
 
@@ -148,6 +146,7 @@ architecture drawing referred to in §1.
 | `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | per-sample dumps, regenerable |
 | `·-1豆包案例图/`, `5-Controlnet/demo_output*/` | 82 MB | reference and generated imagery |
 | `z-文件格式参考/` | 7 MB | third-party papers, not ours to redistribute |
+| `·重点节点总结笔记/`, `参考资料/` | 21 MB | research notes, task lists, 12 manuscript drafts, tutor-feedback audits — working documents |
 
 Everything a reader needs to *rebuild* the pipeline is here; everything that is either
 redistributable from upstream or regenerable from the tracked scripts is not.
@@ -311,10 +310,11 @@ python lss_paths.py                        # verify before running anything
 | `loop/validator_pipeline.py` | `6-Validator/V5-pipeline/code/validator_pipeline.py` |
 | `loop/failure_buffer.py` | `6-Validator/V5-pipeline/code/failure_buffer.py` |
 | `loop/trainable_classifier.py` | `6-Validator/V4-trainable/code/trainable_classifier.py` |
-| `loop/7-持续学习循环设计.md` | `·重点节点总结笔记/7-持续学习循环设计.md` |
 
-Every "original project path" in this table is now also present in the repository (§2.1), so the
-mapping can be cross-checked directly rather than taken on trust.
+Every "original project path" in this table that lies under a tracked stage tree (§2.1) can be
+cross-checked directly in the repository. The design note `7-持续学习循环设计.md` is the one
+exception: its research-tree original is a working document and lives outside git, so only the
+curated copy in `loop/` is versioned.
 
 ---
 
