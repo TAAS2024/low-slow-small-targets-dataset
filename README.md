@@ -303,11 +303,57 @@ dataset can be dropped in, which is why none ships here. The contract:
 - debug order: run with `use_lora=False` until the base model chain works, then suspect the LoRA.
   Training scripts and the training set are not in this repository.
 
-**Minimum viable background pool**: the `__main__` demo hard-codes
-`curated_backgrounds/pure_sky/bg_00070a0c1b49.jpg`. To prove generation works, drop any 16:9 photograph at
-that path, or call `generate_with_lora(bg_path=<your image>, ...)` directly. Keep a `_metadata.jsonl` per
-class (`filename` / `url` / `source` / `photographer` / `category` / `time_of_day` / `weather`) —
-`background_searcher.py` ranks on it.
+**Where the background pool comes from**: there is no public dataset for it, and this repository
+ships no collector — `app/background_searcher.py` only **searches**, it does not download. Build your own:
+one directory per class (`airfield` / `coastal` / `desert` / `forest` / `industrial` / `mountain` /
+`pure_sky` / `rural` / `urban`), 16:9 photographs inside, plus a `_metadata.jsonl` per directory, one
+record per line:
+
+```json
+{"filename": "bg_00070a0c1b49.jpg", "url": "https://…", "source": "unsplash",
+ "photographer": "…", "category": "pure_sky", "time_of_day": "dusk", "weather": "clear"}
+```
+
+Valid values are `time_of_day ∈ {dawn, morning, afternoon, dusk, night}` and
+`weather ∈ {clear, overcast, rainy, foggy, dusty, backlight}`. The searcher scores time-of-day × weather
+with a four-level fallback and reports which level hit in `match_level`; `BG_MATCH=random` restores pure
+random selection. The paper's pool is 37,852 images — a scale reference, not a requirement; a few dozen
+will exercise the pipeline, just with less variety.
+
+**How the LoRA was trained**: the training script and dataset are not in this repository, but the
+released weights carry the full recipe in their `__metadata__` (native kohya `sd-scripts` fields).
+Reproducing it:
+
+| Item | Value |
+|---|---|
+| Base | SD 1.5 (`ss_sd_model_name = 451f4fe1…`), `--v1` |
+| Data | 49 `pocket_uav` images, `num_repeats = 10` → 490 per epoch |
+| Resolution | 512×512, `enable_bucket = false` |
+| Network | `networks.lora`, `network_dim = 8`, `network_alpha = 4` |
+| Optimiser | AdamW8bit, lr `1e-4`, `cosine_with_restarts`, warmup 0, grad ckpt, fp16, bs 1 |
+| Steps | capped at 3000; the shipped checkpoint is step 2000 (epoch 4) |
+| Other | `min_snr_gamma = 5.0`, `multires_noise_discount = 0.3`, seed 42 |
+
+```bash
+git clone https://github.com/kohya-ss/sd-scripts && cd sd-scripts
+accelerate launch --num_cpu_threads_per_process 8 train_network.py \
+  --pretrained_model_name_or_path <SD1.5 dir> \
+  --train_data_dir <dataset root> \
+  --network_module networks.lora --network_dim 8 --network_alpha 4 \
+  --resolution 512,512 --enable_bucket=false \
+  --learning_rate 1e-4 --optimizer_type AdamW8bit \
+  --lr_scheduler cosine_with_restarts --lr_warmup_steps 0 \
+  --min_snr_gamma 5 --multires_noise_discount 0.3 \
+  --max_train_steps 3000 --save_every_n_epochs 1 \
+  --mixed_precision fp16 --gradient_checkpointing --seed 42 \
+  --output_dir <out dir> --output_name drn3_pocket_uav
+```
+
+Dataset layout: images plus same-named `.txt` captions inside `<dataset root>/10_Pocket_UAV/` — **the
+`10_` prefix is the `num_repeats`**. Captions are a trigger word plus structured attributes; the actual
+token distribution in the shipped file is `pocket_uav, a compact foldable drone with a small body and
+foldable arms, arms unfolded, hovering, front view`. Output is 792 keys (576 `lora_unet_*` + 216
+`lora_te_*`); the 216 text-encoder ones are not merged by this repository's loader — see the contract above.
 
 ---
 

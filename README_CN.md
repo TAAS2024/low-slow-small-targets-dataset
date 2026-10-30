@@ -286,10 +286,54 @@ hf download openai/clip-vit-base-patch32                                     # ~
   改 `lss_paths.LORA_PATH` 一行；
 - 排查顺序：先 `use_lora=False` 跑通底模链，再怀疑 LoRA。训练脚本与训练集不在本仓库。
 
-**背景池最小可用集**：`__main__` 示例写死 `curated_backgrounds/pure_sky/bg_00070a0c1b49.jpg`。
-只想验证生成能跑，放任意一张 16:9 图到该路径即可，或直接 `generate_with_lora(bg_path=<你的图>, ...)`。
-每类目录建议保留 `_metadata.jsonl`（`filename` / `url` / `source` / `photographer` / `category` /
-`time_of_day` / `weather`），`background_searcher.py` 靠它排序。
+**背景池怎么拿到**：没有对应的公开数据集，本仓库也不带采集脚本——`app/background_searcher.py`
+只做**检索**，不做下载。自建即可：按九类建目录（`airfield` / `coastal` / `desert` / `forest` /
+`industrial` / `mountain` / `pure_sky` / `rural` / `urban`），每类放 16:9 实拍图，并写同目录
+`_metadata.jsonl`，逐行一条：
+
+```json
+{"filename": "bg_00070a0c1b49.jpg", "url": "https://…", "source": "unsplash",
+ "photographer": "…", "category": "pure_sky", "time_of_day": "dusk", "weather": "clear"}
+```
+
+合法取值 `time_of_day ∈ {dawn, morning, afternoon, dusk, night}`、
+`weather ∈ {clear, overcast, rainy, foggy, dusty, backlight}`。检索器按「时段 × 天气」分级命中
+（双命中 → 单命中 → 任意），命中等级写进返回值的 `match_level`；`BG_MATCH=random` 可退回纯随机。
+论文用的池子是 37,852 张，量级仅供参考——几十张也能跑通链路，只是多样性出不来。
+
+**LoRA 怎么训**：训练脚本与训练集不在本仓库，但**发布的那份权重里写死了完整配方**
+（safetensors `__metadata__`，kohya `sd-scripts` 原生字段），照它复刻即可：
+
+| 项 | 值 |
+|---|---|
+| 基座 | SD 1.5（`ss_sd_model_name = 451f4fe1…`），`--v1` |
+| 数据 | 49 张 `pocket_uav`，`num_repeats = 10` → 490 张/epoch |
+| 分辨率 | 512×512，`enable_bucket = false` |
+| 网络 | `networks.lora`，`network_dim = 8`，`network_alpha = 4` |
+| 优化 | AdamW8bit，lr `1e-4`，`cosine_with_restarts`，warmup 0，grad ckpt，fp16，bs 1 |
+| 步数 | 上限 3000，实测取用 2000 步（epoch 4） |
+| 其他 | `min_snr_gamma = 5.0`，`multires_noise_discount = 0.3`，seed 42 |
+
+```bash
+git clone https://github.com/kohya-ss/sd-scripts && cd sd-scripts
+accelerate launch --num_cpu_threads_per_process 8 train_network.py \
+  --pretrained_model_name_or_path <SD1.5 目录> \
+  --train_data_dir <数据集根> \
+  --network_module networks.lora --network_dim 8 --network_alpha 4 \
+  --resolution 512,512 --enable_bucket=false \
+  --learning_rate 1e-4 --optimizer_type AdamW8bit \
+  --lr_scheduler cosine_with_restarts --lr_warmup_steps 0 \
+  --min_snr_gamma 5 --multires_noise_discount 0.3 \
+  --max_train_steps 3000 --save_every_n_epochs 1 \
+  --mixed_precision fp16 --gradient_checkpointing --seed 42 \
+  --output_dir <输出目录> --output_name drn3_pocket_uav
+```
+
+数据集布局：`<数据集根>/10_Pocket_UAV/` 下放图 + 同名 `.txt`，**目录名前缀 `10_` 就是
+`num_repeats`**。caption 用触发词加结构化属性，权重里实际的词频分布是
+`pocket_uav, a compact foldable drone with a small body and foldable arms, arms unfolded, hovering,
+front view`。产物是 792 个 key（576 个 `lora_unet_*` + 216 个 `lora_te_*`），其中 text encoder
+那 216 个不会被本仓库的加载器合并——见上文契约。
 
 ---
 
