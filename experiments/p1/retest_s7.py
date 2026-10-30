@@ -11,7 +11,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-S7_DIR = Path(__file__).resolve().parents[2] / "6-Validator" / "S7 无人机与场景一致性检查" / "code"
+# 归档布局：验证器在 validator/v7_consistency/，不再是旧的 6-Validator/ 研发树
+S7_DIR = Path(__file__).resolve().parents[2] / "validator" / "v7_consistency"
 sys.path.insert(0, str(S7_DIR))
 
 from consistency_validator import ConsistencyValidator  # noqa: E402
@@ -26,7 +27,11 @@ def px_to_cxcywh(bbox, W, H):
 
 
 def main():
-    data = json.load(open(P1_DIR / "batch_results.json"))
+    src = P1_DIR / "batch_results.json"
+    if not src.exists():
+        raise SystemExit(f"缺少 {src.name}：P1 批次产物未随归档保留，"
+                         f"本脚本无法回测。")
+    data = json.load(open(src))
     v = ConsistencyValidator()
 
     dim_stats = {"size": [], "lighting": [], "ir_bbox": [], "cross_modal": []}
@@ -59,17 +64,14 @@ def main():
             s7_pass += 1
 
         for dim in dim_stats:
-            d = getattr(res, dim)
-            if d is not None and "passed" in d:
-                dim_stats[dim].append(d["passed"])
+            st = res.dim_status.get(dim)
+            if st:                       # PASS / FAIL / SKIP 三态都记账
+                dim_stats[dim].append(st)
 
-        size_d = res.size.get("detail", "")
-        light_d = res.lighting.get("detail", "")
-        print(f"{sid}: S7={'PASS' if res.passed else 'FAIL'} | "
-              f"size={'✓' if res.size['passed'] else '✗'} "
-              f"lighting={'✓' if res.lighting['passed'] else '✗'} "
-              f"ir_bbox={'✓' if res.ir_bbox['passed'] else '✗'} "
-              f"cross_modal={'✓' if res.cross_modal['passed'] else '✗'}")
+        print(f"{sid}: S7={res.verdict.value} | "
+              + " ".join(f"{d}={res.dim_status.get(d, '-')}" for d in dim_stats))
+        if res.scale_err is not None:
+            print(f"    E_scale={res.scale_err:.4f}")
         if not res.passed:
             print(f"    reason: {res.reason}")
 
@@ -77,7 +79,10 @@ def main():
     print(f"  S7 总通过率: {s7_pass}/{n} = {s7_pass/n:.1%}")
     for dim, vals in dim_stats.items():
         if vals:
-            print(f"  {dim}: {sum(vals)}/{len(vals)} 通过")
+            ok = sum(1 for v in vals if v == "PASS")
+            sk = sum(1 for v in vals if v == "SKIP")
+            print(f"  {dim}: {ok}/{len(vals)} 通过"
+                  + (f"（{sk} 未评估）" if sk else ""))
 
 
 if __name__ == "__main__":

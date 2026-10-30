@@ -72,6 +72,7 @@ CDFF 把这两件事当作同一个问题处理：把一张普通背景照片转
 │   ├── v5_ir_validator.py
 │   ├── v6_quality/                 # 感知质量 + IR 信号
 │   ├── v7_consistency/             # 尺寸 / 光照 / IR 框 / 跨模态
+│   │   └── test_s7_tristate.py     # 回归：PASS/FAIL/SKIP 不许混为一谈
 │   ├── v8_trajectory_validator.py
 │   └── v9_detection_validator.py
 ├── loop/
@@ -107,6 +108,8 @@ CDFF 把这两件事当作同一个问题处理：把一张普通背景照片转
 | V9 检测 | `validator/v9_detection_validator.py` | 3 | `S9_*` |
 
 闭环组件：`failure_buffer.py`（缓冲与阈值）、`validator_pipeline.py`（短路串联）、`trainable_classifier.py`（范式 A）。
+
+V7 的每个维度只有三种状态——`PASS`、`FAIL`、`SKIP`，而 `SKIP` 不是通过：没有可用输入的维度记为 `SKIP` 并排除在判定之外，一个维度都没评估的样本判 `SKIP` 而不是接受。`python validator/v7_consistency/test_s7_tristate.py` 不需要任何模型权重就能校验这条约定。
 
 ---
 
@@ -156,6 +159,8 @@ python web_app.py                # → http://127.0.0.1:5000
 # 单独调用验证器
 python validator/v6_quality/quality_validator.py IMG.png --ir IR.png
 python validator/v7_consistency/consistency_validator.py IMG.png --ir IR.png --gt gt.json
+python validator/v7_consistency/consistency_validator.py IMG.png --expected-px 60 --gt gt.json
+python validator/v7_consistency/consistency_validator.py IMG.png --gt gt.json --physical-fallback
 python validator/v8_trajectory_validator.py traj.json
 python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model yolov8x.pt
 
@@ -166,7 +171,7 @@ python experiments/bcd/_reports/scripts/audit_tables_v20.py
 `loop/validator_pipeline.py` 是库不是脚本，用法为：
 
 ```python
-from loop.validator_pipeline import ValidatorPipeline
+from loop.validator_pipeline import ValidatorPipeline, build_sample_from_geometry
 
 pipe = ValidatorPipeline(s0, s1, s2, s3)
 result = pipe.validate({
@@ -174,11 +179,22 @@ result = pipe.validate({
     "rgb": rgb_ndarray, "ir": ir_ndarray,
     "rgb_bbox": [cx, cy, w, h],      # 归一化
     "ir_bbox":  [cx, cy, w, h],      # 归一化
+    "expected_px": 60,               # 声明的目标宽度，给了才计算 E_scale
     "gt_bboxes": [[x1, y1, x2, y2]], # 像素
 })
 ```
 
-两套 bbox 约定不同：`rgb_bbox` / `ir_bbox` 归一化 `[cx, cy, w, h]`，`gt_bboxes` 像素 `[x1, y1, x2, y2]`。
+`build_sample_from_geometry()` 从生成端把这条链接上：`app/condition_generator_v7.py` 的两个入口都会返回 `geometry` 列表（逐帧记录 `bbox_px`、`bbox_norm`、`expected_px`、`realised_px`、`scale_err`），realised 框和声明尺寸不再死在生成函数的局部作用域里：
+
+```python
+out = generate_with_lora(bg_path, spec)      # 或 focus_reposition(...)
+for geo in out["geometry"]:
+    sample = build_sample_from_geometry(geo, rgb=frame_rgb, ir=ir_rgb)
+    result = pipe.validate(sample)
+    print(geo["scale_err"], result.s1["scale_err"])   # 构造上必然相等
+```
+
+两套 bbox 约定不同：`rgb_bbox` / `ir_bbox` 归一化 `[cx, cy, w, h]`，`gt_bboxes` 像素 `[x1, y1, x2, y2]`。像素对换算宽度时，`build_sample_from_geometry` 用 `x2 - x1 + 1`，`experiments/bcd/adapters.py` 用 `x2 - x1`——这 1 px 差异是故意留的，后者才是产出论文数字那条路径。
 
 ---
 
@@ -204,7 +220,7 @@ result = pipe.validate({
 
 ## 9. 已知限制
 
-- **尺度判据的两套几何未统一。** 生成端按声明距离的解析式定尺寸，V7 的尺寸检查在拿不到上游期望值时退回物理投影反推（机型真实尺寸 + 60° FOV）。两套几何相差约一个数量级，直接跑端到端流程时小目标样本会被判失败。论文报告的尺度误差由上游声明值计算，不受影响。
+- **尺度按声明值检查，物理投影默认关闭。** 生成端按声明距离的解析式（Eq. 3）定尺寸，V7 拿 realised 框和同一个声明值比（`check_alignment` + `expected_px`）。物理投影这条路——机型真实尺寸 + 60° FOV 反推——仍留在文件里但只是可选项（`physical_fallback=True`、`--physical-fallback`），它与 1/d 落位几何差约一个数量级，不能当门禁用。没有输入的维度记为 `SKIP`，绝不当通过。`alignment_tolerance` 默认 0.50 是产出论文通过率的运行时配置，要复现那些数字就别收紧。
 - 论文描述的三路失败缓冲分流与「批次通过率低于 10% 时阈值回退」属于设计约束，代码实现了缓冲本体与分级短路，未实现分流调度与回退。
 - V9 使用 COCO 预训练的 YOLOv8x，其类别表不含无人机，因此只作为下游显著性代理，不构成检测精度证据。
 

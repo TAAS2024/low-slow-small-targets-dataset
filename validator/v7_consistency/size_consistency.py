@@ -2,17 +2,30 @@
 S7.1 — 尺寸一致性检查（纯规则）
 ================================
 
-根据无人机类别和距离，计算期望 bbox 尺寸范围，检查实际 bbox 是否在合理范围内。
+尺度维度的**推荐语义**是 `check_alignment()`：把 realised bbox 宽度和生成管线
+在合成前自己声明的 expected_px 比，得到 E_scale = |s_pred − s_gt| / s_gt。
 
-原理：
-  无人机真实尺寸已知（如 DJI Mini ≈ 0.25m 宽），在给定距离和相机 FOV 下，
-  其投影到归一化图像坐标中的宽度是可计算的。
+这正是论文 §4.2 的定义：
 
-  expected_w = (drone_real_w / (2 * distance * tan(FOV/2)))
+  > E_scale is the normalised absolute deviation between the realised dimension
+  > s_pred and the reference s_gt produced by Eq. (3) from the declared stand-off
+  > range; like C_gt, s_gt is fixed upstream of the generative model.
+  >
+  > Both references are therefore **procedural**: E_pos and E_scale measure
+  > whether the executed pipeline **reproduces the geometry it declared**, not
+  > agreement with independently annotated real imagery.
 
-  考虑标注误差和轻微遮挡，给 ±tolerance 余量。
+`check()` 是另一套口径（物理投影），**论文没有采用**，默认关闭：
 
-映射表可配置（config/s1_size_table.json），支持按类别和距离区间定义期望范围。
+  expected_w = drone_real_w / (2 · distance · tan(FOV/2))
+
+它假设目标尺寸由真实机体尺寸和相机 FOV 决定。两层几何不相容：生成端按
+Eq. (3) 的 1/d 经验映射落位（3600/d，clip 到 12–96 px），物理投影在小目标上
+差一个数量级（0.25 m @ 60 m、1280 px 宽 → 生成 60 px vs 物理 4.6 px）。原因
+是 4.6 px 在 512² 的 inpaint 窗口里根本画不出来，管线必须放大到可生成尺度。
+
+因此 `check()` 只保留为离线调研工具，需显式开启（`physical_fallback=True`），
+启用后判定结果不能与论文的 E_scale 比较。
 """
 from __future__ import annotations
 
@@ -48,6 +61,25 @@ class SizeConsistencyResult:
     actual_h: float
     actual_area: float
     detail: str
+    status: str = "PASS"          # PASS / FAIL / SKIP
+    mode: str = "alignment"       # alignment / physical / none
+    scale_err: Optional[float] = None   # 仅 alignment 模式：E_scale
+    expected_px: Optional[float] = None
+    actual_px: Optional[float] = None
+
+    @classmethod
+    def skipped(cls, bbox: np.ndarray, reason: str) -> "SizeConsistencyResult":
+        """未执行检查。passed=False 是有意的：没检查不能算通过。"""
+        return cls(
+            passed=False,
+            expected_w_range=(0.0, 1.0),
+            actual_w=float(bbox[2]),
+            actual_h=float(bbox[3]),
+            actual_area=float(bbox[2] * bbox[3]),
+            detail=reason,
+            status="SKIP",
+            mode="none",
+        )
 
 
 def _expected_width(
@@ -84,11 +116,23 @@ class SizeConsistencyChecker:
     Parameters
     ----------
     drone_sizes : dict
-        类别→真实宽度(米) 映射表。
+        类别→真实宽度(米) 映射表（仅物理投影口径使用）。
     fov_deg : float
-        相机水平 FOV（度）。
+        相机水平 FOV（度，仅物理投影口径使用）。
     tolerance : float
-        允许的尺寸偏差比例（默认 0.5，即 ±50%）。
+        物理投影口径的允许偏差比例（默认 0.5 = ±50%）。
+    alignment_tolerance : float
+        对齐精度口径（论文 E_scale）的 PASS/FAIL 分界，默认 0.50。
+
+        **不要改这个默认值**：论文 §4.2 报告的 302 池通过率（161/302 = 53.3%）
+        是在 tolerance=0.50 的运行时配置下产出的，改小会让数字不可复现。论文
+        本身没有给 size 的阈值（§4.1 参数表里没有 size 项），所以这是实现层的
+        执行参数，不是论文参数 —— 但它是产出论文数字的那一套参数。
+
+        需要更严的分辨力做离线分析时，显式传 0.10：E_scale 的实测分布是
+        0.028 ± 0.021，0.10 约为均值 + 3.4σ，正常样本不会触发；而 0.50 会让
+        60 px 的目标容忍 30–90 px。无论门禁宽窄，`scale_err` 字段都会直接给出
+        E_scale 数值，分析时不必依赖 passed 位的分辨率。
     """
 
     def __init__(
@@ -96,10 +140,12 @@ class SizeConsistencyChecker:
         drone_sizes: Optional[dict] = None,
         fov_deg: float = 60.0,
         tolerance: float = 0.5,
+        alignment_tolerance: float = 0.5,
     ):
         self.drone_sizes = drone_sizes or DEFAULT_DRONE_SIZES
         self.fov_deg = fov_deg
         self.tolerance = tolerance
+        self.alignment_tolerance = alignment_tolerance
 
     def check(
         self,
@@ -107,7 +153,11 @@ class SizeConsistencyChecker:
         drone_category: str,
         distance_m: float,
     ) -> SizeConsistencyResult:
-        """检查 bbox 尺寸是否与类别+距离一致。
+        """物理投影检查（论文未采用，见模块 docstring）。
+
+        用真实机体尺寸和相机 FOV 反推期望宽度，判断的是「这个目标在真实相机下
+        该多大」。与 Eq. (3) 的解析参考值不是同一个量，且与生成端的落位几何不
+        相容；仅在显式开启 physical_fallback 时使用。
 
         Parameters
         ----------
@@ -124,14 +174,8 @@ class SizeConsistencyChecker:
         """
         real_w = self.drone_sizes.get(drone_category)
         if real_w is None:
-            return SizeConsistencyResult(
-                passed=True,
-                expected_w_range=(0, 1),
-                actual_w=float(bbox[2]),
-                actual_h=float(bbox[3]),
-                actual_area=float(bbox[2] * bbox[3]),
-                detail=f"unknown category '{drone_category}' — skip check",
-            )
+            return SizeConsistencyResult.skipped(
+                bbox, f"unknown category '{drone_category}' — skip check")
 
         exp_w = _expected_width(real_w, distance_m, self.fov_deg)
         lo = exp_w * (1 - self.tolerance)
@@ -156,6 +200,8 @@ class SizeConsistencyChecker:
             actual_h=actual_h,
             actual_area=actual_area,
             detail=detail,
+            status="PASS" if passed else "FAIL",
+            mode="physical",
         )
 
     def check_alignment(
@@ -165,15 +211,14 @@ class SizeConsistencyChecker:
         image_w: int,
         tolerance: Optional[float] = None,
     ) -> SizeConsistencyResult:
-        """对齐精度（尺度维度）检查：actual bbox 宽度 vs 期望像素尺寸。
+        """对齐精度（尺度维度）检查：realised bbox 宽度 vs 声明像素尺寸。
 
-        这是 S7 size 维度的推荐语义：验证生成管线承诺的目标尺寸（expected_px）
-        是否被忠实执行。与论文「像素级对齐精度」核心卖点一致。
+        论文 §4.2 的 E_scale 定义即此式：
 
-        与物理投影 check() 的区别：物理投影用「类别+距离+FOV」反推期望宽度，
-        而生成管线实际用经验尺寸映射（size ∝ 1/distance），两套几何不兼容，
-        导致物理投影对小目标恒判 FAIL。对齐精度检查直接用管线承诺的期望像素
-        尺寸，绕开这一矛盾。
+            E_scale = |s_pred − s_gt| / s_gt
+
+        s_gt = expected_px 来自生成管线在合成前固定的值（Eq. 3，由声明距离给出），
+        s_pred = bbox 宽度换算回像素。参考值是程序化的，与真实影像无关。
 
         Parameters
         ----------
@@ -184,13 +229,15 @@ class SizeConsistencyChecker:
         image_w : int
             图像宽度（像素），用于归一化↔像素换算。
         tolerance : Optional[float]
-            允许的尺度偏差比例（默认用 self.tolerance，即 ±50%）。
+            允许的尺度偏差比例（默认用 self.alignment_tolerance，即 0.50，
+            与产出论文 161/302 的运行时配置一致）。
 
         Returns
         -------
         SizeConsistencyResult
         """
-        tol = tolerance if tolerance is not None else self.tolerance
+        tol = tolerance if tolerance is not None else self.alignment_tolerance
+        image_w = max(int(image_w), 1)
         actual_w_norm = float(bbox[2])
         actual_w_px = actual_w_norm * image_w
         exp = max(float(expected_px), 1e-6)
@@ -209,7 +256,12 @@ class SizeConsistencyChecker:
             actual_h=float(bbox[3]),
             actual_area=float(bbox[2] * bbox[3]),
             detail=f"alignment: expected_px={exp:.1f} actual_px={actual_w_px:.2f} "
-                   f"scale_err={scale_err:.4f} (tol={tol})",
+                   f"E_scale={scale_err:.4f} (tol={tol})",
+            status="PASS" if passed else "FAIL",
+            mode="alignment",
+            scale_err=round(scale_err, 6),
+            expected_px=round(exp, 4),
+            actual_px=round(actual_w_px, 4),
         )
 
     @classmethod
@@ -220,4 +272,5 @@ class SizeConsistencyChecker:
             drone_sizes=cfg.get("drone_sizes"),
             fov_deg=cfg.get("fov_deg", 60.0),
             tolerance=cfg.get("tolerance", 0.5),
+            alignment_tolerance=cfg.get("alignment_tolerance", 0.5),
         )

@@ -183,6 +183,55 @@ def trajectory_to_frames(spec: dict) -> list:
     return frames
 
 
+def _realised_geometry(drone_seg: np.ndarray, target_px: int, dval: float,
+                       frame_index: int, distance_m=None,
+                       action=None, sample_id=None) -> dict:
+    """从注入后的 seg marker 抠出 realised bbox，拼成可验证的几何记录。
+
+    这是 S7 尺度维度的上游：论文 §4.2 的 E_scale 需要 s_pred（这里，realised）
+    和 s_gt（expected_px，即生成端在合成前声明的 target_px）。旧实现把两者都
+    留在函数作用域里——bbox 只用来画可视化 PNG，target_px 只进了返回值却没有
+    下游字段能接，于是 validator 侧永远拿不到，size 维度只能 SKIP。
+
+    Returns
+    -------
+    dict or None
+        None 表示 seg marker 里没有目标像素（注入失败）。
+    """
+    H, W = drone_seg.shape[:2]
+    ys, xs = np.where(drone_seg == 7)
+    if len(ys) == 0:
+        return None
+
+    x1, y1, x2, y2 = int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())
+    w_px, h_px = x2 - x1 + 1, y2 - y1 + 1
+    exp = max(int(target_px), 1)
+
+    return {
+        "sample_id": sample_id,
+        "frame": frame_index,
+        "action": action,
+        # 像素 [x1,y1,x2,y2]，含端点；宽度按 x2-x1+1 计
+        "bbox_px": [x1, y1, x2, y2],
+        # 归一化 [cx,cy,w,h]，可直接喂 loop.validator_pipeline
+        "bbox_norm": [round((x1 + x2) / 2.0 / W, 6),
+                      round((y1 + y2) / 2.0 / H, 6),
+                      round(w_px / W, 6),
+                      round(h_px / H, 6)],
+        # s_gt：生成前声明的目标宽度（Eq. 3，由声明距离给出）
+        "expected_px": exp,
+        # s_pred：实测落位宽度
+        "realised_px": w_px,
+        "realised_h_px": h_px,
+        # 论文 Eq. (14)
+        "scale_err": round(abs(w_px - exp) / exp, 6),
+        "image_w": W,
+        "image_h": H,
+        "distance_m": None if distance_m is None else float(distance_m),
+        "dval": round(float(dval), 4),
+    }
+
+
 # ═══════════════════════════════════════════════════════════
 # 主入口
 # ═══════════════════════════════════════════════════════════
@@ -259,6 +308,7 @@ def generate_with_lora(bg_path: str, full_scene_spec: dict,
     drone_depth_urls, drone_seg_urls, final_rgb_urls = [], [], []
     drone_clean_urls, drone_raw_urls = [], []
     ir_urls, bbox_urls = [], []
+    geometry = []
 
     for fi, frame in enumerate(frames):
         t0 = time.time()
@@ -315,11 +365,16 @@ def generate_with_lora(bg_path: str, full_scene_spec: dict,
                 str(OUTPUT_DIR / ds_name))
             drone_seg_urls.append(f"/images/{ds_name}")
 
-            # ── 提取 bbox + 可视化 ──
+            # ── 提取 realised geometry + 可视化 ──
             ds = out["drone_seg"]
-            ys, xs = np.where(ds == 7)
-            if len(ys) > 0:
-                x1, y1, x2, y2 = int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())
+            geo = _realised_geometry(
+                ds, frame["size"], frame["dval"], fi,
+                distance_m=frame.get("distance"),
+                action=frame.get("action"),
+                sample_id=f"session_{sid}/frame_{fi}")
+            if geo:
+                geometry.append(geo)
+                x1, y1, x2, y2 = geo["bbox_px"]
                 bbox_viz = np.array(final_rgb).copy()  # 在 final_rgb 上画框
                 cv2.rectangle(bbox_viz, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 cv2.putText(bbox_viz, f"({x1},{y1})-({x2},{y2})", (x1, max(y1-8, 12)),
@@ -377,6 +432,9 @@ def generate_with_lora(bg_path: str, full_scene_spec: dict,
             "drone_raw": drone_raw_urls,
         },
         "frame_count": len(frames),
+        # 逐帧 realised geometry：bbox_px / bbox_norm / expected_px / realised_px /
+        # scale_err（Eq. 14）。loop.build_sample_from_geometry 直接消费它。
+        "geometry": geometry,
         "trajectory_summary": [
             {"t": fi, "action": f["action"], "distance": f["distance"],
              "size_px": f["size"], "depth_val": round(f["dval"], 3)}
@@ -496,11 +554,17 @@ def focus_reposition(bg_path: str, drone_rgba_path: str,
     Image.fromarray(seg_to_rgb(out["drone_seg"])).save(str(OUTPUT_DIR / ds_name))
     images["drone_seg"] = [f"/images/{ds_name}"]
 
-    # bbox
+    # ── 提取 realised geometry + 可视化 ──
+    # focus 模式直接声明 scale（没有 stand-off range），所以写不出 Eq. (3) 的
+    # distance_m；scale 维度的参考值仍然是 target_px 本身，E_scale 照常可算。
     ds = out["drone_seg"]
-    ys, xs = np.where(ds == 7)
-    if len(ys) > 0:
-        x1, y1, x2, y2 = int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())
+    geo = _realised_geometry(
+        ds, target_px, dval, fi,
+        distance_m=None,
+        action="focus",
+        sample_id=f"session_{sid}/frame_{fi}")
+    if geo:
+        x1, y1, x2, y2 = geo["bbox_px"]
         bbox_viz = np.array(final_rgb).copy()
         cv2.rectangle(bbox_viz, (x1, y1), (x2, y2), (0, 255, 0), 2)
         cv2.putText(bbox_viz, f"({x1},{y1})-({x2},{y2})",
@@ -517,6 +581,7 @@ def focus_reposition(bg_path: str, drone_rgba_path: str,
         "images": images,
         "nu": nu, "nv": nv,
         "target_px": target_px, "dval": dval,
+        "geometry": [geo] if geo else [],
     }
 
 

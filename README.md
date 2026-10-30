@@ -71,6 +71,7 @@ The loop routes failures back to the module that produced them, under three para
 │   ├── v5_ir_validator.py
 │   ├── v6_quality/                 # perceptual quality + IR signal
 │   ├── v7_consistency/             # size / lighting / IR box / cross-modal
+│   │   └── test_s7_tristate.py     # regression: PASS/FAIL/SKIP must not blur
 │   ├── v8_trajectory_validator.py
 │   └── v9_detection_validator.py
 ├── loop/
@@ -106,6 +107,8 @@ The loop routes failures back to the module that produced them, under three para
 | V9 detection | `validator/v9_detection_validator.py` | 3 | `S9_*` |
 
 Loop components: `failure_buffer.py` (accumulation and threshold), `validator_pipeline.py` (short-circuit chain), `trainable_classifier.py` (paradigm A).
+
+V7 reports each dimension in one of three states — `PASS`, `FAIL`, `SKIP` — and the last one is not a pass: a dimension with no usable input is recorded as `SKIP` and excluded from the verdict, and a sample with no evaluated dimension at all is `SKIP` rather than accepted. `python validator/v7_consistency/test_s7_tristate.py` checks this without any model weights.
 
 ---
 
@@ -155,6 +158,8 @@ python web_app.py                # → http://127.0.0.1:5000
 # individual validators
 python validator/v6_quality/quality_validator.py IMG.png --ir IR.png
 python validator/v7_consistency/consistency_validator.py IMG.png --ir IR.png --gt gt.json
+python validator/v7_consistency/consistency_validator.py IMG.png --expected-px 60 --gt gt.json
+python validator/v7_consistency/consistency_validator.py IMG.png --gt gt.json --physical-fallback
 python validator/v8_trajectory_validator.py traj.json
 python validator/v9_detection_validator.py IMG.png --gt bboxes.json --model yolov8x.pt
 
@@ -165,7 +170,7 @@ python experiments/bcd/_reports/scripts/audit_tables_v20.py
 `loop/validator_pipeline.py` is a library, not a script:
 
 ```python
-from loop.validator_pipeline import ValidatorPipeline
+from loop.validator_pipeline import ValidatorPipeline, build_sample_from_geometry
 
 pipe = ValidatorPipeline(s0, s1, s2, s3)
 result = pipe.validate({
@@ -173,11 +178,26 @@ result = pipe.validate({
     "rgb": rgb_ndarray, "ir": ir_ndarray,
     "rgb_bbox": [cx, cy, w, h],      # normalised
     "ir_bbox":  [cx, cy, w, h],      # normalised
+    "expected_px": 60,               # declared target width → enables E_scale
     "gt_bboxes": [[x1, y1, x2, y2]], # pixels
 })
 ```
 
-Two box conventions coexist: `rgb_bbox` and `ir_bbox` are normalised `[cx, cy, w, h]`, while `gt_bboxes` are pixel `[x1, y1, x2, y2]`.
+`build_sample_from_geometry()` closes the loop from the generator side: both entry
+points of `app/condition_generator_v7.py` return a `geometry` list (one record per
+frame, carrying `bbox_px`, `bbox_norm`, `expected_px`, `realised_px`, `scale_err`),
+so the realised box and the declared footprint reach the validator instead of dying
+in the generator's local scope:
+
+```python
+out = generate_with_lora(bg_path, spec)      # or focus_reposition(...)
+for geo in out["geometry"]:
+    sample = build_sample_from_geometry(geo, rgb=frame_rgb, ir=ir_rgb)
+    result = pipe.validate(sample)
+    print(geo["scale_err"], result.s1["scale_err"])   # identical by construction
+```
+
+Two box conventions coexist: `rgb_bbox` and `ir_bbox` are normalised `[cx, cy, w, h]`, while `gt_bboxes` are pixel `[x1, y1, x2, y2]`. Width from a pixel pair is `x2 - x1 + 1` in `build_sample_from_geometry` and `x2 - x1` in `experiments/bcd/adapters.py` — a 1 px difference kept deliberately, because the latter is the path that produced the reported figures.
 
 ---
 
@@ -203,7 +223,7 @@ A boundary on the evidence: the experiments characterise the **generation proces
 
 ## 9. Known limitations
 
-- **Two geometries for scale remain unreconciled.** The generator fixes the footprint analytically from the declared range, while the V7 size check falls back to physical projection (real airframe dimensions and a 60° FOV) when no upstream expected value is supplied. The two differ by roughly an order of magnitude, so small targets fail that check in a directly executed pipeline. The scale error reported in the paper is computed from the declared value and is unaffected.
+- **Scale is checked against the declared value, and the physical projection is off by default.** The generator fixes the footprint analytically from the declared range (Eq. 3), and V7 compares the realised box against that same declared value (`check_alignment`, `expected_px`). The alternative physical projection — real airframe dimensions and a 60° FOV — is still in the file as an opt-in only (`physical_fallback=True`, `--physical-fallback`); it differs from the 1/d placement geometry by roughly an order of magnitude, so it is not usable as a gate. A dimension with no input is recorded as `SKIP`, never as a pass. The `alignment_tolerance` default of 0.50 is the runtime configuration that produced the reported acceptance figures and should not be tightened if those numbers are to be reproduced.
 - The three-way failure-buffer routing and the "threshold rollback when batch acceptance drops below 10%" rule are design constraints. The buffer itself and stage-wise short-circuiting are implemented; the routing scheduler and rollback are not.
 - V9 uses a COCO-pretrained YOLOv8x, whose class list contains no aerial target. It serves as a downstream saliency proxy, not as evidence of detection accuracy.
 
