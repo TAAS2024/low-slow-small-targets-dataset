@@ -82,8 +82,7 @@ CDFF is a **dual-agent adversarial + closed-loop feedback** architecture:
 └── loop/                              # loop mechanism (closed-loop feedback)
     ├── validator_pipeline.py          #   S6→S9 short-circuit chaining + failure write to Buffer
     ├── failure_buffer.py              #   FailureBuffer (failure buffer pool)
-    ├── trainable_classifier.py        #   paradigm A: Pass→Train trainable classifier
-    └── 7-持续学习循环设计.md           #   closed-loop mechanism design spec (CDFF v2.0)
+    └── trainable_classifier.py        #   paradigm A: Pass→Train trainable classifier
 ```
 
 The tree above is the **final, consolidated pipeline** — it is what `0-workspace/` contained in
@@ -95,26 +94,6 @@ Nothing else is tracked. The research tree this archive was extracted from
 intermediate iterations, demo scripts and per-agent prototypes that the above
 supersedes. This repository carries the final version only — the original
 project tree on disk keeps everything.
-
-### What is deliberately absent
-
-| Excluded | Size in the research tree | Why |
-|---|---|---|
-| `0-model/` (SD1.5, 3× ControlNet, CLIP-ViT-L, YOLOv8x) | 22 GB | public weights, re-downloadable |
-| `1-background-pool/` (9 scenes, 37,852 files) | 11 GB | the dataset itself |
-| `0-database/` | 304 MB | image corpora, YOLO labels, tfevents; the configs it held are superseded |
-| `2-Lora training/` | 344 MB | LoRA training harness; the adapter it produced is a weight, not code |
-| `3-LLM starter/`, `5-Controlnet/` | 9 MB | M1–M5 prototypes (`lora_inpainter` v1→v6, every demo); superseded by `app/` + `generator/` |
-| `4-Transformer/` | 1.8 MB | the Depth-Anything-V2 trajectory branch, abandoned in v20 |
-| `6-Validator/` | 3.8 MB | the nine stand-alone agent trees before they were flattened into `validator/` |
-| `experiments/**/{manifest.json, samples/, crops/, _scratch/}` | 63 GB | per-sample dumps, regenerable |
-| `·-1豆包案例图/`, `5-Controlnet/demo_output*/` | 82 MB | reference and generated imagery |
-| `z-文件格式参考/` | 7 MB | third-party papers, not ours to redistribute |
-| `·重点节点总结笔记/`, `参考资料/` | 21 MB | research notes, task lists, 12 manuscript drafts, tutor-feedback audits |
-
-Everything a reader needs to *rebuild* the pipeline is here; everything that is either
-redistributable from upstream, regenerable from the tracked scripts, or superseded by a
-later version of the same module is not.
 
 ---
 
@@ -152,7 +131,6 @@ later version of the same module is not.
 | `loop/failure_buffer.py` | `FailureBuffer`: failed-sample buffer + threshold triggering | shared base for the three paradigms |
 | `loop/validator_pipeline.py` | `ValidatorPipeline`: S6→S9 short-circuit evaluation, failures written to Buffer | failure-code routing |
 | `loop/trainable_classifier.py` | trainable EfficientNet classifier (`train`/`infer`) | paradigm A (Pass→Train) |
-| `loop/7-持续学习循环设计.md` | full closed-loop mechanism spec (§6 / §9.1 / §13 / §16) | CDFF v2.0 design document |
 
 ---
 
