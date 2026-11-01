@@ -88,6 +88,8 @@ tbl5 = [
     ("E2 depth + segmentation", "out_E4_both", 100, "0.706", "1.252", "20.55", "89.0"),
     ("E2 depth only", "out_E4_depth", 100, "0.706", "1.252", "20.56", "89.0"),
     ("E2 segmentation only", "out_E4_seg", 100, "0.706", "1.252", "20.55", "89.0"),
+    ("E2 depth + seg (0.85/0.60)", "out_E4_d85s60", 100, "0.706", "1.252", "20.55", "89.0"),
+    ("E2 depth + seg (0.85/0.40)", "out_E4_d85s40", 100, "0.706", "1.252", "20.55", "89.0"),
 ]
 for label, dname, n, iou_p, pos_p, bri_p, pass_p in tbl5:
     p = BCD / dname / "metrics.json"

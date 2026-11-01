@@ -1,0 +1,9411 @@
+{
+ "generated_by": "eval_fusion.py",
+ "dirs": [
+  "out_E4_both",
+  "out_E4_depth",
+  "out_E4_seg",
+  "out_E4_d85s40",
+  "out_E4_d85s60"
+ ],
+ "results": [
+  {
+   "dir": "out_E4_both",
+   "n": 100,
+   "n_skipped": 0,
+   "skipped": [],
+   "metrics": {
+    "bge": {
+     "mean": 2.2858,
+     "std": 3.1779,
+     "median": 1.2871,
+     "p25": 0.7628,
+     "p75": 2.6467,
+     "n": 100
+    },
+    "rlj": {
+     "mean": 0.2516,
+     "std": 0.1765,
+     "median": 0.21,
+     "p25": 0.1008,
+     "p75": 0.3592,
+     "n": 100
+    },
+    "lcr": {
+     "mean": 1.3018,
+     "std": 1.1515,
+     "median": 0.9776,
+     "p25": 0.5516,
+     "p75": 1.6479,
+     "n": 100
+    },
+    "hf_ratio": {
+     "mean": 7.8907,
+     "std": 10.0138,
+     "median": 4.5098,
+     "p25": 3.1751,
+     "p75": 8.6294,
+     "n": 100
+    },
+    "target_px_measured": {
+     "mean": 51.76,
+     "std": 27.9336,
+     "median": 48.0,
+     "p25": 27.75,
+     "p75": 90.0,
+     "n": 100
+    }
+   }
+  },
+  {
+   "dir": "out_E4_depth",
+   "n": 100,
+   "n_skipped": 0,
+   "skipped": [],
+   "metrics": {
+    "bge": {
+     "mean": 2.1136,
+     "std": 2.6416,
+     "median": 1.1235,
+     "p25": 0.6815,
+     "p75": 2.4056,
+     "n": 100
+    },
+    "rlj": {
+     "mean": 0.236,
+     "std": 0.1818,
+     "median": 0.1966,
+     "p25": 0.0888,
+     "p75": 0.344,
+     "n": 100
+    },
+    "lcr": {
+     "mean": 1.2681,
+     "std": 1.0403,
+     "median": 1.0036,
+     "p25": 0.6234,
+     "p75": 1.5827,
+     "n": 100
+    },
+    "hf_ratio": {
+     "mean": 7.2893,
+     "std": 8.2506,
+     "median": 4.1863,
+     "p25": 2.9186,
+     "p75": 7.9263,
+     "n": 100
+    },
+    "target_px_measured": {
+     "mean": 51.76,
+     "std": 27.9336,
+     "median": 48.0,
+     "p25": 27.75,
+     "p75": 90.0,
+     "n": 100
+    }
+   }
+  },
+  {
+   "dir": "out_E4_seg",
+   "n": 100,
+   "n_skipped": 0,
+   "skipped": [],
+   "metrics": {
+    "bge": {
+     "mean": 2.3164,
+     "std": 3.1308,
+     "median": 1.3055,
+     "p25": 0.7758,
+     "p75": 2.7777,
+     "n": 100
+    },
+    "rlj": {
+     "mean": 0.2489,
+     "std": 0.18,
+     "median": 0.2095,
+     "p25": 0.1193,
+     "p75": 0.3781,
+     "n": 100
+    },
+    "lcr": {
+     "mean": 1.2577,
+     "std": 1.1041,
+     "median": 0.9426,
+     "p25": 0.5857,
+     "p75": 1.6107,
+     "n": 100
+    },
+    "hf_ratio": {
+     "mean": 8.006,
+     "std": 9.8261,
+     "median": 4.8301,
+     "p25": 3.3881,
+     "p75": 8.8434,
+     "n": 100
+    },
+    "target_px_measured": {
+     "mean": 51.76,
+     "std": 27.9336,
+     "median": 48.0,
+     "p25": 27.75,
+     "p75": 90.0,
+     "n": 100
+    }
+   }
+  },
+  {
+   "dir": "out_E4_d85s40",
+   "n": 100,
+   "n_skipped": 0,
+   "skipped": [],
+   "metrics": {
+    "bge": {
+     "mean": 2.2493,
+     "std": 3.0651,
+     "median": 1.2105,
+     "p25": 0.734,
+     "p75": 2.5807,
+     "n": 100
+    },
+    "rlj": {
+     "mean": 0.2508,
+     "std": 0.1787,
+     "median": 0.2216,
+     "p25": 0.1016,
+     "p75": 0.3565,
+     "n": 100
+    },
+    "lcr": {
+     "mean": 1.2995,
+     "std": 1.1042,
+     "median": 1.0225,
+     "p25": 0.5364,
+     "p75": 1.6437,
+     "n": 100
+    },
+    "hf_ratio": {
+     "mean": 7.7454,
+     "std": 9.5714,
+     "median": 4.6197,
+     "p25": 3.0915,
+     "p75": 8.308,
+     "n": 100
+    },
+    "target_px_measured": {
+     "mean": 51.76,
+     "std": 27.9336,
+     "median": 48.0,
+     "p25": 27.75,
+     "p75": 90.0,
+     "n": 100
+    }
+   }
+  },
+  {
+   "dir": "out_E4_d85s60",
+   "n": 100,
+   "n_skipped": 0,
+   "skipped": [],
+   "metrics": {
+    "bge": {
+     "mean": 2.2761,
+     "std": 3.1581,
+     "median": 1.2462,
+     "p25": 0.7623,
+     "p75": 2.6282,
+     "n": 100
+    },
+    "rlj": {
+     "mean": 0.2534,
+     "std": 0.1783,
+     "median": 0.2167,
+     "p25": 0.1041,
+     "p75": 0.3515,
+     "n": 100
+    },
+    "lcr": {
+     "mean": 1.3047,
+     "std": 1.1328,
+     "median": 0.9779,
+     "p25": 0.5304,
+     "p75": 1.6467,
+     "n": 100
+    },
+    "hf_ratio": {
+     "mean": 7.8425,
+     "std": 9.8801,
+     "median": 4.5335,
+     "p25": 3.0917,
+     "p75": 8.3737,
+     "n": 100
+    },
+    "target_px_measured": {
+     "mean": 51.76,
+     "std": 27.9336,
+     "median": 48.0,
+     "p25": 27.75,
+     "p75": 90.0,
+     "n": 100
+    }
+   }
+  }
+ ],
+ "rows": {
+  "out_E4_both": [
+   {
+    "sample_id": "a0000",
+    "bbox": [
+     842,
+     250,
+     937,
+     336
+    ],
+    "target_px_measured": 96,
+    "area_px": 2732,
+    "band_r": 4,
+    "bge": 0.6681,
+    "rlj": 0.1944,
+    "lcr": 2.3379,
+    "luminance_inner": 86.62,
+    "luminance_outer": 37.05,
+    "hf_ratio": 2.1395
+   },
+   {
+    "sample_id": "a0001",
+    "bbox": [
+     1069,
+     301,
+     1114,
+     348
+    ],
+    "target_px_measured": 48,
+    "area_px": 900,
+    "band_r": 4,
+    "bge": 2.9766,
+    "rlj": 0.4632,
+    "lcr": 0.3222,
+    "luminance_inner": 56.16,
+    "luminance_outer": 174.28,
+    "hf_ratio": 8.5506
+   },
+   {
+    "sample_id": "a0002",
+    "bbox": [
+     948,
+     553,
+     971,
+     574
+    ],
+    "target_px_measured": 24,
+    "area_px": 177,
+    "band_r": 2,
+    "bge": 0.7669,
+    "rlj": 0.2641,
+    "lcr": 1.8013,
+    "luminance_inner": 151.38,
+    "luminance_outer": 84.04,
+    "hf_ratio": 3.4789
+   },
+   {
+    "sample_id": "a0003",
+    "bbox": [
+     1014,
+     753,
+     1103,
+     817
+    ],
+    "target_px_measured": 90,
+    "area_px": 2621,
+    "band_r": 4,
+    "bge": 2.3962,
+    "rlj": 0.0798,
+    "lcr": 0.795,
+    "luminance_inner": 78.88,
+    "luminance_outer": 99.23,
+    "hf_ratio": 7.9053
+   },
+   {
+    "sample_id": "a0004",
+    "bbox": [
+     406,
+     213,
+     442,
+     238
+    ],
+    "target_px_measured": 37,
+    "area_px": 323,
+    "band_r": 2,
+    "bge": 0.4566,
+    "rlj": 0.416,
+    "lcr": 3.5881,
+    "luminance_inner": 147.08,
+    "luminance_outer": 40.99,
+    "hf_ratio": 1.541
+   },
+   {
+    "sample_id": "a0005",
+    "bbox": [
+     745,
+     202,
+     764,
+     215
+    ],
+    "target_px_measured": 20,
+    "area_px": 108,
+    "band_r": 1,
+    "bge": 0.9815,
+    "rlj": 0.1957,
+    "lcr": 0.7313,
+    "luminance_inner": 135.87,
+    "luminance_outer": 185.78,
+    "hf_ratio": 5.2922
+   },
+   {
+    "sample_id": "a0006",
+    "bbox": [
+     1597,
+     684,
+     1661,
+     743
+    ],
+    "target_px_measured": 65,
+    "area_px": 2044,
+    "band_r": 4,
+    "bge": 8.4364,
+    "rlj": 0.0437,
+    "lcr": 0.9054,
+    "luminance_inner": 106.8,
+    "luminance_outer": 117.95,
+    "hf_ratio": 29.5122
+   },
+   {
+    "sample_id": "a0007",
+    "bbox": [
+     653,
+     643,
+     682,
+     666
+    ],
+    "target_px_measured": 30,
+    "area_px": 291,
+    "band_r": 2,
+    "bge": 0.9705,
+    "rlj": 0.3175,
+    "lcr": 0.5166,
+    "luminance_inner": 86.54,
+    "luminance_outer": 167.5,
+    "hf_ratio": 4.1144
+   },
+   {
+    "sample_id": "a0008",
+    "bbox": [
+     1392,
+     339,
+     1487,
+     391
+    ],
+    "target_px_measured": 96,
+    "area_px": 1874,
+    "band_r": 4,
+    "bge": 0.8194,
+    "rlj": 0.6056,
+    "lcr": 3.8331,
+    "luminance_inner": 208.94,
+    "luminance_outer": 54.51,
+    "hf_ratio": 3.756
+   },
+   {
+    "sample_id": "a0009",
+    "bbox": [
+     227,
+     277,
+     274,
+     322
+    ],
+    "target_px_measured": 48,
+    "area_px": 905,
+    "band_r": 4,
+    "bge": 1.0471,
+    "rlj": 0.0767,
+    "lcr": 1.1557,
+    "luminance_inner": 145.14,
+    "luminance_outer": 125.58,
+    "hf_ratio": 4.3066
+   },
+   {
+    "sample_id": "a0010",
+    "bbox": [
+     764,
+     176,
+     787,
+     191
+    ],
+    "target_px_measured": 24,
+    "area_px": 158,
+    "band_r": 2,
+    "bge": 3.932,
+    "rlj": 0.4822,
+    "lcr": 0.2807,
+    "luminance_inner": 47.99,
+    "luminance_outer": 170.94,
+    "hf_ratio": 13.6639
+   },
+   {
+    "sample_id": "a0011",
+    "bbox": [
+     862,
+     693,
+     951,
+     754
+    ],
+    "target_px_measured": 90,
+    "area_px": 1695,
+    "band_r": 4,
+    "bge": 3.1196,
+    "rlj": 0.3545,
+    "lcr": 1.7464,
+    "luminance_inner": 211.54,
+    "luminance_outer": 121.13,
+    "hf_ratio": 13.4494
+   },
+   {
+    "sample_id": "a0012",
+    "bbox": [
+     196,
+     524,
+     232,
+     553
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 0.345,
+    "rlj": 0.1188,
+    "lcr": 1.655,
+    "luminance_inner": 76.53,
+    "luminance_outer": 46.24,
+    "hf_ratio": 1.4571
+   },
+   {
+    "sample_id": "a0013",
+    "bbox": [
+     234,
+     491,
+     253,
+     508
+    ],
+    "target_px_measured": 20,
+    "area_px": 138,
+    "band_r": 1,
+    "bge": 0.6602,
+    "rlj": 0.0663,
+    "lcr": 1.152,
+    "luminance_inner": 128.02,
+    "luminance_outer": 111.12,
+    "hf_ratio": 3.1091
+   },
+   {
+    "sample_id": "a0014",
+    "bbox": [
+     1372,
+     580,
+     1436,
+     639
+    ],
+    "target_px_measured": 65,
+    "area_px": 1506,
+    "band_r": 4,
+    "bge": 2.3843,
+    "rlj": 0.1214,
+    "lcr": 0.7153,
+    "luminance_inner": 77.77,
+    "luminance_outer": 108.72,
+    "hf_ratio": 8.1184
+   },
+   {
+    "sample_id": "a0015",
+    "bbox": [
+     1089,
+     712,
+     1109,
+     741
+    ],
+    "target_px_measured": 30,
+    "area_px": 254,
+    "band_r": 2,
+    "bge": 1.9337,
+    "rlj": 0.3551,
+    "lcr": 0.5171,
+    "luminance_inner": 96.97,
+    "luminance_outer": 187.53,
+    "hf_ratio": 7.7915
+   },
+   {
+    "sample_id": "a0016",
+    "bbox": [
+     342,
+     210,
+     437,
+     282
+    ],
+    "target_px_measured": 96,
+    "area_px": 2651,
+    "band_r": 4,
+    "bge": 2.8053,
+    "rlj": 0.1987,
+    "lcr": 0.588,
+    "luminance_inner": 72.33,
+    "luminance_outer": 123.01,
+    "hf_ratio": 6.8808
+   },
+   {
+    "sample_id": "a0017",
+    "bbox": [
+     197,
+     515,
+     231,
+     562
+    ],
+    "target_px_measured": 48,
+    "area_px": 959,
+    "band_r": 4,
+    "bge": 0.7277,
+    "rlj": 0.3405,
+    "lcr": 1.6932,
+    "luminance_inner": 212.07,
+    "luminance_outer": 125.24,
+    "hf_ratio": 2.8598
+   },
+   {
+    "sample_id": "a0018",
+    "bbox": [
+     373,
+     546,
+     396,
+     563
+    ],
+    "target_px_measured": 24,
+    "area_px": 184,
+    "band_r": 2,
+    "bge": 1.1355,
+    "rlj": 0.1969,
+    "lcr": 0.5173,
+    "luminance_inner": 53.82,
+    "luminance_outer": 104.03,
+    "hf_ratio": 3.7458
+   },
+   {
+    "sample_id": "a0019",
+    "bbox": [
+     546,
+     60,
+     631,
+     149
+    ],
+    "target_px_measured": 90,
+    "area_px": 3310,
+    "band_r": 4,
+    "bge": 2.2777,
+    "rlj": 0.561,
+    "lcr": 0.3534,
+    "luminance_inner": 78.2,
+    "luminance_outer": 221.26,
+    "hf_ratio": 7.8706
+   },
+   {
+    "sample_id": "a0020",
+    "bbox": [
+     986,
+     570,
+     1022,
+     587
+    ],
+    "target_px_measured": 37,
+    "area_px": 303,
+    "band_r": 2,
+    "bge": 0.7799,
+    "rlj": 0.0933,
+    "lcr": 0.7846,
+    "luminance_inner": 86.69,
+    "luminance_outer": 110.48,
+    "hf_ratio": 4.0242
+   },
+   {
+    "sample_id": "a0021",
+    "bbox": [
+     249,
+     354,
+     268,
+     362
+    ],
+    "target_px_measured": 20,
+    "area_px": 71,
+    "band_r": 1,
+    "bge": 1.0206,
+    "rlj": 0.0843,
+    "lcr": 0.8977,
+    "luminance_inner": 188.65,
+    "luminance_outer": 210.14,
+    "hf_ratio": 3.5914
+   },
+   {
+    "sample_id": "a0022",
+    "bbox": [
+     654,
+     463,
+     718,
+     513
+    ],
+    "target_px_measured": 65,
+    "area_px": 1405,
+    "band_r": 4,
+    "bge": 1.3322,
+    "rlj": 0.3819,
+    "lcr": 0.4742,
+    "luminance_inner": 87.81,
+    "luminance_outer": 185.19,
+    "hf_ratio": 6.1346
+   },
+   {
+    "sample_id": "a0023",
+    "bbox": [
+     336,
+     470,
+     365,
+     490
+    ],
+    "target_px_measured": 30,
+    "area_px": 228,
+    "band_r": 2,
+    "bge": 0.8723,
+    "rlj": 0.0203,
+    "lcr": 1.0406,
+    "luminance_inner": 133.1,
+    "luminance_outer": 127.91,
+    "hf_ratio": 4.2864
+   },
+   {
+    "sample_id": "a0024",
+    "bbox": [
+     1017,
+     421,
+     1112,
+     475
+    ],
+    "target_px_measured": 96,
+    "area_px": 2569,
+    "band_r": 4,
+    "bge": 2.5939,
+    "rlj": 0.6168,
+    "lcr": 0.3297,
+    "luminance_inner": 77.35,
+    "luminance_outer": 234.63,
+    "hf_ratio": 9.8801
+   },
+   {
+    "sample_id": "a0025",
+    "bbox": [
+     1341,
+     334,
+     1388,
+     376
+    ],
+    "target_px_measured": 48,
+    "area_px": 791,
+    "band_r": 4,
+    "bge": 1.2981,
+    "rlj": 0.0675,
+    "lcr": 1.111,
+    "luminance_inner": 172.43,
+    "luminance_outer": 155.21,
+    "hf_ratio": 6.3735
+   },
+   {
+    "sample_id": "a0026",
+    "bbox": [
+     628,
+     254,
+     651,
+     269
+    ],
+    "target_px_measured": 24,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 3.6964,
+    "rlj": 0.1525,
+    "lcr": 1.5673,
+    "luminance_inner": 107.47,
+    "luminance_outer": 68.57,
+    "hf_ratio": 9.2327
+   },
+   {
+    "sample_id": "a0027",
+    "bbox": [
+     140,
+     546,
+     229,
+     593
+    ],
+    "target_px_measured": 90,
+    "area_px": 1867,
+    "band_r": 4,
+    "bge": 3.1129,
+    "rlj": 0.2284,
+    "lcr": 1.9413,
+    "luminance_inner": 120.12,
+    "luminance_outer": 61.88,
+    "hf_ratio": 8.6883
+   },
+   {
+    "sample_id": "a0028",
+    "bbox": [
+     888,
+     174,
+     924,
+     206
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 4.2834,
+    "rlj": 0.2037,
+    "lcr": 5.1556,
+    "luminance_inner": 64.44,
+    "luminance_outer": 12.5,
+    "hf_ratio": 17.7429
+   },
+   {
+    "sample_id": "a0029",
+    "bbox": [
+     270,
+     186,
+     289,
+     199
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 1.0397,
+    "rlj": 0.4914,
+    "lcr": 0.3042,
+    "luminance_inner": 54.77,
+    "luminance_outer": 180.07,
+    "hf_ratio": 4.3068
+   },
+   {
+    "sample_id": "a0030",
+    "bbox": [
+     941,
+     423,
+     1005,
+     470
+    ],
+    "target_px_measured": 65,
+    "area_px": 1532,
+    "band_r": 4,
+    "bge": 1.3146,
+    "rlj": 0.1017,
+    "lcr": 0.8117,
+    "luminance_inner": 111.74,
+    "luminance_outer": 137.67,
+    "hf_ratio": 4.8303
+   },
+   {
+    "sample_id": "a0031",
+    "bbox": [
+     803,
+     488,
+     832,
+     510
+    ],
+    "target_px_measured": 30,
+    "area_px": 292,
+    "band_r": 2,
+    "bge": 1.505,
+    "rlj": 0.2843,
+    "lcr": 0.3868,
+    "luminance_inner": 45.74,
+    "luminance_outer": 118.24,
+    "hf_ratio": 6.4868
+   },
+   {
+    "sample_id": "a0032",
+    "bbox": [
+     373,
+     452,
+     468,
+     520
+    ],
+    "target_px_measured": 96,
+    "area_px": 2076,
+    "band_r": 4,
+    "bge": 0.8623,
+    "rlj": 0.2855,
+    "lcr": 1.5589,
+    "luminance_inner": 203.04,
+    "luminance_outer": 130.25,
+    "hf_ratio": 2.6356
+   },
+   {
+    "sample_id": "a0033",
+    "bbox": [
+     1000,
+     362,
+     1047,
+     392
+    ],
+    "target_px_measured": 48,
+    "area_px": 542,
+    "band_r": 3,
+    "bge": 1.9918,
+    "rlj": 0.5726,
+    "lcr": 0.1698,
+    "luminance_inner": 29.87,
+    "luminance_outer": 175.89,
+    "hf_ratio": 8.0062
+   },
+   {
+    "sample_id": "a0034",
+    "bbox": [
+     1041,
+     442,
+     1064,
+     463
+    ],
+    "target_px_measured": 24,
+    "area_px": 145,
+    "band_r": 2,
+    "bge": 1.3342,
+    "rlj": 0.0055,
+    "lcr": 0.9841,
+    "luminance_inner": 87.37,
+    "luminance_outer": 88.78,
+    "hf_ratio": 2.8253
+   },
+   {
+    "sample_id": "a0035",
+    "bbox": [
+     732,
+     465,
+     821,
+     504
+    ],
+    "target_px_measured": 90,
+    "area_px": 1926,
+    "band_r": 4,
+    "bge": 0.6671,
+    "rlj": 0.026,
+    "lcr": 1.0642,
+    "luminance_inner": 109.96,
+    "luminance_outer": 103.33,
+    "hf_ratio": 2.5578
+   },
+   {
+    "sample_id": "a0036",
+    "bbox": [
+     215,
+     314,
+     251,
+     340
+    ],
+    "target_px_measured": 37,
+    "area_px": 504,
+    "band_r": 3,
+    "bge": 2.0847,
+    "rlj": 0.3115,
+    "lcr": 2.3924,
+    "luminance_inner": 136.47,
+    "luminance_outer": 57.04,
+    "hf_ratio": 8.777
+   },
+   {
+    "sample_id": "a0037",
+    "bbox": [
+     714,
+     246,
+     733,
+     256
+    ],
+    "target_px_measured": 20,
+    "area_px": 102,
+    "band_r": 1,
+    "bge": 2.1279,
+    "rlj": 0.2151,
+    "lcr": 0.6757,
+    "luminance_inner": 114.27,
+    "luminance_outer": 169.11,
+    "hf_ratio": 8.2959
+   },
+   {
+    "sample_id": "a0038",
+    "bbox": [
+     358,
+     424,
+     422,
+     469
+    ],
+    "target_px_measured": 65,
+    "area_px": 974,
+    "band_r": 4,
+    "bge": 0.7998,
+    "rlj": 0.077,
+    "lcr": 0.6707,
+    "luminance_inner": 40.02,
+    "luminance_outer": 59.67,
+    "hf_ratio": 3.5166
+   },
+   {
+    "sample_id": "a0039",
+    "bbox": [
+     824,
+     256,
+     853,
+     281
+    ],
+    "target_px_measured": 30,
+    "area_px": 284,
+    "band_r": 2,
+    "bge": 1.7527,
+    "rlj": 0.5898,
+    "lcr": 0.2533,
+    "luminance_inner": 51.02,
+    "luminance_outer": 201.43,
+    "hf_ratio": 5.3093
+   },
+   {
+    "sample_id": "a0040",
+    "bbox": [
+     429,
+     453,
+     524,
+     522
+    ],
+    "target_px_measured": 96,
+    "area_px": 2119,
+    "band_r": 4,
+    "bge": 1.3556,
+    "rlj": 0.1207,
+    "lcr": 0.6388,
+    "luminance_inner": 54.43,
+    "luminance_outer": 85.2,
+    "hf_ratio": 4.821
+   },
+   {
+    "sample_id": "a0041",
+    "bbox": [
+     1320,
+     731,
+     1367,
+     760
+    ],
+    "target_px_measured": 48,
+    "area_px": 477,
+    "band_r": 3,
+    "bge": 0.771,
+    "rlj": 0.4794,
+    "lcr": 3.2276,
+    "luminance_inner": 177.13,
+    "luminance_outer": 54.88,
+    "hf_ratio": 3.2714
+   },
+   {
+    "sample_id": "a0042",
+    "bbox": [
+     185,
+     361,
+     208,
+     376
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.729,
+    "rlj": 0.4382,
+    "lcr": 3.2096,
+    "luminance_inner": 162.33,
+    "luminance_outer": 50.58,
+    "hf_ratio": 2.6075
+   },
+   {
+    "sample_id": "a0043",
+    "bbox": [
+     694,
+     87,
+     783,
+     154
+    ],
+    "target_px_measured": 90,
+    "area_px": 3156,
+    "band_r": 4,
+    "bge": 0.9209,
+    "rlj": 0.0725,
+    "lcr": 1.153,
+    "luminance_inner": 139.41,
+    "luminance_outer": 120.91,
+    "hf_ratio": 3.1226
+   },
+   {
+    "sample_id": "a0044",
+    "bbox": [
+     755,
+     367,
+     786,
+     403
+    ],
+    "target_px_measured": 37,
+    "area_px": 609,
+    "band_r": 3,
+    "bge": 1.2501,
+    "rlj": 0.1457,
+    "lcr": 1.67,
+    "luminance_inner": 92.58,
+    "luminance_outer": 55.44,
+    "hf_ratio": 3.8403
+   },
+   {
+    "sample_id": "a0045",
+    "bbox": [
+     386,
+     185,
+     405,
+     197
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 11.1991,
+    "rlj": 0.2524,
+    "lcr": 2.6057,
+    "luminance_inner": 104.44,
+    "luminance_outer": 40.08,
+    "hf_ratio": 41.7357
+   },
+   {
+    "sample_id": "a0046",
+    "bbox": [
+     157,
+     70,
+     221,
+     120
+    ],
+    "target_px_measured": 65,
+    "area_px": 1338,
+    "band_r": 4,
+    "bge": 0.3374,
+    "rlj": 0.213,
+    "lcr": 3.0726,
+    "luminance_inner": 80.52,
+    "luminance_outer": 26.21,
+    "hf_ratio": 1.2672
+   },
+   {
+    "sample_id": "a0047",
+    "bbox": [
+     838,
+     311,
+     866,
+     333
+    ],
+    "target_px_measured": 29,
+    "area_px": 250,
+    "band_r": 2,
+    "bge": 1.0784,
+    "rlj": 0.0196,
+    "lcr": 0.9719,
+    "luminance_inner": 173.14,
+    "luminance_outer": 178.15,
+    "hf_ratio": 4.2561
+   },
+   {
+    "sample_id": "a0048",
+    "bbox": [
+     1017,
+     60,
+     1112,
+     131
+    ],
+    "target_px_measured": 96,
+    "area_px": 2209,
+    "band_r": 4,
+    "bge": 10.4848,
+    "rlj": 0.6631,
+    "lcr": 0.2166,
+    "luminance_inner": 46.75,
+    "luminance_outer": 215.85,
+    "hf_ratio": 22.8818
+   },
+   {
+    "sample_id": "a0049",
+    "bbox": [
+     733,
+     483,
+     780,
+     513
+    ],
+    "target_px_measured": 48,
+    "area_px": 699,
+    "band_r": 3,
+    "bge": 0.68,
+    "rlj": 0.0195,
+    "lcr": 1.0308,
+    "luminance_inner": 165.92,
+    "luminance_outer": 160.95,
+    "hf_ratio": 2.8687
+   },
+   {
+    "sample_id": "a0050",
+    "bbox": [
+     356,
+     396,
+     379,
+     413
+    ],
+    "target_px_measured": 24,
+    "area_px": 172,
+    "band_r": 2,
+    "bge": 1.7911,
+    "rlj": 0.4732,
+    "lcr": 0.4946,
+    "luminance_inner": 118.1,
+    "luminance_outer": 238.76,
+    "hf_ratio": 6.124
+   },
+   {
+    "sample_id": "a0051",
+    "bbox": [
+     803,
+     127,
+     892,
+     211
+    ],
+    "target_px_measured": 90,
+    "area_px": 3389,
+    "band_r": 4,
+    "bge": 0.6362,
+    "rlj": 0.0641,
+    "lcr": 0.9153,
+    "luminance_inner": 176.61,
+    "luminance_outer": 192.96,
+    "hf_ratio": 2.0502
+   },
+   {
+    "sample_id": "a0052",
+    "bbox": [
+     264,
+     180,
+     297,
+     216
+    ],
+    "target_px_measured": 37,
+    "area_px": 469,
+    "band_r": 3,
+    "bge": 0.7191,
+    "rlj": 0.0955,
+    "lcr": 1.3932,
+    "luminance_inner": 86.29,
+    "luminance_outer": 61.93,
+    "hf_ratio": 3.4345
+   },
+   {
+    "sample_id": "a0053",
+    "bbox": [
+     504,
+     375,
+     516,
+     394
+    ],
+    "target_px_measured": 20,
+    "area_px": 123,
+    "band_r": 1,
+    "bge": 0.6444,
+    "rlj": 0.1366,
+    "lcr": 0.6828,
+    "luminance_inner": 74.96,
+    "luminance_outer": 109.79,
+    "hf_ratio": 2.8215
+   },
+   {
+    "sample_id": "a0054",
+    "bbox": [
+     1391,
+     766,
+     1455,
+     817
+    ],
+    "target_px_measured": 65,
+    "area_px": 1581,
+    "band_r": 4,
+    "bge": 6.705,
+    "rlj": 0.5303,
+    "lcr": 0.29,
+    "luminance_inner": 55.22,
+    "luminance_outer": 190.44,
+    "hf_ratio": 20.142
+   },
+   {
+    "sample_id": "a0055",
+    "bbox": [
+     817,
+     144,
+     846,
+     168
+    ],
+    "target_px_measured": 30,
+    "area_px": 395,
+    "band_r": 2,
+    "bge": 0.7916,
+    "rlj": 0.1933,
+    "lcr": 1.6307,
+    "luminance_inner": 127.45,
+    "luminance_outer": 78.16,
+    "hf_ratio": 3.0409
+   },
+   {
+    "sample_id": "a0056",
+    "bbox": [
+     169,
+     371,
+     250,
+     466
+    ],
+    "target_px_measured": 96,
+    "area_px": 2949,
+    "band_r": 4,
+    "bge": 0.7706,
+    "rlj": 0.2186,
+    "lcr": 1.5646,
+    "luminance_inner": 154.44,
+    "luminance_outer": 98.71,
+    "hf_ratio": 2.8011
+   },
+   {
+    "sample_id": "a0057",
+    "bbox": [
+     690,
+     290,
+     737,
+     324
+    ],
+    "target_px_measured": 48,
+    "area_px": 786,
+    "band_r": 4,
+    "bge": 0.6759,
+    "rlj": 0.0307,
+    "lcr": 0.9463,
+    "luminance_inner": 137.77,
+    "luminance_outer": 145.59,
+    "hf_ratio": 3.1926
+   },
+   {
+    "sample_id": "a0058",
+    "bbox": [
+     789,
+     84,
+     812,
+     98
+    ],
+    "target_px_measured": 24,
+    "area_px": 183,
+    "band_r": 2,
+    "bge": 0.4121,
+    "rlj": 0.2143,
+    "lcr": 2.2758,
+    "luminance_inner": 97.49,
+    "luminance_outer": 42.84,
+    "hf_ratio": 1.367
+   },
+   {
+    "sample_id": "a0059",
+    "bbox": [
+     766,
+     507,
+     855,
+     570
+    ],
+    "target_px_measured": 90,
+    "area_px": 2201,
+    "band_r": 4,
+    "bge": 3.181,
+    "rlj": 0.6554,
+    "lcr": 0.2185,
+    "luminance_inner": 46.74,
+    "luminance_outer": 213.87,
+    "hf_ratio": 11.4704
+   },
+   {
+    "sample_id": "a0060",
+    "bbox": [
+     1028,
+     332,
+     1064,
+     356
+    ],
+    "target_px_measured": 37,
+    "area_px": 518,
+    "band_r": 3,
+    "bge": 2.8386,
+    "rlj": 0.0696,
+    "lcr": 1.0931,
+    "luminance_inner": 208.26,
+    "luminance_outer": 190.51,
+    "hf_ratio": 14.3673
+   },
+   {
+    "sample_id": "a0061",
+    "bbox": [
+     1412,
+     300,
+     1431,
+     313
+    ],
+    "target_px_measured": 20,
+    "area_px": 113,
+    "band_r": 1,
+    "bge": 1.0612,
+    "rlj": 0.0095,
+    "lcr": 0.9833,
+    "luminance_inner": 142.75,
+    "luminance_outer": 145.17,
+    "hf_ratio": 3.3502
+   },
+   {
+    "sample_id": "a0062",
+    "bbox": [
+     972,
+     447,
+     1036,
+     502
+    ],
+    "target_px_measured": 65,
+    "area_px": 1645,
+    "band_r": 4,
+    "bge": 7.755,
+    "rlj": 0.1805,
+    "lcr": 0.7593,
+    "luminance_inner": 145.22,
+    "luminance_outer": 191.26,
+    "hf_ratio": 20.3816
+   },
+   {
+    "sample_id": "a0063",
+    "bbox": [
+     691,
+     145,
+     719,
+     171
+    ],
+    "target_px_measured": 29,
+    "area_px": 314,
+    "band_r": 2,
+    "bge": 6.3694,
+    "rlj": 0.1073,
+    "lcr": 0.8342,
+    "luminance_inner": 137.64,
+    "luminance_outer": 165.0,
+    "hf_ratio": 29.2271
+   },
+   {
+    "sample_id": "a0064",
+    "bbox": [
+     373,
+     525,
+     463,
+     620
+    ],
+    "target_px_measured": 96,
+    "area_px": 2224,
+    "band_r": 4,
+    "bge": 0.9394,
+    "rlj": 0.3416,
+    "lcr": 2.7143,
+    "luminance_inner": 137.91,
+    "luminance_outer": 50.81,
+    "hf_ratio": 3.6043
+   },
+   {
+    "sample_id": "a0065",
+    "bbox": [
+     472,
+     211,
+     519,
+     244
+    ],
+    "target_px_measured": 48,
+    "area_px": 669,
+    "band_r": 3,
+    "bge": 0.5301,
+    "rlj": 0.0714,
+    "lcr": 0.6081,
+    "luminance_inner": 28.24,
+    "luminance_outer": 46.44,
+    "hf_ratio": 1.8784
+   },
+   {
+    "sample_id": "a0066",
+    "bbox": [
+     1056,
+     760,
+     1079,
+     782
+    ],
+    "target_px_measured": 24,
+    "area_px": 235,
+    "band_r": 2,
+    "bge": 2.9872,
+    "rlj": 0.1426,
+    "lcr": 1.2538,
+    "luminance_inner": 179.64,
+    "luminance_outer": 143.27,
+    "hf_ratio": 9.1169
+   },
+   {
+    "sample_id": "a0067",
+    "bbox": [
+     804,
+     246,
+     893,
+     307
+    ],
+    "target_px_measured": 90,
+    "area_px": 2895,
+    "band_r": 4,
+    "bge": 3.117,
+    "rlj": 0.0912,
+    "lcr": 1.1852,
+    "luminance_inner": 148.82,
+    "luminance_outer": 125.57,
+    "hf_ratio": 8.7369
+   },
+   {
+    "sample_id": "a0068",
+    "bbox": [
+     1392,
+     167,
+     1428,
+     199
+    ],
+    "target_px_measured": 37,
+    "area_px": 500,
+    "band_r": 3,
+    "bge": 3.1145,
+    "rlj": 0.2027,
+    "lcr": 1.4357,
+    "luminance_inner": 170.3,
+    "luminance_outer": 118.62,
+    "hf_ratio": 11.0589
+   },
+   {
+    "sample_id": "a0069",
+    "bbox": [
+     490,
+     359,
+     509,
+     377
+    ],
+    "target_px_measured": 20,
+    "area_px": 167,
+    "band_r": 2,
+    "bge": 1.2761,
+    "rlj": 0.4477,
+    "lcr": 0.2893,
+    "luminance_inner": 46.48,
+    "luminance_outer": 160.64,
+    "hf_ratio": 4.7127
+   },
+   {
+    "sample_id": "a0070",
+    "bbox": [
+     338,
+     233,
+     402,
+     284
+    ],
+    "target_px_measured": 65,
+    "area_px": 1227,
+    "band_r": 4,
+    "bge": 0.6744,
+    "rlj": 0.3193,
+    "lcr": 0.2743,
+    "luminance_inner": 30.78,
+    "luminance_outer": 112.2,
+    "hf_ratio": 2.4354
+   },
+   {
+    "sample_id": "a0071",
+    "bbox": [
+     1461,
+     467,
+     1490,
+     491
+    ],
+    "target_px_measured": 30,
+    "area_px": 353,
+    "band_r": 2,
+    "bge": 25.7476,
+    "rlj": 0.0974,
+    "lcr": 1.1996,
+    "luminance_inner": 149.27,
+    "luminance_outer": 124.43,
+    "hf_ratio": 81.0561
+   },
+   {
+    "sample_id": "a0072",
+    "bbox": [
+     150,
+     372,
+     218,
+     467
+    ],
+    "target_px_measured": 96,
+    "area_px": 3979,
+    "band_r": 4,
+    "bge": 0.5079,
+    "rlj": 0.3087,
+    "lcr": 3.2627,
+    "luminance_inner": 113.5,
+    "luminance_outer": 34.79,
+    "hf_ratio": 2.0174
+   },
+   {
+    "sample_id": "a0073",
+    "bbox": [
+     536,
+     395,
+     583,
+     433
+    ],
+    "target_px_measured": 48,
+    "area_px": 580,
+    "band_r": 3,
+    "bge": 1.905,
+    "rlj": 0.3751,
+    "lcr": 0.2061,
+    "luminance_inner": 24.83,
+    "luminance_outer": 120.49,
+    "hf_ratio": 6.8142
+   },
+   {
+    "sample_id": "a0074",
+    "bbox": [
+     302,
+     109,
+     325,
+     122
+    ],
+    "target_px_measured": 24,
+    "area_px": 208,
+    "band_r": 2,
+    "bge": 0.3475,
+    "rlj": 0.1407,
+    "lcr": 4.7508,
+    "luminance_inner": 45.44,
+    "luminance_outer": 9.56,
+    "hf_ratio": 1.8903
+   },
+   {
+    "sample_id": "a0075",
+    "bbox": [
+     542,
+     495,
+     631,
+     550
+    ],
+    "target_px_measured": 90,
+    "area_px": 2424,
+    "band_r": 4,
+    "bge": 2.3368,
+    "rlj": 0.098,
+    "lcr": 1.2077,
+    "luminance_inner": 145.35,
+    "luminance_outer": 120.35,
+    "hf_ratio": 7.2042
+   },
+   {
+    "sample_id": "a0076",
+    "bbox": [
+     732,
+     67,
+     755,
+     103
+    ],
+    "target_px_measured": 37,
+    "area_px": 471,
+    "band_r": 3,
+    "bge": 4.1094,
+    "rlj": 0.6754,
+    "lcr": 0.2933,
+    "luminance_inner": 71.49,
+    "luminance_outer": 243.71,
+    "hf_ratio": 16.9822
+   },
+   {
+    "sample_id": "a0077",
+    "bbox": [
+     624,
+     232,
+     643,
+     245
+    ],
+    "target_px_measured": 20,
+    "area_px": 106,
+    "band_r": 1,
+    "bge": 2.5443,
+    "rlj": 0.1649,
+    "lcr": 0.7661,
+    "luminance_inner": 137.72,
+    "luminance_outer": 179.77,
+    "hf_ratio": 8.6097
+   },
+   {
+    "sample_id": "a0078",
+    "bbox": [
+     170,
+     474,
+     234,
+     510
+    ],
+    "target_px_measured": 65,
+    "area_px": 944,
+    "band_r": 4,
+    "bge": 2.077,
+    "rlj": 0.3886,
+    "lcr": 6.4161,
+    "luminance_inner": 117.4,
+    "luminance_outer": 18.3,
+    "hf_ratio": 7.3347
+   },
+   {
+    "sample_id": "a0079",
+    "bbox": [
+     354,
+     870,
+     383,
+     896
+    ],
+    "target_px_measured": 30,
+    "area_px": 311,
+    "band_r": 2,
+    "bge": 0.9511,
+    "rlj": 0.2504,
+    "lcr": 1.8652,
+    "luminance_inner": 137.66,
+    "luminance_outer": 73.81,
+    "hf_ratio": 4.2786
+   },
+   {
+    "sample_id": "a0080",
+    "bbox": [
+     1057,
+     466,
+     1152,
+     532
+    ],
+    "target_px_measured": 96,
+    "area_px": 2274,
+    "band_r": 4,
+    "bge": 1.0574,
+    "rlj": 0.318,
+    "lcr": 1.6588,
+    "luminance_inner": 204.22,
+    "luminance_outer": 123.11,
+    "hf_ratio": 4.2873
+   },
+   {
+    "sample_id": "a0081",
+    "bbox": [
+     1089,
+     264,
+     1136,
+     303
+    ],
+    "target_px_measured": 48,
+    "area_px": 979,
+    "band_r": 4,
+    "bge": 4.7584,
+    "rlj": 0.1552,
+    "lcr": 1.3512,
+    "luminance_inner": 152.3,
+    "luminance_outer": 112.72,
+    "hf_ratio": 10.4915
+   },
+   {
+    "sample_id": "a0082",
+    "bbox": [
+     449,
+     182,
+     472,
+     197
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.4731,
+    "rlj": 0.3713,
+    "lcr": 3.6063,
+    "luminance_inner": 131.0,
+    "luminance_outer": 36.33,
+    "hf_ratio": 1.9477
+   },
+   {
+    "sample_id": "a0083",
+    "bbox": [
+     842,
+     526,
+     931,
+     610
+    ],
+    "target_px_measured": 90,
+    "area_px": 2839,
+    "band_r": 4,
+    "bge": 0.4028,
+    "rlj": 0.2557,
+    "lcr": 3.3573,
+    "luminance_inner": 92.87,
+    "luminance_outer": 27.66,
+    "hf_ratio": 2.3558
+   },
+   {
+    "sample_id": "a0084",
+    "bbox": [
+     731,
+     162,
+     767,
+     195
+    ],
+    "target_px_measured": 37,
+    "area_px": 412,
+    "band_r": 3,
+    "bge": 0.9278,
+    "rlj": 0.3946,
+    "lcr": 0.3672,
+    "luminance_inner": 58.39,
+    "luminance_outer": 159.0,
+    "hf_ratio": 3.6215
+   },
+   {
+    "sample_id": "a0085",
+    "bbox": [
+     1463,
+     319,
+     1482,
+     336
+    ],
+    "target_px_measured": 20,
+    "area_px": 161,
+    "band_r": 2,
+    "bge": 0.4296,
+    "rlj": 0.1447,
+    "lcr": 0.563,
+    "luminance_inner": 47.52,
+    "luminance_outer": 84.41,
+    "hf_ratio": 1.1839
+   },
+   {
+    "sample_id": "a0086",
+    "bbox": [
+     219,
+     398,
+     283,
+     457
+    ],
+    "target_px_measured": 65,
+    "area_px": 1514,
+    "band_r": 4,
+    "bge": 1.3297,
+    "rlj": 0.1521,
+    "lcr": 0.6459,
+    "luminance_inner": 70.75,
+    "luminance_outer": 109.54,
+    "hf_ratio": 4.8087
+   },
+   {
+    "sample_id": "a0087",
+    "bbox": [
+     1107,
+     129,
+     1136,
+     153
+    ],
+    "target_px_measured": 30,
+    "area_px": 263,
+    "band_r": 2,
+    "bge": 3.9146,
+    "rlj": 0.331,
+    "lcr": 1.6455,
+    "luminance_inner": 215.18,
+    "luminance_outer": 130.77,
+    "hf_ratio": 13.9664
+   },
+   {
+    "sample_id": "a0088",
+    "bbox": [
+     883,
+     115,
+     978,
+     168
+    ],
+    "target_px_measured": 96,
+    "area_px": 2529,
+    "band_r": 4,
+    "bge": 1.071,
+    "rlj": 0.2794,
+    "lcr": 0.635,
+    "luminance_inner": 123.95,
+    "luminance_outer": 195.2,
+    "hf_ratio": 3.8025
+   },
+   {
+    "sample_id": "a0089",
+    "bbox": [
+     260,
+     318,
+     306,
+     365
+    ],
+    "target_px_measured": 48,
+    "area_px": 834,
+    "band_r": 4,
+    "bge": 1.3373,
+    "rlj": 0.0681,
+    "lcr": 1.1584,
+    "luminance_inner": 127.0,
+    "luminance_outer": 109.63,
+    "hf_ratio": 4.0983
+   },
+   {
+    "sample_id": "a0090",
+    "bbox": [
+     769,
+     140,
+     792,
+     160
+    ],
+    "target_px_measured": 24,
+    "area_px": 203,
+    "band_r": 2,
+    "bge": 0.7505,
+    "rlj": 0.3397,
+    "lcr": 2.2291,
+    "luminance_inner": 157.09,
+    "luminance_outer": 70.47,
+    "hf_ratio": 3.2643
+   },
+   {
+    "sample_id": "a0091",
+    "bbox": [
+     379,
+     53,
+     468,
+     134
+    ],
+    "target_px_measured": 90,
+    "area_px": 3370,
+    "band_r": 4,
+    "bge": 2.3121,
+    "rlj": 0.1359,
+    "lcr": 1.349,
+    "luminance_inner": 133.9,
+    "luminance_outer": 99.26,
+    "hf_ratio": 6.1679
+   },
+   {
+    "sample_id": "a0092",
+    "bbox": [
+     336,
+     195,
+     370,
+     231
+    ],
+    "target_px_measured": 37,
+    "area_px": 546,
+    "band_r": 3,
+    "bge": 0.5918,
+    "rlj": 0.0383,
+    "lcr": 1.0983,
+    "luminance_inner": 109.02,
+    "luminance_outer": 99.26,
+    "hf_ratio": 2.9559
+   },
+   {
+    "sample_id": "a0093",
+    "bbox": [
+     1064,
+     541,
+     1083,
+     556
+    ],
+    "target_px_measured": 20,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 0.7002,
+    "rlj": 0.334,
+    "lcr": 0.2992,
+    "luminance_inner": 36.37,
+    "luminance_outer": 121.54,
+    "hf_ratio": 3.5029
+   },
+   {
+    "sample_id": "a0094",
+    "bbox": [
+     944,
+     537,
+     1008,
+     583
+    ],
+    "target_px_measured": 65,
+    "area_px": 1255,
+    "band_r": 4,
+    "bge": 1.3529,
+    "rlj": 0.1207,
+    "lcr": 0.7225,
+    "luminance_inner": 80.18,
+    "luminance_outer": 110.97,
+    "hf_ratio": 5.8214
+   },
+   {
+    "sample_id": "a0095",
+    "bbox": [
+     776,
+     352,
+     805,
+     381
+    ],
+    "target_px_measured": 30,
+    "area_px": 308,
+    "band_r": 2,
+    "bge": 0.7026,
+    "rlj": 0.5088,
+    "lcr": 0.2804,
+    "luminance_inner": 50.56,
+    "luminance_outer": 180.32,
+    "hf_ratio": 3.6016
+   },
+   {
+    "sample_id": "a0096",
+    "bbox": [
+     728,
+     239,
+     823,
+     298
+    ],
+    "target_px_measured": 96,
+    "area_px": 2429,
+    "band_r": 4,
+    "bge": 2.9861,
+    "rlj": 0.207,
+    "lcr": 0.7307,
+    "luminance_inner": 143.24,
+    "luminance_outer": 196.03,
+    "hf_ratio": 9.1402
+   },
+   {
+    "sample_id": "a0097",
+    "bbox": [
+     456,
+     381,
+     503,
+     415
+    ],
+    "target_px_measured": 48,
+    "area_px": 796,
+    "band_r": 4,
+    "bge": 3.3989,
+    "rlj": 0.2287,
+    "lcr": 0.7189,
+    "luminance_inner": 149.17,
+    "luminance_outer": 207.5,
+    "hf_ratio": 13.1512
+   },
+   {
+    "sample_id": "a0098",
+    "bbox": [
+     150,
+     126,
+     173,
+     144
+    ],
+    "target_px_measured": 24,
+    "area_px": 173,
+    "band_r": 2,
+    "bge": 1.5619,
+    "rlj": 0.5675,
+    "lcr": 0.2246,
+    "luminance_inner": 41.91,
+    "luminance_outer": 186.62,
+    "hf_ratio": 6.6067
+   },
+   {
+    "sample_id": "a0099",
+    "bbox": [
+     607,
+     379,
+     696,
+     432
+    ],
+    "target_px_measured": 90,
+    "area_px": 1969,
+    "band_r": 4,
+    "bge": 8.8904,
+    "rlj": 0.4299,
+    "lcr": 0.1537,
+    "luminance_inner": 19.9,
+    "luminance_outer": 129.52,
+    "hf_ratio": 25.0735
+   }
+  ],
+  "out_E4_depth": [
+   {
+    "sample_id": "a0000",
+    "bbox": [
+     842,
+     250,
+     937,
+     336
+    ],
+    "target_px_measured": 96,
+    "area_px": 2732,
+    "band_r": 4,
+    "bge": 0.7748,
+    "rlj": 0.2751,
+    "lcr": 2.8902,
+    "luminance_inner": 107.25,
+    "luminance_outer": 37.11,
+    "hf_ratio": 2.4799
+   },
+   {
+    "sample_id": "a0001",
+    "bbox": [
+     1069,
+     301,
+     1114,
+     348
+    ],
+    "target_px_measured": 48,
+    "area_px": 900,
+    "band_r": 4,
+    "bge": 3.071,
+    "rlj": 0.4415,
+    "lcr": 0.3541,
+    "luminance_inner": 61.71,
+    "luminance_outer": 174.29,
+    "hf_ratio": 8.7803
+   },
+   {
+    "sample_id": "a0002",
+    "bbox": [
+     948,
+     553,
+     971,
+     574
+    ],
+    "target_px_measured": 24,
+    "area_px": 177,
+    "band_r": 2,
+    "bge": 0.6256,
+    "rlj": 0.0858,
+    "lcr": 1.2603,
+    "luminance_inner": 105.96,
+    "luminance_outer": 84.07,
+    "hf_ratio": 2.8384
+   },
+   {
+    "sample_id": "a0003",
+    "bbox": [
+     1014,
+     753,
+     1103,
+     817
+    ],
+    "target_px_measured": 90,
+    "area_px": 2621,
+    "band_r": 4,
+    "bge": 2.3753,
+    "rlj": 0.1005,
+    "lcr": 0.7419,
+    "luminance_inner": 73.63,
+    "luminance_outer": 99.25,
+    "hf_ratio": 7.8264
+   },
+   {
+    "sample_id": "a0004",
+    "bbox": [
+     406,
+     213,
+     442,
+     238
+    ],
+    "target_px_measured": 37,
+    "area_px": 323,
+    "band_r": 2,
+    "bge": 0.3916,
+    "rlj": 0.405,
+    "lcr": 3.5154,
+    "luminance_inner": 144.34,
+    "luminance_outer": 41.06,
+    "hf_ratio": 1.3214
+   },
+   {
+    "sample_id": "a0005",
+    "bbox": [
+     745,
+     202,
+     764,
+     215
+    ],
+    "target_px_measured": 20,
+    "area_px": 108,
+    "band_r": 1,
+    "bge": 0.7052,
+    "rlj": 0.1415,
+    "lcr": 0.8062,
+    "luminance_inner": 150.03,
+    "luminance_outer": 186.11,
+    "hf_ratio": 3.7992
+   },
+   {
+    "sample_id": "a0006",
+    "bbox": [
+     1597,
+     684,
+     1661,
+     743
+    ],
+    "target_px_measured": 65,
+    "area_px": 2044,
+    "band_r": 4,
+    "bge": 7.9505,
+    "rlj": 0.0255,
+    "lcr": 0.9448,
+    "luminance_inner": 111.45,
+    "luminance_outer": 117.96,
+    "hf_ratio": 27.9442
+   },
+   {
+    "sample_id": "a0007",
+    "bbox": [
+     653,
+     643,
+     682,
+     666
+    ],
+    "target_px_measured": 30,
+    "area_px": 291,
+    "band_r": 2,
+    "bge": 1.0439,
+    "rlj": 0.2933,
+    "lcr": 0.5532,
+    "luminance_inner": 92.62,
+    "luminance_outer": 167.42,
+    "hf_ratio": 4.426
+   },
+   {
+    "sample_id": "a0008",
+    "bbox": [
+     1392,
+     339,
+     1487,
+     391
+    ],
+    "target_px_measured": 96,
+    "area_px": 1874,
+    "band_r": 4,
+    "bge": 0.8265,
+    "rlj": 0.6546,
+    "lcr": 4.0612,
+    "luminance_inner": 221.44,
+    "luminance_outer": 54.53,
+    "hf_ratio": 3.789
+   },
+   {
+    "sample_id": "a0009",
+    "bbox": [
+     227,
+     277,
+     274,
+     322
+    ],
+    "target_px_measured": 48,
+    "area_px": 905,
+    "band_r": 4,
+    "bge": 1.0025,
+    "rlj": 0.0838,
+    "lcr": 1.1701,
+    "luminance_inner": 146.96,
+    "luminance_outer": 125.59,
+    "hf_ratio": 4.1214
+   },
+   {
+    "sample_id": "a0010",
+    "bbox": [
+     764,
+     176,
+     787,
+     191
+    ],
+    "target_px_measured": 24,
+    "area_px": 158,
+    "band_r": 2,
+    "bge": 3.6844,
+    "rlj": 0.4852,
+    "lcr": 0.2759,
+    "luminance_inner": 47.14,
+    "luminance_outer": 170.88,
+    "hf_ratio": 12.8003
+   },
+   {
+    "sample_id": "a0011",
+    "bbox": [
+     862,
+     693,
+     951,
+     754
+    ],
+    "target_px_measured": 90,
+    "area_px": 1695,
+    "band_r": 4,
+    "bge": 3.6015,
+    "rlj": 0.4007,
+    "lcr": 1.8432,
+    "luminance_inner": 223.35,
+    "luminance_outer": 121.18,
+    "hf_ratio": 15.516
+   },
+   {
+    "sample_id": "a0012",
+    "bbox": [
+     196,
+     524,
+     232,
+     553
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 0.3475,
+    "rlj": 0.0808,
+    "lcr": 1.4454,
+    "luminance_inner": 66.84,
+    "luminance_outer": 46.24,
+    "hf_ratio": 1.4682
+   },
+   {
+    "sample_id": "a0013",
+    "bbox": [
+     234,
+     491,
+     253,
+     508
+    ],
+    "target_px_measured": 20,
+    "area_px": 138,
+    "band_r": 1,
+    "bge": 0.6841,
+    "rlj": 0.0225,
+    "lcr": 1.0516,
+    "luminance_inner": 116.74,
+    "luminance_outer": 111.02,
+    "hf_ratio": 3.2213
+   },
+   {
+    "sample_id": "a0014",
+    "bbox": [
+     1372,
+     580,
+     1436,
+     639
+    ],
+    "target_px_measured": 65,
+    "area_px": 1506,
+    "band_r": 4,
+    "bge": 1.8584,
+    "rlj": 0.0215,
+    "lcr": 0.9495,
+    "luminance_inner": 103.19,
+    "luminance_outer": 108.69,
+    "hf_ratio": 6.3292
+   },
+   {
+    "sample_id": "a0015",
+    "bbox": [
+     1089,
+     712,
+     1109,
+     741
+    ],
+    "target_px_measured": 30,
+    "area_px": 254,
+    "band_r": 2,
+    "bge": 1.8305,
+    "rlj": 0.3734,
+    "lcr": 0.4926,
+    "luminance_inner": 92.44,
+    "luminance_outer": 187.65,
+    "hf_ratio": 7.3761
+   },
+   {
+    "sample_id": "a0016",
+    "bbox": [
+     342,
+     210,
+     437,
+     282
+    ],
+    "target_px_measured": 96,
+    "area_px": 2651,
+    "band_r": 4,
+    "bge": 2.5654,
+    "rlj": 0.286,
+    "lcr": 0.4075,
+    "luminance_inner": 50.15,
+    "luminance_outer": 123.09,
+    "hf_ratio": 6.3041
+   },
+   {
+    "sample_id": "a0017",
+    "bbox": [
+     197,
+     515,
+     231,
+     562
+    ],
+    "target_px_measured": 48,
+    "area_px": 959,
+    "band_r": 4,
+    "bge": 0.7884,
+    "rlj": 0.2981,
+    "lcr": 1.6069,
+    "luminance_inner": 201.25,
+    "luminance_outer": 125.24,
+    "hf_ratio": 3.0978
+   },
+   {
+    "sample_id": "a0018",
+    "bbox": [
+     373,
+     546,
+     396,
+     563
+    ],
+    "target_px_measured": 24,
+    "area_px": 184,
+    "band_r": 2,
+    "bge": 1.048,
+    "rlj": 0.1784,
+    "lcr": 0.5626,
+    "luminance_inner": 58.53,
+    "luminance_outer": 104.03,
+    "hf_ratio": 3.4562
+   },
+   {
+    "sample_id": "a0019",
+    "bbox": [
+     546,
+     60,
+     631,
+     149
+    ],
+    "target_px_measured": 90,
+    "area_px": 3310,
+    "band_r": 4,
+    "bge": 2.1881,
+    "rlj": 0.5157,
+    "lcr": 0.4054,
+    "luminance_inner": 89.65,
+    "luminance_outer": 221.16,
+    "hf_ratio": 7.5578
+   },
+   {
+    "sample_id": "a0020",
+    "bbox": [
+     986,
+     570,
+     1022,
+     587
+    ],
+    "target_px_measured": 37,
+    "area_px": 303,
+    "band_r": 2,
+    "bge": 0.5181,
+    "rlj": 0.0228,
+    "lcr": 0.9473,
+    "luminance_inner": 104.64,
+    "luminance_outer": 110.46,
+    "hf_ratio": 2.6722
+   },
+   {
+    "sample_id": "a0021",
+    "bbox": [
+     249,
+     354,
+     268,
+     362
+    ],
+    "target_px_measured": 20,
+    "area_px": 71,
+    "band_r": 1,
+    "bge": 0.837,
+    "rlj": 0.0914,
+    "lcr": 0.8892,
+    "luminance_inner": 186.9,
+    "luminance_outer": 210.2,
+    "hf_ratio": 2.9453
+   },
+   {
+    "sample_id": "a0022",
+    "bbox": [
+     654,
+     463,
+     718,
+     513
+    ],
+    "target_px_measured": 65,
+    "area_px": 1405,
+    "band_r": 4,
+    "bge": 1.3836,
+    "rlj": 0.3521,
+    "lcr": 0.5152,
+    "luminance_inner": 95.42,
+    "luminance_outer": 185.2,
+    "hf_ratio": 6.3654
+   },
+   {
+    "sample_id": "a0023",
+    "bbox": [
+     336,
+     470,
+     365,
+     490
+    ],
+    "target_px_measured": 30,
+    "area_px": 228,
+    "band_r": 2,
+    "bge": 0.6132,
+    "rlj": 0.0056,
+    "lcr": 1.0111,
+    "luminance_inner": 129.84,
+    "luminance_outer": 128.42,
+    "hf_ratio": 3.0121
+   },
+   {
+    "sample_id": "a0024",
+    "bbox": [
+     1017,
+     421,
+     1112,
+     475
+    ],
+    "target_px_measured": 96,
+    "area_px": 2569,
+    "band_r": 4,
+    "bge": 2.2448,
+    "rlj": 0.6003,
+    "lcr": 0.3488,
+    "luminance_inner": 81.97,
+    "luminance_outer": 235.04,
+    "hf_ratio": 8.5606
+   },
+   {
+    "sample_id": "a0025",
+    "bbox": [
+     1341,
+     334,
+     1388,
+     376
+    ],
+    "target_px_measured": 48,
+    "area_px": 791,
+    "band_r": 4,
+    "bge": 1.2038,
+    "rlj": 0.0387,
+    "lcr": 1.0635,
+    "luminance_inner": 165.15,
+    "luminance_outer": 155.29,
+    "hf_ratio": 5.9069
+   },
+   {
+    "sample_id": "a0026",
+    "bbox": [
+     628,
+     254,
+     651,
+     269
+    ],
+    "target_px_measured": 24,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 3.0562,
+    "rlj": 0.1725,
+    "lcr": 1.6422,
+    "luminance_inner": 112.5,
+    "luminance_outer": 68.51,
+    "hf_ratio": 7.635
+   },
+   {
+    "sample_id": "a0027",
+    "bbox": [
+     140,
+     546,
+     229,
+     593
+    ],
+    "target_px_measured": 90,
+    "area_px": 1867,
+    "band_r": 4,
+    "bge": 2.7763,
+    "rlj": 0.1768,
+    "lcr": 1.7281,
+    "luminance_inner": 106.99,
+    "luminance_outer": 61.91,
+    "hf_ratio": 7.7687
+   },
+   {
+    "sample_id": "a0028",
+    "bbox": [
+     888,
+     174,
+     924,
+     206
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 4.6274,
+    "rlj": 0.2566,
+    "lcr": 6.228,
+    "luminance_inner": 77.95,
+    "luminance_outer": 12.52,
+    "hf_ratio": 19.1497
+   },
+   {
+    "sample_id": "a0029",
+    "bbox": [
+     270,
+     186,
+     289,
+     199
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 1.0263,
+    "rlj": 0.436,
+    "lcr": 0.3825,
+    "luminance_inner": 68.86,
+    "luminance_outer": 180.03,
+    "hf_ratio": 4.2512
+   },
+   {
+    "sample_id": "a0030",
+    "bbox": [
+     941,
+     423,
+     1005,
+     470
+    ],
+    "target_px_measured": 65,
+    "area_px": 1532,
+    "band_r": 4,
+    "bge": 1.042,
+    "rlj": 0.1026,
+    "lcr": 0.81,
+    "luminance_inner": 111.51,
+    "luminance_outer": 137.66,
+    "hf_ratio": 3.8274
+   },
+   {
+    "sample_id": "a0031",
+    "bbox": [
+     803,
+     488,
+     832,
+     510
+    ],
+    "target_px_measured": 30,
+    "area_px": 292,
+    "band_r": 2,
+    "bge": 1.2774,
+    "rlj": 0.3423,
+    "lcr": 0.2612,
+    "luminance_inner": 30.86,
+    "luminance_outer": 118.15,
+    "hf_ratio": 5.5059
+   },
+   {
+    "sample_id": "a0032",
+    "bbox": [
+     373,
+     452,
+     468,
+     520
+    ],
+    "target_px_measured": 96,
+    "area_px": 2076,
+    "band_r": 4,
+    "bge": 0.9141,
+    "rlj": 0.2249,
+    "lcr": 1.4397,
+    "luminance_inner": 187.73,
+    "luminance_outer": 130.39,
+    "hf_ratio": 2.7937
+   },
+   {
+    "sample_id": "a0033",
+    "bbox": [
+     1000,
+     362,
+     1047,
+     392
+    ],
+    "target_px_measured": 48,
+    "area_px": 542,
+    "band_r": 3,
+    "bge": 2.0177,
+    "rlj": 0.5776,
+    "lcr": 0.1625,
+    "luminance_inner": 28.58,
+    "luminance_outer": 175.87,
+    "hf_ratio": 8.1088
+   },
+   {
+    "sample_id": "a0034",
+    "bbox": [
+     1041,
+     442,
+     1064,
+     463
+    ],
+    "target_px_measured": 24,
+    "area_px": 145,
+    "band_r": 2,
+    "bge": 0.6737,
+    "rlj": 0.0235,
+    "lcr": 1.0674,
+    "luminance_inner": 94.88,
+    "luminance_outer": 88.89,
+    "hf_ratio": 1.4259
+   },
+   {
+    "sample_id": "a0035",
+    "bbox": [
+     732,
+     465,
+     821,
+     504
+    ],
+    "target_px_measured": 90,
+    "area_px": 1926,
+    "band_r": 4,
+    "bge": 0.7101,
+    "rlj": 0.06,
+    "lcr": 1.1481,
+    "luminance_inner": 118.59,
+    "luminance_outer": 103.29,
+    "hf_ratio": 2.7245
+   },
+   {
+    "sample_id": "a0036",
+    "bbox": [
+     215,
+     314,
+     251,
+     340
+    ],
+    "target_px_measured": 37,
+    "area_px": 504,
+    "band_r": 3,
+    "bge": 1.8896,
+    "rlj": 0.264,
+    "lcr": 2.1801,
+    "luminance_inner": 124.34,
+    "luminance_outer": 57.04,
+    "hf_ratio": 7.958
+   },
+   {
+    "sample_id": "a0037",
+    "bbox": [
+     714,
+     246,
+     733,
+     256
+    ],
+    "target_px_measured": 20,
+    "area_px": 102,
+    "band_r": 1,
+    "bge": 2.0304,
+    "rlj": 0.1967,
+    "lcr": 0.7029,
+    "luminance_inner": 118.7,
+    "luminance_outer": 168.88,
+    "hf_ratio": 7.9157
+   },
+   {
+    "sample_id": "a0038",
+    "bbox": [
+     358,
+     424,
+     422,
+     469
+    ],
+    "target_px_measured": 65,
+    "area_px": 974,
+    "band_r": 4,
+    "bge": 0.3904,
+    "rlj": 0.0165,
+    "lcr": 0.9296,
+    "luminance_inner": 55.46,
+    "luminance_outer": 59.66,
+    "hf_ratio": 1.7125
+   },
+   {
+    "sample_id": "a0039",
+    "bbox": [
+     824,
+     256,
+     853,
+     281
+    ],
+    "target_px_measured": 30,
+    "area_px": 284,
+    "band_r": 2,
+    "bge": 1.6761,
+    "rlj": 0.61,
+    "lcr": 0.2279,
+    "luminance_inner": 45.92,
+    "luminance_outer": 201.48,
+    "hf_ratio": 5.0774
+   },
+   {
+    "sample_id": "a0040",
+    "bbox": [
+     429,
+     453,
+     524,
+     522
+    ],
+    "target_px_measured": 96,
+    "area_px": 2119,
+    "band_r": 4,
+    "bge": 1.3447,
+    "rlj": 0.1227,
+    "lcr": 0.633,
+    "luminance_inner": 53.96,
+    "luminance_outer": 85.24,
+    "hf_ratio": 4.7909
+   },
+   {
+    "sample_id": "a0041",
+    "bbox": [
+     1320,
+     731,
+     1367,
+     760
+    ],
+    "target_px_measured": 48,
+    "area_px": 477,
+    "band_r": 3,
+    "bge": 0.6193,
+    "rlj": 0.4721,
+    "lcr": 3.194,
+    "luminance_inner": 175.24,
+    "luminance_outer": 54.87,
+    "hf_ratio": 2.6273
+   },
+   {
+    "sample_id": "a0042",
+    "bbox": [
+     185,
+     361,
+     208,
+     376
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.6543,
+    "rlj": 0.3323,
+    "lcr": 2.675,
+    "luminance_inner": 135.34,
+    "luminance_outer": 50.59,
+    "hf_ratio": 2.3402
+   },
+   {
+    "sample_id": "a0043",
+    "bbox": [
+     694,
+     87,
+     783,
+     154
+    ],
+    "target_px_measured": 90,
+    "area_px": 3156,
+    "band_r": 4,
+    "bge": 0.9984,
+    "rlj": 0.0673,
+    "lcr": 1.142,
+    "luminance_inner": 138.05,
+    "luminance_outer": 120.88,
+    "hf_ratio": 3.386
+   },
+   {
+    "sample_id": "a0044",
+    "bbox": [
+     755,
+     367,
+     786,
+     403
+    ],
+    "target_px_measured": 37,
+    "area_px": 609,
+    "band_r": 3,
+    "bge": 1.2731,
+    "rlj": 0.1361,
+    "lcr": 1.6253,
+    "luminance_inner": 90.18,
+    "luminance_outer": 55.48,
+    "hf_ratio": 3.9052
+   },
+   {
+    "sample_id": "a0045",
+    "bbox": [
+     386,
+     185,
+     405,
+     197
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 9.4584,
+    "rlj": 0.1645,
+    "lcr": 2.0585,
+    "luminance_inner": 81.58,
+    "luminance_outer": 39.63,
+    "hf_ratio": 35.2679
+   },
+   {
+    "sample_id": "a0046",
+    "bbox": [
+     157,
+     70,
+     221,
+     120
+    ],
+    "target_px_measured": 65,
+    "area_px": 1338,
+    "band_r": 4,
+    "bge": 0.338,
+    "rlj": 0.2258,
+    "lcr": 3.1959,
+    "luminance_inner": 83.79,
+    "luminance_outer": 26.22,
+    "hf_ratio": 1.27
+   },
+   {
+    "sample_id": "a0047",
+    "bbox": [
+     838,
+     311,
+     866,
+     333
+    ],
+    "target_px_measured": 29,
+    "area_px": 250,
+    "band_r": 2,
+    "bge": 0.9788,
+    "rlj": 0.0007,
+    "lcr": 1.001,
+    "luminance_inner": 178.3,
+    "luminance_outer": 178.13,
+    "hf_ratio": 3.8628
+   },
+   {
+    "sample_id": "a0048",
+    "bbox": [
+     1017,
+     60,
+     1112,
+     131
+    ],
+    "target_px_measured": 96,
+    "area_px": 2209,
+    "band_r": 4,
+    "bge": 11.5168,
+    "rlj": 0.6865,
+    "lcr": 0.189,
+    "luminance_inner": 40.81,
+    "luminance_outer": 215.87,
+    "hf_ratio": 24.9238
+   },
+   {
+    "sample_id": "a0049",
+    "bbox": [
+     733,
+     483,
+     780,
+     513
+    ],
+    "target_px_measured": 48,
+    "area_px": 699,
+    "band_r": 3,
+    "bge": 0.635,
+    "rlj": 0.0525,
+    "lcr": 1.0832,
+    "luminance_inner": 174.37,
+    "luminance_outer": 160.97,
+    "hf_ratio": 2.6778
+   },
+   {
+    "sample_id": "a0050",
+    "bbox": [
+     356,
+     396,
+     379,
+     413
+    ],
+    "target_px_measured": 24,
+    "area_px": 172,
+    "band_r": 2,
+    "bge": 1.3815,
+    "rlj": 0.3109,
+    "lcr": 0.6691,
+    "luminance_inner": 160.34,
+    "luminance_outer": 239.63,
+    "hf_ratio": 4.7249
+   },
+   {
+    "sample_id": "a0051",
+    "bbox": [
+     803,
+     127,
+     892,
+     211
+    ],
+    "target_px_measured": 90,
+    "area_px": 3389,
+    "band_r": 4,
+    "bge": 0.5991,
+    "rlj": 0.0374,
+    "lcr": 0.9506,
+    "luminance_inner": 183.44,
+    "luminance_outer": 192.96,
+    "hf_ratio": 1.9304
+   },
+   {
+    "sample_id": "a0052",
+    "bbox": [
+     264,
+     180,
+     297,
+     216
+    ],
+    "target_px_measured": 37,
+    "area_px": 469,
+    "band_r": 3,
+    "bge": 0.7274,
+    "rlj": 0.0895,
+    "lcr": 1.3687,
+    "luminance_inner": 84.75,
+    "luminance_outer": 61.92,
+    "hf_ratio": 3.4745
+   },
+   {
+    "sample_id": "a0053",
+    "bbox": [
+     504,
+     375,
+     516,
+     394
+    ],
+    "target_px_measured": 20,
+    "area_px": 123,
+    "band_r": 1,
+    "bge": 0.4657,
+    "rlj": 0.0467,
+    "lcr": 0.8921,
+    "luminance_inner": 98.43,
+    "luminance_outer": 110.33,
+    "hf_ratio": 2.039
+   },
+   {
+    "sample_id": "a0054",
+    "bbox": [
+     1391,
+     766,
+     1455,
+     817
+    ],
+    "target_px_measured": 65,
+    "area_px": 1581,
+    "band_r": 4,
+    "bge": 6.3832,
+    "rlj": 0.5488,
+    "lcr": 0.2654,
+    "luminance_inner": 50.57,
+    "luminance_outer": 190.51,
+    "hf_ratio": 19.2057
+   },
+   {
+    "sample_id": "a0055",
+    "bbox": [
+     817,
+     144,
+     846,
+     168
+    ],
+    "target_px_measured": 30,
+    "area_px": 395,
+    "band_r": 2,
+    "bge": 0.8285,
+    "rlj": 0.1655,
+    "lcr": 1.5397,
+    "luminance_inner": 120.37,
+    "luminance_outer": 78.18,
+    "hf_ratio": 3.1829
+   },
+   {
+    "sample_id": "a0056",
+    "bbox": [
+     169,
+     371,
+     250,
+     466
+    ],
+    "target_px_measured": 96,
+    "area_px": 2949,
+    "band_r": 4,
+    "bge": 0.667,
+    "rlj": 0.3176,
+    "lcr": 1.8196,
+    "luminance_inner": 179.81,
+    "luminance_outer": 98.82,
+    "hf_ratio": 2.4232
+   },
+   {
+    "sample_id": "a0057",
+    "bbox": [
+     690,
+     290,
+     737,
+     324
+    ],
+    "target_px_measured": 48,
+    "area_px": 786,
+    "band_r": 4,
+    "bge": 0.5744,
+    "rlj": 0.0296,
+    "lcr": 1.0518,
+    "luminance_inner": 153.12,
+    "luminance_outer": 145.58,
+    "hf_ratio": 2.7111
+   },
+   {
+    "sample_id": "a0058",
+    "bbox": [
+     789,
+     84,
+     812,
+     98
+    ],
+    "target_px_measured": 24,
+    "area_px": 183,
+    "band_r": 2,
+    "bge": 0.3462,
+    "rlj": 0.1324,
+    "lcr": 1.8048,
+    "luminance_inner": 75.7,
+    "luminance_outer": 41.95,
+    "hf_ratio": 1.1485
+   },
+   {
+    "sample_id": "a0059",
+    "bbox": [
+     766,
+     507,
+     855,
+     570
+    ],
+    "target_px_measured": 90,
+    "area_px": 2201,
+    "band_r": 4,
+    "bge": 2.9406,
+    "rlj": 0.7159,
+    "lcr": 0.147,
+    "luminance_inner": 31.47,
+    "luminance_outer": 214.02,
+    "hf_ratio": 10.611
+   },
+   {
+    "sample_id": "a0060",
+    "bbox": [
+     1028,
+     332,
+     1064,
+     356
+    ],
+    "target_px_measured": 37,
+    "area_px": 518,
+    "band_r": 3,
+    "bge": 2.4964,
+    "rlj": 0.0026,
+    "lcr": 0.9965,
+    "luminance_inner": 189.84,
+    "luminance_outer": 190.51,
+    "hf_ratio": 12.6535
+   },
+   {
+    "sample_id": "a0061",
+    "bbox": [
+     1412,
+     300,
+     1431,
+     313
+    ],
+    "target_px_measured": 20,
+    "area_px": 113,
+    "band_r": 1,
+    "bge": 1.0111,
+    "rlj": 0.0439,
+    "lcr": 1.0771,
+    "luminance_inner": 156.41,
+    "luminance_outer": 145.22,
+    "hf_ratio": 3.1919
+   },
+   {
+    "sample_id": "a0062",
+    "bbox": [
+     972,
+     447,
+     1036,
+     502
+    ],
+    "target_px_measured": 65,
+    "area_px": 1645,
+    "band_r": 4,
+    "bge": 7.9109,
+    "rlj": 0.1386,
+    "lcr": 0.8153,
+    "luminance_inner": 155.94,
+    "luminance_outer": 191.27,
+    "hf_ratio": 20.7761
+   },
+   {
+    "sample_id": "a0063",
+    "bbox": [
+     691,
+     145,
+     719,
+     171
+    ],
+    "target_px_measured": 29,
+    "area_px": 314,
+    "band_r": 2,
+    "bge": 6.1374,
+    "rlj": 0.106,
+    "lcr": 0.8362,
+    "luminance_inner": 138.04,
+    "luminance_outer": 165.07,
+    "hf_ratio": 28.1687
+   },
+   {
+    "sample_id": "a0064",
+    "bbox": [
+     373,
+     525,
+     463,
+     620
+    ],
+    "target_px_measured": 96,
+    "area_px": 2224,
+    "band_r": 4,
+    "bge": 0.8941,
+    "rlj": 0.2458,
+    "lcr": 2.2321,
+    "luminance_inner": 113.57,
+    "luminance_outer": 50.88,
+    "hf_ratio": 3.4312
+   },
+   {
+    "sample_id": "a0065",
+    "bbox": [
+     472,
+     211,
+     519,
+     244
+    ],
+    "target_px_measured": 48,
+    "area_px": 669,
+    "band_r": 3,
+    "bge": 0.2963,
+    "rlj": 0.0003,
+    "lcr": 1.0017,
+    "luminance_inner": 46.44,
+    "luminance_outer": 46.36,
+    "hf_ratio": 1.0483
+   },
+   {
+    "sample_id": "a0066",
+    "bbox": [
+     1056,
+     760,
+     1079,
+     782
+    ],
+    "target_px_measured": 24,
+    "area_px": 235,
+    "band_r": 2,
+    "bge": 2.249,
+    "rlj": 0.1629,
+    "lcr": 1.29,
+    "luminance_inner": 184.75,
+    "luminance_outer": 143.22,
+    "hf_ratio": 6.8673
+   },
+   {
+    "sample_id": "a0067",
+    "bbox": [
+     804,
+     246,
+     893,
+     307
+    ],
+    "target_px_measured": 90,
+    "area_px": 2895,
+    "band_r": 4,
+    "bge": 3.1564,
+    "rlj": 0.0785,
+    "lcr": 1.1592,
+    "luminance_inner": 145.68,
+    "luminance_outer": 125.67,
+    "hf_ratio": 8.8582
+   },
+   {
+    "sample_id": "a0068",
+    "bbox": [
+     1392,
+     167,
+     1428,
+     199
+    ],
+    "target_px_measured": 37,
+    "area_px": 500,
+    "band_r": 3,
+    "bge": 3.0981,
+    "rlj": 0.1964,
+    "lcr": 1.4221,
+    "luminance_inner": 168.71,
+    "luminance_outer": 118.64,
+    "hf_ratio": 10.9947
+   },
+   {
+    "sample_id": "a0069",
+    "bbox": [
+     490,
+     359,
+     509,
+     377
+    ],
+    "target_px_measured": 20,
+    "area_px": 167,
+    "band_r": 2,
+    "bge": 1.2433,
+    "rlj": 0.4287,
+    "lcr": 0.3192,
+    "luminance_inner": 51.25,
+    "luminance_outer": 160.57,
+    "hf_ratio": 4.5914
+   },
+   {
+    "sample_id": "a0070",
+    "bbox": [
+     338,
+     233,
+     402,
+     284
+    ],
+    "target_px_measured": 65,
+    "area_px": 1227,
+    "band_r": 4,
+    "bge": 0.4943,
+    "rlj": 0.1392,
+    "lcr": 0.6836,
+    "luminance_inner": 76.7,
+    "luminance_outer": 112.2,
+    "hf_ratio": 1.7843
+   },
+   {
+    "sample_id": "a0071",
+    "bbox": [
+     1461,
+     467,
+     1490,
+     491
+    ],
+    "target_px_measured": 30,
+    "area_px": 353,
+    "band_r": 2,
+    "bge": 18.0067,
+    "rlj": 0.0863,
+    "lcr": 1.177,
+    "luminance_inner": 146.41,
+    "luminance_outer": 124.39,
+    "hf_ratio": 57.1162
+   },
+   {
+    "sample_id": "a0072",
+    "bbox": [
+     150,
+     372,
+     218,
+     467
+    ],
+    "target_px_measured": 96,
+    "area_px": 3979,
+    "band_r": 4,
+    "bge": 0.4508,
+    "rlj": 0.3207,
+    "lcr": 3.3487,
+    "luminance_inner": 116.59,
+    "luminance_outer": 34.82,
+    "hf_ratio": 1.7882
+   },
+   {
+    "sample_id": "a0073",
+    "bbox": [
+     536,
+     395,
+     583,
+     433
+    ],
+    "target_px_measured": 48,
+    "area_px": 580,
+    "band_r": 3,
+    "bge": 1.8652,
+    "rlj": 0.376,
+    "lcr": 0.2043,
+    "luminance_inner": 24.61,
+    "luminance_outer": 120.49,
+    "hf_ratio": 6.6685
+   },
+   {
+    "sample_id": "a0074",
+    "bbox": [
+     302,
+     109,
+     325,
+     122
+    ],
+    "target_px_measured": 24,
+    "area_px": 208,
+    "band_r": 2,
+    "bge": 0.2122,
+    "rlj": 0.0867,
+    "lcr": 3.2947,
+    "luminance_inner": 31.74,
+    "luminance_outer": 9.63,
+    "hf_ratio": 1.1542
+   },
+   {
+    "sample_id": "a0075",
+    "bbox": [
+     542,
+     495,
+     631,
+     550
+    ],
+    "target_px_measured": 90,
+    "area_px": 2424,
+    "band_r": 4,
+    "bge": 2.3066,
+    "rlj": 0.0979,
+    "lcr": 1.2074,
+    "luminance_inner": 145.3,
+    "luminance_outer": 120.34,
+    "hf_ratio": 7.1116
+   },
+   {
+    "sample_id": "a0076",
+    "bbox": [
+     732,
+     67,
+     755,
+     103
+    ],
+    "target_px_measured": 37,
+    "area_px": 471,
+    "band_r": 3,
+    "bge": 4.4376,
+    "rlj": 0.6731,
+    "lcr": 0.2955,
+    "luminance_inner": 72.0,
+    "luminance_outer": 243.65,
+    "hf_ratio": 18.3236
+   },
+   {
+    "sample_id": "a0077",
+    "bbox": [
+     624,
+     232,
+     643,
+     245
+    ],
+    "target_px_measured": 20,
+    "area_px": 106,
+    "band_r": 1,
+    "bge": 2.6625,
+    "rlj": 0.1684,
+    "lcr": 0.7613,
+    "luminance_inner": 136.9,
+    "luminance_outer": 179.84,
+    "hf_ratio": 9.0087
+   },
+   {
+    "sample_id": "a0078",
+    "bbox": [
+     170,
+     474,
+     234,
+     510
+    ],
+    "target_px_measured": 65,
+    "area_px": 944,
+    "band_r": 4,
+    "bge": 2.1807,
+    "rlj": 0.2236,
+    "lcr": 4.1143,
+    "luminance_inner": 75.34,
+    "luminance_outer": 18.31,
+    "hf_ratio": 7.6932
+   },
+   {
+    "sample_id": "a0079",
+    "bbox": [
+     354,
+     870,
+     383,
+     896
+    ],
+    "target_px_measured": 30,
+    "area_px": 311,
+    "band_r": 2,
+    "bge": 0.6983,
+    "rlj": 0.2597,
+    "lcr": 1.8983,
+    "luminance_inner": 139.94,
+    "luminance_outer": 73.72,
+    "hf_ratio": 3.1408
+   },
+   {
+    "sample_id": "a0080",
+    "bbox": [
+     1057,
+     466,
+     1152,
+     532
+    ],
+    "target_px_measured": 96,
+    "area_px": 2274,
+    "band_r": 4,
+    "bge": 1.1376,
+    "rlj": 0.2765,
+    "lcr": 1.5727,
+    "luminance_inner": 193.61,
+    "luminance_outer": 123.11,
+    "hf_ratio": 4.609
+   },
+   {
+    "sample_id": "a0081",
+    "bbox": [
+     1089,
+     264,
+     1136,
+     303
+    ],
+    "target_px_measured": 48,
+    "area_px": 979,
+    "band_r": 4,
+    "bge": 5.0026,
+    "rlj": 0.157,
+    "lcr": 1.3551,
+    "luminance_inner": 152.74,
+    "luminance_outer": 112.71,
+    "hf_ratio": 11.0251
+   },
+   {
+    "sample_id": "a0082",
+    "bbox": [
+     449,
+     182,
+     472,
+     197
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.3817,
+    "rlj": 0.2296,
+    "lcr": 2.6105,
+    "luminance_inner": 94.92,
+    "luminance_outer": 36.36,
+    "hf_ratio": 1.5715
+   },
+   {
+    "sample_id": "a0083",
+    "bbox": [
+     842,
+     526,
+     931,
+     610
+    ],
+    "target_px_measured": 90,
+    "area_px": 2839,
+    "band_r": 4,
+    "bge": 0.4721,
+    "rlj": 0.2769,
+    "lcr": 3.5578,
+    "luminance_inner": 98.22,
+    "luminance_outer": 27.61,
+    "hf_ratio": 2.7632
+   },
+   {
+    "sample_id": "a0084",
+    "bbox": [
+     731,
+     162,
+     767,
+     195
+    ],
+    "target_px_measured": 37,
+    "area_px": 412,
+    "band_r": 3,
+    "bge": 1.0024,
+    "rlj": 0.3493,
+    "lcr": 0.4398,
+    "luminance_inner": 69.94,
+    "luminance_outer": 159.03,
+    "hf_ratio": 3.9127
+   },
+   {
+    "sample_id": "a0085",
+    "bbox": [
+     1463,
+     319,
+     1482,
+     336
+    ],
+    "target_px_measured": 20,
+    "area_px": 161,
+    "band_r": 2,
+    "bge": 0.2926,
+    "rlj": 0.121,
+    "lcr": 0.6351,
+    "luminance_inner": 53.69,
+    "luminance_outer": 84.53,
+    "hf_ratio": 0.8064
+   },
+   {
+    "sample_id": "a0086",
+    "bbox": [
+     219,
+     398,
+     283,
+     457
+    ],
+    "target_px_measured": 65,
+    "area_px": 1514,
+    "band_r": 4,
+    "bge": 1.1094,
+    "rlj": 0.1114,
+    "lcr": 0.7405,
+    "luminance_inner": 81.09,
+    "luminance_outer": 109.5,
+    "hf_ratio": 4.0125
+   },
+   {
+    "sample_id": "a0087",
+    "bbox": [
+     1107,
+     129,
+     1136,
+     153
+    ],
+    "target_px_measured": 30,
+    "area_px": 263,
+    "band_r": 2,
+    "bge": 4.1431,
+    "rlj": 0.2985,
+    "lcr": 1.5822,
+    "luminance_inner": 206.89,
+    "luminance_outer": 130.76,
+    "hf_ratio": 14.7784
+   },
+   {
+    "sample_id": "a0088",
+    "bbox": [
+     883,
+     115,
+     978,
+     168
+    ],
+    "target_px_measured": 96,
+    "area_px": 2529,
+    "band_r": 4,
+    "bge": 1.0562,
+    "rlj": 0.3097,
+    "lcr": 0.5945,
+    "luminance_inner": 115.79,
+    "luminance_outer": 194.76,
+    "hf_ratio": 3.747
+   },
+   {
+    "sample_id": "a0089",
+    "bbox": [
+     260,
+     318,
+     306,
+     365
+    ],
+    "target_px_measured": 48,
+    "area_px": 834,
+    "band_r": 4,
+    "bge": 1.1537,
+    "rlj": 0.2511,
+    "lcr": 1.5841,
+    "luminance_inner": 173.66,
+    "luminance_outer": 109.63,
+    "hf_ratio": 3.5359
+   },
+   {
+    "sample_id": "a0090",
+    "bbox": [
+     769,
+     140,
+     792,
+     160
+    ],
+    "target_px_measured": 24,
+    "area_px": 203,
+    "band_r": 2,
+    "bge": 0.7028,
+    "rlj": 0.3638,
+    "lcr": 2.3163,
+    "luminance_inner": 163.24,
+    "luminance_outer": 70.47,
+    "hf_ratio": 3.0562
+   },
+   {
+    "sample_id": "a0091",
+    "bbox": [
+     379,
+     53,
+     468,
+     134
+    ],
+    "target_px_measured": 90,
+    "area_px": 3370,
+    "band_r": 4,
+    "bge": 2.3284,
+    "rlj": 0.1389,
+    "lcr": 1.3574,
+    "luminance_inner": 134.51,
+    "luminance_outer": 99.1,
+    "hf_ratio": 6.1998
+   },
+   {
+    "sample_id": "a0092",
+    "bbox": [
+     336,
+     195,
+     370,
+     231
+    ],
+    "target_px_measured": 37,
+    "area_px": 546,
+    "band_r": 3,
+    "bge": 0.6051,
+    "rlj": 0.0022,
+    "lcr": 1.0056,
+    "luminance_inner": 99.88,
+    "luminance_outer": 99.32,
+    "hf_ratio": 3.0224
+   },
+   {
+    "sample_id": "a0093",
+    "bbox": [
+     1064,
+     541,
+     1083,
+     556
+    ],
+    "target_px_measured": 20,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 0.7395,
+    "rlj": 0.3591,
+    "lcr": 0.2466,
+    "luminance_inner": 29.98,
+    "luminance_outer": 121.56,
+    "hf_ratio": 3.6992
+   },
+   {
+    "sample_id": "a0094",
+    "bbox": [
+     944,
+     537,
+     1008,
+     583
+    ],
+    "target_px_measured": 65,
+    "area_px": 1255,
+    "band_r": 4,
+    "bge": 1.342,
+    "rlj": 0.141,
+    "lcr": 0.6761,
+    "luminance_inner": 75.04,
+    "luminance_outer": 110.98,
+    "hf_ratio": 5.7751
+   },
+   {
+    "sample_id": "a0095",
+    "bbox": [
+     776,
+     352,
+     805,
+     381
+    ],
+    "target_px_measured": 30,
+    "area_px": 308,
+    "band_r": 2,
+    "bge": 0.6244,
+    "rlj": 0.5356,
+    "lcr": 0.2427,
+    "luminance_inner": 43.76,
+    "luminance_outer": 180.34,
+    "hf_ratio": 3.2009
+   },
+   {
+    "sample_id": "a0096",
+    "bbox": [
+     728,
+     239,
+     823,
+     298
+    ],
+    "target_px_measured": 96,
+    "area_px": 2429,
+    "band_r": 4,
+    "bge": 2.9491,
+    "rlj": 0.2311,
+    "lcr": 0.6995,
+    "luminance_inner": 137.17,
+    "luminance_outer": 196.1,
+    "hf_ratio": 9.0102
+   },
+   {
+    "sample_id": "a0097",
+    "bbox": [
+     456,
+     381,
+     503,
+     415
+    ],
+    "target_px_measured": 48,
+    "area_px": 796,
+    "band_r": 4,
+    "bge": 3.2014,
+    "rlj": 0.2591,
+    "lcr": 0.6816,
+    "luminance_inner": 141.43,
+    "luminance_outer": 207.5,
+    "hf_ratio": 12.3941
+   },
+   {
+    "sample_id": "a0098",
+    "bbox": [
+     150,
+     126,
+     173,
+     144
+    ],
+    "target_px_measured": 24,
+    "area_px": 173,
+    "band_r": 2,
+    "bge": 1.4937,
+    "rlj": 0.5397,
+    "lcr": 0.2626,
+    "luminance_inner": 49.01,
+    "luminance_outer": 186.64,
+    "hf_ratio": 6.3196
+   },
+   {
+    "sample_id": "a0099",
+    "bbox": [
+     607,
+     379,
+     696,
+     432
+    ],
+    "target_px_measured": 90,
+    "area_px": 1969,
+    "band_r": 4,
+    "bge": 8.8092,
+    "rlj": 0.4154,
+    "lcr": 0.182,
+    "luminance_inner": 23.57,
+    "luminance_outer": 129.49,
+    "hf_ratio": 24.8507
+   }
+  ],
+  "out_E4_seg": [
+   {
+    "sample_id": "a0000",
+    "bbox": [
+     842,
+     250,
+     937,
+     336
+    ],
+    "target_px_measured": 96,
+    "area_px": 2732,
+    "band_r": 4,
+    "bge": 0.7574,
+    "rlj": 0.21,
+    "lcr": 2.4476,
+    "luminance_inner": 90.55,
+    "luminance_outer": 37.0,
+    "hf_ratio": 2.4276
+   },
+   {
+    "sample_id": "a0001",
+    "bbox": [
+     1069,
+     301,
+     1114,
+     348
+    ],
+    "target_px_measured": 48,
+    "area_px": 900,
+    "band_r": 4,
+    "bge": 3.1765,
+    "rlj": 0.4816,
+    "lcr": 0.2953,
+    "luminance_inner": 51.47,
+    "luminance_outer": 174.28,
+    "hf_ratio": 9.1227
+   },
+   {
+    "sample_id": "a0002",
+    "bbox": [
+     948,
+     553,
+     971,
+     574
+    ],
+    "target_px_measured": 24,
+    "area_px": 177,
+    "band_r": 2,
+    "bge": 0.769,
+    "rlj": 0.2246,
+    "lcr": 1.6815,
+    "luminance_inner": 141.33,
+    "luminance_outer": 84.05,
+    "hf_ratio": 3.489
+   },
+   {
+    "sample_id": "a0003",
+    "bbox": [
+     1014,
+     753,
+     1103,
+     817
+    ],
+    "target_px_measured": 90,
+    "area_px": 2621,
+    "band_r": 4,
+    "bge": 2.6428,
+    "rlj": 0.0779,
+    "lcr": 0.7997,
+    "luminance_inner": 79.31,
+    "luminance_outer": 99.18,
+    "hf_ratio": 8.7057
+   },
+   {
+    "sample_id": "a0004",
+    "bbox": [
+     406,
+     213,
+     442,
+     238
+    ],
+    "target_px_measured": 37,
+    "area_px": 323,
+    "band_r": 2,
+    "bge": 0.3271,
+    "rlj": 0.3934,
+    "lcr": 3.4497,
+    "luminance_inner": 141.27,
+    "luminance_outer": 40.95,
+    "hf_ratio": 1.1038
+   },
+   {
+    "sample_id": "a0005",
+    "bbox": [
+     745,
+     202,
+     764,
+     215
+    ],
+    "target_px_measured": 20,
+    "area_px": 108,
+    "band_r": 1,
+    "bge": 1.1654,
+    "rlj": 0.218,
+    "lcr": 0.7003,
+    "luminance_inner": 129.89,
+    "luminance_outer": 185.47,
+    "hf_ratio": 6.2852
+   },
+   {
+    "sample_id": "a0006",
+    "bbox": [
+     1597,
+     684,
+     1661,
+     743
+    ],
+    "target_px_measured": 65,
+    "area_px": 2044,
+    "band_r": 4,
+    "bge": 8.2066,
+    "rlj": 0.0408,
+    "lcr": 0.9118,
+    "luminance_inner": 107.59,
+    "luminance_outer": 118.0,
+    "hf_ratio": 28.7464
+   },
+   {
+    "sample_id": "a0007",
+    "bbox": [
+     653,
+     643,
+     682,
+     666
+    ],
+    "target_px_measured": 30,
+    "area_px": 291,
+    "band_r": 2,
+    "bge": 1.0867,
+    "rlj": 0.2565,
+    "lcr": 0.6094,
+    "luminance_inner": 102.02,
+    "luminance_outer": 167.42,
+    "hf_ratio": 4.6073
+   },
+   {
+    "sample_id": "a0008",
+    "bbox": [
+     1392,
+     339,
+     1487,
+     391
+    ],
+    "target_px_measured": 96,
+    "area_px": 1874,
+    "band_r": 4,
+    "bge": 0.8154,
+    "rlj": 0.5531,
+    "lcr": 3.587,
+    "luminance_inner": 195.56,
+    "luminance_outer": 54.52,
+    "hf_ratio": 3.738
+   },
+   {
+    "sample_id": "a0009",
+    "bbox": [
+     227,
+     277,
+     274,
+     322
+    ],
+    "target_px_measured": 48,
+    "area_px": 905,
+    "band_r": 4,
+    "bge": 1.1133,
+    "rlj": 0.0454,
+    "lcr": 1.0922,
+    "luminance_inner": 137.17,
+    "luminance_outer": 125.59,
+    "hf_ratio": 4.5766
+   },
+   {
+    "sample_id": "a0010",
+    "bbox": [
+     764,
+     176,
+     787,
+     191
+    ],
+    "target_px_measured": 24,
+    "area_px": 158,
+    "band_r": 2,
+    "bge": 3.9339,
+    "rlj": 0.5424,
+    "lcr": 0.1911,
+    "luminance_inner": 32.68,
+    "luminance_outer": 170.98,
+    "hf_ratio": 13.6706
+   },
+   {
+    "sample_id": "a0011",
+    "bbox": [
+     862,
+     693,
+     951,
+     754
+    ],
+    "target_px_measured": 90,
+    "area_px": 1695,
+    "band_r": 4,
+    "bge": 3.0255,
+    "rlj": 0.3169,
+    "lcr": 1.6669,
+    "luminance_inner": 201.95,
+    "luminance_outer": 121.15,
+    "hf_ratio": 13.0469
+   },
+   {
+    "sample_id": "a0012",
+    "bbox": [
+     196,
+     524,
+     232,
+     553
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 0.3283,
+    "rlj": 0.1244,
+    "lcr": 1.686,
+    "luminance_inner": 77.99,
+    "luminance_outer": 46.26,
+    "hf_ratio": 1.3867
+   },
+   {
+    "sample_id": "a0013",
+    "bbox": [
+     234,
+     491,
+     253,
+     508
+    ],
+    "target_px_measured": 20,
+    "area_px": 138,
+    "band_r": 1,
+    "bge": 0.7651,
+    "rlj": 0.0152,
+    "lcr": 0.9652,
+    "luminance_inner": 107.11,
+    "luminance_outer": 110.97,
+    "hf_ratio": 3.6031
+   },
+   {
+    "sample_id": "a0014",
+    "bbox": [
+     1372,
+     580,
+     1436,
+     639
+    ],
+    "target_px_measured": 65,
+    "area_px": 1506,
+    "band_r": 4,
+    "bge": 2.4216,
+    "rlj": 0.0971,
+    "lcr": 0.7724,
+    "luminance_inner": 83.99,
+    "luminance_outer": 108.74,
+    "hf_ratio": 8.2416
+   },
+   {
+    "sample_id": "a0015",
+    "bbox": [
+     1089,
+     712,
+     1109,
+     741
+    ],
+    "target_px_measured": 30,
+    "area_px": 254,
+    "band_r": 2,
+    "bge": 2.1666,
+    "rlj": 0.4712,
+    "lcr": 0.3594,
+    "luminance_inner": 67.41,
+    "luminance_outer": 187.57,
+    "hf_ratio": 8.7283
+   },
+   {
+    "sample_id": "a0016",
+    "bbox": [
+     342,
+     210,
+     437,
+     282
+    ],
+    "target_px_measured": 96,
+    "area_px": 2651,
+    "band_r": 4,
+    "bge": 2.9012,
+    "rlj": 0.18,
+    "lcr": 0.6269,
+    "luminance_inner": 77.11,
+    "luminance_outer": 123.01,
+    "hf_ratio": 7.1125
+   },
+   {
+    "sample_id": "a0017",
+    "bbox": [
+     197,
+     515,
+     231,
+     562
+    ],
+    "target_px_measured": 48,
+    "area_px": 959,
+    "band_r": 4,
+    "bge": 0.7169,
+    "rlj": 0.329,
+    "lcr": 1.6698,
+    "luminance_inner": 209.13,
+    "luminance_outer": 125.24,
+    "hf_ratio": 2.8167
+   },
+   {
+    "sample_id": "a0018",
+    "bbox": [
+     373,
+     546,
+     396,
+     563
+    ],
+    "target_px_measured": 24,
+    "area_px": 184,
+    "band_r": 2,
+    "bge": 1.2637,
+    "rlj": 0.2042,
+    "lcr": 0.4998,
+    "luminance_inner": 52.03,
+    "luminance_outer": 104.1,
+    "hf_ratio": 4.1685
+   },
+   {
+    "sample_id": "a0019",
+    "bbox": [
+     546,
+     60,
+     631,
+     149
+    ],
+    "target_px_measured": 90,
+    "area_px": 3310,
+    "band_r": 4,
+    "bge": 2.1774,
+    "rlj": 0.5499,
+    "lcr": 0.3662,
+    "luminance_inner": 81.0,
+    "luminance_outer": 221.22,
+    "hf_ratio": 7.5246
+   },
+   {
+    "sample_id": "a0020",
+    "bbox": [
+     986,
+     570,
+     1022,
+     587
+    ],
+    "target_px_measured": 37,
+    "area_px": 303,
+    "band_r": 2,
+    "bge": 0.8318,
+    "rlj": 0.1792,
+    "lcr": 0.5864,
+    "luminance_inner": 64.8,
+    "luminance_outer": 110.51,
+    "hf_ratio": 4.2931
+   },
+   {
+    "sample_id": "a0021",
+    "bbox": [
+     249,
+     354,
+     268,
+     362
+    ],
+    "target_px_measured": 20,
+    "area_px": 71,
+    "band_r": 1,
+    "bge": 1.2281,
+    "rlj": 0.126,
+    "lcr": 0.847,
+    "luminance_inner": 177.94,
+    "luminance_outer": 210.08,
+    "hf_ratio": 4.3214
+   },
+   {
+    "sample_id": "a0022",
+    "bbox": [
+     654,
+     463,
+     718,
+     513
+    ],
+    "target_px_measured": 65,
+    "area_px": 1405,
+    "band_r": 4,
+    "bge": 1.4568,
+    "rlj": 0.3864,
+    "lcr": 0.468,
+    "luminance_inner": 86.69,
+    "luminance_outer": 185.22,
+    "hf_ratio": 6.7081
+   },
+   {
+    "sample_id": "a0023",
+    "bbox": [
+     336,
+     470,
+     365,
+     490
+    ],
+    "target_px_measured": 30,
+    "area_px": 228,
+    "band_r": 2,
+    "bge": 0.7602,
+    "rlj": 0.0179,
+    "lcr": 1.0357,
+    "luminance_inner": 132.66,
+    "luminance_outer": 128.1,
+    "hf_ratio": 3.7354
+   },
+   {
+    "sample_id": "a0024",
+    "bbox": [
+     1017,
+     421,
+     1112,
+     475
+    ],
+    "target_px_measured": 96,
+    "area_px": 2569,
+    "band_r": 4,
+    "bge": 2.2935,
+    "rlj": 0.6828,
+    "lcr": 0.2589,
+    "luminance_inner": 60.83,
+    "luminance_outer": 234.96,
+    "hf_ratio": 8.7496
+   },
+   {
+    "sample_id": "a0025",
+    "bbox": [
+     1341,
+     334,
+     1388,
+     376
+    ],
+    "target_px_measured": 48,
+    "area_px": 791,
+    "band_r": 4,
+    "bge": 1.3039,
+    "rlj": 0.0065,
+    "lcr": 0.9893,
+    "luminance_inner": 153.58,
+    "luminance_outer": 155.25,
+    "hf_ratio": 6.4051
+   },
+   {
+    "sample_id": "a0026",
+    "bbox": [
+     628,
+     254,
+     651,
+     269
+    ],
+    "target_px_measured": 24,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 3.5299,
+    "rlj": 0.1491,
+    "lcr": 1.5551,
+    "luminance_inner": 106.53,
+    "luminance_outer": 68.51,
+    "hf_ratio": 8.8171
+   },
+   {
+    "sample_id": "a0027",
+    "bbox": [
+     140,
+     546,
+     229,
+     593
+    ],
+    "target_px_measured": 90,
+    "area_px": 1867,
+    "band_r": 4,
+    "bge": 3.2037,
+    "rlj": 0.1463,
+    "lcr": 1.6027,
+    "luminance_inner": 99.19,
+    "luminance_outer": 61.89,
+    "hf_ratio": 8.9224
+   },
+   {
+    "sample_id": "a0028",
+    "bbox": [
+     888,
+     174,
+     924,
+     206
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 4.6971,
+    "rlj": 0.1812,
+    "lcr": 4.6965,
+    "luminance_inner": 58.7,
+    "luminance_outer": 12.5,
+    "hf_ratio": 19.4403
+   },
+   {
+    "sample_id": "a0029",
+    "bbox": [
+     270,
+     186,
+     289,
+     199
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 1.1485,
+    "rlj": 0.5256,
+    "lcr": 0.2553,
+    "luminance_inner": 45.94,
+    "luminance_outer": 179.96,
+    "hf_ratio": 4.7575
+   },
+   {
+    "sample_id": "a0030",
+    "bbox": [
+     941,
+     423,
+     1005,
+     470
+    ],
+    "target_px_measured": 65,
+    "area_px": 1532,
+    "band_r": 4,
+    "bge": 1.3843,
+    "rlj": 0.1274,
+    "lcr": 0.764,
+    "luminance_inner": 105.17,
+    "luminance_outer": 137.67,
+    "hf_ratio": 5.0816
+   },
+   {
+    "sample_id": "a0031",
+    "bbox": [
+     803,
+     488,
+     832,
+     510
+    ],
+    "target_px_measured": 30,
+    "area_px": 292,
+    "band_r": 2,
+    "bge": 1.3072,
+    "rlj": 0.2746,
+    "lcr": 0.4076,
+    "luminance_inner": 48.17,
+    "luminance_outer": 118.19,
+    "hf_ratio": 5.6365
+   },
+   {
+    "sample_id": "a0032",
+    "bbox": [
+     373,
+     452,
+     468,
+     520
+    ],
+    "target_px_measured": 96,
+    "area_px": 2076,
+    "band_r": 4,
+    "bge": 0.8434,
+    "rlj": 0.1685,
+    "lcr": 1.3299,
+    "luminance_inner": 173.21,
+    "luminance_outer": 130.25,
+    "hf_ratio": 2.5781
+   },
+   {
+    "sample_id": "a0033",
+    "bbox": [
+     1000,
+     362,
+     1047,
+     392
+    ],
+    "target_px_measured": 48,
+    "area_px": 542,
+    "band_r": 3,
+    "bge": 2.0525,
+    "rlj": 0.5093,
+    "lcr": 0.2615,
+    "luminance_inner": 46.0,
+    "luminance_outer": 175.88,
+    "hf_ratio": 8.2492
+   },
+   {
+    "sample_id": "a0034",
+    "bbox": [
+     1041,
+     442,
+     1064,
+     463
+    ],
+    "target_px_measured": 24,
+    "area_px": 145,
+    "band_r": 2,
+    "bge": 1.4019,
+    "rlj": 0.2477,
+    "lcr": 1.7119,
+    "luminance_inner": 151.87,
+    "luminance_outer": 88.71,
+    "hf_ratio": 2.9687
+   },
+   {
+    "sample_id": "a0035",
+    "bbox": [
+     732,
+     465,
+     821,
+     504
+    ],
+    "target_px_measured": 90,
+    "area_px": 1926,
+    "band_r": 4,
+    "bge": 0.5781,
+    "rlj": 0.044,
+    "lcr": 0.8915,
+    "luminance_inner": 92.18,
+    "luminance_outer": 103.39,
+    "hf_ratio": 2.2147
+   },
+   {
+    "sample_id": "a0036",
+    "bbox": [
+     215,
+     314,
+     251,
+     340
+    ],
+    "target_px_measured": 37,
+    "area_px": 504,
+    "band_r": 3,
+    "bge": 1.8339,
+    "rlj": 0.2639,
+    "lcr": 2.1799,
+    "luminance_inner": 124.33,
+    "luminance_outer": 57.03,
+    "hf_ratio": 7.7237
+   },
+   {
+    "sample_id": "a0037",
+    "bbox": [
+     714,
+     246,
+     733,
+     256
+    ],
+    "target_px_measured": 20,
+    "area_px": 102,
+    "band_r": 1,
+    "bge": 2.3677,
+    "rlj": 0.2091,
+    "lcr": 0.6849,
+    "luminance_inner": 115.88,
+    "luminance_outer": 169.2,
+    "hf_ratio": 9.2302
+   },
+   {
+    "sample_id": "a0038",
+    "bbox": [
+     358,
+     424,
+     422,
+     469
+    ],
+    "target_px_measured": 65,
+    "area_px": 974,
+    "band_r": 4,
+    "bge": 0.7616,
+    "rlj": 0.0805,
+    "lcr": 0.6557,
+    "luminance_inner": 39.12,
+    "luminance_outer": 59.65,
+    "hf_ratio": 3.3485
+   },
+   {
+    "sample_id": "a0039",
+    "bbox": [
+     824,
+     256,
+     853,
+     281
+    ],
+    "target_px_measured": 30,
+    "area_px": 284,
+    "band_r": 2,
+    "bge": 1.7925,
+    "rlj": 0.6278,
+    "lcr": 0.2054,
+    "luminance_inner": 41.39,
+    "luminance_outer": 201.49,
+    "hf_ratio": 5.4302
+   },
+   {
+    "sample_id": "a0040",
+    "bbox": [
+     429,
+     453,
+     524,
+     522
+    ],
+    "target_px_measured": 96,
+    "area_px": 2119,
+    "band_r": 4,
+    "bge": 1.2451,
+    "rlj": 0.1324,
+    "lcr": 0.6037,
+    "luminance_inner": 51.45,
+    "luminance_outer": 85.22,
+    "hf_ratio": 4.4285
+   },
+   {
+    "sample_id": "a0041",
+    "bbox": [
+     1320,
+     731,
+     1367,
+     760
+    ],
+    "target_px_measured": 48,
+    "area_px": 477,
+    "band_r": 3,
+    "bge": 0.8015,
+    "rlj": 0.4401,
+    "lcr": 3.043,
+    "luminance_inner": 167.15,
+    "luminance_outer": 54.93,
+    "hf_ratio": 3.4013
+   },
+   {
+    "sample_id": "a0042",
+    "bbox": [
+     185,
+     361,
+     208,
+     376
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.8123,
+    "rlj": 0.4575,
+    "lcr": 3.3086,
+    "luminance_inner": 167.19,
+    "luminance_outer": 50.53,
+    "hf_ratio": 2.9052
+   },
+   {
+    "sample_id": "a0043",
+    "bbox": [
+     694,
+     87,
+     783,
+     154
+    ],
+    "target_px_measured": 90,
+    "area_px": 3156,
+    "band_r": 4,
+    "bge": 0.8702,
+    "rlj": 0.0631,
+    "lcr": 1.133,
+    "luminance_inner": 137.01,
+    "luminance_outer": 120.93,
+    "hf_ratio": 2.9513
+   },
+   {
+    "sample_id": "a0044",
+    "bbox": [
+     755,
+     367,
+     786,
+     403
+    ],
+    "target_px_measured": 37,
+    "area_px": 609,
+    "band_r": 3,
+    "bge": 1.3586,
+    "rlj": 0.138,
+    "lcr": 1.6346,
+    "luminance_inner": 90.65,
+    "luminance_outer": 55.45,
+    "hf_ratio": 4.1664
+   },
+   {
+    "sample_id": "a0045",
+    "bbox": [
+     386,
+     185,
+     405,
+     197
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 9.8026,
+    "rlj": 0.1624,
+    "lcr": 2.0372,
+    "luminance_inner": 81.34,
+    "luminance_outer": 39.93,
+    "hf_ratio": 36.5381
+   },
+   {
+    "sample_id": "a0046",
+    "bbox": [
+     157,
+     70,
+     221,
+     120
+    ],
+    "target_px_measured": 65,
+    "area_px": 1338,
+    "band_r": 4,
+    "bge": 0.363,
+    "rlj": 0.2183,
+    "lcr": 3.1223,
+    "luminance_inner": 81.89,
+    "luminance_outer": 26.23,
+    "hf_ratio": 1.364
+   },
+   {
+    "sample_id": "a0047",
+    "bbox": [
+     838,
+     311,
+     866,
+     333
+    ],
+    "target_px_measured": 29,
+    "area_px": 250,
+    "band_r": 2,
+    "bge": 1.3223,
+    "rlj": 0.0766,
+    "lcr": 0.8903,
+    "luminance_inner": 158.67,
+    "luminance_outer": 178.21,
+    "hf_ratio": 5.2185
+   },
+   {
+    "sample_id": "a0048",
+    "bbox": [
+     1017,
+     60,
+     1112,
+     131
+    ],
+    "target_px_measured": 96,
+    "area_px": 2209,
+    "band_r": 4,
+    "bge": 11.2608,
+    "rlj": 0.6682,
+    "lcr": 0.2109,
+    "luminance_inner": 45.53,
+    "luminance_outer": 215.91,
+    "hf_ratio": 24.4144
+   },
+   {
+    "sample_id": "a0049",
+    "bbox": [
+     733,
+     483,
+     780,
+     513
+    ],
+    "target_px_measured": 48,
+    "area_px": 699,
+    "band_r": 3,
+    "bge": 0.7258,
+    "rlj": 0.0326,
+    "lcr": 0.9483,
+    "luminance_inner": 152.66,
+    "luminance_outer": 160.98,
+    "hf_ratio": 3.0613
+   },
+   {
+    "sample_id": "a0050",
+    "bbox": [
+     356,
+     396,
+     379,
+     413
+    ],
+    "target_px_measured": 24,
+    "area_px": 172,
+    "band_r": 2,
+    "bge": 1.9107,
+    "rlj": 0.4669,
+    "lcr": 0.5023,
+    "luminance_inner": 120.13,
+    "luminance_outer": 239.18,
+    "hf_ratio": 6.5324
+   },
+   {
+    "sample_id": "a0051",
+    "bbox": [
+     803,
+     127,
+     892,
+     211
+    ],
+    "target_px_measured": 90,
+    "area_px": 3389,
+    "band_r": 4,
+    "bge": 0.5559,
+    "rlj": 0.0477,
+    "lcr": 0.937,
+    "luminance_inner": 180.81,
+    "luminance_outer": 192.96,
+    "hf_ratio": 1.791
+   },
+   {
+    "sample_id": "a0052",
+    "bbox": [
+     264,
+     180,
+     297,
+     216
+    ],
+    "target_px_measured": 37,
+    "area_px": 469,
+    "band_r": 3,
+    "bge": 0.8159,
+    "rlj": 0.2642,
+    "lcr": 2.0878,
+    "luminance_inner": 129.3,
+    "luminance_outer": 61.93,
+    "hf_ratio": 3.899
+   },
+   {
+    "sample_id": "a0053",
+    "bbox": [
+     504,
+     375,
+     516,
+     394
+    ],
+    "target_px_measured": 20,
+    "area_px": 123,
+    "band_r": 1,
+    "bge": 0.6439,
+    "rlj": 0.0298,
+    "lcr": 0.9308,
+    "luminance_inner": 102.18,
+    "luminance_outer": 109.77,
+    "hf_ratio": 2.8194
+   },
+   {
+    "sample_id": "a0054",
+    "bbox": [
+     1391,
+     766,
+     1455,
+     817
+    ],
+    "target_px_measured": 65,
+    "area_px": 1581,
+    "band_r": 4,
+    "bge": 7.0168,
+    "rlj": 0.5512,
+    "lcr": 0.2624,
+    "luminance_inner": 50.0,
+    "luminance_outer": 190.55,
+    "hf_ratio": 21.0759
+   },
+   {
+    "sample_id": "a0055",
+    "bbox": [
+     817,
+     144,
+     846,
+     168
+    ],
+    "target_px_measured": 30,
+    "area_px": 395,
+    "band_r": 2,
+    "bge": 0.8031,
+    "rlj": 0.2099,
+    "lcr": 1.6845,
+    "luminance_inner": 131.75,
+    "luminance_outer": 78.21,
+    "hf_ratio": 3.0852
+   },
+   {
+    "sample_id": "a0056",
+    "bbox": [
+     169,
+     371,
+     250,
+     466
+    ],
+    "target_px_measured": 96,
+    "area_px": 2949,
+    "band_r": 4,
+    "bge": 0.723,
+    "rlj": 0.148,
+    "lcr": 1.3825,
+    "luminance_inner": 136.37,
+    "luminance_outer": 98.64,
+    "hf_ratio": 2.6262
+   },
+   {
+    "sample_id": "a0057",
+    "bbox": [
+     690,
+     290,
+     737,
+     324
+    ],
+    "target_px_measured": 48,
+    "area_px": 786,
+    "band_r": 4,
+    "bge": 0.7781,
+    "rlj": 0.0161,
+    "lcr": 0.9718,
+    "luminance_inner": 141.48,
+    "luminance_outer": 145.59,
+    "hf_ratio": 3.6763
+   },
+   {
+    "sample_id": "a0058",
+    "bbox": [
+     789,
+     84,
+     812,
+     98
+    ],
+    "target_px_measured": 24,
+    "area_px": 183,
+    "band_r": 2,
+    "bge": 0.4187,
+    "rlj": 0.0591,
+    "lcr": 1.349,
+    "luminance_inner": 58.23,
+    "luminance_outer": 43.17,
+    "hf_ratio": 1.3891
+   },
+   {
+    "sample_id": "a0059",
+    "bbox": [
+     766,
+     507,
+     855,
+     570
+    ],
+    "target_px_measured": 90,
+    "area_px": 2201,
+    "band_r": 4,
+    "bge": 3.2312,
+    "rlj": 0.69,
+    "lcr": 0.1775,
+    "luminance_inner": 37.98,
+    "luminance_outer": 213.93,
+    "hf_ratio": 11.6515
+   },
+   {
+    "sample_id": "a0060",
+    "bbox": [
+     1028,
+     332,
+     1064,
+     356
+    ],
+    "target_px_measured": 37,
+    "area_px": 518,
+    "band_r": 3,
+    "bge": 3.1639,
+    "rlj": 0.0246,
+    "lcr": 0.9671,
+    "luminance_inner": 184.25,
+    "luminance_outer": 190.52,
+    "hf_ratio": 15.9795
+   },
+   {
+    "sample_id": "a0061",
+    "bbox": [
+     1412,
+     300,
+     1431,
+     313
+    ],
+    "target_px_measured": 20,
+    "area_px": 113,
+    "band_r": 1,
+    "bge": 1.1352,
+    "rlj": 0.0626,
+    "lcr": 0.8897,
+    "luminance_inner": 128.78,
+    "luminance_outer": 144.74,
+    "hf_ratio": 3.5839
+   },
+   {
+    "sample_id": "a0062",
+    "bbox": [
+     972,
+     447,
+     1036,
+     502
+    ],
+    "target_px_measured": 65,
+    "area_px": 1645,
+    "band_r": 4,
+    "bge": 7.3973,
+    "rlj": 0.1849,
+    "lcr": 0.7534,
+    "luminance_inner": 144.07,
+    "luminance_outer": 191.23,
+    "hf_ratio": 19.4017
+   },
+   {
+    "sample_id": "a0063",
+    "bbox": [
+     691,
+     145,
+     719,
+     171
+    ],
+    "target_px_measured": 29,
+    "area_px": 314,
+    "band_r": 2,
+    "bge": 6.8464,
+    "rlj": 0.1042,
+    "lcr": 0.8389,
+    "luminance_inner": 138.43,
+    "luminance_outer": 165.0,
+    "hf_ratio": 31.393
+   },
+   {
+    "sample_id": "a0064",
+    "bbox": [
+     373,
+     525,
+     463,
+     620
+    ],
+    "target_px_measured": 96,
+    "area_px": 2224,
+    "band_r": 4,
+    "bge": 0.9994,
+    "rlj": 0.3013,
+    "lcr": 2.5125,
+    "luminance_inner": 127.64,
+    "luminance_outer": 50.8,
+    "hf_ratio": 3.8345
+   },
+   {
+    "sample_id": "a0065",
+    "bbox": [
+     472,
+     211,
+     519,
+     244
+    ],
+    "target_px_measured": 48,
+    "area_px": 669,
+    "band_r": 3,
+    "bge": 0.6192,
+    "rlj": 0.0226,
+    "lcr": 1.1239,
+    "luminance_inner": 52.19,
+    "luminance_outer": 46.44,
+    "hf_ratio": 2.1953
+   },
+   {
+    "sample_id": "a0066",
+    "bbox": [
+     1056,
+     760,
+     1079,
+     782
+    ],
+    "target_px_measured": 24,
+    "area_px": 235,
+    "band_r": 2,
+    "bge": 2.947,
+    "rlj": 0.2562,
+    "lcr": 1.4559,
+    "luminance_inner": 208.64,
+    "luminance_outer": 143.3,
+    "hf_ratio": 8.9945
+   },
+   {
+    "sample_id": "a0067",
+    "bbox": [
+     804,
+     246,
+     893,
+     307
+    ],
+    "target_px_measured": 90,
+    "area_px": 2895,
+    "band_r": 4,
+    "bge": 3.3222,
+    "rlj": 0.0474,
+    "lcr": 1.0963,
+    "luminance_inner": 137.71,
+    "luminance_outer": 125.61,
+    "hf_ratio": 9.3202
+   },
+   {
+    "sample_id": "a0068",
+    "bbox": [
+     1392,
+     167,
+     1428,
+     199
+    ],
+    "target_px_measured": 37,
+    "area_px": 500,
+    "band_r": 3,
+    "bge": 3.0986,
+    "rlj": 0.1513,
+    "lcr": 1.3253,
+    "luminance_inner": 157.22,
+    "luminance_outer": 118.63,
+    "hf_ratio": 10.9995
+   },
+   {
+    "sample_id": "a0069",
+    "bbox": [
+     490,
+     359,
+     509,
+     377
+    ],
+    "target_px_measured": 20,
+    "area_px": 167,
+    "band_r": 2,
+    "bge": 1.3347,
+    "rlj": 0.3813,
+    "lcr": 0.3946,
+    "luminance_inner": 63.39,
+    "luminance_outer": 160.63,
+    "hf_ratio": 4.929
+   },
+   {
+    "sample_id": "a0070",
+    "bbox": [
+     338,
+     233,
+     402,
+     284
+    ],
+    "target_px_measured": 65,
+    "area_px": 1227,
+    "band_r": 4,
+    "bge": 0.652,
+    "rlj": 0.3391,
+    "lcr": 0.2293,
+    "luminance_inner": 25.72,
+    "luminance_outer": 112.2,
+    "hf_ratio": 2.3541
+   },
+   {
+    "sample_id": "a0071",
+    "bbox": [
+     1461,
+     467,
+     1490,
+     491
+    ],
+    "target_px_measured": 30,
+    "area_px": 353,
+    "band_r": 2,
+    "bge": 25.3356,
+    "rlj": 0.087,
+    "lcr": 1.1783,
+    "luminance_inner": 146.62,
+    "luminance_outer": 124.44,
+    "hf_ratio": 79.8033
+   },
+   {
+    "sample_id": "a0072",
+    "bbox": [
+     150,
+     372,
+     218,
+     467
+    ],
+    "target_px_measured": 96,
+    "area_px": 3979,
+    "band_r": 4,
+    "bge": 0.4383,
+    "rlj": 0.3094,
+    "lcr": 3.2713,
+    "luminance_inner": 113.64,
+    "luminance_outer": 34.74,
+    "hf_ratio": 1.7405
+   },
+   {
+    "sample_id": "a0073",
+    "bbox": [
+     536,
+     395,
+     583,
+     433
+    ],
+    "target_px_measured": 48,
+    "area_px": 580,
+    "band_r": 3,
+    "bge": 2.2713,
+    "rlj": 0.38,
+    "lcr": 0.1957,
+    "luminance_inner": 23.58,
+    "luminance_outer": 120.49,
+    "hf_ratio": 8.1123
+   },
+   {
+    "sample_id": "a0074",
+    "bbox": [
+     302,
+     109,
+     325,
+     122
+    ],
+    "target_px_measured": 24,
+    "area_px": 208,
+    "band_r": 2,
+    "bge": 0.3586,
+    "rlj": 0.0564,
+    "lcr": 2.499,
+    "luminance_inner": 23.98,
+    "luminance_outer": 9.6,
+    "hf_ratio": 1.9508
+   },
+   {
+    "sample_id": "a0075",
+    "bbox": [
+     542,
+     495,
+     631,
+     550
+    ],
+    "target_px_measured": 90,
+    "area_px": 2424,
+    "band_r": 4,
+    "bge": 2.3061,
+    "rlj": 0.091,
+    "lcr": 1.1928,
+    "luminance_inner": 143.59,
+    "luminance_outer": 120.37,
+    "hf_ratio": 7.0917
+   },
+   {
+    "sample_id": "a0076",
+    "bbox": [
+     732,
+     67,
+     755,
+     103
+    ],
+    "target_px_measured": 37,
+    "area_px": 471,
+    "band_r": 3,
+    "bge": 4.2897,
+    "rlj": 0.6683,
+    "lcr": 0.3007,
+    "luminance_inner": 73.27,
+    "luminance_outer": 243.67,
+    "hf_ratio": 17.7214
+   },
+   {
+    "sample_id": "a0077",
+    "bbox": [
+     624,
+     232,
+     643,
+     245
+    ],
+    "target_px_measured": 20,
+    "area_px": 106,
+    "band_r": 1,
+    "bge": 2.7365,
+    "rlj": 0.1931,
+    "lcr": 0.7235,
+    "luminance_inner": 128.82,
+    "luminance_outer": 178.06,
+    "hf_ratio": 9.2568
+   },
+   {
+    "sample_id": "a0078",
+    "bbox": [
+     170,
+     474,
+     234,
+     510
+    ],
+    "target_px_measured": 65,
+    "area_px": 944,
+    "band_r": 4,
+    "bge": 1.9895,
+    "rlj": 0.449,
+    "lcr": 7.2564,
+    "luminance_inner": 132.81,
+    "luminance_outer": 18.3,
+    "hf_ratio": 7.0267
+   },
+   {
+    "sample_id": "a0079",
+    "bbox": [
+     354,
+     870,
+     383,
+     896
+    ],
+    "target_px_measured": 30,
+    "area_px": 311,
+    "band_r": 2,
+    "bge": 0.9511,
+    "rlj": 0.2968,
+    "lcr": 2.0253,
+    "luminance_inner": 149.49,
+    "luminance_outer": 73.81,
+    "hf_ratio": 4.2786
+   },
+   {
+    "sample_id": "a0080",
+    "bbox": [
+     1057,
+     466,
+     1152,
+     532
+    ],
+    "target_px_measured": 96,
+    "area_px": 2274,
+    "band_r": 4,
+    "bge": 1.1017,
+    "rlj": 0.285,
+    "lcr": 1.5905,
+    "luminance_inner": 195.76,
+    "luminance_outer": 123.08,
+    "hf_ratio": 4.4635
+   },
+   {
+    "sample_id": "a0081",
+    "bbox": [
+     1089,
+     264,
+     1136,
+     303
+    ],
+    "target_px_measured": 48,
+    "area_px": 979,
+    "band_r": 4,
+    "bge": 4.6059,
+    "rlj": 0.1439,
+    "lcr": 1.3255,
+    "luminance_inner": 149.39,
+    "luminance_outer": 112.71,
+    "hf_ratio": 10.1565
+   },
+   {
+    "sample_id": "a0082",
+    "bbox": [
+     449,
+     182,
+     472,
+     197
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.373,
+    "rlj": 0.2536,
+    "lcr": 2.7797,
+    "luminance_inner": 101.02,
+    "luminance_outer": 36.34,
+    "hf_ratio": 1.5358
+   },
+   {
+    "sample_id": "a0083",
+    "bbox": [
+     842,
+     526,
+     931,
+     610
+    ],
+    "target_px_measured": 90,
+    "area_px": 2839,
+    "band_r": 4,
+    "bge": 0.4331,
+    "rlj": 0.2864,
+    "lcr": 3.565,
+    "luminance_inner": 101.5,
+    "luminance_outer": 28.47,
+    "hf_ratio": 2.5359
+   },
+   {
+    "sample_id": "a0084",
+    "bbox": [
+     731,
+     162,
+     767,
+     195
+    ],
+    "target_px_measured": 37,
+    "area_px": 412,
+    "band_r": 3,
+    "bge": 1.0764,
+    "rlj": 0.3775,
+    "lcr": 0.3947,
+    "luminance_inner": 62.78,
+    "luminance_outer": 159.04,
+    "hf_ratio": 4.2002
+   },
+   {
+    "sample_id": "a0085",
+    "bbox": [
+     1463,
+     319,
+     1482,
+     336
+    ],
+    "target_px_measured": 20,
+    "area_px": 161,
+    "band_r": 2,
+    "bge": 0.4477,
+    "rlj": 0.1379,
+    "lcr": 0.5837,
+    "luminance_inner": 49.3,
+    "luminance_outer": 84.46,
+    "hf_ratio": 1.2336
+   },
+   {
+    "sample_id": "a0086",
+    "bbox": [
+     219,
+     398,
+     283,
+     457
+    ],
+    "target_px_measured": 65,
+    "area_px": 1514,
+    "band_r": 4,
+    "bge": 1.3564,
+    "rlj": 0.1252,
+    "lcr": 0.7084,
+    "luminance_inner": 77.57,
+    "luminance_outer": 109.5,
+    "hf_ratio": 4.9028
+   },
+   {
+    "sample_id": "a0087",
+    "bbox": [
+     1107,
+     129,
+     1136,
+     153
+    ],
+    "target_px_measured": 30,
+    "area_px": 263,
+    "band_r": 2,
+    "bge": 3.911,
+    "rlj": 0.2867,
+    "lcr": 1.559,
+    "luminance_inner": 203.86,
+    "luminance_outer": 130.76,
+    "hf_ratio": 13.9517
+   },
+   {
+    "sample_id": "a0088",
+    "bbox": [
+     883,
+     115,
+     978,
+     168
+    ],
+    "target_px_measured": 96,
+    "area_px": 2529,
+    "band_r": 4,
+    "bge": 1.1287,
+    "rlj": 0.2867,
+    "lcr": 0.6231,
+    "luminance_inner": 120.87,
+    "luminance_outer": 193.96,
+    "hf_ratio": 4.0072
+   },
+   {
+    "sample_id": "a0089",
+    "bbox": [
+     260,
+     318,
+     306,
+     365
+    ],
+    "target_px_measured": 48,
+    "area_px": 834,
+    "band_r": 4,
+    "bge": 1.2052,
+    "rlj": 0.1693,
+    "lcr": 1.3939,
+    "luminance_inner": 152.8,
+    "luminance_outer": 109.62,
+    "hf_ratio": 3.6912
+   },
+   {
+    "sample_id": "a0090",
+    "bbox": [
+     769,
+     140,
+     792,
+     160
+    ],
+    "target_px_measured": 24,
+    "area_px": 203,
+    "band_r": 2,
+    "bge": 0.8944,
+    "rlj": 0.3858,
+    "lcr": 2.3953,
+    "luminance_inner": 168.9,
+    "luminance_outer": 70.51,
+    "hf_ratio": 3.8907
+   },
+   {
+    "sample_id": "a0091",
+    "bbox": [
+     379,
+     53,
+     468,
+     134
+    ],
+    "target_px_measured": 90,
+    "area_px": 3370,
+    "band_r": 4,
+    "bge": 2.4264,
+    "rlj": 0.1282,
+    "lcr": 1.3297,
+    "luminance_inner": 131.85,
+    "luminance_outer": 99.15,
+    "hf_ratio": 6.4691
+   },
+   {
+    "sample_id": "a0092",
+    "bbox": [
+     336,
+     195,
+     370,
+     231
+    ],
+    "target_px_measured": 37,
+    "area_px": 546,
+    "band_r": 3,
+    "bge": 0.5941,
+    "rlj": 0.062,
+    "lcr": 1.1592,
+    "luminance_inner": 115.1,
+    "luminance_outer": 99.29,
+    "hf_ratio": 2.9674
+   },
+   {
+    "sample_id": "a0093",
+    "bbox": [
+     1064,
+     541,
+     1083,
+     556
+    ],
+    "target_px_measured": 20,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 0.6982,
+    "rlj": 0.3221,
+    "lcr": 0.3243,
+    "luminance_inner": 39.41,
+    "luminance_outer": 121.55,
+    "hf_ratio": 3.4931
+   },
+   {
+    "sample_id": "a0094",
+    "bbox": [
+     944,
+     537,
+     1008,
+     583
+    ],
+    "target_px_measured": 65,
+    "area_px": 1255,
+    "band_r": 4,
+    "bge": 1.3436,
+    "rlj": 0.1325,
+    "lcr": 0.6955,
+    "luminance_inner": 77.2,
+    "luminance_outer": 111.0,
+    "hf_ratio": 5.7807
+   },
+   {
+    "sample_id": "a0095",
+    "bbox": [
+     776,
+     352,
+     805,
+     381
+    ],
+    "target_px_measured": 30,
+    "area_px": 308,
+    "band_r": 2,
+    "bge": 0.692,
+    "rlj": 0.4909,
+    "lcr": 0.306,
+    "luminance_inner": 55.2,
+    "luminance_outer": 180.39,
+    "hf_ratio": 3.5472
+   },
+   {
+    "sample_id": "a0096",
+    "bbox": [
+     728,
+     239,
+     823,
+     298
+    ],
+    "target_px_measured": 96,
+    "area_px": 2429,
+    "band_r": 4,
+    "bge": 3.1745,
+    "rlj": 0.1762,
+    "lcr": 0.7708,
+    "luminance_inner": 151.1,
+    "luminance_outer": 196.02,
+    "hf_ratio": 9.6946
+   },
+   {
+    "sample_id": "a0097",
+    "bbox": [
+     456,
+     381,
+     503,
+     415
+    ],
+    "target_px_measured": 48,
+    "area_px": 796,
+    "band_r": 4,
+    "bge": 3.4925,
+    "rlj": 0.2978,
+    "lcr": 0.634,
+    "luminance_inner": 131.56,
+    "luminance_outer": 207.5,
+    "hf_ratio": 13.5079
+   },
+   {
+    "sample_id": "a0098",
+    "bbox": [
+     150,
+     126,
+     173,
+     144
+    ],
+    "target_px_measured": 24,
+    "area_px": 173,
+    "band_r": 2,
+    "bge": 1.6269,
+    "rlj": 0.56,
+    "lcr": 0.2349,
+    "luminance_inner": 43.84,
+    "luminance_outer": 186.65,
+    "hf_ratio": 6.8813
+   },
+   {
+    "sample_id": "a0099",
+    "bbox": [
+     607,
+     379,
+     696,
+     432
+    ],
+    "target_px_measured": 90,
+    "area_px": 1969,
+    "band_r": 4,
+    "bge": 8.8713,
+    "rlj": 0.4164,
+    "lcr": 0.1802,
+    "luminance_inner": 23.34,
+    "luminance_outer": 129.52,
+    "hf_ratio": 25.0175
+   }
+  ],
+  "out_E4_d85s40": [
+   {
+    "sample_id": "a0000",
+    "bbox": [
+     842,
+     250,
+     937,
+     336
+    ],
+    "target_px_measured": 96,
+    "area_px": 2732,
+    "band_r": 4,
+    "bge": 0.7216,
+    "rlj": 0.2327,
+    "lcr": 2.6016,
+    "luminance_inner": 96.38,
+    "luminance_outer": 37.05,
+    "hf_ratio": 2.3112
+   },
+   {
+    "sample_id": "a0001",
+    "bbox": [
+     1069,
+     301,
+     1114,
+     348
+    ],
+    "target_px_measured": 48,
+    "area_px": 900,
+    "band_r": 4,
+    "bge": 3.0938,
+    "rlj": 0.4571,
+    "lcr": 0.3312,
+    "luminance_inner": 57.73,
+    "luminance_outer": 174.28,
+    "hf_ratio": 8.8927
+   },
+   {
+    "sample_id": "a0002",
+    "bbox": [
+     948,
+     553,
+     971,
+     574
+    ],
+    "target_px_measured": 24,
+    "area_px": 177,
+    "band_r": 2,
+    "bge": 0.7573,
+    "rlj": 0.2192,
+    "lcr": 1.665,
+    "luminance_inner": 139.93,
+    "luminance_outer": 84.05,
+    "hf_ratio": 3.4355
+   },
+   {
+    "sample_id": "a0003",
+    "bbox": [
+     1014,
+     753,
+     1103,
+     817
+    ],
+    "target_px_measured": 90,
+    "area_px": 2621,
+    "band_r": 4,
+    "bge": 2.5198,
+    "rlj": 0.0975,
+    "lcr": 0.7494,
+    "luminance_inner": 74.36,
+    "luminance_outer": 99.22,
+    "hf_ratio": 8.3116
+   },
+   {
+    "sample_id": "a0004",
+    "bbox": [
+     406,
+     213,
+     442,
+     238
+    ],
+    "target_px_measured": 37,
+    "area_px": 323,
+    "band_r": 2,
+    "bge": 0.4628,
+    "rlj": 0.4478,
+    "lcr": 3.7856,
+    "luminance_inner": 155.2,
+    "luminance_outer": 41.0,
+    "hf_ratio": 1.5618
+   },
+   {
+    "sample_id": "a0005",
+    "bbox": [
+     745,
+     202,
+     764,
+     215
+    ],
+    "target_px_measured": 20,
+    "area_px": 108,
+    "band_r": 1,
+    "bge": 0.8692,
+    "rlj": 0.1695,
+    "lcr": 0.7672,
+    "luminance_inner": 142.5,
+    "luminance_outer": 185.72,
+    "hf_ratio": 4.6857
+   },
+   {
+    "sample_id": "a0006",
+    "bbox": [
+     1597,
+     684,
+     1661,
+     743
+    ],
+    "target_px_measured": 65,
+    "area_px": 2044,
+    "band_r": 4,
+    "bge": 8.5559,
+    "rlj": 0.0276,
+    "lcr": 0.9404,
+    "luminance_inner": 110.94,
+    "luminance_outer": 117.97,
+    "hf_ratio": 29.9628
+   },
+   {
+    "sample_id": "a0007",
+    "bbox": [
+     653,
+     643,
+     682,
+     666
+    ],
+    "target_px_measured": 30,
+    "area_px": 291,
+    "band_r": 2,
+    "bge": 1.0508,
+    "rlj": 0.3027,
+    "lcr": 0.539,
+    "luminance_inner": 90.25,
+    "luminance_outer": 167.43,
+    "hf_ratio": 4.4551
+   },
+   {
+    "sample_id": "a0008",
+    "bbox": [
+     1392,
+     339,
+     1487,
+     391
+    ],
+    "target_px_measured": 96,
+    "area_px": 1874,
+    "band_r": 4,
+    "bge": 0.8282,
+    "rlj": 0.6319,
+    "lcr": 3.9553,
+    "luminance_inner": 215.65,
+    "luminance_outer": 54.52,
+    "hf_ratio": 3.7979
+   },
+   {
+    "sample_id": "a0009",
+    "bbox": [
+     227,
+     277,
+     274,
+     322
+    ],
+    "target_px_measured": 48,
+    "area_px": 905,
+    "band_r": 4,
+    "bge": 1.052,
+    "rlj": 0.0622,
+    "lcr": 1.1263,
+    "luminance_inner": 141.45,
+    "luminance_outer": 125.59,
+    "hf_ratio": 4.3259
+   },
+   {
+    "sample_id": "a0010",
+    "bbox": [
+     764,
+     176,
+     787,
+     191
+    ],
+    "target_px_measured": 24,
+    "area_px": 158,
+    "band_r": 2,
+    "bge": 3.8855,
+    "rlj": 0.4893,
+    "lcr": 0.2698,
+    "luminance_inner": 46.12,
+    "luminance_outer": 170.9,
+    "hf_ratio": 13.5003
+   },
+   {
+    "sample_id": "a0011",
+    "bbox": [
+     862,
+     693,
+     951,
+     754
+    ],
+    "target_px_measured": 90,
+    "area_px": 1695,
+    "band_r": 4,
+    "bge": 3.438,
+    "rlj": 0.3585,
+    "lcr": 1.7546,
+    "luminance_inner": 212.58,
+    "luminance_outer": 121.16,
+    "hf_ratio": 14.812
+   },
+   {
+    "sample_id": "a0012",
+    "bbox": [
+     196,
+     524,
+     232,
+     553
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 0.3655,
+    "rlj": 0.0991,
+    "lcr": 1.5466,
+    "luminance_inner": 71.5,
+    "luminance_outer": 46.23,
+    "hf_ratio": 1.5439
+   },
+   {
+    "sample_id": "a0013",
+    "bbox": [
+     234,
+     491,
+     253,
+     508
+    ],
+    "target_px_measured": 20,
+    "area_px": 138,
+    "band_r": 1,
+    "bge": 0.6734,
+    "rlj": 0.0465,
+    "lcr": 1.1067,
+    "luminance_inner": 122.95,
+    "luminance_outer": 111.1,
+    "hf_ratio": 3.1709
+   },
+   {
+    "sample_id": "a0014",
+    "bbox": [
+     1372,
+     580,
+     1436,
+     639
+    ],
+    "target_px_measured": 65,
+    "area_px": 1506,
+    "band_r": 4,
+    "bge": 2.2994,
+    "rlj": 0.0751,
+    "lcr": 0.8237,
+    "luminance_inner": 89.55,
+    "luminance_outer": 108.71,
+    "hf_ratio": 7.8326
+   },
+   {
+    "sample_id": "a0015",
+    "bbox": [
+     1089,
+     712,
+     1109,
+     741
+    ],
+    "target_px_measured": 30,
+    "area_px": 254,
+    "band_r": 2,
+    "bge": 1.8521,
+    "rlj": 0.3599,
+    "lcr": 0.5106,
+    "luminance_inner": 95.75,
+    "luminance_outer": 187.54,
+    "hf_ratio": 7.4632
+   },
+   {
+    "sample_id": "a0016",
+    "bbox": [
+     342,
+     210,
+     437,
+     282
+    ],
+    "target_px_measured": 96,
+    "area_px": 2651,
+    "band_r": 4,
+    "bge": 2.6494,
+    "rlj": 0.2556,
+    "lcr": 0.4706,
+    "luminance_inner": 57.93,
+    "luminance_outer": 123.1,
+    "hf_ratio": 6.5036
+   },
+   {
+    "sample_id": "a0017",
+    "bbox": [
+     197,
+     515,
+     231,
+     562
+    ],
+    "target_px_measured": 48,
+    "area_px": 959,
+    "band_r": 4,
+    "bge": 0.7617,
+    "rlj": 0.3197,
+    "lcr": 1.651,
+    "luminance_inner": 206.78,
+    "luminance_outer": 125.25,
+    "hf_ratio": 2.9929
+   },
+   {
+    "sample_id": "a0018",
+    "bbox": [
+     373,
+     546,
+     396,
+     563
+    ],
+    "target_px_measured": 24,
+    "area_px": 184,
+    "band_r": 2,
+    "bge": 1.1355,
+    "rlj": 0.1923,
+    "lcr": 0.5285,
+    "luminance_inner": 54.97,
+    "luminance_outer": 104.01,
+    "hf_ratio": 3.7459
+   },
+   {
+    "sample_id": "a0019",
+    "bbox": [
+     546,
+     60,
+     631,
+     149
+    ],
+    "target_px_measured": 90,
+    "area_px": 3310,
+    "band_r": 4,
+    "bge": 2.2448,
+    "rlj": 0.5539,
+    "lcr": 0.3617,
+    "luminance_inner": 80.03,
+    "luminance_outer": 221.28,
+    "hf_ratio": 7.7482
+   },
+   {
+    "sample_id": "a0020",
+    "bbox": [
+     986,
+     570,
+     1022,
+     587
+    ],
+    "target_px_measured": 37,
+    "area_px": 303,
+    "band_r": 2,
+    "bge": 0.704,
+    "rlj": 0.0443,
+    "lcr": 1.1023,
+    "luminance_inner": 121.79,
+    "luminance_outer": 110.49,
+    "hf_ratio": 3.6322
+   },
+   {
+    "sample_id": "a0021",
+    "bbox": [
+     249,
+     354,
+     268,
+     362
+    ],
+    "target_px_measured": 20,
+    "area_px": 71,
+    "band_r": 1,
+    "bge": 0.8723,
+    "rlj": 0.0695,
+    "lcr": 0.9157,
+    "luminance_inner": 192.49,
+    "luminance_outer": 210.2,
+    "hf_ratio": 3.0696
+   },
+   {
+    "sample_id": "a0022",
+    "bbox": [
+     654,
+     463,
+     718,
+     513
+    ],
+    "target_px_measured": 65,
+    "area_px": 1405,
+    "band_r": 4,
+    "bge": 1.3924,
+    "rlj": 0.3764,
+    "lcr": 0.4817,
+    "luminance_inner": 89.22,
+    "luminance_outer": 185.2,
+    "hf_ratio": 6.4111
+   },
+   {
+    "sample_id": "a0023",
+    "bbox": [
+     336,
+     470,
+     365,
+     490
+    ],
+    "target_px_measured": 30,
+    "area_px": 228,
+    "band_r": 2,
+    "bge": 0.6773,
+    "rlj": 0.0372,
+    "lcr": 1.0739,
+    "luminance_inner": 137.88,
+    "luminance_outer": 128.39,
+    "hf_ratio": 3.327
+   },
+   {
+    "sample_id": "a0024",
+    "bbox": [
+     1017,
+     421,
+     1112,
+     475
+    ],
+    "target_px_measured": 96,
+    "area_px": 2569,
+    "band_r": 4,
+    "bge": 2.5279,
+    "rlj": 0.6213,
+    "lcr": 0.3247,
+    "luminance_inner": 76.19,
+    "luminance_outer": 234.62,
+    "hf_ratio": 9.6331
+   },
+   {
+    "sample_id": "a0025",
+    "bbox": [
+     1341,
+     334,
+     1388,
+     376
+    ],
+    "target_px_measured": 48,
+    "area_px": 791,
+    "band_r": 4,
+    "bge": 1.312,
+    "rlj": 0.0322,
+    "lcr": 1.0529,
+    "luminance_inner": 163.43,
+    "luminance_outer": 155.22,
+    "hf_ratio": 6.4417
+   },
+   {
+    "sample_id": "a0026",
+    "bbox": [
+     628,
+     254,
+     651,
+     269
+    ],
+    "target_px_measured": 24,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 4.2218,
+    "rlj": 0.182,
+    "lcr": 1.6785,
+    "luminance_inner": 114.83,
+    "luminance_outer": 68.41,
+    "hf_ratio": 10.5427
+   },
+   {
+    "sample_id": "a0027",
+    "bbox": [
+     140,
+     546,
+     229,
+     593
+    ],
+    "target_px_measured": 90,
+    "area_px": 1867,
+    "band_r": 4,
+    "bge": 2.9729,
+    "rlj": 0.1974,
+    "lcr": 1.8135,
+    "luminance_inner": 112.19,
+    "luminance_outer": 61.87,
+    "hf_ratio": 8.3068
+   },
+   {
+    "sample_id": "a0028",
+    "bbox": [
+     888,
+     174,
+     924,
+     206
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 4.5624,
+    "rlj": 0.2046,
+    "lcr": 5.1685,
+    "luminance_inner": 64.68,
+    "luminance_outer": 12.52,
+    "hf_ratio": 18.8875
+   },
+   {
+    "sample_id": "a0029",
+    "bbox": [
+     270,
+     186,
+     289,
+     199
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 0.9512,
+    "rlj": 0.4422,
+    "lcr": 0.3736,
+    "luminance_inner": 67.25,
+    "luminance_outer": 180.01,
+    "hf_ratio": 3.9402
+   },
+   {
+    "sample_id": "a0030",
+    "bbox": [
+     941,
+     423,
+     1005,
+     470
+    ],
+    "target_px_measured": 65,
+    "area_px": 1532,
+    "band_r": 4,
+    "bge": 1.2802,
+    "rlj": 0.094,
+    "lcr": 0.8259,
+    "luminance_inner": 113.69,
+    "luminance_outer": 137.66,
+    "hf_ratio": 4.7025
+   },
+   {
+    "sample_id": "a0031",
+    "bbox": [
+     803,
+     488,
+     832,
+     510
+    ],
+    "target_px_measured": 30,
+    "area_px": 292,
+    "band_r": 2,
+    "bge": 1.3605,
+    "rlj": 0.3248,
+    "lcr": 0.2991,
+    "luminance_inner": 35.34,
+    "luminance_outer": 118.17,
+    "hf_ratio": 5.8652
+   },
+   {
+    "sample_id": "a0032",
+    "bbox": [
+     373,
+     452,
+     468,
+     520
+    ],
+    "target_px_measured": 96,
+    "area_px": 2076,
+    "band_r": 4,
+    "bge": 0.8876,
+    "rlj": 0.2599,
+    "lcr": 1.5087,
+    "luminance_inner": 196.56,
+    "luminance_outer": 130.28,
+    "hf_ratio": 2.7123
+   },
+   {
+    "sample_id": "a0033",
+    "bbox": [
+     1000,
+     362,
+     1047,
+     392
+    ],
+    "target_px_measured": 48,
+    "area_px": 542,
+    "band_r": 3,
+    "bge": 1.9892,
+    "rlj": 0.5621,
+    "lcr": 0.1851,
+    "luminance_inner": 32.55,
+    "luminance_outer": 175.88,
+    "hf_ratio": 7.9963
+   },
+   {
+    "sample_id": "a0034",
+    "bbox": [
+     1041,
+     442,
+     1064,
+     463
+    ],
+    "target_px_measured": 24,
+    "area_px": 145,
+    "band_r": 2,
+    "bge": 1.2436,
+    "rlj": 0.043,
+    "lcr": 1.1234,
+    "luminance_inner": 99.79,
+    "luminance_outer": 88.83,
+    "hf_ratio": 2.6336
+   },
+   {
+    "sample_id": "a0035",
+    "bbox": [
+     732,
+     465,
+     821,
+     504
+    ],
+    "target_px_measured": 90,
+    "area_px": 1926,
+    "band_r": 4,
+    "bge": 0.7009,
+    "rlj": 0.023,
+    "lcr": 1.0567,
+    "luminance_inner": 109.19,
+    "luminance_outer": 103.32,
+    "hf_ratio": 2.6896
+   },
+   {
+    "sample_id": "a0036",
+    "bbox": [
+     215,
+     314,
+     251,
+     340
+    ],
+    "target_px_measured": 37,
+    "area_px": 504,
+    "band_r": 3,
+    "bge": 1.9074,
+    "rlj": 0.2626,
+    "lcr": 2.1739,
+    "luminance_inner": 123.99,
+    "luminance_outer": 57.04,
+    "hf_ratio": 8.0326
+   },
+   {
+    "sample_id": "a0037",
+    "bbox": [
+     714,
+     246,
+     733,
+     256
+    ],
+    "target_px_measured": 20,
+    "area_px": 102,
+    "band_r": 1,
+    "bge": 2.1265,
+    "rlj": 0.2317,
+    "lcr": 0.6505,
+    "luminance_inner": 109.95,
+    "luminance_outer": 169.03,
+    "hf_ratio": 8.2901
+   },
+   {
+    "sample_id": "a0038",
+    "bbox": [
+     358,
+     424,
+     422,
+     469
+    ],
+    "target_px_measured": 65,
+    "area_px": 974,
+    "band_r": 4,
+    "bge": 0.5826,
+    "rlj": 0.0263,
+    "lcr": 0.8878,
+    "luminance_inner": 52.98,
+    "luminance_outer": 59.67,
+    "hf_ratio": 2.5571
+   },
+   {
+    "sample_id": "a0039",
+    "bbox": [
+     824,
+     256,
+     853,
+     281
+    ],
+    "target_px_measured": 30,
+    "area_px": 284,
+    "band_r": 2,
+    "bge": 1.7741,
+    "rlj": 0.617,
+    "lcr": 0.2189,
+    "luminance_inner": 44.1,
+    "luminance_outer": 201.44,
+    "hf_ratio": 5.3735
+   },
+   {
+    "sample_id": "a0040",
+    "bbox": [
+     429,
+     453,
+     524,
+     522
+    ],
+    "target_px_measured": 96,
+    "area_px": 2119,
+    "band_r": 4,
+    "bge": 1.3704,
+    "rlj": 0.1151,
+    "lcr": 0.6556,
+    "luminance_inner": 55.87,
+    "luminance_outer": 85.22,
+    "hf_ratio": 4.8755
+   },
+   {
+    "sample_id": "a0041",
+    "bbox": [
+     1320,
+     731,
+     1367,
+     760
+    ],
+    "target_px_measured": 48,
+    "area_px": 477,
+    "band_r": 3,
+    "bge": 0.7765,
+    "rlj": 0.4619,
+    "lcr": 3.1461,
+    "luminance_inner": 172.68,
+    "luminance_outer": 54.89,
+    "hf_ratio": 3.295
+   },
+   {
+    "sample_id": "a0042",
+    "bbox": [
+     185,
+     361,
+     208,
+     376
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.7531,
+    "rlj": 0.4221,
+    "lcr": 3.1291,
+    "luminance_inner": 158.18,
+    "luminance_outer": 50.55,
+    "hf_ratio": 2.6934
+   },
+   {
+    "sample_id": "a0043",
+    "bbox": [
+     694,
+     87,
+     783,
+     154
+    ],
+    "target_px_measured": 90,
+    "area_px": 3156,
+    "band_r": 4,
+    "bge": 0.9469,
+    "rlj": 0.0651,
+    "lcr": 1.1373,
+    "luminance_inner": 137.48,
+    "luminance_outer": 120.88,
+    "hf_ratio": 3.2111
+   },
+   {
+    "sample_id": "a0044",
+    "bbox": [
+     755,
+     367,
+     786,
+     403
+    ],
+    "target_px_measured": 37,
+    "area_px": 609,
+    "band_r": 3,
+    "bge": 1.188,
+    "rlj": 0.1395,
+    "lcr": 1.6412,
+    "luminance_inner": 91.07,
+    "luminance_outer": 55.49,
+    "hf_ratio": 3.6435
+   },
+   {
+    "sample_id": "a0045",
+    "bbox": [
+     386,
+     185,
+     405,
+     197
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 8.7051,
+    "rlj": 0.1759,
+    "lcr": 2.126,
+    "luminance_inner": 84.7,
+    "luminance_outer": 39.84,
+    "hf_ratio": 32.4619
+   },
+   {
+    "sample_id": "a0046",
+    "bbox": [
+     157,
+     70,
+     221,
+     120
+    ],
+    "target_px_measured": 65,
+    "area_px": 1338,
+    "band_r": 4,
+    "bge": 0.3383,
+    "rlj": 0.2258,
+    "lcr": 3.1972,
+    "luminance_inner": 83.8,
+    "luminance_outer": 26.21,
+    "hf_ratio": 1.2709
+   },
+   {
+    "sample_id": "a0047",
+    "bbox": [
+     838,
+     311,
+     866,
+     333
+    ],
+    "target_px_measured": 29,
+    "area_px": 250,
+    "band_r": 2,
+    "bge": 0.9612,
+    "rlj": 0.0261,
+    "lcr": 0.9626,
+    "luminance_inner": 171.41,
+    "luminance_outer": 178.07,
+    "hf_ratio": 3.793
+   },
+   {
+    "sample_id": "a0048",
+    "bbox": [
+     1017,
+     60,
+     1112,
+     131
+    ],
+    "target_px_measured": 96,
+    "area_px": 2209,
+    "band_r": 4,
+    "bge": 10.9681,
+    "rlj": 0.6845,
+    "lcr": 0.1914,
+    "luminance_inner": 41.32,
+    "luminance_outer": 215.88,
+    "hf_ratio": 23.8477
+   },
+   {
+    "sample_id": "a0049",
+    "bbox": [
+     733,
+     483,
+     780,
+     513
+    ],
+    "target_px_measured": 48,
+    "area_px": 699,
+    "band_r": 3,
+    "bge": 0.6597,
+    "rlj": 0.0181,
+    "lcr": 1.0287,
+    "luminance_inner": 165.59,
+    "luminance_outer": 160.97,
+    "hf_ratio": 2.7821
+   },
+   {
+    "sample_id": "a0050",
+    "bbox": [
+     356,
+     396,
+     379,
+     413
+    ],
+    "target_px_measured": 24,
+    "area_px": 172,
+    "band_r": 2,
+    "bge": 1.8711,
+    "rlj": 0.4725,
+    "lcr": 0.4963,
+    "luminance_inner": 118.7,
+    "luminance_outer": 239.19,
+    "hf_ratio": 6.3966
+   },
+   {
+    "sample_id": "a0051",
+    "bbox": [
+     803,
+     127,
+     892,
+     211
+    ],
+    "target_px_measured": 90,
+    "area_px": 3389,
+    "band_r": 4,
+    "bge": 0.6047,
+    "rlj": 0.0568,
+    "lcr": 0.9249,
+    "luminance_inner": 178.47,
+    "luminance_outer": 192.96,
+    "hf_ratio": 1.9485
+   },
+   {
+    "sample_id": "a0052",
+    "bbox": [
+     264,
+     180,
+     297,
+     216
+    ],
+    "target_px_measured": 37,
+    "area_px": 469,
+    "band_r": 3,
+    "bge": 0.7242,
+    "rlj": 0.1471,
+    "lcr": 1.6059,
+    "luminance_inner": 99.44,
+    "luminance_outer": 61.92,
+    "hf_ratio": 3.4591
+   },
+   {
+    "sample_id": "a0053",
+    "bbox": [
+     504,
+     375,
+     516,
+     394
+    ],
+    "target_px_measured": 20,
+    "area_px": 123,
+    "band_r": 1,
+    "bge": 0.5837,
+    "rlj": 0.1211,
+    "lcr": 0.7191,
+    "luminance_inner": 79.03,
+    "luminance_outer": 109.9,
+    "hf_ratio": 2.5558
+   },
+   {
+    "sample_id": "a0054",
+    "bbox": [
+     1391,
+     766,
+     1455,
+     817
+    ],
+    "target_px_measured": 65,
+    "area_px": 1581,
+    "band_r": 4,
+    "bge": 6.5127,
+    "rlj": 0.5335,
+    "lcr": 0.2857,
+    "luminance_inner": 54.41,
+    "luminance_outer": 190.45,
+    "hf_ratio": 19.5805
+   },
+   {
+    "sample_id": "a0055",
+    "bbox": [
+     817,
+     144,
+     846,
+     168
+    ],
+    "target_px_measured": 30,
+    "area_px": 395,
+    "band_r": 2,
+    "bge": 0.8067,
+    "rlj": 0.1679,
+    "lcr": 1.5478,
+    "luminance_inner": 120.99,
+    "luminance_outer": 78.16,
+    "hf_ratio": 3.0988
+   },
+   {
+    "sample_id": "a0056",
+    "bbox": [
+     169,
+     371,
+     250,
+     466
+    ],
+    "target_px_measured": 96,
+    "area_px": 2949,
+    "band_r": 4,
+    "bge": 0.7728,
+    "rlj": 0.3141,
+    "lcr": 1.8104,
+    "luminance_inner": 178.92,
+    "luminance_outer": 98.83,
+    "hf_ratio": 2.8072
+   },
+   {
+    "sample_id": "a0057",
+    "bbox": [
+     690,
+     290,
+     737,
+     324
+    ],
+    "target_px_measured": 48,
+    "area_px": 786,
+    "band_r": 4,
+    "bge": 0.6078,
+    "rlj": 0.0742,
+    "lcr": 0.8701,
+    "luminance_inner": 126.68,
+    "luminance_outer": 145.59,
+    "hf_ratio": 2.8694
+   },
+   {
+    "sample_id": "a0058",
+    "bbox": [
+     789,
+     84,
+     812,
+     98
+    ],
+    "target_px_measured": 24,
+    "area_px": 183,
+    "band_r": 2,
+    "bge": 0.4276,
+    "rlj": 0.224,
+    "lcr": 2.3575,
+    "luminance_inner": 99.18,
+    "luminance_outer": 42.07,
+    "hf_ratio": 1.4183
+   },
+   {
+    "sample_id": "a0059",
+    "bbox": [
+     766,
+     507,
+     855,
+     570
+    ],
+    "target_px_measured": 90,
+    "area_px": 2201,
+    "band_r": 4,
+    "bge": 3.0962,
+    "rlj": 0.6952,
+    "lcr": 0.1714,
+    "luminance_inner": 36.68,
+    "luminance_outer": 213.94,
+    "hf_ratio": 11.1721
+   },
+   {
+    "sample_id": "a0060",
+    "bbox": [
+     1028,
+     332,
+     1064,
+     356
+    ],
+    "target_px_measured": 37,
+    "area_px": 518,
+    "band_r": 3,
+    "bge": 2.7819,
+    "rlj": 0.0589,
+    "lcr": 1.0788,
+    "luminance_inner": 205.52,
+    "luminance_outer": 190.5,
+    "hf_ratio": 14.0809
+   },
+   {
+    "sample_id": "a0061",
+    "bbox": [
+     1412,
+     300,
+     1431,
+     313
+    ],
+    "target_px_measured": 20,
+    "area_px": 113,
+    "band_r": 1,
+    "bge": 1.0154,
+    "rlj": 0.0094,
+    "lcr": 1.0164,
+    "luminance_inner": 147.72,
+    "luminance_outer": 145.33,
+    "hf_ratio": 3.2058
+   },
+   {
+    "sample_id": "a0062",
+    "bbox": [
+     972,
+     447,
+     1036,
+     502
+    ],
+    "target_px_measured": 65,
+    "area_px": 1645,
+    "band_r": 4,
+    "bge": 8.3383,
+    "rlj": 0.1865,
+    "lcr": 0.7513,
+    "luminance_inner": 143.72,
+    "luminance_outer": 191.28,
+    "hf_ratio": 21.872
+   },
+   {
+    "sample_id": "a0063",
+    "bbox": [
+     691,
+     145,
+     719,
+     171
+    ],
+    "target_px_measured": 29,
+    "area_px": 314,
+    "band_r": 2,
+    "bge": 6.4812,
+    "rlj": 0.1209,
+    "lcr": 0.8133,
+    "luminance_inner": 134.27,
+    "luminance_outer": 165.09,
+    "hf_ratio": 29.734
+   },
+   {
+    "sample_id": "a0064",
+    "bbox": [
+     373,
+     525,
+     463,
+     620
+    ],
+    "target_px_measured": 96,
+    "area_px": 2224,
+    "band_r": 4,
+    "bge": 0.9143,
+    "rlj": 0.306,
+    "lcr": 2.5355,
+    "luminance_inner": 128.83,
+    "luminance_outer": 50.81,
+    "hf_ratio": 3.5081
+   },
+   {
+    "sample_id": "a0065",
+    "bbox": [
+     472,
+     211,
+     519,
+     244
+    ],
+    "target_px_measured": 48,
+    "area_px": 669,
+    "band_r": 3,
+    "bge": 0.5841,
+    "rlj": 0.078,
+    "lcr": 0.5718,
+    "luminance_inner": 26.56,
+    "luminance_outer": 46.45,
+    "hf_ratio": 2.0703
+   },
+   {
+    "sample_id": "a0066",
+    "bbox": [
+     1056,
+     760,
+     1079,
+     782
+    ],
+    "target_px_measured": 24,
+    "area_px": 235,
+    "band_r": 2,
+    "bge": 2.5672,
+    "rlj": 0.1172,
+    "lcr": 1.2086,
+    "luminance_inner": 173.09,
+    "luminance_outer": 143.22,
+    "hf_ratio": 7.8372
+   },
+   {
+    "sample_id": "a0067",
+    "bbox": [
+     804,
+     246,
+     893,
+     307
+    ],
+    "target_px_measured": 90,
+    "area_px": 2895,
+    "band_r": 4,
+    "bge": 3.0822,
+    "rlj": 0.0933,
+    "lcr": 1.1895,
+    "luminance_inner": 149.39,
+    "luminance_outer": 125.59,
+    "hf_ratio": 8.6428
+   },
+   {
+    "sample_id": "a0068",
+    "bbox": [
+     1392,
+     167,
+     1428,
+     199
+    ],
+    "target_px_measured": 37,
+    "area_px": 500,
+    "band_r": 3,
+    "bge": 3.2127,
+    "rlj": 0.2129,
+    "lcr": 1.4577,
+    "luminance_inner": 172.91,
+    "luminance_outer": 118.62,
+    "hf_ratio": 11.4032
+   },
+   {
+    "sample_id": "a0069",
+    "bbox": [
+     490,
+     359,
+     509,
+     377
+    ],
+    "target_px_measured": 20,
+    "area_px": 167,
+    "band_r": 2,
+    "bge": 1.233,
+    "rlj": 0.4339,
+    "lcr": 0.311,
+    "luminance_inner": 49.94,
+    "luminance_outer": 160.59,
+    "hf_ratio": 4.5536
+   },
+   {
+    "sample_id": "a0070",
+    "bbox": [
+     338,
+     233,
+     402,
+     284
+    ],
+    "target_px_measured": 65,
+    "area_px": 1227,
+    "band_r": 4,
+    "bge": 0.6167,
+    "rlj": 0.2402,
+    "lcr": 0.4543,
+    "luminance_inner": 50.98,
+    "luminance_outer": 112.23,
+    "hf_ratio": 2.2273
+   },
+   {
+    "sample_id": "a0071",
+    "bbox": [
+     1461,
+     467,
+     1490,
+     491
+    ],
+    "target_px_measured": 30,
+    "area_px": 353,
+    "band_r": 2,
+    "bge": 24.5927,
+    "rlj": 0.1024,
+    "lcr": 1.2099,
+    "luminance_inner": 150.56,
+    "luminance_outer": 124.44,
+    "hf_ratio": 77.5496
+   },
+   {
+    "sample_id": "a0072",
+    "bbox": [
+     150,
+     372,
+     218,
+     467
+    ],
+    "target_px_measured": 96,
+    "area_px": 3979,
+    "band_r": 4,
+    "bge": 0.4998,
+    "rlj": 0.3254,
+    "lcr": 3.3861,
+    "luminance_inner": 117.74,
+    "luminance_outer": 34.77,
+    "hf_ratio": 1.984
+   },
+   {
+    "sample_id": "a0073",
+    "bbox": [
+     536,
+     395,
+     583,
+     433
+    ],
+    "target_px_measured": 48,
+    "area_px": 580,
+    "band_r": 3,
+    "bge": 2.029,
+    "rlj": 0.3635,
+    "lcr": 0.2306,
+    "luminance_inner": 27.79,
+    "luminance_outer": 120.49,
+    "hf_ratio": 7.2545
+   },
+   {
+    "sample_id": "a0074",
+    "bbox": [
+     302,
+     109,
+     325,
+     122
+    ],
+    "target_px_measured": 24,
+    "area_px": 208,
+    "band_r": 2,
+    "bge": 0.2508,
+    "rlj": 0.1224,
+    "lcr": 4.2487,
+    "luminance_inner": 40.83,
+    "luminance_outer": 9.61,
+    "hf_ratio": 1.3645
+   },
+   {
+    "sample_id": "a0075",
+    "bbox": [
+     542,
+     495,
+     631,
+     550
+    ],
+    "target_px_measured": 90,
+    "area_px": 2424,
+    "band_r": 4,
+    "bge": 2.3396,
+    "rlj": 0.0971,
+    "lcr": 1.2058,
+    "luminance_inner": 145.14,
+    "luminance_outer": 120.37,
+    "hf_ratio": 7.2159
+   },
+   {
+    "sample_id": "a0076",
+    "bbox": [
+     732,
+     67,
+     755,
+     103
+    ],
+    "target_px_measured": 37,
+    "area_px": 471,
+    "band_r": 3,
+    "bge": 4.1749,
+    "rlj": 0.6822,
+    "lcr": 0.2861,
+    "luminance_inner": 69.73,
+    "luminance_outer": 243.69,
+    "hf_ratio": 17.2521
+   },
+   {
+    "sample_id": "a0077",
+    "bbox": [
+     624,
+     232,
+     643,
+     245
+    ],
+    "target_px_measured": 20,
+    "area_px": 106,
+    "band_r": 1,
+    "bge": 2.6211,
+    "rlj": 0.159,
+    "lcr": 0.7748,
+    "luminance_inner": 139.52,
+    "luminance_outer": 180.07,
+    "hf_ratio": 8.8691
+   },
+   {
+    "sample_id": "a0078",
+    "bbox": [
+     170,
+     474,
+     234,
+     510
+    ],
+    "target_px_measured": 65,
+    "area_px": 944,
+    "band_r": 4,
+    "bge": 2.1358,
+    "rlj": 0.3359,
+    "lcr": 5.6828,
+    "luminance_inner": 103.95,
+    "luminance_outer": 18.29,
+    "hf_ratio": 7.5378
+   },
+   {
+    "sample_id": "a0079",
+    "bbox": [
+     354,
+     870,
+     383,
+     896
+    ],
+    "target_px_measured": 30,
+    "area_px": 311,
+    "band_r": 2,
+    "bge": 0.8879,
+    "rlj": 0.3101,
+    "lcr": 2.0734,
+    "luminance_inner": 152.75,
+    "luminance_outer": 73.67,
+    "hf_ratio": 3.9942
+   },
+   {
+    "sample_id": "a0080",
+    "bbox": [
+     1057,
+     466,
+     1152,
+     532
+    ],
+    "target_px_measured": 96,
+    "area_px": 2274,
+    "band_r": 4,
+    "bge": 1.1603,
+    "rlj": 0.3048,
+    "lcr": 1.6313,
+    "luminance_inner": 200.87,
+    "luminance_outer": 123.14,
+    "hf_ratio": 4.7046
+   },
+   {
+    "sample_id": "a0081",
+    "bbox": [
+     1089,
+     264,
+     1136,
+     303
+    ],
+    "target_px_measured": 48,
+    "area_px": 979,
+    "band_r": 4,
+    "bge": 4.7544,
+    "rlj": 0.155,
+    "lcr": 1.3508,
+    "luminance_inner": 152.25,
+    "luminance_outer": 112.71,
+    "hf_ratio": 10.4895
+   },
+   {
+    "sample_id": "a0082",
+    "bbox": [
+     449,
+     182,
+     472,
+     197
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.4451,
+    "rlj": 0.2961,
+    "lcr": 3.0787,
+    "luminance_inner": 111.83,
+    "luminance_outer": 36.32,
+    "hf_ratio": 1.8323
+   },
+   {
+    "sample_id": "a0083",
+    "bbox": [
+     842,
+     526,
+     931,
+     610
+    ],
+    "target_px_measured": 90,
+    "area_px": 2839,
+    "band_r": 4,
+    "bge": 0.4378,
+    "rlj": 0.2843,
+    "lcr": 3.6155,
+    "luminance_inner": 100.22,
+    "luminance_outer": 27.72,
+    "hf_ratio": 2.5613
+   },
+   {
+    "sample_id": "a0084",
+    "bbox": [
+     731,
+     162,
+     767,
+     195
+    ],
+    "target_px_measured": 37,
+    "area_px": 412,
+    "band_r": 3,
+    "bge": 0.9298,
+    "rlj": 0.3941,
+    "lcr": 0.368,
+    "luminance_inner": 58.52,
+    "luminance_outer": 159.01,
+    "hf_ratio": 3.6292
+   },
+   {
+    "sample_id": "a0085",
+    "bbox": [
+     1463,
+     319,
+     1482,
+     336
+    ],
+    "target_px_measured": 20,
+    "area_px": 161,
+    "band_r": 2,
+    "bge": 0.3706,
+    "rlj": 0.1196,
+    "lcr": 0.6389,
+    "luminance_inner": 53.96,
+    "luminance_outer": 84.46,
+    "hf_ratio": 1.0212
+   },
+   {
+    "sample_id": "a0086",
+    "bbox": [
+     219,
+     398,
+     283,
+     457
+    ],
+    "target_px_measured": 65,
+    "area_px": 1514,
+    "band_r": 4,
+    "bge": 1.3343,
+    "rlj": 0.1225,
+    "lcr": 0.7149,
+    "luminance_inner": 78.31,
+    "luminance_outer": 109.54,
+    "hf_ratio": 4.8266
+   },
+   {
+    "sample_id": "a0087",
+    "bbox": [
+     1107,
+     129,
+     1136,
+     153
+    ],
+    "target_px_measured": 30,
+    "area_px": 263,
+    "band_r": 2,
+    "bge": 4.1065,
+    "rlj": 0.3217,
+    "lcr": 1.6274,
+    "luminance_inner": 212.77,
+    "luminance_outer": 130.75,
+    "hf_ratio": 14.649
+   },
+   {
+    "sample_id": "a0088",
+    "bbox": [
+     883,
+     115,
+     978,
+     168
+    ],
+    "target_px_measured": 96,
+    "area_px": 2529,
+    "band_r": 4,
+    "bge": 1.0642,
+    "rlj": 0.2846,
+    "lcr": 0.6282,
+    "luminance_inner": 122.61,
+    "luminance_outer": 195.18,
+    "hf_ratio": 3.7765
+   },
+   {
+    "sample_id": "a0089",
+    "bbox": [
+     260,
+     318,
+     306,
+     365
+    ],
+    "target_px_measured": 48,
+    "area_px": 834,
+    "band_r": 4,
+    "bge": 1.1416,
+    "rlj": 0.2876,
+    "lcr": 1.6689,
+    "luminance_inner": 182.96,
+    "luminance_outer": 109.63,
+    "hf_ratio": 3.4991
+   },
+   {
+    "sample_id": "a0090",
+    "bbox": [
+     769,
+     140,
+     792,
+     160
+    ],
+    "target_px_measured": 24,
+    "area_px": 203,
+    "band_r": 2,
+    "bge": 0.7372,
+    "rlj": 0.3558,
+    "lcr": 2.2874,
+    "luminance_inner": 161.22,
+    "luminance_outer": 70.48,
+    "hf_ratio": 3.2061
+   },
+   {
+    "sample_id": "a0091",
+    "bbox": [
+     379,
+     53,
+     468,
+     134
+    ],
+    "target_px_measured": 90,
+    "area_px": 3370,
+    "band_r": 4,
+    "bge": 2.2745,
+    "rlj": 0.1398,
+    "lcr": 1.3592,
+    "luminance_inner": 134.85,
+    "luminance_outer": 99.21,
+    "hf_ratio": 6.0674
+   },
+   {
+    "sample_id": "a0092",
+    "bbox": [
+     336,
+     195,
+     370,
+     231
+    ],
+    "target_px_measured": 37,
+    "area_px": 546,
+    "band_r": 3,
+    "bge": 0.6023,
+    "rlj": 0.0247,
+    "lcr": 1.0633,
+    "luminance_inner": 105.58,
+    "luminance_outer": 99.29,
+    "hf_ratio": 3.008
+   },
+   {
+    "sample_id": "a0093",
+    "bbox": [
+     1064,
+     541,
+     1083,
+     556
+    ],
+    "target_px_measured": 20,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 0.7245,
+    "rlj": 0.3475,
+    "lcr": 0.2708,
+    "luminance_inner": 32.9,
+    "luminance_outer": 121.51,
+    "hf_ratio": 3.6244
+   },
+   {
+    "sample_id": "a0094",
+    "bbox": [
+     944,
+     537,
+     1008,
+     583
+    ],
+    "target_px_measured": 65,
+    "area_px": 1255,
+    "band_r": 4,
+    "bge": 1.345,
+    "rlj": 0.1478,
+    "lcr": 0.6604,
+    "luminance_inner": 73.29,
+    "luminance_outer": 110.98,
+    "hf_ratio": 5.7861
+   },
+   {
+    "sample_id": "a0095",
+    "bbox": [
+     776,
+     352,
+     805,
+     381
+    ],
+    "target_px_measured": 30,
+    "area_px": 308,
+    "band_r": 2,
+    "bge": 0.6332,
+    "rlj": 0.5327,
+    "lcr": 0.2467,
+    "luminance_inner": 44.5,
+    "luminance_outer": 180.35,
+    "hf_ratio": 3.2463
+   },
+   {
+    "sample_id": "a0096",
+    "bbox": [
+     728,
+     239,
+     823,
+     298
+    ],
+    "target_px_measured": 96,
+    "area_px": 2429,
+    "band_r": 4,
+    "bge": 2.8874,
+    "rlj": 0.2016,
+    "lcr": 0.7377,
+    "luminance_inner": 144.59,
+    "luminance_outer": 196.01,
+    "hf_ratio": 8.8445
+   },
+   {
+    "sample_id": "a0097",
+    "bbox": [
+     456,
+     381,
+     503,
+     415
+    ],
+    "target_px_measured": 48,
+    "area_px": 796,
+    "band_r": 4,
+    "bge": 3.3318,
+    "rlj": 0.2392,
+    "lcr": 0.706,
+    "luminance_inner": 146.5,
+    "luminance_outer": 207.5,
+    "hf_ratio": 12.8938
+   },
+   {
+    "sample_id": "a0098",
+    "bbox": [
+     150,
+     126,
+     173,
+     144
+    ],
+    "target_px_measured": 24,
+    "area_px": 173,
+    "band_r": 2,
+    "bge": 1.5801,
+    "rlj": 0.559,
+    "lcr": 0.2362,
+    "luminance_inner": 44.09,
+    "luminance_outer": 186.64,
+    "hf_ratio": 6.6831
+   },
+   {
+    "sample_id": "a0099",
+    "bbox": [
+     607,
+     379,
+     696,
+     432
+    ],
+    "target_px_measured": 90,
+    "area_px": 1969,
+    "band_r": 4,
+    "bge": 8.7731,
+    "rlj": 0.4205,
+    "lcr": 0.172,
+    "luminance_inner": 22.27,
+    "luminance_outer": 129.5,
+    "hf_ratio": 24.7532
+   }
+  ],
+  "out_E4_d85s60": [
+   {
+    "sample_id": "a0000",
+    "bbox": [
+     842,
+     250,
+     937,
+     336
+    ],
+    "target_px_measured": 96,
+    "area_px": 2732,
+    "band_r": 4,
+    "bge": 0.701,
+    "rlj": 0.2123,
+    "lcr": 2.4616,
+    "luminance_inner": 91.19,
+    "luminance_outer": 37.04,
+    "hf_ratio": 2.2454
+   },
+   {
+    "sample_id": "a0001",
+    "bbox": [
+     1069,
+     301,
+     1114,
+     348
+    ],
+    "target_px_measured": 48,
+    "area_px": 900,
+    "band_r": 4,
+    "bge": 3.0111,
+    "rlj": 0.4626,
+    "lcr": 0.3232,
+    "luminance_inner": 56.33,
+    "luminance_outer": 174.28,
+    "hf_ratio": 8.6492
+   },
+   {
+    "sample_id": "a0002",
+    "bbox": [
+     948,
+     553,
+     971,
+     574
+    ],
+    "target_px_measured": 24,
+    "area_px": 177,
+    "band_r": 2,
+    "bge": 0.7675,
+    "rlj": 0.2407,
+    "lcr": 1.7304,
+    "luminance_inner": 145.43,
+    "luminance_outer": 84.04,
+    "hf_ratio": 3.4824
+   },
+   {
+    "sample_id": "a0003",
+    "bbox": [
+     1014,
+     753,
+     1103,
+     817
+    ],
+    "target_px_measured": 90,
+    "area_px": 2621,
+    "band_r": 4,
+    "bge": 2.5237,
+    "rlj": 0.0879,
+    "lcr": 0.7741,
+    "luminance_inner": 76.81,
+    "luminance_outer": 99.22,
+    "hf_ratio": 8.3266
+   },
+   {
+    "sample_id": "a0004",
+    "bbox": [
+     406,
+     213,
+     442,
+     238
+    ],
+    "target_px_measured": 37,
+    "area_px": 323,
+    "band_r": 2,
+    "bge": 0.4808,
+    "rlj": 0.4354,
+    "lcr": 3.7071,
+    "luminance_inner": 152.04,
+    "luminance_outer": 41.01,
+    "hf_ratio": 1.6225
+   },
+   {
+    "sample_id": "a0005",
+    "bbox": [
+     745,
+     202,
+     764,
+     215
+    ],
+    "target_px_measured": 20,
+    "area_px": 108,
+    "band_r": 1,
+    "bge": 0.9736,
+    "rlj": 0.2009,
+    "lcr": 0.724,
+    "luminance_inner": 134.4,
+    "luminance_outer": 185.64,
+    "hf_ratio": 5.2495
+   },
+   {
+    "sample_id": "a0006",
+    "bbox": [
+     1597,
+     684,
+     1661,
+     743
+    ],
+    "target_px_measured": 65,
+    "area_px": 2044,
+    "band_r": 4,
+    "bge": 8.5175,
+    "rlj": 0.0452,
+    "lcr": 0.9023,
+    "luminance_inner": 106.43,
+    "luminance_outer": 117.96,
+    "hf_ratio": 29.7794
+   },
+   {
+    "sample_id": "a0007",
+    "bbox": [
+     653,
+     643,
+     682,
+     666
+    ],
+    "target_px_measured": 30,
+    "area_px": 291,
+    "band_r": 2,
+    "bge": 1.0153,
+    "rlj": 0.3118,
+    "lcr": 0.5252,
+    "luminance_inner": 87.97,
+    "luminance_outer": 167.48,
+    "hf_ratio": 4.3046
+   },
+   {
+    "sample_id": "a0008",
+    "bbox": [
+     1392,
+     339,
+     1487,
+     391
+    ],
+    "target_px_measured": 96,
+    "area_px": 1874,
+    "band_r": 4,
+    "bge": 0.8203,
+    "rlj": 0.6155,
+    "lcr": 3.8792,
+    "luminance_inner": 211.46,
+    "luminance_outer": 54.51,
+    "hf_ratio": 3.761
+   },
+   {
+    "sample_id": "a0009",
+    "bbox": [
+     227,
+     277,
+     274,
+     322
+    ],
+    "target_px_measured": 48,
+    "area_px": 905,
+    "band_r": 4,
+    "bge": 1.0525,
+    "rlj": 0.0667,
+    "lcr": 1.1354,
+    "luminance_inner": 142.6,
+    "luminance_outer": 125.59,
+    "hf_ratio": 4.3285
+   },
+   {
+    "sample_id": "a0010",
+    "bbox": [
+     764,
+     176,
+     787,
+     191
+    ],
+    "target_px_measured": 24,
+    "area_px": 158,
+    "band_r": 2,
+    "bge": 3.8761,
+    "rlj": 0.5031,
+    "lcr": 0.2496,
+    "luminance_inner": 42.66,
+    "luminance_outer": 170.94,
+    "hf_ratio": 13.469
+   },
+   {
+    "sample_id": "a0011",
+    "bbox": [
+     862,
+     693,
+     951,
+     754
+    ],
+    "target_px_measured": 90,
+    "area_px": 1695,
+    "band_r": 4,
+    "bge": 3.1603,
+    "rlj": 0.3543,
+    "lcr": 1.7458,
+    "luminance_inner": 211.49,
+    "luminance_outer": 121.15,
+    "hf_ratio": 13.6216
+   },
+   {
+    "sample_id": "a0012",
+    "bbox": [
+     196,
+     524,
+     232,
+     553
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 0.3454,
+    "rlj": 0.1138,
+    "lcr": 1.6275,
+    "luminance_inner": 75.26,
+    "luminance_outer": 46.24,
+    "hf_ratio": 1.4588
+   },
+   {
+    "sample_id": "a0013",
+    "bbox": [
+     234,
+     491,
+     253,
+     508
+    ],
+    "target_px_measured": 20,
+    "area_px": 138,
+    "band_r": 1,
+    "bge": 0.6607,
+    "rlj": 0.0634,
+    "lcr": 1.1455,
+    "luminance_inner": 127.28,
+    "luminance_outer": 111.11,
+    "hf_ratio": 3.1112
+   },
+   {
+    "sample_id": "a0014",
+    "bbox": [
+     1372,
+     580,
+     1436,
+     639
+    ],
+    "target_px_measured": 65,
+    "area_px": 1506,
+    "band_r": 4,
+    "bge": 2.4226,
+    "rlj": 0.1048,
+    "lcr": 0.7543,
+    "luminance_inner": 82.0,
+    "luminance_outer": 108.71,
+    "hf_ratio": 8.2474
+   },
+   {
+    "sample_id": "a0015",
+    "bbox": [
+     1089,
+     712,
+     1109,
+     741
+    ],
+    "target_px_measured": 30,
+    "area_px": 254,
+    "band_r": 2,
+    "bge": 1.9214,
+    "rlj": 0.3506,
+    "lcr": 0.5233,
+    "luminance_inner": 98.15,
+    "luminance_outer": 187.55,
+    "hf_ratio": 7.7418
+   },
+   {
+    "sample_id": "a0016",
+    "bbox": [
+     342,
+     210,
+     437,
+     282
+    ],
+    "target_px_measured": 96,
+    "area_px": 2651,
+    "band_r": 4,
+    "bge": 2.719,
+    "rlj": 0.2192,
+    "lcr": 0.5458,
+    "luminance_inner": 67.16,
+    "luminance_outer": 123.06,
+    "hf_ratio": 6.6698
+   },
+   {
+    "sample_id": "a0017",
+    "bbox": [
+     197,
+     515,
+     231,
+     562
+    ],
+    "target_px_measured": 48,
+    "area_px": 959,
+    "band_r": 4,
+    "bge": 0.7463,
+    "rlj": 0.3327,
+    "lcr": 1.6774,
+    "luminance_inner": 210.09,
+    "luminance_outer": 125.24,
+    "hf_ratio": 2.9327
+   },
+   {
+    "sample_id": "a0018",
+    "bbox": [
+     373,
+     546,
+     396,
+     563
+    ],
+    "target_px_measured": 24,
+    "area_px": 184,
+    "band_r": 2,
+    "bge": 1.1256,
+    "rlj": 0.1909,
+    "lcr": 0.5321,
+    "luminance_inner": 55.35,
+    "luminance_outer": 104.03,
+    "hf_ratio": 3.7132
+   },
+   {
+    "sample_id": "a0019",
+    "bbox": [
+     546,
+     60,
+     631,
+     149
+    ],
+    "target_px_measured": 90,
+    "area_px": 3310,
+    "band_r": 4,
+    "bge": 2.2321,
+    "rlj": 0.5611,
+    "lcr": 0.3534,
+    "luminance_inner": 78.19,
+    "luminance_outer": 221.27,
+    "hf_ratio": 7.7107
+   },
+   {
+    "sample_id": "a0020",
+    "bbox": [
+     986,
+     570,
+     1022,
+     587
+    ],
+    "target_px_measured": 37,
+    "area_px": 303,
+    "band_r": 2,
+    "bge": 0.7204,
+    "rlj": 0.0124,
+    "lcr": 0.9714,
+    "luminance_inner": 107.32,
+    "luminance_outer": 110.48,
+    "hf_ratio": 3.7172
+   },
+   {
+    "sample_id": "a0021",
+    "bbox": [
+     249,
+     354,
+     268,
+     362
+    ],
+    "target_px_measured": 20,
+    "area_px": 71,
+    "band_r": 1,
+    "bge": 1.1058,
+    "rlj": 0.0717,
+    "lcr": 0.913,
+    "luminance_inner": 191.85,
+    "luminance_outer": 210.14,
+    "hf_ratio": 3.8911
+   },
+   {
+    "sample_id": "a0022",
+    "bbox": [
+     654,
+     463,
+     718,
+     513
+    ],
+    "target_px_measured": 65,
+    "area_px": 1405,
+    "band_r": 4,
+    "bge": 1.3556,
+    "rlj": 0.381,
+    "lcr": 0.4755,
+    "luminance_inner": 88.05,
+    "luminance_outer": 185.2,
+    "hf_ratio": 6.243
+   },
+   {
+    "sample_id": "a0023",
+    "bbox": [
+     336,
+     470,
+     365,
+     490
+    ],
+    "target_px_measured": 30,
+    "area_px": 228,
+    "band_r": 2,
+    "bge": 0.8333,
+    "rlj": 0.0823,
+    "lcr": 1.1634,
+    "luminance_inner": 149.43,
+    "luminance_outer": 128.44,
+    "hf_ratio": 4.0944
+   },
+   {
+    "sample_id": "a0024",
+    "bbox": [
+     1017,
+     421,
+     1112,
+     475
+    ],
+    "target_px_measured": 96,
+    "area_px": 2569,
+    "band_r": 4,
+    "bge": 2.598,
+    "rlj": 0.6127,
+    "lcr": 0.3339,
+    "luminance_inner": 78.33,
+    "luminance_outer": 234.58,
+    "hf_ratio": 9.8964
+   },
+   {
+    "sample_id": "a0025",
+    "bbox": [
+     1341,
+     334,
+     1388,
+     376
+    ],
+    "target_px_measured": 48,
+    "area_px": 791,
+    "band_r": 4,
+    "bge": 1.2559,
+    "rlj": 0.0592,
+    "lcr": 1.0973,
+    "luminance_inner": 170.31,
+    "luminance_outer": 155.21,
+    "hf_ratio": 6.1666
+   },
+   {
+    "sample_id": "a0026",
+    "bbox": [
+     628,
+     254,
+     651,
+     269
+    ],
+    "target_px_measured": 24,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 3.9762,
+    "rlj": 0.173,
+    "lcr": 1.6444,
+    "luminance_inner": 112.6,
+    "luminance_outer": 68.47,
+    "hf_ratio": 9.9303
+   },
+   {
+    "sample_id": "a0027",
+    "bbox": [
+     140,
+     546,
+     229,
+     593
+    ],
+    "target_px_measured": 90,
+    "area_px": 1867,
+    "band_r": 4,
+    "bge": 3.0398,
+    "rlj": 0.2104,
+    "lcr": 1.8671,
+    "luminance_inner": 115.51,
+    "luminance_outer": 61.87,
+    "hf_ratio": 8.4894
+   },
+   {
+    "sample_id": "a0028",
+    "bbox": [
+     888,
+     174,
+     924,
+     206
+    ],
+    "target_px_measured": 37,
+    "area_px": 557,
+    "band_r": 3,
+    "bge": 4.4631,
+    "rlj": 0.1953,
+    "lcr": 4.9803,
+    "luminance_inner": 62.31,
+    "luminance_outer": 12.51,
+    "hf_ratio": 18.4804
+   },
+   {
+    "sample_id": "a0029",
+    "bbox": [
+     270,
+     186,
+     289,
+     199
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 1.0458,
+    "rlj": 0.4798,
+    "lcr": 0.3206,
+    "luminance_inner": 57.73,
+    "luminance_outer": 180.09,
+    "hf_ratio": 4.3323
+   },
+   {
+    "sample_id": "a0030",
+    "bbox": [
+     941,
+     423,
+     1005,
+     470
+    ],
+    "target_px_measured": 65,
+    "area_px": 1532,
+    "band_r": 4,
+    "bge": 1.3081,
+    "rlj": 0.0898,
+    "lcr": 0.8337,
+    "luminance_inner": 114.77,
+    "luminance_outer": 137.67,
+    "hf_ratio": 4.8045
+   },
+   {
+    "sample_id": "a0031",
+    "bbox": [
+     803,
+     488,
+     832,
+     510
+    ],
+    "target_px_measured": 30,
+    "area_px": 292,
+    "band_r": 2,
+    "bge": 1.512,
+    "rlj": 0.2928,
+    "lcr": 0.3685,
+    "luminance_inner": 43.56,
+    "luminance_outer": 118.21,
+    "hf_ratio": 6.5171
+   },
+   {
+    "sample_id": "a0032",
+    "bbox": [
+     373,
+     452,
+     468,
+     520
+    ],
+    "target_px_measured": 96,
+    "area_px": 2076,
+    "band_r": 4,
+    "bge": 0.8699,
+    "rlj": 0.2708,
+    "lcr": 1.5302,
+    "luminance_inner": 199.33,
+    "luminance_outer": 130.26,
+    "hf_ratio": 2.6587
+   },
+   {
+    "sample_id": "a0033",
+    "bbox": [
+     1000,
+     362,
+     1047,
+     392
+    ],
+    "target_px_measured": 48,
+    "area_px": 542,
+    "band_r": 3,
+    "bge": 1.9972,
+    "rlj": 0.57,
+    "lcr": 0.1736,
+    "luminance_inner": 30.53,
+    "luminance_outer": 175.89,
+    "hf_ratio": 8.0283
+   },
+   {
+    "sample_id": "a0034",
+    "bbox": [
+     1041,
+     442,
+     1064,
+     463
+    ],
+    "target_px_measured": 24,
+    "area_px": 145,
+    "band_r": 2,
+    "bge": 1.3087,
+    "rlj": 0.0093,
+    "lcr": 1.0268,
+    "luminance_inner": 91.19,
+    "luminance_outer": 88.8,
+    "hf_ratio": 2.7714
+   },
+   {
+    "sample_id": "a0035",
+    "bbox": [
+     732,
+     465,
+     821,
+     504
+    ],
+    "target_px_measured": 90,
+    "area_px": 1926,
+    "band_r": 4,
+    "bge": 0.687,
+    "rlj": 0.0183,
+    "lcr": 1.0452,
+    "luminance_inner": 108.0,
+    "luminance_outer": 103.33,
+    "hf_ratio": 2.6349
+   },
+   {
+    "sample_id": "a0036",
+    "bbox": [
+     215,
+     314,
+     251,
+     340
+    ],
+    "target_px_measured": 37,
+    "area_px": 504,
+    "band_r": 3,
+    "bge": 1.9502,
+    "rlj": 0.2937,
+    "lcr": 2.3128,
+    "luminance_inner": 131.94,
+    "luminance_outer": 57.05,
+    "hf_ratio": 8.2111
+   },
+   {
+    "sample_id": "a0037",
+    "bbox": [
+     714,
+     246,
+     733,
+     256
+    ],
+    "target_px_measured": 20,
+    "area_px": 102,
+    "band_r": 1,
+    "bge": 2.1361,
+    "rlj": 0.2301,
+    "lcr": 0.6529,
+    "luminance_inner": 110.38,
+    "luminance_outer": 169.06,
+    "hf_ratio": 8.3278
+   },
+   {
+    "sample_id": "a0038",
+    "bbox": [
+     358,
+     424,
+     422,
+     469
+    ],
+    "target_px_measured": 65,
+    "area_px": 974,
+    "band_r": 4,
+    "bge": 0.7717,
+    "rlj": 0.0189,
+    "lcr": 0.9193,
+    "luminance_inner": 54.85,
+    "luminance_outer": 59.67,
+    "hf_ratio": 3.3939
+   },
+   {
+    "sample_id": "a0039",
+    "bbox": [
+     824,
+     256,
+     853,
+     281
+    ],
+    "target_px_measured": 30,
+    "area_px": 284,
+    "band_r": 2,
+    "bge": 1.7531,
+    "rlj": 0.6092,
+    "lcr": 0.2289,
+    "luminance_inner": 46.12,
+    "luminance_outer": 201.45,
+    "hf_ratio": 5.3105
+   },
+   {
+    "sample_id": "a0040",
+    "bbox": [
+     429,
+     453,
+     524,
+     522
+    ],
+    "target_px_measured": 96,
+    "area_px": 2119,
+    "band_r": 4,
+    "bge": 1.3628,
+    "rlj": 0.1208,
+    "lcr": 0.6385,
+    "luminance_inner": 54.41,
+    "luminance_outer": 85.21,
+    "hf_ratio": 4.8469
+   },
+   {
+    "sample_id": "a0041",
+    "bbox": [
+     1320,
+     731,
+     1367,
+     760
+    ],
+    "target_px_measured": 48,
+    "area_px": 477,
+    "band_r": 3,
+    "bge": 0.8219,
+    "rlj": 0.4893,
+    "lcr": 3.2731,
+    "luminance_inner": 179.67,
+    "luminance_outer": 54.89,
+    "hf_ratio": 3.4879
+   },
+   {
+    "sample_id": "a0042",
+    "bbox": [
+     185,
+     361,
+     208,
+     376
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.7467,
+    "rlj": 0.4479,
+    "lcr": 3.2589,
+    "luminance_inner": 164.77,
+    "luminance_outer": 50.56,
+    "hf_ratio": 2.6707
+   },
+   {
+    "sample_id": "a0043",
+    "bbox": [
+     694,
+     87,
+     783,
+     154
+    ],
+    "target_px_measured": 90,
+    "area_px": 3156,
+    "band_r": 4,
+    "bge": 0.9481,
+    "rlj": 0.0672,
+    "lcr": 1.1418,
+    "luminance_inner": 138.03,
+    "luminance_outer": 120.89,
+    "hf_ratio": 3.2142
+   },
+   {
+    "sample_id": "a0044",
+    "bbox": [
+     755,
+     367,
+     786,
+     403
+    ],
+    "target_px_measured": 37,
+    "area_px": 609,
+    "band_r": 3,
+    "bge": 1.2369,
+    "rlj": 0.1524,
+    "lcr": 1.7007,
+    "luminance_inner": 94.32,
+    "luminance_outer": 55.46,
+    "hf_ratio": 3.7973
+   },
+   {
+    "sample_id": "a0045",
+    "bbox": [
+     386,
+     185,
+     405,
+     197
+    ],
+    "target_px_measured": 20,
+    "area_px": 133,
+    "band_r": 1,
+    "bge": 9.3014,
+    "rlj": 0.1821,
+    "lcr": 2.162,
+    "luminance_inner": 86.39,
+    "luminance_outer": 39.96,
+    "hf_ratio": 34.6825
+   },
+   {
+    "sample_id": "a0046",
+    "bbox": [
+     157,
+     70,
+     221,
+     120
+    ],
+    "target_px_measured": 65,
+    "area_px": 1338,
+    "band_r": 4,
+    "bge": 0.3366,
+    "rlj": 0.2221,
+    "lcr": 3.1616,
+    "luminance_inner": 82.85,
+    "luminance_outer": 26.21,
+    "hf_ratio": 1.2642
+   },
+   {
+    "sample_id": "a0047",
+    "bbox": [
+     838,
+     311,
+     866,
+     333
+    ],
+    "target_px_measured": 29,
+    "area_px": 250,
+    "band_r": 2,
+    "bge": 1.0021,
+    "rlj": 0.0234,
+    "lcr": 0.9665,
+    "luminance_inner": 172.11,
+    "luminance_outer": 178.08,
+    "hf_ratio": 3.9548
+   },
+   {
+    "sample_id": "a0048",
+    "bbox": [
+     1017,
+     60,
+     1112,
+     131
+    ],
+    "target_px_measured": 96,
+    "area_px": 2209,
+    "band_r": 4,
+    "bge": 10.6736,
+    "rlj": 0.6771,
+    "lcr": 0.2002,
+    "luminance_inner": 43.22,
+    "luminance_outer": 215.88,
+    "hf_ratio": 23.2621
+   },
+   {
+    "sample_id": "a0049",
+    "bbox": [
+     733,
+     483,
+     780,
+     513
+    ],
+    "target_px_measured": 48,
+    "area_px": 699,
+    "band_r": 3,
+    "bge": 0.6821,
+    "rlj": 0.0192,
+    "lcr": 1.0305,
+    "luminance_inner": 165.86,
+    "luminance_outer": 160.96,
+    "hf_ratio": 2.8768
+   },
+   {
+    "sample_id": "a0050",
+    "bbox": [
+     356,
+     396,
+     379,
+     413
+    ],
+    "target_px_measured": 24,
+    "area_px": 172,
+    "band_r": 2,
+    "bge": 1.8463,
+    "rlj": 0.4791,
+    "lcr": 0.4884,
+    "luminance_inner": 116.62,
+    "luminance_outer": 238.78,
+    "hf_ratio": 6.3124
+   },
+   {
+    "sample_id": "a0051",
+    "bbox": [
+     803,
+     127,
+     892,
+     211
+    ],
+    "target_px_measured": 90,
+    "area_px": 3389,
+    "band_r": 4,
+    "bge": 0.6258,
+    "rlj": 0.0639,
+    "lcr": 0.9156,
+    "luminance_inner": 176.66,
+    "luminance_outer": 192.95,
+    "hf_ratio": 2.0167
+   },
+   {
+    "sample_id": "a0052",
+    "bbox": [
+     264,
+     180,
+     297,
+     216
+    ],
+    "target_px_measured": 37,
+    "area_px": 469,
+    "band_r": 3,
+    "bge": 0.7224,
+    "rlj": 0.0968,
+    "lcr": 1.3985,
+    "luminance_inner": 86.61,
+    "luminance_outer": 61.93,
+    "hf_ratio": 3.4505
+   },
+   {
+    "sample_id": "a0053",
+    "bbox": [
+     504,
+     375,
+     516,
+     394
+    ],
+    "target_px_measured": 20,
+    "area_px": 123,
+    "band_r": 1,
+    "bge": 0.629,
+    "rlj": 0.1333,
+    "lcr": 0.6904,
+    "luminance_inner": 75.81,
+    "luminance_outer": 109.81,
+    "hf_ratio": 2.7538
+   },
+   {
+    "sample_id": "a0054",
+    "bbox": [
+     1391,
+     766,
+     1455,
+     817
+    ],
+    "target_px_measured": 65,
+    "area_px": 1581,
+    "band_r": 4,
+    "bge": 6.6113,
+    "rlj": 0.5303,
+    "lcr": 0.2899,
+    "luminance_inner": 55.21,
+    "luminance_outer": 190.44,
+    "hf_ratio": 19.8684
+   },
+   {
+    "sample_id": "a0055",
+    "bbox": [
+     817,
+     144,
+     846,
+     168
+    ],
+    "target_px_measured": 30,
+    "area_px": 395,
+    "band_r": 2,
+    "bge": 0.7844,
+    "rlj": 0.1769,
+    "lcr": 1.5772,
+    "luminance_inner": 123.27,
+    "luminance_outer": 78.15,
+    "hf_ratio": 3.0133
+   },
+   {
+    "sample_id": "a0056",
+    "bbox": [
+     169,
+     371,
+     250,
+     466
+    ],
+    "target_px_measured": 96,
+    "area_px": 2949,
+    "band_r": 4,
+    "bge": 0.7981,
+    "rlj": 0.289,
+    "lcr": 1.7448,
+    "luminance_inner": 172.64,
+    "luminance_outer": 98.95,
+    "hf_ratio": 2.8995
+   },
+   {
+    "sample_id": "a0057",
+    "bbox": [
+     690,
+     290,
+     737,
+     324
+    ],
+    "target_px_measured": 48,
+    "area_px": 786,
+    "band_r": 4,
+    "bge": 0.5968,
+    "rlj": 0.0575,
+    "lcr": 0.8992,
+    "luminance_inner": 130.91,
+    "luminance_outer": 145.59,
+    "hf_ratio": 2.818
+   },
+   {
+    "sample_id": "a0058",
+    "bbox": [
+     789,
+     84,
+     812,
+     98
+    ],
+    "target_px_measured": 24,
+    "area_px": 183,
+    "band_r": 2,
+    "bge": 0.4273,
+    "rlj": 0.2308,
+    "lcr": 2.3993,
+    "luminance_inner": 100.91,
+    "luminance_outer": 42.06,
+    "hf_ratio": 1.4173
+   },
+   {
+    "sample_id": "a0059",
+    "bbox": [
+     766,
+     507,
+     855,
+     570
+    ],
+    "target_px_measured": 90,
+    "area_px": 2201,
+    "band_r": 4,
+    "bge": 3.0842,
+    "rlj": 0.6819,
+    "lcr": 0.187,
+    "luminance_inner": 39.98,
+    "luminance_outer": 213.87,
+    "hf_ratio": 11.1256
+   },
+   {
+    "sample_id": "a0060",
+    "bbox": [
+     1028,
+     332,
+     1064,
+     356
+    ],
+    "target_px_measured": 37,
+    "area_px": 518,
+    "band_r": 3,
+    "bge": 2.7738,
+    "rlj": 0.0626,
+    "lcr": 1.0838,
+    "luminance_inner": 206.47,
+    "luminance_outer": 190.51,
+    "hf_ratio": 14.0423
+   },
+   {
+    "sample_id": "a0061",
+    "bbox": [
+     1412,
+     300,
+     1431,
+     313
+    ],
+    "target_px_measured": 20,
+    "area_px": 113,
+    "band_r": 1,
+    "bge": 0.9607,
+    "rlj": 0.0089,
+    "lcr": 0.9844,
+    "luminance_inner": 143.11,
+    "luminance_outer": 145.37,
+    "hf_ratio": 3.033
+   },
+   {
+    "sample_id": "a0062",
+    "bbox": [
+     972,
+     447,
+     1036,
+     502
+    ],
+    "target_px_measured": 65,
+    "area_px": 1645,
+    "band_r": 4,
+    "bge": 8.3075,
+    "rlj": 0.1878,
+    "lcr": 0.7496,
+    "luminance_inner": 143.39,
+    "luminance_outer": 191.27,
+    "hf_ratio": 21.7954
+   },
+   {
+    "sample_id": "a0063",
+    "bbox": [
+     691,
+     145,
+     719,
+     171
+    ],
+    "target_px_measured": 29,
+    "area_px": 314,
+    "band_r": 2,
+    "bge": 6.5434,
+    "rlj": 0.1134,
+    "lcr": 0.8248,
+    "luminance_inner": 136.13,
+    "luminance_outer": 165.05,
+    "hf_ratio": 30.0173
+   },
+   {
+    "sample_id": "a0064",
+    "bbox": [
+     373,
+     525,
+     463,
+     620
+    ],
+    "target_px_measured": 96,
+    "area_px": 2224,
+    "band_r": 4,
+    "bge": 0.9304,
+    "rlj": 0.3254,
+    "lcr": 2.6332,
+    "luminance_inner": 133.78,
+    "luminance_outer": 50.8,
+    "hf_ratio": 3.5695
+   },
+   {
+    "sample_id": "a0065",
+    "bbox": [
+     472,
+     211,
+     519,
+     244
+    ],
+    "target_px_measured": 48,
+    "area_px": 669,
+    "band_r": 3,
+    "bge": 0.5685,
+    "rlj": 0.0768,
+    "lcr": 0.5784,
+    "luminance_inner": 26.86,
+    "luminance_outer": 46.44,
+    "hf_ratio": 2.0144
+   },
+   {
+    "sample_id": "a0066",
+    "bbox": [
+     1056,
+     760,
+     1079,
+     782
+    ],
+    "target_px_measured": 24,
+    "area_px": 235,
+    "band_r": 2,
+    "bge": 2.7306,
+    "rlj": 0.1432,
+    "lcr": 1.255,
+    "luminance_inner": 179.73,
+    "luminance_outer": 143.21,
+    "hf_ratio": 8.3351
+   },
+   {
+    "sample_id": "a0067",
+    "bbox": [
+     804,
+     246,
+     893,
+     307
+    ],
+    "target_px_measured": 90,
+    "area_px": 2895,
+    "band_r": 4,
+    "bge": 3.1934,
+    "rlj": 0.0917,
+    "lcr": 1.1862,
+    "luminance_inner": 148.96,
+    "luminance_outer": 125.58,
+    "hf_ratio": 8.9491
+   },
+   {
+    "sample_id": "a0068",
+    "bbox": [
+     1392,
+     167,
+     1428,
+     199
+    ],
+    "target_px_measured": 37,
+    "area_px": 500,
+    "band_r": 3,
+    "bge": 3.322,
+    "rlj": 0.2141,
+    "lcr": 1.4602,
+    "luminance_inner": 173.22,
+    "luminance_outer": 118.63,
+    "hf_ratio": 11.7921
+   },
+   {
+    "sample_id": "a0069",
+    "bbox": [
+     490,
+     359,
+     509,
+     377
+    ],
+    "target_px_measured": 20,
+    "area_px": 167,
+    "band_r": 2,
+    "bge": 1.2555,
+    "rlj": 0.4496,
+    "lcr": 0.2862,
+    "luminance_inner": 45.97,
+    "luminance_outer": 160.62,
+    "hf_ratio": 4.6365
+   },
+   {
+    "sample_id": "a0070",
+    "bbox": [
+     338,
+     233,
+     402,
+     284
+    ],
+    "target_px_measured": 65,
+    "area_px": 1227,
+    "band_r": 4,
+    "bge": 0.6323,
+    "rlj": 0.3036,
+    "lcr": 0.3102,
+    "luminance_inner": 34.81,
+    "luminance_outer": 112.22,
+    "hf_ratio": 2.2827
+   },
+   {
+    "sample_id": "a0071",
+    "bbox": [
+     1461,
+     467,
+     1490,
+     491
+    ],
+    "target_px_measured": 30,
+    "area_px": 353,
+    "band_r": 2,
+    "bge": 25.8446,
+    "rlj": 0.1019,
+    "lcr": 1.2087,
+    "luminance_inner": 150.42,
+    "luminance_outer": 124.44,
+    "hf_ratio": 81.3782
+   },
+   {
+    "sample_id": "a0072",
+    "bbox": [
+     150,
+     372,
+     218,
+     467
+    ],
+    "target_px_measured": 96,
+    "area_px": 3979,
+    "band_r": 4,
+    "bge": 0.51,
+    "rlj": 0.3163,
+    "lcr": 3.3187,
+    "luminance_inner": 115.44,
+    "luminance_outer": 34.78,
+    "hf_ratio": 2.0252
+   },
+   {
+    "sample_id": "a0073",
+    "bbox": [
+     536,
+     395,
+     583,
+     433
+    ],
+    "target_px_measured": 48,
+    "area_px": 580,
+    "band_r": 3,
+    "bge": 1.951,
+    "rlj": 0.3683,
+    "lcr": 0.2205,
+    "luminance_inner": 26.56,
+    "luminance_outer": 120.49,
+    "hf_ratio": 6.9779
+   },
+   {
+    "sample_id": "a0074",
+    "bbox": [
+     302,
+     109,
+     325,
+     122
+    ],
+    "target_px_measured": 24,
+    "area_px": 208,
+    "band_r": 2,
+    "bge": 0.2804,
+    "rlj": 0.1426,
+    "lcr": 4.789,
+    "luminance_inner": 45.95,
+    "luminance_outer": 9.6,
+    "hf_ratio": 1.5254
+   },
+   {
+    "sample_id": "a0075",
+    "bbox": [
+     542,
+     495,
+     631,
+     550
+    ],
+    "target_px_measured": 90,
+    "area_px": 2424,
+    "band_r": 4,
+    "bge": 2.348,
+    "rlj": 0.097,
+    "lcr": 1.2054,
+    "luminance_inner": 145.09,
+    "luminance_outer": 120.36,
+    "hf_ratio": 7.2394
+   },
+   {
+    "sample_id": "a0076",
+    "bbox": [
+     732,
+     67,
+     755,
+     103
+    ],
+    "target_px_measured": 37,
+    "area_px": 471,
+    "band_r": 3,
+    "bge": 4.1528,
+    "rlj": 0.6813,
+    "lcr": 0.2871,
+    "luminance_inner": 69.96,
+    "luminance_outer": 243.69,
+    "hf_ratio": 17.1591
+   },
+   {
+    "sample_id": "a0077",
+    "bbox": [
+     624,
+     232,
+     643,
+     245
+    ],
+    "target_px_measured": 20,
+    "area_px": 106,
+    "band_r": 1,
+    "bge": 2.5708,
+    "rlj": 0.1594,
+    "lcr": 0.7743,
+    "luminance_inner": 139.42,
+    "luminance_outer": 180.06,
+    "hf_ratio": 8.699
+   },
+   {
+    "sample_id": "a0078",
+    "bbox": [
+     170,
+     474,
+     234,
+     510
+    ],
+    "target_px_measured": 65,
+    "area_px": 944,
+    "band_r": 4,
+    "bge": 2.0957,
+    "rlj": 0.3647,
+    "lcr": 6.0826,
+    "luminance_inner": 111.29,
+    "luminance_outer": 18.3,
+    "hf_ratio": 7.3989
+   },
+   {
+    "sample_id": "a0079",
+    "bbox": [
+     354,
+     870,
+     383,
+     896
+    ],
+    "target_px_measured": 30,
+    "area_px": 311,
+    "band_r": 2,
+    "bge": 0.878,
+    "rlj": 0.2752,
+    "lcr": 1.9525,
+    "luminance_inner": 143.87,
+    "luminance_outer": 73.68,
+    "hf_ratio": 3.9495
+   },
+   {
+    "sample_id": "a0080",
+    "bbox": [
+     1057,
+     466,
+     1152,
+     532
+    ],
+    "target_px_measured": 96,
+    "area_px": 2274,
+    "band_r": 4,
+    "bge": 1.0926,
+    "rlj": 0.3155,
+    "lcr": 1.6534,
+    "luminance_inner": 203.56,
+    "luminance_outer": 123.12,
+    "hf_ratio": 4.4306
+   },
+   {
+    "sample_id": "a0081",
+    "bbox": [
+     1089,
+     264,
+     1136,
+     303
+    ],
+    "target_px_measured": 48,
+    "area_px": 979,
+    "band_r": 4,
+    "bge": 4.8183,
+    "rlj": 0.1585,
+    "lcr": 1.3585,
+    "luminance_inner": 153.13,
+    "luminance_outer": 112.72,
+    "hf_ratio": 10.6272
+   },
+   {
+    "sample_id": "a0082",
+    "bbox": [
+     449,
+     182,
+     472,
+     197
+    ],
+    "target_px_measured": 24,
+    "area_px": 157,
+    "band_r": 2,
+    "bge": 0.4624,
+    "rlj": 0.3206,
+    "lcr": 3.2507,
+    "luminance_inner": 118.07,
+    "luminance_outer": 36.32,
+    "hf_ratio": 1.904
+   },
+   {
+    "sample_id": "a0083",
+    "bbox": [
+     842,
+     526,
+     931,
+     610
+    ],
+    "target_px_measured": 90,
+    "area_px": 2839,
+    "band_r": 4,
+    "bge": 0.4156,
+    "rlj": 0.2736,
+    "lcr": 3.5199,
+    "luminance_inner": 97.47,
+    "luminance_outer": 27.69,
+    "hf_ratio": 2.4318
+   },
+   {
+    "sample_id": "a0084",
+    "bbox": [
+     731,
+     162,
+     767,
+     195
+    ],
+    "target_px_measured": 37,
+    "area_px": 412,
+    "band_r": 3,
+    "bge": 0.9081,
+    "rlj": 0.4063,
+    "lcr": 0.3485,
+    "luminance_inner": 55.41,
+    "luminance_outer": 159.0,
+    "hf_ratio": 3.5442
+   },
+   {
+    "sample_id": "a0085",
+    "bbox": [
+     1463,
+     319,
+     1482,
+     336
+    ],
+    "target_px_measured": 20,
+    "area_px": 161,
+    "band_r": 2,
+    "bge": 0.4265,
+    "rlj": 0.1639,
+    "lcr": 0.5049,
+    "luminance_inner": 42.63,
+    "luminance_outer": 84.42,
+    "hf_ratio": 1.1753
+   },
+   {
+    "sample_id": "a0086",
+    "bbox": [
+     219,
+     398,
+     283,
+     457
+    ],
+    "target_px_measured": 65,
+    "area_px": 1514,
+    "band_r": 4,
+    "bge": 1.3131,
+    "rlj": 0.1367,
+    "lcr": 0.6818,
+    "luminance_inner": 74.69,
+    "luminance_outer": 109.54,
+    "hf_ratio": 4.7492
+   },
+   {
+    "sample_id": "a0087",
+    "bbox": [
+     1107,
+     129,
+     1136,
+     153
+    ],
+    "target_px_measured": 30,
+    "area_px": 263,
+    "band_r": 2,
+    "bge": 4.0254,
+    "rlj": 0.3283,
+    "lcr": 1.6402,
+    "luminance_inner": 214.48,
+    "luminance_outer": 130.77,
+    "hf_ratio": 14.3603
+   },
+   {
+    "sample_id": "a0088",
+    "bbox": [
+     883,
+     115,
+     978,
+     168
+    ],
+    "target_px_measured": 96,
+    "area_px": 2529,
+    "band_r": 4,
+    "bge": 1.0799,
+    "rlj": 0.2826,
+    "lcr": 0.6309,
+    "luminance_inner": 123.18,
+    "luminance_outer": 195.23,
+    "hf_ratio": 3.8324
+   },
+   {
+    "sample_id": "a0089",
+    "bbox": [
+     260,
+     318,
+     306,
+     365
+    ],
+    "target_px_measured": 48,
+    "area_px": 834,
+    "band_r": 4,
+    "bge": 1.0896,
+    "rlj": 0.2662,
+    "lcr": 1.6192,
+    "luminance_inner": 177.5,
+    "luminance_outer": 109.62,
+    "hf_ratio": 3.3391
+   },
+   {
+    "sample_id": "a0090",
+    "bbox": [
+     769,
+     140,
+     792,
+     160
+    ],
+    "target_px_measured": 24,
+    "area_px": 203,
+    "band_r": 2,
+    "bge": 0.7709,
+    "rlj": 0.3439,
+    "lcr": 2.2441,
+    "luminance_inner": 158.17,
+    "luminance_outer": 70.48,
+    "hf_ratio": 3.3528
+   },
+   {
+    "sample_id": "a0091",
+    "bbox": [
+     379,
+     53,
+     468,
+     134
+    ],
+    "target_px_measured": 90,
+    "area_px": 3370,
+    "band_r": 4,
+    "bge": 2.3203,
+    "rlj": 0.1371,
+    "lcr": 1.3523,
+    "luminance_inner": 134.21,
+    "luminance_outer": 99.24,
+    "hf_ratio": 6.187
+   },
+   {
+    "sample_id": "a0092",
+    "bbox": [
+     336,
+     195,
+     370,
+     231
+    ],
+    "target_px_measured": 37,
+    "area_px": 546,
+    "band_r": 3,
+    "bge": 0.6066,
+    "rlj": 0.0258,
+    "lcr": 1.0663,
+    "luminance_inner": 105.86,
+    "luminance_outer": 99.28,
+    "hf_ratio": 3.0299
+   },
+   {
+    "sample_id": "a0093",
+    "bbox": [
+     1064,
+     541,
+     1083,
+     556
+    ],
+    "target_px_measured": 20,
+    "area_px": 168,
+    "band_r": 2,
+    "bge": 0.719,
+    "rlj": 0.336,
+    "lcr": 0.2949,
+    "luminance_inner": 35.83,
+    "luminance_outer": 121.52,
+    "hf_ratio": 3.5966
+   },
+   {
+    "sample_id": "a0094",
+    "bbox": [
+     944,
+     537,
+     1008,
+     583
+    ],
+    "target_px_measured": 65,
+    "area_px": 1255,
+    "band_r": 4,
+    "bge": 1.3627,
+    "rlj": 0.1362,
+    "lcr": 0.6871,
+    "luminance_inner": 76.25,
+    "luminance_outer": 110.97,
+    "hf_ratio": 5.8632
+   },
+   {
+    "sample_id": "a0095",
+    "bbox": [
+     776,
+     352,
+     805,
+     381
+    ],
+    "target_px_measured": 30,
+    "area_px": 308,
+    "band_r": 2,
+    "bge": 0.6843,
+    "rlj": 0.5163,
+    "lcr": 0.27,
+    "luminance_inner": 48.68,
+    "luminance_outer": 180.34,
+    "hf_ratio": 3.5084
+   },
+   {
+    "sample_id": "a0096",
+    "bbox": [
+     728,
+     239,
+     823,
+     298
+    ],
+    "target_px_measured": 96,
+    "area_px": 2429,
+    "band_r": 4,
+    "bge": 2.9215,
+    "rlj": 0.1878,
+    "lcr": 0.7557,
+    "luminance_inner": 148.11,
+    "luminance_outer": 195.99,
+    "hf_ratio": 8.9444
+   },
+   {
+    "sample_id": "a0097",
+    "bbox": [
+     456,
+     381,
+     503,
+     415
+    ],
+    "target_px_measured": 48,
+    "area_px": 796,
+    "band_r": 4,
+    "bge": 3.3713,
+    "rlj": 0.2344,
+    "lcr": 0.712,
+    "luminance_inner": 147.74,
+    "luminance_outer": 207.5,
+    "hf_ratio": 13.0453
+   },
+   {
+    "sample_id": "a0098",
+    "bbox": [
+     150,
+     126,
+     173,
+     144
+    ],
+    "target_px_measured": 24,
+    "area_px": 173,
+    "band_r": 2,
+    "bge": 1.5604,
+    "rlj": 0.5681,
+    "lcr": 0.2238,
+    "luminance_inner": 41.78,
+    "luminance_outer": 186.63,
+    "hf_ratio": 6.6001
+   },
+   {
+    "sample_id": "a0099",
+    "bbox": [
+     607,
+     379,
+     696,
+     432
+    ],
+    "target_px_measured": 90,
+    "area_px": 1969,
+    "band_r": 4,
+    "bge": 8.8103,
+    "rlj": 0.4248,
+    "lcr": 0.1637,
+    "luminance_inner": 21.2,
+    "luminance_outer": 129.51,
+    "hf_ratio": 24.8542
+   }
+  ]
+ },
+ "pairs": [
+  {
+   "pair": "out_E4_both vs out_E4_d85s40",
+   "n_paired": 100,
+   "metrics": {
+    "bge": {
+     "out_E4_both_mean": 2.2858,
+     "out_E4_d85s40_mean": 2.2493,
+     "mean_diff": 0.0365,
+     "median_diff": 0.0033,
+     "n": 100,
+     "wilcoxon_stat": 2061.5,
+     "wilcoxon_p": 0.149,
+     "ttest_p": 0.235
+    },
+    "rlj": {
+     "out_E4_both_mean": 0.2516,
+     "out_E4_d85s40_mean": 0.2508,
+     "mean_diff": 0.0008,
+     "median_diff": 0.0038,
+     "n": 100,
+     "wilcoxon_stat": 2226.0,
+     "wilcoxon_p": 0.304,
+     "ttest_p": 0.834
+    },
+    "lcr": {
+     "out_E4_both_mean": 1.3018,
+     "out_E4_d85s40_mean": 1.2995,
+     "mean_diff": 0.0023,
+     "median_diff": -0.0002,
+     "n": 100,
+     "wilcoxon_stat": 2495.0,
+     "wilcoxon_p": 0.918,
+     "ttest_p": 0.884
+    }
+   }
+  },
+  {
+   "pair": "out_E4_both vs out_E4_d85s60",
+   "n_paired": 100,
+   "metrics": {
+    "bge": {
+     "out_E4_both_mean": 2.2858,
+     "out_E4_d85s60_mean": 2.2761,
+     "mean_diff": 0.0097,
+     "median_diff": -0.0037,
+     "n": 100,
+     "wilcoxon_stat": 2340.0,
+     "wilcoxon_p": 0.525,
+     "ttest_p": 0.646
+    },
+    "rlj": {
+     "out_E4_both_mean": 0.2516,
+     "out_E4_d85s60_mean": 0.2534,
+     "mean_diff": -0.0018,
+     "median_diff": -0.0005,
+     "n": 100,
+     "wilcoxon_stat": 2279.0,
+     "wilcoxon_p": 0.494,
+     "ttest_p": 0.52
+    },
+    "lcr": {
+     "out_E4_both_mean": 1.3018,
+     "out_E4_d85s60_mean": 1.3047,
+     "mean_diff": -0.0029,
+     "median_diff": 0.0003,
+     "n": 100,
+     "wilcoxon_stat": 2431.5,
+     "wilcoxon_p": 0.879,
+     "ttest_p": 0.773
+    }
+   }
+  },
+  {
+   "pair": "out_E4_both vs out_E4_depth",
+   "n_paired": 100,
+   "metrics": {
+    "bge": {
+     "out_E4_both_mean": 2.2858,
+     "out_E4_depth_mean": 2.1136,
+     "mean_diff": 0.1723,
+     "median_diff": 0.0655,
+     "n": 100,
+     "wilcoxon_stat": 1244.0,
+     "wilcoxon_p": 1.06e-05,
+     "ttest_p": 0.0368
+    },
+    "rlj": {
+     "out_E4_both_mean": 0.2516,
+     "out_E4_depth_mean": 0.236,
+     "mean_diff": 0.0156,
+     "median_diff": 0.0103,
+     "n": 100,
+     "wilcoxon_stat": 1764.5,
+     "wilcoxon_p": 0.00893,
+     "ttest_p": 0.00638
+    },
+    "lcr": {
+     "out_E4_both_mean": 1.3018,
+     "out_E4_depth_mean": 1.2681,
+     "mean_diff": 0.0337,
+     "median_diff": 0.001,
+     "n": 100,
+     "wilcoxon_stat": 2436.0,
+     "wilcoxon_p": 0.76,
+     "ttest_p": 0.343
+    }
+   }
+  },
+  {
+   "pair": "out_E4_both vs out_E4_seg",
+   "n_paired": 100,
+   "metrics": {
+    "bge": {
+     "out_E4_both_mean": 2.2858,
+     "out_E4_seg_mean": 2.3164,
+     "mean_diff": -0.0306,
+     "median_diff": -0.0339,
+     "n": 100,
+     "wilcoxon_stat": 1687.0,
+     "wilcoxon_p": 0.00595,
+     "ttest_p": 0.163
+    },
+    "rlj": {
+     "out_E4_both_mean": 0.2516,
+     "out_E4_seg_mean": 0.2489,
+     "mean_diff": 0.0027,
+     "median_diff": 0.0066,
+     "n": 100,
+     "wilcoxon_stat": 2196.0,
+     "wilcoxon_p": 0.258,
+     "ttest_p": 0.626
+    },
+    "lcr": {
+     "out_E4_both_mean": 1.3018,
+     "out_E4_seg_mean": 1.2577,
+     "mean_diff": 0.0441,
+     "median_diff": 0.0184,
+     "n": 100,
+     "wilcoxon_stat": 1881.5,
+     "wilcoxon_p": 0.0269,
+     "ttest_p": 0.167
+    }
+   }
+  }
+ ],
+ "note": "本评测的指标在空间对齐维度上是**故意与 bbox 解耦**的：它测量的是目标与背景在像素层面的融合自然度，用于为「标记注入 + ControlNet 重绘」与「直接粘贴」的对照提供真正有鉴别力的证据。若差异不显著，须如实报告为「未检出可测量改善」，不得表述为「等效」。"
+}

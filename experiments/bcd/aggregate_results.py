@@ -10,7 +10,7 @@ aggregate_results.py — 汇总 BCD 实验全部产物，产出论文可直接�
   E1  标记注入（full vs paste）out_E1_full|paste/metrics.json
   E2  验证强度（九段 vs 单标量）out_E2/metrics.json
   E3  域适配（LoRA vs 无）      out_E3_lora|nolora/metrics.json
-  E4  条件维度（both/depth/seg）out_E4_*/metrics.json
+  E4  条件维度（both/depth/seg + 0.60/0.40 权重扫描）out_E4_*/metrics.json
   E5  轨迹一致性（fixed/indep） out_E5_*/metrics.json
   E6  best-of-N                out_E6_N*/metrics.json
   B   闭环学习曲线 A1/A2/A3     out_B_A*/curve.json
@@ -176,9 +176,11 @@ def main():
 
     metric_block("E3", "E3 · 无人机域适配消融（LoRA 合并 vs 不合并）",
                  {"lora": "out_E3_lora", "no-lora": "out_E3_nolora"}, "条件")
-    metric_block("E4", "E4 · 条件维度消融（depth+seg / depth / seg）",
-                 {"both": "out_E4_both", "depth": "out_E4_depth",
-                  "seg": "out_E4_seg"}, "条件")
+    metric_block("E4", "E4 · 条件维度消融（depth+seg / depth / seg / 权重扫描）",
+                 {"both 0.85/0.85": "out_E4_both", "depth only 0.85": "out_E4_depth",
+                  "seg only 0.85": "out_E4_seg",
+                  "depth+seg 0.85/0.60": "out_E4_d85s60",
+                  "depth+seg 0.85/0.40": "out_E4_d85s40"}, "条件")
 
     e5f = load(HERE / "out_E5_fixed" / "metrics.json")
     e5i = load(HERE / "out_E5_indep" / "metrics.json")
